@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Acton
+ *
+ * @category    Alpine
+ * @package     Alpine_Acton
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc (www.alpineinc.com)
+ * @author      Aleksandr Mikhailov (aleksandr.mikhailov@alpineinc.com)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Alpine\Acton\Block\CheckoutSuccessIframe" name="acton.checkout.success.iframe"
+                   template="Alpine_Acton::checkout_success_iframe.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <!-- Configurator api Group -->
+    <route url="/V1/configurators/preview" method="GET">
+        <service class="Int\Configurator\Api\ConfiguratorManagementInterface" method="getPreview"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>        
+    </route>
+	
+	<route url="/V1/configurators3d/preview" method="POST">
+        <service class="Int\Configurator\Api\ConfiguratorManagementInterface" method="getConfigurators3dPreview"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+        
+    </route>
+	
+	<route url="/V1/configurators/save" method="POST">
+        <service class="Int\Configurator\Api\ConfiguratorManagementInterface" method="set3dConfigurators"/>
+		
+		<resources>
+            <resource ref="anonymous"/>
+        </resources>
+              
+    </route>
+	
+</routes>

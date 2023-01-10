@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+
+		<add id="Int_Configurator::configurator" title="Configurators" module="Int_Configurator" sortOrder="200" parent="Int_Core::menu" action="int_configurator/items/" resource="Int_Configurator::items"/>
+    </menu>
+</config>

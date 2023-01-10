@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Acton
+ *
+ * @category    Alpine
+ * @package     Alpine_Acton
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Aleksandr Mikhailov <aleksandr.mikhailov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <alpine_acton>
+            <forms>
+                <checkout_newsletter_subscribe_action_url>
+                    <![CDATA[https://marketing.accuride.com/acton/eform/34600/214408fa-bf84-4755-abcc-1fd13e5b0137/d-ext-0001]]>
+                </checkout_newsletter_subscribe_action_url>
+            </forms>
+        </alpine_acton>
+    </default>
+</config>

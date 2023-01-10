@@ -1,0 +1,17 @@
+type Query {
+    allStores (
+            store_id  : Int  @doc(description: "Query by store_id.") 
+    ) : AllStores @resolver( class: "Int\\StoresGetListingGraphQL\\Model\\Resolver\\AllStores") @doc(description: "Query by Get All Stores Listing.") 
+}
+
+type AllStores {
+    stores  : [StoresData]  @doc(description: "Get all stores list")
+}
+
+type StoresData @doc(description: "StoresData graphql gather Data") {
+    store_id  : Int  @doc(description: "Current store id.") 
+	code  : String  @doc(description: "Current store code.")
+	store_name  : String  @doc(description: "Current store name.")
+	website_id  : Int  @doc(description: "Current website id.")
+	store_active  : String  @doc(description: "Current store active.")
+}

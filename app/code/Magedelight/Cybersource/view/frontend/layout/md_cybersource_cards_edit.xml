@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">   
+    <update handle="customer_account"/>
+    <head>
+        <title>Edit Card</title>
+        <css src="MD_Cybersource::css/cybersource.css"/>
+         <link src="MD_Cybersource::js/cybersourcevalid.js"/>
+    </head>
+    <body>                
+        <referenceContainer name="content">
+            <block class="MD\Cybersource\Block\Customer\Cards\Edit" name="md-card-edit" template="customer/cards/edit.phtml" />
+        </referenceContainer>
+    </body>
+</page>

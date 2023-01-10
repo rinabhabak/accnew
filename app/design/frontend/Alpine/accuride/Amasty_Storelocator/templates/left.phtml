@@ -1,0 +1,77 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Storelocator
+ *
+ * @var \Amasty\Storelocator\Block\Location $block
+ */
+
+/**
+ * Alpine/accuride
+ *
+ * @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+ * @author      Aleksandr Mikhailov (aleksandr.mikhailov@alpineinc.com)
+ * @author      Anton Smolenov (anton.smolenov@alpineinc.com)
+ * @author      Gleb Fomichev (gleb.fomichev@alpineinc.com)
+ */
+?>
+<?php
+$locations = $block->getLocations();
+$currentDate = $block->timezoneInterface->date();
+$currentDay = $block->timezoneInterface->convertConfigTimeToUtc($currentDate, 'N');
+$dayNames = $block->dataHelper->getDaysNames();
+$i = 1;
+?>
+<div id="amlocator_left">
+    <?php if (count($locations) > 0): ?>
+        <?php foreach ($locations as $location) : ?>
+            <div class="leftLocation">
+                <p class="location_header"><?= $this->escapeHtml($location->getName()); ?></p>
+                <p class="address"><?php
+                    $addressString = $location->getAddress();
+                    $address = explode(',', $addressString);
+                    if (isset($address[0]) && $address[0]) {
+                        echo array_shift($address) . "<br>";
+                    }
+                    echo implode(', ', $address);
+                    ?>
+                    <?php if (trim($location->getPhone())) : ?>
+                        <p class="phone">
+                            <strong><?= __('Phone') ?>:</strong>
+                            <span><?php $phonesString = $location->getPhone();
+                                $phones = explode(',',$phonesString);
+                                foreach($phones as $value){
+                                    echo $value."<br>";
+                                } ?></span>
+                        </p>
+                    <?php endif; ?>
+                    <?php if (trim($location->getFax())) : ?>
+                        <p class="fax">
+                            <strong><?= __('Fax') ?>:</strong>
+                            <span><?= $this->escapeHtml($location->getFax()); ?></span>
+                        </p>
+                    <?php endif; ?>
+                        <?php if (trim($location->getEmail())) : ?>
+                        <p class="email">Email: </p>
+                        <a href="mailto:<?= $this->escapeHtml($location->getEmail()); ?>" class="email-link"><?= $this->escapeHtml($location->getEmail()); ?></a>
+                    <?php endif; ?>
+                        <?php if (trim($location->getWebsite())) : ?>
+                            <a href="<?= $this->escapeHtml($location->getWebsite()); ?>" target="_blank" class="site">Website</a>
+                    <?php endif; ?>
+                <?php if ($addressString): ?>
+                <p class="actions">
+                    <button class="action blue" name="leftLocation" data-amid="<?= $i ?>"><?php echo __('MAP DIRECTIONS') ?></button>
+                </p>
+            <?php else: ?>
+                <p class="text">
+                    <span><?php echo __('Served from outside the state, call or email for service.') ?></span>
+                </p>
+            <?php endif; ?>
+            </div>
+            <?php $i++ ?>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <?php echo $block->getNoResultMessage() ?>
+    <?php endif; ?>
+</div>

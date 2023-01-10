@@ -1,0 +1,87 @@
+type Query {
+    savedCards (
+        customer_id: Int @doc(description: "Query by Customer Id.")
+    ) : [SavedCards] @resolver(class: "Int\\CybersourceGraphQl\\Model\\Resolver\\SavedCards") @doc(description: "Query by Get List of Saved Card.")
+}
+
+type Mutation {
+    fetchPayload(input : PayloadInput!) : securePayload
+    @resolver(class: "Int\\CybersourceGraphQl\\Model\\Resolver\\SecurePayload") @doc(description: "Return Secure Acceptance Payload")
+
+    cardinalAuth(input : PayloadInput!) : cardinalPayload
+    @resolver(class: "Int\\CybersourceGraphQl\\Model\\Resolver\\CardinalAuth") @doc(description: "Return Secure Acceptance Payload")
+}
+
+input PayloadInput {
+    source : String @doc(description: "page type")
+    guest_email : String @doc (description: "customer email")
+    billing : BillingAddInput @doc (description: "billing fields")
+}
+
+input BillingAddInput {
+    firstname: String! @doc(description: "Firstname Validator Response."),
+    lastname: String! @doc(description: "Lastname Validator Response."),
+    company: String! @doc(description: "Company Validator Response."),
+    street: [String]! @doc(description: "Street Validator Response."),
+    city: String! @doc(description: "City Validator Response."),
+    regionCode: String! @doc(description: "Region Id Validator Response."),
+    region: Int! @doc(description: "Region Validator Response."),
+    postcode: String! @doc(description: "Post Code Validator Response.")
+    countryId: String! @doc(description: "Country Id Validator Response."),
+    telephone: String! @doc(description: "Telephone Validator Response.")
+}
+
+type SavedCards {
+    cc_exp_month: String  @doc(description: "Card Expired Month."),
+    cc_exp_year: String  @doc(description: "Card Expired Year."),
+    cc_last_4: String  @doc(description: "Card Last four Digit."),
+    cc_type: String  @doc(description: "Card Type.")
+}
+
+input SetPaymentMethodOnCartInput {
+    cc_type: String @doc(description: "card cc_type") @resolver(class: "Int\\CybersourceGraphQl\\Model\\Resolver\\CybersourceOrderSubmit")
+}
+
+type securePayload {
+    iframeAction: String @doc(description: "action url")
+    iframeParams: [ParamOptions] @doc(description: "Other param Options.")
+}
+
+type cardinalPayload {
+    authPayload: String @doc(description: "auth payload")
+    orderPayload: String @doc(description: "order payload")
+    JWT: String @doc(description:  "JWT string")
+}
+
+type ParamOptions @doc(description: "other options") {
+    access_key : String
+    locale : String
+    payment_method : String
+    profile_id : String
+    reference_number : String
+    signed_date_time : String
+    skip_decision_manager : String
+    transaction_uuid : String
+    consumer_id : String
+    merchant_defined_data99 : String
+    merchant_defined_data100 : String
+    override_custom_receipt_page : String
+    partner_solution_id : String
+    signed_field_names : String
+    customer_ip_address : String
+    transaction_type : String
+    amount : String
+    currency : String
+    bill_to_forename : String
+    bill_to_surname : String
+    bill_to_email : String
+    bill_to_company_name : String
+    bill_to_address_country : String
+    bill_to_address_city : String
+    bill_to_address_state : String
+    bill_to_address_line1 : String
+    bill_to_address_line2 : String
+    bill_to_address_postal_code : String
+    bill_to_phone : String
+    signature : String
+}

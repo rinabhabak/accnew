@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin" title="Magento Backend">
+                
+                <resource id="Int_Core::menu" title="Int Main" translate="title" sortOrder="100">                    
+                    <resource id="Int_BdmManagement::bdmmanagement_manage" title="BdmManagement Module" sortOrder="10">
+						<resource id="Int_BdmManagement::save" title="Save BdmManagement" sortOrder="10" />
+                        <resource id="Int_BdmManagement::bdmmanagement_delete" title="Delete BdmManagement" sortOrder="20" />
+					</resource>                  
+                </resource>
+                
+            </resource>
+        </resources>
+    </acl>
+</config>

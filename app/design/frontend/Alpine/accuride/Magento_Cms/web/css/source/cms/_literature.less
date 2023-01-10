@@ -1,0 +1,88 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Cms
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Valery Shishkin <valery.shishkin@alpineinc.com>
+//  */
+& when (@media-common = true) {
+    .literature {
+        &:extend(.cads all);
+        
+        > h1 {
+            font-size: 2.4rem;
+            margin-top: 25px;
+        }
+        
+        .cms-content& .group {
+            &.literature {
+                .item {
+                    line-height: 1.5;
+                }
+            }
+            
+            .item {
+                border-bottom: none;
+                .lib-vendor-prefix-flex-basis(48%);
+                text-align: center;
+                margin-bottom: 25px;
+                font-size: @font-size__base;
+                
+                a {
+                    &:after {
+                        display: none;
+                    }
+                }
+                
+                .title {
+                    .lib-vendor-prefix-display(flex);
+                    .lib-vendor-box-align(center);
+                    -webkit-justify-content: center;
+                    justify-content: center;
+                    height: 100px;
+                }
+            }
+        }
+        
+        .button.blue {
+            .lib-link-as-button();
+            .lib-button();
+            width: 100%;
+            margin-top: 10px;
+            line-height: 3rem;
+        }
+    }
+
+    .page-layout-full-width {
+        .literature {
+            max-width: none;
+
+            > *:not(.heading) {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .literature {
+        &:extend(.cads all);
+        max-width: 1230px;
+        
+        > h1 {
+            margin-top: 65px;
+            text-align: left;
+        }
+        
+        .cms-content& .group {
+            max-width: 100%;
+            margin-top: 70px;
+            
+            .item {
+                .lib-vendor-prefix-flex-basis(211px);
+                margin: 0 30px 75px;
+            }
+        }
+    }
+}

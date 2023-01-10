@@ -1,0 +1,22 @@
+{
+    "name": "products/module-storewisegraphql",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "ankit.ahilwal@indusnet.co.in",
+            "name": "Indus Net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Products\\StoreWiseGraphQL\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -1,0 +1,172 @@
+<?php
+    $data = $block->getData();
+    $products = isset($data['products'])?$data['products']:array();
+    $configurator = $block->getConfigurator();
+    $helper = $this->helper('\Int\Configurator\Helper\Products');
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title><?php echo __('Bill of Material') ?></title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <table style="width: 700px; margin: auto; font-family: sans-serif;">
+        <tr>
+            <td colspan="2" style="text-align: right; font-size: 40px; padding-bottom: 60px;">
+                <img src="<?php echo $data['logo_url'] ?>" />
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-size: 40px; color: #333;">
+                <?php echo __('Bill of Material') ?>
+            </td>
+            <td style="text-align: right; font-size: 15px;">
+                <p style="font-size: 22px; color: #333; margin: 0; padding: 0;"><?php echo __('Date: %1',$data['date']); ?></p>
+                <p style="font-size: 22px; color: #333; margin: 0; padding: 0;"><?php echo __('ID Number: %1', $configurator->getProjectId()); ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; font-size: 40px; vertical-align: bottom; color: #333; padding-top: 30px; padding-bottom: 30px;">
+                <p style="font-size: 25px; color: #222; margin: 0; padding: 0;">Senseon</p>
+                <p style="font-size: 18px; color: #333; margin: 0; padding: 0;">
+                    12311 Shoemaker Avenue <br/>
+                    Santa Fe Springs, CA 90670
+                </p>
+            </td>
+            <td style="text-align: left; font-size: 15px; vertical-align: bottom; padding-top: 30px; padding-bottom: 30px;">
+                <p style="font-size: 18px; color: #333; margin: 0; padding: 0;">To: <?php echo $data['customer_name']; ?></p>
+                <p style="font-size: 18px; color: #333; margin: 0; padding: 0;">Email: <?php echo $data['customer_email']; ?></p>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="border-top: 1px #333 solid; font-size: 18px; color: #333;"> <p>Based on your input the following products are needed to secure your fixture(s):*</p> </td>
+        </tr>
+        <?php foreach($products as $fixtureId => $_products): ?>
+            <?php $fixture = $this->getFixtureDetails($fixtureId); ?>
+            <?php $system = $helper->getSelectedSystemsByFixtureId($fixtureId); ?>
+            <?php $flag = 0; ?>
+            <?php 
+                $height = $fixture->getFixtureHeight();
+                $depth = $fixture->getFixtureDepth();
+                $width = $fixture->getFixtureLength();
+            ?><tr>
+            <td>
+            <?php
+                $heightType = 0;
+                $widthType = 0;
+                $depthType = 0;
+                
+                foreach($helper->getOptionsDetails($fixtureId)->getData() as $opening){
+                    $productData = unserialize($opening['product_data']);
+                    $customFields = $productData['custom_fields_data'];                  
+                    foreach($customFields as $customField){
+                        if($customField['field_name']=='height'){
+                            $heightType = $customField['field_value'];
+                        }
+                        
+                        if($customField['field_name']=='depth'){
+                            $depthType = $customField['field_value'];
+                        }
+                        
+                        if($customField['field_name']=='width'){
+                            $widthType = $customField['field_value'];
+                        }
+                        
+                    }
+                    if(($heightType > $height ) || ( $depthType > $depth ) || ($widthType > $width) ){
+                        $flag = 1;
+                        break;
+                    }
+                }
+                
+                
+            ?></td></tr>
+            <tr>
+                <td style="vertical-align: middle; line-height: 40px; padding-top: 20px; font-size: 18px; font-weight: 700; " ><?php echo $fixture->getFixtureName() ?></td>
+            </tr>
+            <?php if($flag): ?>
+                <tr>
+                    <td colspan="2" style="border-top: 1px #333 solid; font-size: 18px; color: #f00;"> <p>Your opening dimensions exceed your fixture’s dimensions. Your 3D preview and product recommendation may not be accurate as a result. Please call us for further consultation at 866-459-4149.</p> </td>
+                </tr>
+            <?php endif; ?>
+            <tr>
+                <td> <img src="<?php echo $helper->getSystemLogo($system); ?>" alt="logo"  /> </td>  
+            </tr>
+            <tr>
+                <td colspan="2" style="margin: 0; padding: 0; padding-top: 15px;">
+                    <table style="width: 700px; margin: auto; border: 1px #333 solid; border-collapse: collapse; margin-bottom: 40px;">
+
+                        <tr style="background: #fff; color: #000; padding: 10px;">
+                            <th style="border: 1px #333 solid; width: 150px; text-align: left; font-size: 20px; color: #000; font-weight: 300; padding: 5px; padding-left: 10px;"><?php echo __('Part#') ?></th>
+                            <th style="border: 1px #333 solid; font-size: 20px; color: #000; font-weight: 300; padding: 5px;"><?php echo __('Description') ?></th>
+                            <th style="border: 1px #333 solid; width: 80px; font-size: 20px; color: #000; font-weight: 300; padding: 5px;"><?php echo __('UOM') ?></th>
+                            <th style="border: 1px #333 solid; width: 80px; font-size: 20px; color: #000; text-align: center; font-weight: 300; padding: 5px;"><?php echo __('Qty') ?></th>
+                        </tr>
+                        <?php $i=0; ?>
+                        
+                            <?php  if(count($_products)>0): ?>
+                                <?php foreach($_products as $product): ?>
+                                    <tr>
+                                        <td style="border: 1px #333 solid; width: 150px; padding: 10px;"><?php echo $product['sku'] ?></td>
+                                        <td style="border: 1px #333 solid; padding: 10px;"><?php echo $product['name'] ?></td>
+                                        <td style="border: 1px #333 solid; width: 75px; padding: 10px; text-align: center;"><?php echo $product["uom"] ?></td>
+                                        <td style="border: 1px #333 solid; width: 50px; padding: 10px; text-align: center;"><?php echo $product['qty'] ?></td>
+                                    </tr>
+                                    <?php $i++; ?>
+                                <?php endforeach;?>
+                            <?php else:?>
+                                <tr>
+                                    <td colspan="4" style="border: 1px #333 solid; padding: 10px; text-align: center;" ><?php echo __('No record found.') ?></td>
+                                </tr>
+                            <?php endif;;?>
+                    </table>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+        <tr>
+            <td colspan="2" style="font-size: 15px; color: #333; margin: 0; padding: 0; padding-top: 25px; line-height: 20px;">
+                *This configuration may require additional cabling and components. Our Senseon expert team will contact you to help you finalize your setup.
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-size: 18px; color: #333; margin: 0; padding: 0; padding-top: 30px; padding-bottom: 30px; line-height: 25px;">
+                Thank you for building your System Configurator! Your project information has been sent to our team! They will reach out to you to confirm you have everything you need to secure your cabinet
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="font-size: 18px; color: #333; margin: 0; padding: 0; padding-top: 30px; border-top: 1px #333 solid; line-height: 25px;">
+                All customer orders to Accuride are subject to written acceptance in the form of Accuride’s customer acknowledgement with general terms and conditions set forth on the back. Any additional or any conflicting terms and conditions set forth in the Buyer’s purchase order shall be null and void and shall not form part of any contract between Accuride and the Buyer.
+            </td>
+        </tr>
+    </table>
+    	
+	<!-- Add pagination into PFG -->
+	<script type="text/php">
+        if ( isset($pdf) ) {           
+            $x = 550;
+            $y = 750;
+            $text = "{PAGE_NUM} of {PAGE_COUNT}";
+            $font = $fontMetrics->get_font("helvetica", "normal");
+            $size = 9;
+            $color = array(000,0,0);
+            $word_space = 0.0;  //  default
+            $char_space = 0.0;  //  default
+            $angle = 0.0;   //  default
+            $pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
+        }
+    </script>
+	<!-- End of pagination script -->
+	
+</body>
+</html>
+
+<style>
+    table {
+        page-break-inside: avoid !important;
+      }
+</style>

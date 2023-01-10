@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Acton
+ *
+ * @category    Alpine
+ * @package     Alpine_Acton
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="VladimirPopov\WebForms\Controller\Form\Submit">
+        <plugin name="alpine_acton_controler_form_submit_after"
+                type="Alpine\Acton\Plugin\Controller\Form\Submit"
+                sortOrder="10"
+        />
+    </type>
+</config>

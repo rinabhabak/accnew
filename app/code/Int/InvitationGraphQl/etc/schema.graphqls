@@ -1,0 +1,36 @@
+# Copyright © Magento, Inc. All rights reserved.
+
+type Query {
+    customerInvitation: [CustomerInvitationList] @resolver(class: "\\Int\\InvitationGraphQl\\Model\\Resolver\\CustomerInvitation") @doc(description: "Customer invitation returns information about a invitation list")
+    emailByInvitation(
+        invitationToken: String @doc(description: "Invitation Token")
+    ): EmailByInvitation @resolver(class: "\\Int\\InvitationGraphQl\\Model\\Resolver\\EmailByInvitation") @doc(description: "get customer email ID by invitation token")
+}
+ 
+type CustomerInvitationList @doc(description: "Customer invitation graphql gather Data of specific invitation list") {
+    invitation_id: String @doc(description: "Invitation Id")
+    email: String @doc(description: "Invitation Email")
+    status: String @doc(description: "Invitation Status")
+    invitation_date: String @doc(description: "Invitation Date")
+}
+
+type Mutation {
+    sendInvitation (
+        email: [String]! @doc(description: "Email Address")
+        message: String! @doc(description: "Message")
+    ): InvitationOutput @resolver(class: "\\Int\\InvitationGraphQl\\Model\\Resolver\\SendInvitation") @doc(description:"Send Invitation")
+}
+
+type InvitationOutput {
+    message: notificationType @doc(description: "Success or error Message")
+}
+
+type notificationType {
+    notice: String @doc(description: "Notice Message")
+    error: String @doc(description: "error Message")
+    success: String @doc(description: "success Message")
+}
+
+type EmailByInvitation @doc(description: "Customer invitation email") {
+    email: String @doc(description: "Email ID")
+}

@@ -1,0 +1,213 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Cms
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+//  */
+& when (@media-common = true) {
+    .about {
+        &:extend(.customer-stories all);
+
+        .cms-header-image {
+            margin-bottom: 0;
+        }
+
+        .wrapper {
+            width: 90%;
+            margin: 0 auto;
+
+            h1 {
+                margin: percentage(40 / 1400) 0 percentage(35 / 1400);
+            }
+
+            p {
+                text-align: left;
+                width: auto;
+                max-width: 100%;
+                font-family: @font-family-name__light;
+            }
+
+            .top-text {
+                text-align: center;
+                margin-bottom: 50px;
+                font-size: 2rem;
+            }
+
+            .text-image {
+                margin: 50px 0;
+            }
+
+            h3 {
+                text-transform: none;
+                text-align: left;
+                font-weight: bold;
+            }
+
+            .middle-block {
+                margin: 50px 0;
+
+                p {
+                    font-size: 2rem;
+                }
+            }
+            .text-image {
+                .image {
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .text {
+                    width: 100%;
+                }
+
+                h3{
+                    margin: 0;
+                    line-height: 1;
+                }
+
+                p {
+                    margin: percentage(31 / 1230) 0 percentage(38 / 1230);
+                }
+
+                &.small {
+                    margin: 0 auto;
+                    padding: percentage(20 / 1015);
+
+                    h3 {
+                        color: @cms-header_color;
+                    }
+
+                    &:nth-child(2n) {
+                        background: #ebebeb;
+                    }
+                }
+            }
+
+            .map {
+                margin: 50px 0;
+
+                img {
+                    width: 100%;
+                }
+            }
+            .contacts {
+                text-align: left;
+
+                h1 {
+                    margin: percentage(60 / 1230) 0 percentage(40 / 1230);
+                }
+
+                ul {
+                    margin: 0;
+                    padding: 0;
+                    list-style-type: none;
+
+                    li {
+                        &:before {
+                            display: none;
+                        }
+
+                        p {
+                            margin-bottom: percentage(25 / 1230);
+                        }
+
+                        p:first-child {
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            //font size
+            h1 {
+                font-size: 3.2rem;
+            }
+
+            h3 {
+                font-size: 2.25rem;
+            }
+
+            p {
+                font-size: 1.6rem;
+            }
+
+            .text-image {
+                &.small {
+                    margin-top: 15px;
+
+                    h3 {
+                        font-size: 1.82rem;
+                    }
+                }
+            }
+        }
+    }
+
+    .page-layout-full-width {
+        .about .wrapper {
+            width: auto;
+            padding-left: 15px;
+            padding-right: 15px;
+
+            .text-image.small {
+                width: auto;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .about {
+        .wrapper {
+            width: percentage(1230 / 1400);
+
+            h3 {
+                font-size: 2.75rem;
+            }
+
+            .text-image {
+                .lib-vendor-prefix-display (flex);
+                .lib-vendor-box-align (stretch);
+                justify-content: space-between;
+                width: 100%;
+
+                .image {
+                    width: percentage(480 / 1230);
+                }
+
+                .text {
+                    width: percentage(700 / 1230);
+                }
+
+                &.small {
+                    width: percentage(1015 / 1230);
+                    margin-top: 0;
+
+                    .image {
+                        width: percentage(295 / 1015);
+                    }
+                    .text {
+                        width: percentage(650 / 1015);
+                    }
+
+                    h3 {
+                        font-size: 2.22rem;
+                    }
+                }
+            }
+            .contacts {
+                ul {
+                    .lib-vendor-prefix-display (flex);
+                    .lib-vendor-prefix-flex-wrap (wrap);
+                    .lib-vendor-box-align (stretch);
+                    justify-content: space-between;
+
+                    li{
+                        flex: 1 1 50%;
+                    }
+                }
+            }
+        }
+    }
+}

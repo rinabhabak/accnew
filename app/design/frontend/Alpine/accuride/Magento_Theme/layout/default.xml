@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+<!--
+* Alpine
+*
+* @category    Alpine
+* @package     Alpine_Accuride
+* @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+* @author      Denis Furman <denis.furman@alpineinc.com>
+* @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="footer_links" remove="true"/>
+        <referenceBlock name="rss-link" remove="true"/>
+        <referenceBlock name="catalog-search-advanced-link" remove="true"/>
+        <referenceBlock name="sales-guest-form-link" remove="true"/>
+        <referenceBlock name="privacy-policy-link" remove="true"/>
+        <referenceBlock name="search-term-popular-link" remove="true"/>
+        <referenceBlock name="breadcrumbs" remove="true"/>
+        <referenceBlock name="register-link" remove="true"/>
+        <referenceBlock name="loffaq-toplinks" remove="true"/>
+        <referenceBlock name="form.subscribe" remove="true"/>
+        <move element="copyright" destination="wrapper_socials_links" before="-"/>
+        <move element="contact-us-link" destination="header.links" before="telephone"/>
+        <move element="register.customer.link" destination="header.links" after="authorization-link-login"/>
+        <move element="register.company.link" destination="header.links" after="register.customer.link"/>
+
+        <referenceContainer name="header.container">
+            <container name="header.sticky.wrapper" htmlClass="header-sticky" htmlTag="div" after="header.panel.wrapper"/>
+        </referenceContainer>
+
+        <move element="navigation.sections" destination="header-wrapper" after="logo"/>
+        <move element="minicart" destination="header-wrapper" after="-"/>
+        <move element="header-wrapper" destination="header.sticky.wrapper" before="-"/>
+
+        <referenceBlock name="register.link.container" remove="true"/>
+
+        <referenceBlock name="logo">
+            <arguments>
+                <argument name="logo_file" xsi:type="string">images/accuride-logo.png</argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceBlock name="header">
+            <arguments>
+                <argument name="show_part" xsi:type="string">false</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="header.links">
+            <block class="Magento\Cms\Block\Block" name="header_top_links" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header_top_links</argument>
+                </arguments>
+            </block>
+            <referenceBlock name="contact-us-link">
+                    <arguments>
+                        <argument name="label" xsi:type="string" translate="true">Contact</argument>
+                    </arguments>
+            </referenceBlock>
+            <block class="Magento\Framework\View\Element\Template" name="telephone" after="-" template="Magento_Cms::telephone.phtml" />
+        </referenceBlock>
+        <referenceContainer name="footer">
+            <block class="VladimirPopov\WebForms\Block\Form" name="form.signup_form" template="Magento_Contact::form/default.phtml" before="-">
+                <arguments>
+                    <argument xsi:type="string" name="webform_code">signup_form</argument>
+                    <argument name="title" translate="true" xsi:type="string">Footer Signup Form</argument>
+                </arguments>
+            </block>
+            
+            <block class="Magento\Cms\Block\Block" name="custom_footer_links" after="store_switcher">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">custom_footer_links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="page.wrapper">
+            <container name="socials_copyright" htmlClass="socials_copyright" htmlTag="div" after="footer">
+                <block class="Magento\Cms\Block\Block" name="custom_footer_other_stores">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">custom_footer_other_stores</argument>
+                    </arguments>
+                </block>
+                <container name="wrapper_socials_links" htmlClass="wrapper_socials_links" htmlTag="div">
+                    <block class="Magento\Cms\Block\Block" name="custom_footer_social_links">
+                        <arguments>
+                            <argument name="block_id" xsi:type="string">custom_footer_social_links</argument>
+                        </arguments>
+                    </block>
+                </container>
+            </container>
+            <container name="pwa_redirect_popup" htmlClass="pwa_redirect_popup" htmlTag="div" before="header_container">
+                <block class="Magento\Cms\Block\Block" name="custom_pwa_redirect_popup">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">custom_pwa_redirect_popup</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

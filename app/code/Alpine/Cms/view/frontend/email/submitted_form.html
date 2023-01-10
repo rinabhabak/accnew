@@ -1,0 +1,75 @@
+<!--
+/**
+ * Email template
+ *
+ * @category    Alpine
+ * @package     Alpine_Cms
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ */
+-->
+<!--@subject {{trans "Quote Form"}} @-->
+<!--@vars {
+"var data.comment":"Comment",
+"var data.email":"Sender Email",
+"var data.name":"Sender Name",
+"var data.telephone":"Sender Telephone"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p>QUOTE</p>
+<table class="message-details">
+    <tr>
+        <td><b>{{trans "FIRST NAME"}}</b></td>
+        <td>{{var data.first_name}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "LAST NAME"}}</b></td>
+        <td>{{var data.last_name}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "TITLE"}}</b></td>
+        <td>{{var data.title}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "COMPANY NAME"}}</b></td>
+        <td>{{var data.company_name}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "ADDRESS"}}</b></td>
+        <td>{{var data.address}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "CITY"}}</b></td>
+        <td>{{var data.city}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "STATE"}}</b></td>
+        <td>{{var data.region_id}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "ZIP CODE"}}</b></td>
+        <td>{{var data.zip_code}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "DELIVERY DATE"}}</b></td>
+        <td>{{var data.delivery_date}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "PHONE"}}</b></td>
+        <td>{{var data.telephone}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "EMAIL"}}</b></td>
+        <td>{{var data.e_mail}}</td>
+    </tr>
+    <tr>
+        <td><b>{{trans "PRODUCTS"}}</b></td>
+        <td>{{var data.products}}</td>
+    </tr>
+</table>
+<p><b>{{trans "SPECIAL COMMENTS"}}</b></p>
+<p>{{var data.comment}}</p>
+
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,51 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Cms
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Valery Shishkin <valery.shishkin@alpineinc.com>
+//  */
+& when (@media-common = true) {
+
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cms-content.specialty-slides {
+        .cms-header-image {
+            margin-bottom: 20px;
+        }
+        
+        p {
+            line-height: 3.2rem;
+            max-width: 900px;
+        }
+        
+        ul {
+            margin-top: 50px;
+            
+            li {
+                padding-bottom: 86px;
+            }
+            
+            h2 {
+                .lib-vendor-prefix-display(flex);
+                .lib-vendor-box-align(center);
+                -webkit-justify-content: center;
+                justify-content: center;
+                letter-spacing: 1px;
+                margin-top: 29px;
+                min-height: 7.2rem;
+                line-height: 3.6rem;
+                margin-bottom: 10px;
+            }
+            
+            p {
+                line-height: 2.2rem;
+            }
+            
+            &.four-items-block {
+                margin-top: 25px;
+            }
+        }
+    }
+}

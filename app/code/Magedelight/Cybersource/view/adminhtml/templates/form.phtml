@@ -1,0 +1,172 @@
+<?php // echo $block->getTest(); ?>
+<?php $_code = $block->getMethodCode() ?>
+<fieldset class="admin__fieldset payment-method fieldset payment items ccard <?php echo $_code ?>" id="payment_form_<?php echo $_code ?>" style="display: none;">
+   <?php $cards = $block->getCustomerSavedCards(); ?>
+     <?php $cardInfoData = true; ?>
+    <?php // echo "<pre>"; print_r($cards); ?>
+    <?php if(!empty($cards)): ?>
+    <?php $cardInfoData = false; ?>
+    <div class="admin__field field type">
+        <label for="<?php echo $_code ?>_subscription_id" class="label admin__field-label"><span><?php echo __('Select From Saved Card') ?></span></label>
+        <div class="control admin__field-control">
+            <select id="<?php echo $_code ?>_subscription_id"
+                    name="payment[subscription_id]" data-validate='{required:true}' class="select admin__control-select">
+                <option value=""><?php echo __('--Please Select--')?></option>
+            <?php foreach ($cards as $cardvalue => $cardlable): ?>
+                <option value="<?php echo $cardvalue ?>"><?php echo $cardlable ?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+    </div>
+    <?php endif; ?>
+    <div class="admin__field field type _required <?php echo $_code ?>_new" <?php if(!$cardInfoData): ?>style="display:none;"<?php endif; ?>>
+        <label for="<?php echo $_code ?>_cc_type" class="label admin__field-label"><span><?php echo __('Credit Card Type') ?></span></label>
+        <div class="control admin__field-control">
+            <select id="<?php echo $_code ?>_cc_type"
+                    name="payment[cc_type]" class="select admin__control-select">
+                <option value=""><?php echo __('--Please Select--')?></option>
+            <?php $_ccType = $block->getInfoData('cc_type') ?>
+            <?php foreach ($block->getCcAvailableTypes() as $_typeCode => $_typeName): ?>
+                <option value="<?php echo $_typeCode ?>"<?php if ($_typeCode == $_ccType): ?> selected="selected"<?php endif ?>><?php echo $_typeName ?></option>
+            <?php endforeach ?>
+            </select>
+        </div>
+    </div>
+    <div class="admin__field field number _required <?php echo $_code ?>_new" <?php if(!$cardInfoData): ?>style="display:none;"<?php endif; ?>>
+        <label for="<?php echo $_code ?>_cc_number" class="label admin__field-label"><span><?php echo __('Credit Card Number') ?></span></label>
+        <div class="admin__field-control  control">
+            <input type="text" id="<?php echo $_code ?>_cc_number" name="payment[cc_number]" title="<?php echo __('Credit Card Number') ?>" class="input-text admin__control-text" value="" />
+        </div>
+    </div>
+    <div class="admin__field _required field date <?php echo $_code ?>_new" <?php if(!$cardInfoData): ?>style="display:none;"<?php endif; ?> id="<?php echo $_code ?>_cc_type_exp_div">
+        <label for="<?php echo $_code ?>_expiration" class="label admin__field-label"><span><?php echo __('Expiration Date') ?></span></label>
+        <div class="admin__field-control control">
+            <div class="fields group group-2">
+                
+                
+                        <select id="<?php echo $_code ?>_expiration" name="payment[expiration]" class="select month select admin__control-select">
+                            <?php $_ccExpMonth = $block->getInfoData('cc_exp_month') ?>
+                            <?php foreach ($block->getCcMonths() as $k => $v): ?>
+                                <option value="<?php echo $k ? $k : '' ?>"<?php if ($k == $_ccExpMonth): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                            <?php endforeach ?>
+                        </select>
+                
+                
+                
+                
+                     <?php $_ccExpYear = $block->getInfoData('cc_exp_year') ?>
+                        <select id="<?php echo $_code ?>_expiration_yr" name="payment[expiration_yr]" class="select year select admin__control-select" >
+                            <?php foreach ($block->getCcYears() as $k => $v): ?>
+                                <option value="<?php echo $k ? $k : '' ?>"<?php if ($k == $_ccExpYear): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                            <?php endforeach ?>
+                        </select>
+                
+            </div>
+        </div>
+    </div>
+    <?php if ($block->hasVerification()): ?>
+    <div class="admin__field field cvv _required" id="<?php echo $_code ?>_cc_type_cvv_div">
+        <label for="<?php echo $_code ?>_cc_cid" class="label admin__field-label"><span><?php echo __('Card Verification Number') ?></span></label>
+        <div class="control admin__field-control">
+            <input type="text" title="<?php echo __('Card Verification Number') ?>" class="input-text cvv admin__control-text" data-validate="{required:true}" id="<?php echo $_code ?>_cc_cid" name="payment[cc_cid]" value="" />
+            <?php /* $_content = '<img src=\"' . $block->getViewFileUrl('Magento_Checkout::cvv.png') . '\" alt=\"' . __('Card Verification Number Visual Reference') . '\" title=\"' . __('Card Verification Number Visual Reference') . '\" />'; ?>
+            <div class="note">
+                <a href="#" class="action cvv" title="<?php echo __('What is this?') ?>" data-mage-init='{"tooltip": {"content": "<?php echo $_content ?>"}}'><span><?php echo __('What is this?') ?></span></a>
+            </div>
+            */
+            ?>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php
+    $items = $block->getQuoteItems();
+    ?>
+     <?php if((!isset($items[0])) &&  $block->getSaveCardOptional()): ?>
+        <div class="admin__field field number <?php echo $_code ?>_new" <?php if(!$cardInfoData): ?>style="display:none;"<?php endif; ?>>
+            <label for="<?php echo $_code ?>_cc_number" class="label admin__field-label">&nbsp;</label>
+            <div class="control admin__field-control">
+                <input type="hidden" name="payment[save_card]" id="<?php echo $_code ?>_save_card" value="true" />
+                <input type="checkbox" name="payment[save_account]" id="<?php echo $_code ?>_save_account" checked="checked" value="not" autocomplete="on" />
+                <label for="<?php echo $_code ?>_save_account" style="float:none;font-weight:normal;"><?php echo __('Save this credit card for future use.'); ?></label>
+            </div>
+        </div>
+    
+        <?php else: ?>
+        <div class="admin__field field number <?php echo $_code ?>_new" <?php if(!$cardInfoData): ?>style="display:none;"<?php endif; ?>>
+            <div class="control admin__field-control">
+                <input type="hidden" name="payment[save_card]" id="<?php echo $_code ?>_save_card" value="true" />
+            </div>
+        </div>
+     
+     <?php endif; ?>
+   
+    <?php echo $block->getChildHtml() ?>
+</fieldset>
+
+<?php if(count($cards) > 0): 
+    ?>
+    <script>
+        
+        require([
+            'jquery',
+            ], function(){ 
+                
+                jQuery('#<?php echo $_code ?>_subscription_id').on('change', function() {
+                    
+                        var currentValue = jQuery(this).val();
+                        
+                        var cVVElement = jQuery('#<?php echo $_code ?>_cc_cid');   
+                         if(currentValue == 'new'){
+                             
+                              jQuery('#<?php echo $_code ?>_cc_type').attr('data-validate',JSON.stringify({required:true, 'validate-cyber-cc-type-select':'#<?php echo $_code ?>_cc_number'}));
+                              jQuery('#<?php echo $_code ?>_cc_number').attr('data-validate',JSON.stringify({required:true, 'validate-cyber-cc-type':'#<?php echo $_code ?>_cc_type'}));
+                              jQuery('#<?php echo $_code ?>_expiration').attr('data-validate',JSON.stringify({required:true, 'validate-cc-exp':'#<?php echo $_code ?>_expiration_yr'}));
+                              jQuery('#<?php echo $_code ?>_expiration_yr').attr('data-validate',JSON.stringify({required:true}));
+                       
+                            }
+                           else{
+                             jQuery('#<?php echo $_code ?>_cc_type').removeAttr('data-validate');
+                             jQuery('#<?php echo $_code ?>_cc_number').removeAttr('data-validate');
+                             jQuery('#<?php echo $_code ?>_expiration').removeAttr('data-validate');
+                             jQuery('#<?php echo $_code ?>_expiration_yr').removeAttr('data-validate');
+                           }
+                           
+                        jQuery(".<?php echo $_code ?>_new").each(function(){
+
+                            if(currentValue == 'new'){
+                                jQuery(this).show();
+                            }else{
+                                jQuery(this).hide();
+                            }
+                        }); 
+                        
+                        jQuery('#<?php echo $_code ?>_save_account').on('change', function() {
+                                
+                            if (jQuery(this).is(":checked"))
+                            {
+                              jQuery('#<?php echo $_code ?>_save_card').val("true");
+                            } else {
+                              jQuery('#<?php echo $_code ?>_save_card').val("false");  
+                            }
+                        });
+                        
+                        if(cVVElement){
+                            cVVElement.show();
+                            if(currentValue == 'new'){
+                                cVVElement.addClass('validate-cccybersource-cvn');
+                            }else{
+                                cVVElement.removeClass('validate-cccybersource-cvn');
+                            }
+                        }
+                        
+                        
+                });
+                
+        });
+        
+</script>
+    
+    
+    
+    <?php endif; ?>
+   

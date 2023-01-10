@@ -1,0 +1,95 @@
+<?php
+/**
+ * Alpine_Storelocator
+ *
+ * @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+ * @author      Gleb Fomichev (gleb.fomichev@alpineinc.com)
+ */
+?>
+<?php /** @var \Amasty\Storelocator\Block\Location $block */ ?>
+<?php
+$attributes = $block->getAttributes();
+?>
+<div class="wrapper_title_top">
+    <p class="title_top"><?php echo __('DISTRIBUTOR LOCATOR') ?></p>
+</div>
+<div id="amasty_locator_filter" class="block" >
+    <p class="title"><?php echo __('Search for Distributors') ?></p>
+    <p class="description">
+        <?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('amlocator-description')->toHtml();?>
+    </p>
+    <div class="block-content">
+        <div id="stores-select" class="stores-select">
+            <div class="amlocator_input">
+                <div class="input-box">
+                    <select title="" class="select" id="amlocator-radius" name="radius" >
+                        <option value="" selected><?= __('Search Radius')?></option>
+                        <?php foreach ($block->getSearchRadius() as $range) : ?>
+                            <option value="<?php echo is_numeric($range) ? $range : ''; ?>"
+                                <?php if ($range == Alpine\Storelocator\Setup\UpgradeData::DEAFULT_SEARCH_RADIUS_VALUE) : ?>
+                                    selected
+                                <?php endif; ?>
+                            >
+                                <?php echo __($range) ?>
+                            </option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+            </div>
+            <?php if($this->getDistanceConfig()): ?>
+                <div class="amlocator_input">
+                    <label for="measurement"><?= __('Search Radius Measurement')?></label>
+                    <div class="input-box">
+                        <select title="" class="select" id="amlocator-measurement" name="measurement">
+                            <option value="km"><?= __('km')?></option>
+                            <option selected="selected" value="mi"><?= __('mi')?></option>
+                        </select>
+                    </div>
+                </div>
+            <?php endif ?>
+        </div>
+
+        <input type="hidden" id="am_lat" >
+        <input type="hidden" id="am_lng" >
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "#stores-select": {
+            "Alpine_Storelocator/js/select": {
+                "filters": <?php echo json_encode($attributes); ?>,
+                "filterAttributeUrl": "<?= $this->getUrl('amlocator/index/attribute') ?>"
+            }
+        }
+    }
+</script>
+
+<div class="amlocator_center">
+    <div class="amlocator_mapblock"><div id="amlocator-map-canvas"></div></div>
+    <div class="amlocator_store_list"><?= $block->getChildHtml('amlocator_left') ?></div>
+</div>
+
+<script>
+    var baloonTemplate = <?= $block->getBaloonTemplate() ?>;
+    var amMediaUrl = "<?= $block->getAmStoreMediaUrl() ?>";
+</script>
+
+<script language="javascript" type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true&libraries=places<?= $block->getApiKey() ?>"></script>
+
+<script>
+    require([
+        'jquery',
+        'amLocator',
+        'Amasty_Storelocator/js/cluster',
+        'domReady!'
+    ], function ($) {
+        $('#amlocator-map-canvas').amLocator({
+            ajaxCallUrl: "<?= $this->getUrl('amlocator/index/ajax') . $this->getQueryString() ?>",
+            useGeo: "<?= $this->getGeoUse()?>",
+            jsonLocations: <?= $this->getJsonLocations() ?>,
+            imageLocations: "<?= $block->getViewFileUrl('Amasty_Storelocator::images/'); ?>",
+            filterAttributeUrl: "<?= $this->getUrl('amlocator/index/attribute') ?>"
+        })
+    });
+</script>

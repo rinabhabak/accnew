@@ -1,0 +1,67 @@
+& when (@media-common = true) {
+  .accuride-markets {
+	  [data-content-type="products"] {
+		  .products-grid {
+			  .product-items li.product-item {
+				  margin: 0 auto !important;
+				  position: static;
+				  padding-bottom: 0;
+				  width: 100% !important;
+
+				  .product-item-actions .actions-primary form {
+					  margin: 0 auto;
+				  }
+
+				  &:before {
+					  display: none;
+					  content: "";
+					  counter-increment: none;
+				  }
+			  }
+
+			  .product-item-info:hover {
+				  background: none;
+				  box-shadow: none;
+				  border: 0;
+				  margin: 0;
+				  padding: 0;
+			  }
+
+			  .product-image-container {
+				  width: 100% !important;
+			  }
+		  }
+
+		  .product-item-actions,
+		  .price-box {
+			  display: none;
+		  }
+
+		  [data-content-type='column'] {
+			  width: 80% !important;
+		  }
+	  }
+
+	  .product-item-name {
+		  text-align: center;
+	  }
+
+	  .product-image-photo {
+	      height: 100%;
+	      width: auto;
+	  }
+
+
+	  a.product-item-link {
+		  margin:0 auto;
+		  width: 100% !important;
+		  font-size: 16px;
+		  text-transform: uppercase;
+		  color: @color-blue;
+	  }
+
+	  .actions-secondary {
+		  display: none !important;
+	  }
+  }
+}

@@ -1,0 +1,17 @@
+type Query {
+    customers  : Customers @resolver( class: "Customers\\GetAllGraphQL\\Model\\Resolver\\Customers") @doc(description: "Query by Get All Customers Listing.") 
+}
+
+type Customers {    
+    getlist: [CustomersList] @doc(description: "Get all customers list")
+}
+
+type CustomersList {
+	id  : Int  @doc(description: "Current customer id.") 
+	website_id  : Int  @doc(description: "Current customer website id.")
+	group_id  : Int  @doc(description: "Current customer group id.")
+	store_id  : Int  @doc(description: "Current customer store id.")
+	email  : String  @doc(description: "Current customer email.")
+	firstname  : String  @doc(description: "Current customer first name.")
+	lastname  : String  @doc(description: "Current customer last name.")
+}

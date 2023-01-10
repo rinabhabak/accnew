@@ -1,0 +1,62 @@
+type Query {
+    myOrderDetails (
+    	orderId: Int  @doc(description: "Fetch Current Order by ID.")
+    ) : MyOrderDetails @resolver( class: "Int\\MyOrderDetailsGraphQL\\Model\\Resolver\\MyOrderDetails")  
+}
+
+type MyOrderDetails {    
+    orderId: Int  @doc(description: "Fetch Current Order ID")
+    incrementId: Int @doc(description: "Fetch Current Order Increment ID")
+    status: String  @doc(description: "Fetch Current Order Status")
+    storeId: Int  @doc(description: "Fetch Current Order Store ID")
+    customerId: Int  @doc(description: "Fetch Current Order Customer ID")
+    customerPrefix: String  @doc(description: "Fetch Current Order Customer Prefix")
+    customerFirstname: String  @doc(description: "Fetch Current Order Customer First Name")
+    customerMiddlename: String  @doc(description: "Fetch Current Order Customer Middle Name")
+    customerLastname: String  @doc(description: "Fetch Current Order Customer Last Name")
+    customerSuffix: String  @doc(description: "Fetch Current Order Customer Suffix")
+    customerEmail: String  @doc(description: "Fetch Current Order Customer Email")
+    customerIsGuest: String  @doc(description: "Fetch Current Order Is Guest")
+    customerPhoneNumber: String  @doc(description: "Fetch Current Order Customer Phone Number")
+    shippingMethod: String  @doc(description: "Fetch Current Order Shipping Method")
+    shippingDescription: String  @doc(description: "Fetch Current Order Shipping Description")
+    paymentMethod: String  @doc(description: "Fetch Current Order Payment Method")
+    orderItems: [OrderItems]
+    subtotal: String  @doc(description: "Fetch Current Order Subtotoal")
+    shippingAmount: String  @doc(description: "Fetch Current Order Shipping Amount")
+    taxAmount: String  @doc(description: "Fetch Current Order Tax Amount")
+    discountAmount: String  @doc(description: "Fetch Current Order Discount Amount")
+    grandTotal: String  @doc(description: "Fetch Current Order Grand Total")
+    billingName: String  @doc(description: "Fetch Current Order Billing Name")
+    billingStreet: String  @doc(description: "Fetch Current Order Billing Street")
+    billingCity: String  @doc(description: "Fetch Current Order Billing City")
+    billingRegion: String  @doc(description: "Fetch Current Order Billing State")
+    billingPostcode: String  @doc(description: "Fetch Current Order Billing Postcode")
+    billingCountry: String  @doc(description: "Fetch Current Order Billing Country")
+    billingPhoneNumber: String  @doc(description: "Fetch Current Order Billing Phone Number")
+    shippingName: String  @doc(description: "Fetch Current Order Shipping Name")
+    shippingStreet: String  @doc(description: "Fetch Current Order Shipping Street")
+    shippingCity: String  @doc(description: "Fetch Current Order Shipping City")
+    shippingRegion: String  @doc(description: "Fetch Current Order Shipping State")
+    shippingPostcode: String  @doc(description: "Fetch Current Order Shipping Postcode")
+    shippingCountry: String  @doc(description: "Fetch Current Order Shipping Country")
+    shippingPhoneNumber: String  @doc(description: "Fetch Current Order Shipping Phone Number")
+    isInvoiced: String  @doc(description: "Check Current Order Invoice is Created")
+    isShipped: String  @doc(description: "Check Current Order Shipment is Created")
+    createdAt: String  @doc(description: "Fetch Current Order Creation Date")
+    updatedAt: String  @doc(description: "Fetch Current Order Updation Date")
+}
+
+type OrderItems {
+	productId  : Int  @doc(description: "Get Current Product ID.")
+    productName  : String  @doc(description: "Get Current Product Name.")
+    productSku  : String  @doc(description: "Get Current Product SKU.")
+    productQty  : String  @doc(description: "Get Current Product Qty.")
+    productPrice  : String  @doc(description: "Get Current Product Price.")
+    options: [OrderItemOptions]
+}
+
+type OrderItemOptions {
+	optionLabel : String  @doc(description: "Get Current Option Label.")
+	optionValue : String  @doc(description: "Get Current Option Value.")
+}

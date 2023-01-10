@@ -1,0 +1,381 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="atwix" translate="label" sortOrder="1000">
+            <label>Atwix Extensions</label>
+        </tab>
+        <section id="atwix_richsnippets" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Atwix Rich Snippets</label>
+            <tab>atwix</tab>
+            <resource>Atwix_Richsnippets::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="annotation" translate="label" type="label" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <comment><![CDATA[<h3>Rich Snippets extension</h3> Improves online store SEO by adding specific tags and structured data to your web pages, and enhances look and feel of pages shared on social networks.]]></comment>
+                </field>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable extension</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment>This setting enables/disables extension globally.</comment>
+                </field>
+                <field id="twitter_username" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter username</label>
+                    <comment><![CDATA[Twitter username is used for multiple <a href="https://dev.twitter.com/cards/overview" target="_blank">twitter cards</a>.
+                    Please specify username without leading "@" symbol. E.g. username is "atwixcom" for https://twitter.com/atwixcom.]]></comment>
+                </field>
+                <field id="site_name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Website Name</label>
+                    <validate>validate-no-empty</validate>
+                    <comment>Represents site name you want to see in multiple snippets like organization info or open graph.</comment>
+                </field>
+                <field id="review_fix_enabled" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Product Reviews Fix</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Wrap native product review summary with target product markup on Category, CMS and Search pages, which is missing in native functionality.]]></comment>
+                </field>
+            </group>
+            <group id="cms" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>CMS</label>
+                <field id="opengraph" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable open graph meta tags for CMS pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Check for <a href="http://ogp.me/" target="_blank">more details about Open Graph</a>.]]></comment>
+                </field>
+                <field id="opengraph_title" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable open graph title on CMS pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="*/*/opengraph">1</field>
+                    </depends>
+                    <comment><![CDATA[Show CMS page meta title in Open Graph snippet.]]></comment>
+                </field>
+                <field id="opengraph_description" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable open graph description on CMS pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="*/*/opengraph">1</field>
+                    </depends>
+                    <comment><![CDATA[Show CMS page meta description in Open Graph snippet.]]></comment>
+                </field>
+                <field id="opengraph_logo" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable open graph logo on CMS pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="*/*/opengraph">1</field>
+                    </depends>
+                    <comment><![CDATA[Show custom image/logo in Open Graph snippet.]]></comment>
+                </field>
+                <field id="opengraph_logo_url" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Open graph logo URL on CMS pages</label>
+                    <depends>
+                        <field id="*/*/opengraph_logo">1</field>
+                    </depends>
+                    <validate>validate-url</validate>
+                    <comment><![CDATA[Custom image/logo URL for Open Graph snippet.]]></comment>
+                </field>
+                <field id="twitter" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable twitter cards on CMS pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Show <a href="https://dev.twitter.com/cards/overview" target="_blank">twitter cards</a> on CMS pages.]]></comment>
+                </field>
+                <field id="twitter_logo_url" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter cards logo URL on CMS pages </label>
+                    <depends>
+                        <field id="*/*/twitter">1</field>
+                    </depends>
+                    <validate>validate-url</validate>
+                    <comment><![CDATA[Custom image/logo URL for Twitter card snippet on CMS pages.]]></comment>
+                </field>
+                <field id="website_name_enabled" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show custom website name on CMS pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show custom website name for Sitename JSON snippet on CMS pages.]]></comment>
+                </field>
+                <field id="alternative_website_name" translate="label" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternative website name</label>
+                    <depends>
+                        <field id="*/*/website_name_enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Add alternative website name (alternateName) for Sitename JSON snippet on CMS pages.]]></comment>
+                </field>
+            </group>
+            <group id="organization" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Organization</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable organisation rich snippets</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a> to the &lt;head&gt; of your website.]]></comment>
+                </field>
+                <field id="email" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization email</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>validate-email</validate>
+                    <comment><![CDATA[Email for the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization name</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Organization name for the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="telephone" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization telephone</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>validate-phoneLax</validate>
+                    <comment><![CDATA[Phone number for the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="logo" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization logo url</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Logo image URL for the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="postalCode" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization postal code</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <!--Validation class is not working in Magento core at the moment-->
+                    <validate>validate-zip-international</validate>
+                    <comment><![CDATA[ZIP/Postal code for the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="addressLocality" translate="label" type="textarea" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization address locality</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Organization address locality for the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.<br />
+                    Please check <a href="https://schema.org/addressLocality" target="_blank">https://schema.org/addressLocality</a> for more details.]]></comment>
+                </field>
+                <field id="streetAddress" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Organization street address</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Street address for the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+            </group>
+            <group id="social" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Social</label>
+                <field id="gplus" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Google plus head tag for pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add Google+ page URL to the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="gplus_username" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Plus Username</label>
+                    <depends>
+                        <field id="*/*/gplus">1</field>
+                    </depends>
+                    <comment><![CDATA[Google+ username. E.g. Use "username" for "https://plus.google.com/username".]]></comment>
+                </field>
+                <field id="facebook" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Facebook head tag for pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add Facebook page URL to the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="facebook_username" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Facebook Username</label>
+                    <depends>
+                        <field id="*/*/facebook">1</field>
+                    </depends>
+                    <comment><![CDATA[Facebook username. E.g. Use "atwixcom" for "https://www.facebook.com/atwixcom".]]></comment>
+                </field>
+                <field id="linkedin" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Linked.in head tag for pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add Linked.in page URL to the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="linkedin_username" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Linked.in Username</label>
+                    <depends>
+                        <field id="*/*/linkedin">1</field>
+                    </depends>
+                    <comment><![CDATA[Linked.in username. E.g. Use "atwix" for "https://www.linkedin.com/company/atwix".]]></comment>
+                </field>
+                <field id="pinterest" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Pinterest head tag for pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add Pinterest page URL to the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="pinterest_username" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pinterest Username</label>
+                    <depends>
+                        <field id="*/*/pinterest">1</field>
+                    </depends>
+                    <comment><![CDATA[Pinterest username. E.g. Use "username" for "https://www.pinterest.com/username/".]]></comment>
+                </field>
+                <field id="instagram" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Instagram head tag for pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add Instagram page URL to the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="instagram_username" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Instagram Username</label>
+                    <depends>
+                        <field id="*/*/instagram">1</field>
+                    </depends>
+                    <comment><![CDATA[Instagram username. E.g. Use "username" for "https://www.instagram.com/username/".]]></comment>
+                </field>
+                <field id="twitter" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Twitter head tag for pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add Twitter page URL to the <a href="https://schema.org/Organization" targer="_blank">organization JSON snippet</a>.]]></comment>
+                </field>
+                <field id="twitter_username" translate="label" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Twitter Username</label>
+                    <depends>
+                        <field id="*/*/twitter">1</field>
+                    </depends>
+                    <comment><![CDATA[Twitter username. E.g. Use "atwixcom" for "https://twitter.com/atwixcom".]]></comment>
+                </field>
+            </group>
+            <group id="breadcrumbs" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Breadcrumbs</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Breadcrumbs Rich Snippets</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Enable this to add breadcrumbs snippet to every page with breadcrumbs.]]></comment>
+                </field>
+                <field id="type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Schema Type</label>
+                    <source_model>Atwix\Richsnippets\Model\Config\Source\Schema</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>validate-select</validate>
+                    <comment><![CDATA[Select schema type for breadcrumbs snippets from <a href="https://schema.org/BreadcrumbList" target="_blank">Schema.org</a>,
+                    <a href="http://json-ld.org/" target="_blank">JSON-LD</a> and <a href="https://www.w3.org/RDF/" target="_blank">RDF</a>.]]></comment>
+                </field>
+                <field id="custom_home" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Home Page Title</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Enable usage of custom home page title in breadcrumbs snippet.]]></comment>
+                </field>
+                <field id="custom_home_title" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Home Page Title Text</label>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                        <field id="*/*/custom_home">1</field>
+                    </depends>
+                    <validate>validate-no-empty</validate>
+                    <comment><![CDATA[Custom home page title in breadcrumbs snippet. E.g. "ourstore.com > my category > my product" instead of "Home > my category > my product".]]></comment>
+                </field>
+            </group>
+            <group id="category" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Page Rich Snippets</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Category Page Rich Snippets</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Enable this to add category snippet to every category page.]]></comment>
+                </field>
+                <field id="type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Snippets Type</label>
+                    <source_model>Atwix\Richsnippets\Model\Config\Source\Category\Type</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <validate>validate-select</validate>
+                    <comment><![CDATA[Select schema type and position for category page snippets as
+                    <a href="https://schema.org/Product" target="_blank">Visible</a> or <a href="http://json-ld.org/" target="_blank">hidden</a>]]>.
+                    </comment>
+                </field>
+                <field id="position" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Snippets Position</label>
+                    <source_model>Atwix\Richsnippets\Model\Config\Source\Category\Position</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                        <field id="*/*/type" separator=",">visible,footer</field>
+                    </depends>
+                    <validate>validate-select</validate>
+                    <comment><![CDATA[Select location of visible category page snippets.]]></comment>
+                </field>
+                <field id="description" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show category description</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Display the category description in the category page snippets.]]></comment>
+                </field>
+                <field id="reviews" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show ratings</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Show average category <a href="https://schema.org/Rating" target="_blank">products rating</a> in the category page snippets.]]></comment>
+                </field>
+                <field id="opengraph" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Category Page Open Graph Meta Tags</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add <a href="http://ogp.me/" target="_blank">Open Graph snippet</a> to the category pages.]]></comment>
+                </field>
+                <field id="twitter" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Category Page Twitter Cards</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Add <a href="https://dev.twitter.com/cards/overview" target="_blank">Twitter cards</a> to the category pages.]]></comment>
+                </field>
+            </group>
+            <group id="products" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Page Rich Snippets</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Additional Product Page Rich Snippets</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Enable this to have an ability to add product <a href="https://schema.org/Rating" target="_blank">rating snippet</a>
+                     or <a href="https://dev.twitter.com/cards/overview" target="_blank">Twitter card</a> to every product page.]]></comment>
+                </field>
+                <field id="rating" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Product Rating</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Add <a href="https://schema.org/Rating" target="_blank">product rating summary rich snippet</a> to the product page.]]></comment>
+                </field>
+                <field id="twitter" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Product Twitter Card</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="*/*/enabled">1</field>
+                    </depends>
+                    <comment><![CDATA[Add <a href="https://dev.twitter.com/cards/overview" target="_blank">twitter card rich snippet</a> to the product page.]]></comment>
+                </field>
+            </group>
+            <group id="search_box" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Search Box Rich Snippets</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Search Box Rich Snippets</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <comment><![CDATA[Enable this to have an ability to add
+                    <a href="https://developers.google.com/search/docs/guides/enhance-site#establish-your-business-details-with-google" target="_blank">
+                    a search box snippet</a> to the home page.]]></comment>
+                </field>
+                <field id="alternate_uri" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate search URI</label>
+                    <comment><![CDATA[Use only if custom route is used for search. <br />Default route is "catalogsearch/result/?q={search_term_string}"]]></comment>
+                </field>
+                <field id="alternate_input_name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Alternate search input name</label>
+                    <comment><![CDATA[Use only if custom input name is used for search. <br />Default name for the search is "q"]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,412 @@
+"store","identifier","title","content_heading","content","page_layout"
+"0","markets","Markets","Markets","<div class=""top_banner"">
+                                       <img src=""{{view url=images/cms/markets/banner_top.png}}"" alt=""img"">
+                                       <div class=""text"">
+                                           <p>BRINGING FUNCTION TO BEAUTY</p>
+                                           <p>Accuride Architectural Woodworking</p>
+                                       </div>
+                                   </div>
+                                   <div class=""built"">
+                                       <div class=""title"">
+                                           <p>BUILT-IN BENEFITS</p>
+                                       </div>
+                                       <div class=""content"">
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Dependability.png}}"" alt=""img"">
+                                               <p class=""title_item"">Dependable</p>
+                                               <p class=""text_item"">Every model of Accuride slide undergoes as many as 50,000 cycles of testing to ensure
+                                                   smooth, consistent movement.</p>
+                                           </div>
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Diverse.png}}"" alt=""img"">
+                                               <p class=""title_item"">Diverse</p>
+                                               <p class=""text_item"">Accuride offers slides, guides, and linear track systems for any need and with many
+                                                   additional features, including soft-close and touch-release.</p>
+                                           </div>
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Compliant.png}}"" alt=""img"">
+                                               <p class=""title_item"">Compliant</p>
+                                               <p class=""text_item"">Accuride products comply with the strictest industry standards, including those of the
+                                                   AWI and BHMA</p>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class=""standards"">
+                                       <div class=""wrapper_content"">
+                                           <div class=""title"">
+                                               <p>Made to the Toughest Standards</p>
+                                               <p class=""description"">Accuride products run through 50,000 cycles of rigorous testing. Need more assurance?
+                                                   We back all our products with a Limited Lifetime Warranty.</p>
+                                           </div>
+                                           <ul class=""tabs"" >
+                                               <li class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                   <p data-role=""title"">Model number & load rating</p>
+                                                   <ul data-role=""content"">
+                                                       <li>
+                                                           <div>model number</div>
+                                                           <div>load rating standard</div>
+                                                           <div class=""short"">Exceeds Standards</div>
+                                                       </li>
+                                                       <li>
+                                                           <div>7950</div>
+                                                           <div class=""double""><span>100 lbs</span><span>200 lbs</span></div>
+                                                           <div class=""middle"">350 lbs</div>
+                                                       </li>
+                                                       <li>
+                                                           <div>7975</div>
+                                                           <div class=""double""><span>100 lbs</span><span>200 lbs</span></div>
+                                                           <div class=""middle"">350 lbs</div>
+                                                       </li>
+                                                       <li>
+                                                           <div>model number</div>
+                                                           <div class=""double""><span>100 lbs</span><span>200 lbs</span></div>
+                                                           <div class=""long"">600 lbs</div>
+                                                       </li>
+                                                   </ul>
+                                               </li>
+                                               <li class=""tab black"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                   <p data-role=""title"">Model number & drawer width</p>
+                                                   <ul data-role=""content"">
+                                                       <li>
+                                                           <div>model number</div>
+                                                           <div>load rating standard</div>
+                                                           <div class=""short"">Exceeds Standards</div>
+                                                       </li>
+                                                       <li>
+                                                           <div>7950</div>
+                                                           <div class=""double""><span>100 lbs</span><span>200 lbs</span></div>
+                                                           <div class=""middle"">350 lbs</div>
+                                                       </li>
+                                                       <li>
+                                                           <div>7975</div>
+                                                           <div class=""double""><span>100 lbs</span><span>200 lbs</span></div>
+                                                           <div class=""middle"">350 lbs</div>
+                                                       </li>
+                                                       <li>
+                                                           <div>model number</div>
+                                                           <div class=""double""><span>100 lbs</span><span>200 lbs</span></div>
+                                                           <div class=""long"">600 lbs</div>
+                                                       </li>
+                                                   </ul>
+                                               </li>
+                                           </ul>
+                                           <div class=""logos"">
+                                               <img src=""{{view url=images/cms/markets/awi-cropped1.png}}"" alt=""logo"">
+                                               <img src=""{{view url=images/cms/markets/BMHA_logo.png}}"" alt=""logo"">
+                                           </div>
+                                       </div>
+                                   
+                                   </div>
+                                   <div class=""banner_first"">
+                                       <img src=""{{view url=images/cms/markets/3-layers.png}}"" alt=""img"">
+                                       <div class=""wrapper_text"">
+                                           <div class=""middle_text"">THERE IS ONLY ONE ACCURIDE</div>
+                                           <div class=""top_text_left"">
+                                               <p>SPECIFIED TO YOUR NEEDS</p>
+                                               <p>It’s easy to specify Accuride slides:</p>
+                                           </div>
+                                           <div class=""top_text_right"">
+                                               <img src=""{{view url=images/cms/markets/circle.png}}"" alt=""img"">
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class=""downloads"">
+                                       <div class=""wrapper_content"">
+                                           <div class=""text"">
+                                               <p class=""title"">
+                                                   You can also download three-part spec PDF complete with testing information and guidelines.
+                                               </p>
+                                               <a href=""#"" class=""action primary""><span>DOWNLOAD A SPECIFICATION GUIDE</span></a>
+                                               <div class=""text bottom"">
+                                                   <span>Have a Specialized Project?</span>
+                                                   <span>Download a Specialty Project Spec Guide</span>
+                                               </div>
+                                           </div>
+                                           <img src=""{{view url=images/cms/markets/PDF_Image.png}}"" alt=""img"">
+                                       </div>
+                                   </div>
+                                   <div class=""suggestions"">
+                                       <div class=""title"">
+                                           <p>1.3.1 SPECIFICATION SUGGESTIONS</p>
+                                           <p class=""description"">Solutions for Any Challenge</p>
+                                       </div>
+                                       <div class=""sections"">
+                                           <div class=""section"" >
+                                               <p class=""section_title"" >
+                                                   SECTION 06 41 00 I Architectural Wood Casework
+                                               </p>
+                                               <div class=""tabs"" >
+                                                   <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                       <div class=""action"" data-role=""title"">
+                                                           LIGHT & MEDIUM-DUTY DRAWERS
+                                                       </div>
+                                                       <div class=""content"" data-role=""content"">
+                                                           <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                               slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                               lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                               <li>Optional finish: black zinc</li>
+                                                           </ul>
+                                                           <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                               slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                               soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class=""section"">
+                                               <p class=""section_title"">
+                                                   SecTION 12 35 00: Specialty Casework
+                                               </p>
+                                               <div class=""tabs"">
+                                                   <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                       <div class=""action"" data-role=""title"">
+                                                           HEAVY-DUTY DRAWERS
+                                                       </div>
+                                                       <div class=""content"" data-role=""content"">
+                                                           <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                               slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                               lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                               <li>Optional finish: black zinc</li>
+                                                           </ul>
+                                                           <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                               slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                               soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                                   <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                       <div class=""action"" data-role=""title"">
+                                                           Super Heavy-Duty Drawers
+                                                       </div>
+                                                       <div class=""content"" data-role=""content"">
+                                                           <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                               slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                               lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                               <li>Optional finish: black zinc</li>
+                                                           </ul>
+                                                           <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                               slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                               soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class=""section"">
+                                               <p class=""section_title"">
+                                                   SECTION 12 51 00 I OFFICE FURNITURE
+                                               </p>
+                                               <div class=""tabs"">
+                                                   <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                       <div class=""action"" data-role=""title"">
+                                                           Light & Medium-Duty Box Drawers
+                                                       </div>
+                                                       <div class=""content"" data-role=""content"">
+                                                           <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                               slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                               lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                               <li>Optional finish: black zinc</li>
+                                                           </ul>
+                                                           <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                               slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                               soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                                   <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                       <div class=""action"" data-role=""title"">
+                                                           LIGHT & MEDIUM-DUTY DRAWERS
+                                                       </div>
+                                                       <div class=""content"" data-role=""content"">
+                                                           <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                               slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                               lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                               <li>Optional finish: black zinc</li>
+                                                           </ul>
+                                                           <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                               slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                               soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                                   <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                       <div class=""action"" data-role=""title"">
+                                                           HEAVY-DUTY BOX DRAWERS
+                                                       </div>
+                                                       <div class=""content"" data-role=""content"">
+                                                           <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                               slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                               lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                               <li>Optional finish: black zinc</li>
+                                                           </ul>
+                                                           <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                               slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                               soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                           <ul>
+                                                               <li>Standard finish: clear zinc</li>
+                                                           </ul>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class=""solutions"">
+                                       <div class=""title"">
+                                           <p>SOLUTIONS DRIVEN</p>
+                                           <p class=""description"">Find the right movement solution, whatever your need. Below are a few examples.</p>
+                                       </div>
+                                       <div class=""owl-carousel"">
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                               <p class=""text"">UNDERMOUNT</p>
+                                           </div>
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                               <p class=""text"">
+                                                   <span>3135EC Easy-Close For undermount drawers up to 30 inches wide</span>
+                                                   <span>3160EC Easy-Close For undermount drawers 31 to 60 inches wide</span>
+                                               </p>
+                                           </div>
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                               <p class=""text""> LINEAR TRACK SYSTEM</p>
+                                           </div>
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                               <p class=""text"">UNDERMOUNT</p>
+                                           </div>
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                               <p class=""text"">
+                                                   <span>3135EC Easy-Close For undermount drawers up to 30 inches wide</span>
+                                                   <span>3160EC Easy-Close For undermount drawers 31 to 60 inches wide</span>
+                                               </p>
+                                           </div>
+                                           <div class=""item"">
+                                               <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                               <p class=""text""> LINEAR TRACK SYSTEM</p>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class=""unlimited"">
+                                       <div class=""title"">
+                                           <p>UNLIMITED POSSIBILITIES</p>
+                                           <p class=""description"">
+                                               Accuride offers numerous special access and closing features to enhance the design and functionality of your
+                                               casework.
+                                           </p>
+                                       </div>
+                                       <div class=""content"">
+                                           <div class=""top"">
+                                               <div>
+                                                   <div class=""text"">
+                                                       <p>Touch-Release</p>
+                                                       <p>Just a slight push inward and the slide latch releases, propelling the drawer open 2”.</p>
+                                                       <p>3832TR, 3832HDTR</p>
+                                                       <a href=""#"">See More...</a>
+                                                   </div>
+                                               </div>
+                                               <div>
+                                                   <div class=""text"">
+                                                       <p>Easy-Close</p>
+                                                       <p>Bring drawers to a smooth, gentle close every time with our patented Easy-Close feature.</p>
+                                                       <p>3832EC, 3160EC, 3135EC, 115RC, 3600EC (OEM Only)</p>
+                                                       <a href=""#"">See More...</a>
+                                                   </div>
+                                               </div>
+                                               <div>
+                                                   <img src=""{{view url=images/cms/markets/image.png}}"" alt=""img"">
+                                               </div>
+                                           </div>
+                                           <div class=""middle"">
+                                               <div>
+                                                   <div class=""text"">
+                                                       <p>Detent-Out</p>
+                                                       <p>Firmly holds drawers and pull-out surfaces in extended positions</p>
+                                                       <p>3832DO, 2109, Keyboard Tray Systems</p>
+                                                       <a href=""#"">See More...</a>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <div class=""bottom"">
+                                               <div>
+                                                   <div class=""text"">
+                                                       <p>Lock-In/Lock-Out</p>
+                                                       <p>Keeps drawers, trays, and panels secured in closed and open positions for prolonged access.</p>
+                                                       <p>9308E</p>
+                                                       <a href=""#"">See More...</a>
+                                                   </div>
+                                               </div>
+                                               <div>
+                                                   <div class=""text"">
+                                                       <p>Lock-Out</p>
+                                                       <p>Locks drawers and other pull-out surfaces in extended position until released by a lever.</p>
+                                                       <p>2907WB, 340, 3307, 9307</p>
+                                                       <a href=""#"">See More...</a>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <div class=""applications"">
+                                       <div class=""wrapper_content"">
+                                           <div class=""title"">
+                                               <p>LIMITLESS ENVIRONMENT APPLICATIONS</p>
+                                           </div>
+                                           <div class=""content"">
+                                               <div>
+                                                   <img src=""{{view url=images/cms/markets/GettyImages-171303936.png}}"" alt=""img"">
+                                                   <img src=""{{view url=images/cms/markets/madera-courthouse-interior.png}}"" alt=""img"">
+                                               </div>
+                                               <div>
+                                                   <img src=""{{view url=images/cms/markets/pexels-photo-54374.png}}"" alt=""img"">
+                                                   <div class=""text"">
+                                                       <div class=""title"">
+                                                           <p>ACCURIDE IN ACTION</p>
+                                                           <p class=""description"">Accuride products are used throughout the globe. Read about how our movement solutions helped modernize one of Europe’s historic sites.</p>
+                                                       </div>
+                                                       <img src=""{{view url=images/cms/markets/Accuride_DBLIFT-0119.png}}"" alt=""img"">
+                                                       <a href=""#"" class=""action primary blue without_bg""><span>READ AN ACCURIDE CASE STUDY</span></a>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+                                   <script>
+                                       require(['jquery', 'owlCarousel'], function ($) {
+                                           $('.solutions .owl-carousel').owlCarousel({
+                                               nav: true,
+                                               items: 3,
+                                               dots: false,
+                                               responsive: {
+                                                   0: {items: 1},
+                                                   480: {items: 1},
+                                                   768: {items: 3}
+                                               }
+                                           })
+                                       });
+                                   </script>","1column"

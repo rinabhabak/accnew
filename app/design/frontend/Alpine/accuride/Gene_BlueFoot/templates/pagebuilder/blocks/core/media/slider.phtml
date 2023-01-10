@@ -1,0 +1,57 @@
+<?php
+/**
+ * Accuride_BlueFoot
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ *
+ * @var $this \Gene\BlueFoot\Block\Entity\PageBuilder\Block\AbstractBlock
+ */
+$_entity = $this->getEntity();
+
+if ($_entity->getShowDots()):
+    $this->setCssClasses('bluefoot-slider-with-dots');
+endif;
+
+?>
+<?php if ($this->hasChildEntities('slider_items')): ?>
+
+    <?php $_collection = $this->getChildEntities('slider_items'); ?>
+    <div id="bluefoot-slider-<?php echo $this->getEntity()->getId(); ?>" class="bluefoot-slider slick-visible bluefoot-full-width <?php echo $this->getCssAttributes(); ?>"<?php echo $this->getStyleAttributes(); ?>>
+        <?php $_i = 0; foreach ($_collection as $_block): $_i++; ?>
+            <?php echo $_block->setCount($_i)->toHtml(); ?>
+        <?php endforeach; ?>
+    </div>
+
+    <script type="text/javascript">
+        require(['jquery','slick'], function($){
+            $(function() {
+                /* [Slick JS] */
+                $('#bluefoot-slider-<?php echo $this->getEntity()->getId(); ?>').slick({
+                    infinite: <?php echo ($_entity->getIsInfinite()) ? 'true' : 'false' ; ?>,
+                    lazyLoad: 'ondemand',
+                    dots: <?php echo ($_entity->getShowDots()) ? 'true' : 'false' ; ?>,
+                    slidesToShow: <?php echo ($_entity->getSlidesToShow()) ? $_entity->getSlidesToShow() : 1 ; ?>,
+                    slidesToScroll: <?php echo ($_entity->getSlidesToScroll()) ? $_entity->getSlidesToScroll() : 1 ; ?>,
+                    arrows: <?php echo ($_entity->getShowArrows()) ? 'true' : 'false' ; ?>,
+                    autoplay: <?php echo ($_entity->getAutoplay()) ? 'true' : 'false' ; ?>,
+                    autoplaySpeed: <?php echo ($_entity->getAutoplayPlaySpeed()) ? $_entity->getAutoplayPlaySpeed() : '5000' ; ?>,
+                    fade: <?php echo ($_entity->getFade()) ? 'true' : 'false' ; ?>,
+                    prevArrow:'<button type="button" class="slick-prev button"><span><span>&lt;</span></span></button>',
+                    nextArrow:'<button type="button" class="slick-next button"><span><span>&gt;</span></span></button>'
+                    <?php echo ($_entity->getSliderAdditionalSettings()) ? ',' . $_entity->getSliderAdditionalSettings()  : '' ; ?>
+                });
+            });
+            $('#bluefoot-slider-<?php echo $this->getEntity()->getId(); ?>').on('init', function(event, slick){
+                slick.$slider.addClass('slick-visible');
+            });
+            // Fallback if init function fails
+            $(window).load(function(){
+                $('#bluefoot-advanced-slider-<?php echo $this->getEntity()->getId(); ?>').addClass('slick-visible');
+            });
+        });
+    </script>
+
+<?php endif; ?>

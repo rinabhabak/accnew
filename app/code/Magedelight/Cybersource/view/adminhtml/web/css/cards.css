@@ -1,0 +1,136 @@
+.magedelight-cybersource-cards-list{
+    float: left;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 360px;
+}
+.magedelight-cybersource-cards-list .magedelight-cybersource-cards-list-item{
+    background: #f1f1f1;
+    border: 1px solid #d9d2ca;
+    cursor: pointer;
+    margin-bottom: -1px;
+    padding: 10px 10px 15px;
+    position: relative;
+    z-index: 1;
+}
+.magedelight-cybersource-cards-list .magedelight-cybersource-cards-list-item.ui-state-active:before{
+    color: #d9d2ca !important;
+    right: -11px !important;
+    z-index: 1 !important;
+}
+.magedelight-cybersource-cards-list .magedelight-cybersource-cards-list-item.ui-state-active{
+    background: #fff;
+    box-shadow: 0 1px 1px 0 #d9d2ca;
+    margin-left: -2px;
+    padding-left: 12px;
+    position: relative;
+    z-index: 2;
+}
+
+.magedelight-cybersource-cards-list .magedelight-cybersource-cards-list-item.ui-state-active:after{
+    color: #fff;
+    content: "\e02a";
+    font-family: 'MUI-Icons';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 11px;
+    margin-top: -5px;
+    position: absolute;
+    right: -9px;
+    speak: none;
+    text-indent: -6px;
+    top: 50%;
+    width: 10px;
+    z-index: 2;
+}
+.magedelight-cybersource-cards-list .magedelight-cybersource-cards-list-item .magedelight-cybersource-cards-list-item-actions{
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+.magedelight-cybersource-cards-list .action-delete{
+    background-image: none;
+    background: none;
+    -moz-box-sizing: content-box;
+    border: 0;
+    box-shadow: none;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+    text-shadow: none;
+    font-weight: 400;
+    display: inline-block;
+    text-decoration: none;
+}
+.magedelight-cybersource-cards-list .action-delete span, .magedelight-cybersource-cards-list .action-edit span{
+    max-height: 1px;
+    max-width: 1px;
+}
+.magedelight-cybersource-cards-list .action-delete:after{
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.6rem;
+    line-height: 16px;
+    color: #41362f;
+    content: '\e620';
+    font-family: 'Admin Icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+.magedelight-cybersource-cards-list .action-edit{
+    background: none;
+    border:none;
+    height: 1px;
+}
+.magedelight-cybersource-cards-list .action-edit:after{
+    -webkit-font-smoothing: antialiased;
+    font-size: 1.6rem;
+    line-height: 16px;
+    color: #666;
+    content: '\e631';
+    font-family: 'Admin Icons';
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+.magedelight-cybersource-cards-item-edit-content{
+    background: #fff;
+    border: 1px solid #dad1c8;
+    box-shadow: 0 2px 1px 0 rgba(217,210,202,0.5);
+    margin-left: 359px;
+    max-width: 500px;
+    padding: 15px 30px;
+}
+.magedelight-cybersource-cards-list .magedelight-cybersource-cards-actions{
+    background: none;
+    border: 0;
+    box-shadow: none;
+    cursor: default;
+    padding: 20px 0 0;
+}
+
+.magedelight-ajax-loading{
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    background: url('../../Magedelight_Cybersource/images/loader-1.gif') no-repeat center;
+    z-index: 4;
+    height: 64px;
+    width: 64px;
+    opacity: 0.5;
+}
+.magedelight-cybersource-cards-item-edit-content .admin__field:not(.admin__field-option) > .admin__field-label span{
+    display: block;
+}
+.magedelight-cybersource-cards-list-item-actions button
+{
+    min-height: 20px;
+}

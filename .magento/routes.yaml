@@ -1,0 +1,15 @@
+# The routes of the project.
+#
+# Each route describes how an incoming URL is going to be processed.
+
+"http://{default}/":
+    type: upstream
+    upstream: "mymagento:php"
+    redirects:
+        paths:
+            '^/senseon/(.*)$':
+                to: "http://www.senseonsecure.com/$1"
+                regexp: true
+            '^/senseon$':
+                to: "http://www.senseonsecure.com"
+                regexp: true

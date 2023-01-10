@@ -1,0 +1,250 @@
+& when (@media-common = true) {
+    .accuride-markets {
+        [data-content-type='row'] {
+
+            [data-element='inner'] {
+                background-size: cover;
+                background-position: center left;
+                padding-top: 80px;
+                padding-bottom: 70px;
+
+            &.accu-yellow-border {
+                    border-bottom: 10px solid #feca33 !important;
+                }
+            }
+
+            .with-media-background {
+                background-size: cover;
+
+                &.accu-bg-left {
+                    background-position: center left;
+                }
+            }
+
+            &.accubgfade {
+                position: relative;
+
+                .inner {
+                    position: relative;
+                    z-index: 1;
+                }
+            }
+
+            &.accubgfade:before {
+                display: block;
+                content: "";
+                width: 100%;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                position: absolute;
+                background: @acc-background-color-fade;
+                z-index: 0;
+            }
+
+            .accu-light-bg {
+                background: @acc-background-color-light;
+                clear: both;
+                content: '';
+                display: table;
+                padding-top: 30px;
+                padding-bottom: 30px;
+                max-width: 1380px;
+            }
+
+            .accu-bg-left {
+                background-position: center left;
+            }
+
+            .accu-bg-right {
+                background-position: center right;
+            }
+
+            .accu-bg-top {
+                background-position: top center;
+            }
+
+            .accu-blue-column {
+                [data-content-type='column'] {
+                    margin-bottom: 15px;
+
+                    [data-element='main'] {
+                        background: @color-blue;
+                        height: 100%;
+                        padding: 15px;
+                    }
+                }
+
+                p {
+                    font-size: 0.88em;
+                }
+            }
+
+            .accu-flex-row {
+                .accu-vert-align {
+                    padding-top: 40px;
+                    padding-bottom: 40px;
+                }
+            }
+
+            .accu-flex-row {
+                [data-element='column'] {
+                    position: relative;
+                }
+            }
+
+            [data-element='inner'] {
+                padding-left: 30px;
+                padding-right: 30px;
+            }
+
+            [data-content-type='column'] {
+                position: relative;
+                flex-grow: 1;
+            }
+
+            .slick-slide {
+                > div {
+                    height: 100%;
+                }
+            }
+
+            [data-content-type='slide'] {
+                height: 100%;
+
+                [data-element='empty_link'] {
+                    height: inherit;
+                }
+
+                .pagebuilder-slide-wrapper {
+                    height: inherit;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xxl) {
+    .accuride-markets {
+        .accu-full-width-with-padding {
+            .row-full-width-inner {
+                max-width: 1440px !important;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .accuride-markets {
+        [data-content-type='row'] {
+            &.accubgfade:before {
+                background: @acc-background-color-fade-gradient;
+            }
+
+            .accu-flex-row {
+                .lib-vendor-prefix-display(flex);
+
+                .accu-vert-align {
+                    .lib-vendor-prefix-display(flex);
+                    align-items: center;
+                    flex-direction: column;
+                    justify-content: center;
+
+                    .bluefoot-entity,
+                    .accucta {
+                        width: 100%;
+                    }
+                }
+            }
+
+            .accu-flex-row {
+                &--vert-center {
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
+
+            .accu-blue-column {
+                [data-content-type='column'] {
+                    margin-bottom: 30px;
+                }
+            }
+
+            .accu-mobile-only {
+                display: none !important;
+            }
+
+            [data-element='inner'] {
+
+                &.row-full-width-inner {
+                    max-width: none;
+                    padding: 0 !important;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .accuride-markets {
+        [data-content-type='row'] {
+            [data-content-type='column'] {
+                width: 100% !important;
+            }
+            
+            &[data-appearance='full-width'] {
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+            }
+
+            [data-element='inner'] {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+
+                &.accu-mobile-only {
+                    padding-left: 30px !important;
+                    padding-right: 30px !important;
+                }
+            }
+
+            .accu-stainless-column * {
+                color: @color-gray20 !important;
+            }
+
+            &.accu-stainless-row {
+                .row-full-width-inner {
+                    padding-left: 30px !important;
+                    padding-right: 30px !important;
+                }
+            }
+
+            .accucta__hyperlink--white {
+                background-color: @color-blue;
+                color: @acc-color-white !important;
+            }
+
+            &.accu-row-with-padding-mobile,
+            .accu-row-with-padding-mobile {
+                padding-left: 30px !important;
+                padding-right: 30px !important;
+            }
+
+            &.accu-stainless-row-mobile-fix[data-appearance='full-width'] {
+                background-size: contain !important;
+                background-repeat: no-repeat;
+                background-position: top left !important;
+                padding-top: 100vw !important;
+                padding-bottom: 0 !important;
+            }
+        }
+
+        .accu-mobile-hide {
+            display: none !important;
+        }
+
+        .sub-nav-container {
+            display: none !important;
+        }
+    }
+}

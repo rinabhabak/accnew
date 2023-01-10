@@ -1,0 +1,26 @@
+type Query {
+    miniCart  : MiniCart @resolver( class: "Int\\MiniCartGraphQL\\Model\\Resolver\\MiniCart")  
+}
+
+type MiniCart {
+    items: [cartItems]
+    totalItems: Int  @doc(description: "Get Total Items")
+    totalQuantity: Int  @doc(description: "Get Total Qty.")
+    subtotal: String  @doc(description: "Get Sub Total")
+    grandtotal: String  @doc(description: "Get Grand Total")
+}
+
+type cartItems {
+	productThumbnail: String  @doc(description: "Get Current Product Thumbnail.")
+	productId  : Int  @doc(description: "Get Current Product ID.")
+    productName  : String  @doc(description: "Get Current Product Name.")
+    productSku  : String  @doc(description: "Get Current Product SKU.")
+    productQty  : String  @doc(description: "Get Current Product Qty.")
+    productPrice  : String  @doc(description: "Get Current Product Price.")
+    options: [cartItemOptions]
+}
+
+type cartItemOptions {
+	optionLabel : String  @doc(description: "Get Current Option Label.")
+	optionValue : String  @doc(description: "Get Current Option Value.")
+}

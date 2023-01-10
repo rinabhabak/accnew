@@ -1,0 +1,29 @@
+type Mutation {
+    getValidateAddress (
+        firstname: String @doc(description: "Query by Firstname."),
+        lastname: String @doc(description: "Query by Lastname."),
+        country_id: String @doc(description: "Query by Country ID."),
+        region_id: String @doc(description: "Query by Region Id."),
+        region: String @doc(description: "Query by Region."),
+        region_code: String @doc(description: "Query by Region Code."),
+        street: [String]! @doc(description: "Query by Street."),
+        company: String @doc(description: "Query by Company."),
+        telephone: String @doc(description: "Query by Telephone."),
+        city: String @doc(description: "Query by City."),
+        postcode: String @doc(description: "Query by Post Code.")
+    ) : AddressOutput @resolver( class: "Int\\AvataxAddressValidationGraphQL\\Model\\Resolver\\Address") @doc(description: "Validate the customer address before save.")
+}
+
+type AddressOutput {
+    firstname: String! @doc(description: "Avatax Firstname Validator Response."),
+    lastname: String! @doc(description: "Avatax Lastname Validator Response."),
+    country_id: String! @doc(description: "Avatax Country Id Validator Response."),
+    region_id: String! @doc(description: "Avatax Region Id Validator Response."),
+    region: String! @doc(description: "Avatax Region Validator Response."),
+    street: [String]! @doc(description: "Avatax Street Validator Response."),
+    city: String! @doc(description: "Avatax City Validator Response."),
+    company: String! @doc(description: "Avatax Company Validator Response."),
+    telephone: String! @doc(description: "Avatax Telephone Validator Response."),
+    postcode: String! @doc(description: "Avatax Post Code Validator Response.")
+    validate: String! @doc(description: "Check Validator Response Status.")
+}

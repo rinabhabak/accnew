@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_ProductForSales
+ *
+ * @category    Alpine
+ * @package     Alpine_ProductForSales
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Alex Didenko <alex.didenko@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="alpine_productforsales_skip_saleable_check_plugin"
+                type="Alpine\ProductForSales\Plugin\SkipSaleableCheck" sortOrder="10" disabled="false"/>
+    </type>
+</config>

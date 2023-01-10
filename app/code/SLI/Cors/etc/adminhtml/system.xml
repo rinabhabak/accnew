@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2015 S.L.I. Systems, Inc. (www.sli-systems.com) - All Rights Reserved
+ * This file is part of Learning Search Connect.
+ * Learning Search Connect is distributed under a limited and restricted
+ * license – please visit www.sli-systems.com/LSC for full license details.
+ *
+ * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+ * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+ * PARTICULAR PURPOSE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO
+ * EVENT WILL SLI BE LIABLE TO YOU OR ANY OTHER PARTY FOR ANY GENERAL, DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL LOSS OR DAMAGES OF ANY
+ * CHARACTER ARISING OUT OF THE USE OF THE CODE AND/OR THE LICENSE INCLUDING
+ * BUT NOT LIMITED TO PERSONAL INJURY, LOSS OF DATA, LOSS OF PROFITS, LOSS OF
+ * ASSIGNMENTS, DATA OR OUTPUT FROM THE SERVICE BEING RENDERED INACCURATE,
+ * FAILURE OF CODE, SERVER DOWN TIME, DAMAGES FOR LOSS OF GOODWILL, BUSINESS
+ * INTERRUPTION, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER DAMAGES
+ * OR LOSSES OF WHATEVER NATURE, EVEN IF SLI HAS BEEN INFORMED OF THE
+ * POSSIBILITY OF SUCH DAMAGES.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="lsc" translate="label" sortOrder="100">
+            <label>SLI Systems LSC</label>
+        </tab>
+        <section id="sli_search_cors" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Storefront CORS</label>
+            <tab>lsc</tab>
+            <resource>Sli_Form::config_form</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[When enabled, this module gives SLI the ability to integrate with the cart, compare, wishlist and minicart features on your shopfront. This allows shoppers to seamlessly use these features on SLI powered pages.
+                        <br /><br />NOTE: <i>These settings are store specific</i>, and are not available on a Default level. Please configure these for each store using the Store View dropdown.
+                        ]]>
+                    </comment>
+                </field>
+                <field id="version" translate="label" type="label" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Version</label>
+                    <frontend_model>SLI\Cors\Block\System\Config\Version</frontend_model>
+                </field>
+            </group>
+
+            <group id="subdomain" translate="label" type="text" sortOrder="2" showInDefault="0" showInWebsite="0" showInStore="1">
+                <label>SLI Subdomains</label>
+                <field id="subdomain" translate="label comment" type="textarea" sortOrder="1" showInDefault="0" showInWebsite="0" showInStore="1">
+                    <label>Allowed Subdomains</label>
+                    <comment>
+                        <![CDATA[The list of subdomains that are used by SLI Systems to integrate with the shopfront features. These subdomains will be provided by SLI during the implementation phase. Please include the protocol (http / https), and add one subdomain per line in the box above. <br />
+                        <br />For example: <br />
+                        http://search.example.com<br />
+                        https://search.example.com<br />
+                        https://products.example.com<br />
+                        https://clientname.resultsdemo.com<br />
+                        https://clientname.resultspage.com<br />
+                        <br />
+                        Please note that setting to * is not a valid input.
+                        <br />
+                        NOTE: <i>These settings are store specific</i>, and are not available on a Default level. Please configure these for each store using the Store View dropdown.
+                        ]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

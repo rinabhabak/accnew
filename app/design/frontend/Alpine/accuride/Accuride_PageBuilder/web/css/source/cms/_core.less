@@ -1,0 +1,212 @@
+//
+//  Common
+//
+//  Accuride Markets Pages
+
+& when (@media-common = true) {
+	.accuride-markets {
+
+		h1,
+		h2,
+		h3,
+		p {
+			font-family: 'Roboto_regular','Helvetica Neue',Helvetica,Arial,sans-serif;
+			font-weight: 400;
+		}
+
+		h1 {
+		    font-size: 24px;
+		    margin: 0 0 24px;
+		    color: @color-blue;
+		    text-transform: uppercase;
+		}
+
+		h2,
+		h2.markets-heading--large {
+		    font-size: 20px;
+		    margin: 0 0 20px;
+		    color: @color-blue;
+		    text-transform: uppercase;
+		}
+
+		h3 {
+		    font-size: 24px;
+		    margin: 0 0 20px;
+		}
+
+		.column.main {
+			padding-bottom: 0;
+		}
+
+		p {
+			margin-bottom: 1.1em;
+		}
+
+		&.page-layout-full-width {
+			.page-main .columns {
+    			max-width: inherit;
+    			padding-left: 0;
+    			padding-right: 0;
+			}
+		}
+
+		.columns ul li:before {
+		    content: "" !important;
+		}
+
+		.accu-fixed-ratio {
+		    background-size: cover;
+		    background-position: center;
+		}
+
+		.markets-heading {
+		    text-align: center;
+		    text-transform: uppercase;
+    		margin: 0 0 28px 0;
+
+    		&--capitalized {
+    			text-transform: none;
+    		}
+		}
+
+        .accu-constrain {
+            margin: 0 auto;
+
+            &--width-700 {
+                max-width: 700px;
+            }
+
+            &--width-900 {
+            	max-width: 900px;
+			}
+
+            &--width-1000 {
+            	max-width: 1000px;
+            }
+	    }
+
+
+		.accu-white-text,
+		.accusp--color-blue {
+			color: @acc-color-white;
+
+			p,
+			h1,
+			h2,
+			h3,
+			a,
+			blockquote {
+				color: @acc-color-white;
+			}
+
+			.accucta__hyperlink--white {
+			    border: 1px solid @acc-color-white;
+
+			    &:hover,
+			    &:focus {
+			    	background: @color-blue;
+			    	border: 1px solid @acc-color-white;
+			    }
+		    }
+		}
+
+		p.accu-big-p,
+		.accu-big-p p {
+			font-size: 1.25em;
+		}
+
+		.accu-wine-images figure img {
+			height: 400px !important;
+			width: 100%;
+			object-fit: cover;
+			display: block;
+			overflow: hidden;
+		}
+	}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+	.accuride-markets {
+
+		h1 {
+		    font-size: 32px;
+		}
+
+		h2,
+		h2.markets-heading--large {
+		    font-size: 28px;
+		}
+
+		.accu-push-right {
+			padding-left: 180px !important;
+		}
+
+		.accu-fixed-ratio {
+
+		    &--ratio-22 {
+		    	min-height: 22vw;
+		    	max-height: 428px;
+		    }
+
+		    &--ratio-27 {
+		    	min-height: 27vw;
+		    	max-height: 428px;
+		    }
+
+			&--ratio-30 {
+		    	min-height: 30vw;
+		    	max-height: 480px;
+		    	background-position: top center;
+		    }
+
+			&--ratio-40 {
+		    	min-height: 40vw;
+		    	max-height: 480px;
+		    }
+
+		    &--ratio-53 {
+		    	min-height: 53vw;
+		    	max-height: 568px;
+		    }
+		}
+
+		.markets-heading {
+
+    		&--align-left {
+    			text-align: left;
+    		}
+    	}
+	}
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+	.accuride-markets {
+		.accu-fixed-ratio {
+		    &--ratio-22 {
+		    	min-height: auto;
+				height: 22vw;
+		    }
+
+		    &--ratio-27 {
+		    	min-height: auto;
+		    	height: 27vw;
+		    }
+
+			&--ratio-30 {
+		    	min-height: auto;
+		    	height: 30vw;
+		    }
+
+			&--ratio-40 {
+		    	min-height: auto;
+		    	height: 40vw;
+		    }
+
+		    &--ratio-53 {
+		    	min-height: auto;
+		    	height: 53vw;
+		    }
+		}
+	}
+}

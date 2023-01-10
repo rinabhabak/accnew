@@ -1,0 +1,136 @@
+& when (@media-common = true) {
+    .accuride-markets {
+        .accusp {
+              background: #fff;
+              display: block;
+
+              h3 {
+                  font-weight: 300;
+              }
+
+              &--color-blue {
+                  background: @color-blue;
+                  color: @acc-color-white;
+
+                    h3 {
+                      color: @acc-color-white;
+                  }
+
+                  a {
+                      color: @acc-color-white;
+                    text-decoration: underline;
+                  }
+              }
+
+            &--color-gray {
+                  background: @acc-color-gray-light;
+              }
+
+            &--color-gray-dark {
+                background: @acc-color-gray-dark;
+            }
+
+            &__pane {
+                .lib-vendor-prefix-display(flex);
+                padding: 60px 40px;
+
+                &--image {
+                    background-position:center center;
+                    background-size: cover;
+                    min-height: 200px;
+                }
+            }
+
+            &.accu-bg-top {
+                  .accusp__pane--image {
+                      background-position: top center;
+                  }
+              }
+
+            &__content {
+                text-align: center;
+                width: 640px;
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .accuride-markets {
+        .accusp {
+            .lib-vendor-prefix-display(flex);
+
+              &--orientation-left {
+                  .lib-vendor-prefix-flex-direction(row-reverse);
+              }
+
+            &__pane {
+                align-items: center;
+                background-position:center center;
+                background-size: cover;
+                min-height: 500px;
+                padding: 80px;
+                width: 50%;
+
+                &--image {
+                    min-height: 500px;
+                }
+
+                  &--orientation-left {
+                      .lib-css(justify-content, flex-end, 1);
+                }
+            }
+
+            &__content {
+                text-align: left;
+            }
+
+            &.accu-squeeze-content {
+                .accusp__pane {
+                    width: ~"calc(50% - 100px)";
+                }
+
+                .accusp__pane--image {
+                    width: ~"calc(50% + 100px)";
+                }
+
+                .accusp__content {
+                    width: 496px;
+                }
+            }
+
+            &--new {
+
+                max-width: 1440px;
+                margin: 0 auto 35px;
+
+                .accusp__pane {
+                    border: 40px solid #fff;
+                    border-left: 0;
+                    border-right: 0;
+                    width: 48%;
+                }
+
+                .accusp__pane.accusp__pane--image {
+                    border: 0;
+                    width: 52%;
+                }
+
+                .accusp__content {
+                    width: 430px;
+                    text-align: center;
+                }
+
+                .accusp--orientation-left {
+                    border-right: 45px solid @acc-color-white;
+                }
+
+                .accusp--orientation-right {
+                    border-left: 45px solid @acc-color-white;
+                }
+            }
+        }
+    }
+}

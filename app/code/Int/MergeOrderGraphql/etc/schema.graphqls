@@ -1,0 +1,15 @@
+#Int Merge Guest Order
+
+type Mutation {
+    mergeOrder (input: MergeOrderInput!): MergeOrderOutput @resolver( class: "Int\\MergeOrderGraphql\\Model\\Resolver\\MergeOrder") 
+    @doc(description: "Merge Guest Order to Customer Account After Order Placed.")
+}
+
+input MergeOrderInput {
+    order_id: String! @doc(description: "Query by Order Increment ID."),
+	customer_id: String! @doc(description: "Query by Customer ID.")
+}
+
+type MergeOrderOutput {
+    message : String! @doc(description: "Success Message")
+}

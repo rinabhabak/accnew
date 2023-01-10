@@ -1,0 +1,23 @@
+# Copyright © Magento, Inc. All rights reserved.
+
+type Mutation {
+    reviewSubmit (input: ReviewSubmitInput!): ReviewSubmitOutput @resolver(class: "\\Int\\ReviewSubmitGraphQl\\Model\\Resolver\\ReviewSubmit") @doc(description:"Create customer account")
+}
+
+input ReviewSubmitInput {
+    product_id: Int @doc(description: "Product ID")
+    ratings: ratingsInput @doc(description: "Contains price, value, and quantity")
+    nickname: String! @doc(description: "Customer Nickname")
+    title: String! @doc(description: "Review Title")
+    detail: String! @doc(description: "Review Detail")
+}
+
+input ratingsInput @doc(description: "Contains price, value, and quantity") {
+    rating_price: Int @doc(description: "rating_price")
+    rating_value: Int @doc(description: "rating_value")
+    rating_quality: Int @doc(description: "rating_quality")
+}
+
+type ReviewSubmitOutput {
+    message: String! @doc(description: "Success Message")
+}

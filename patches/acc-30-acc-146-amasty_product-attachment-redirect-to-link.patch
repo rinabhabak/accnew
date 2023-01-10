@@ -1,0 +1,51 @@
+From cf44c09715cf82c6886d933c64ffc8851cdcfdf7 Mon Sep 17 00:00:00 2001
+From: Laurentiu Tofan <laurentiu.tofan@sitewards.com>
+Date: Mon, 16 Sep 2019 21:46:47 +0200
+Subject: [PATCH] ACC-30 ACC-146 feat (Amasty_ProductAttachment): If attachment
+ is of type Link, then redirect to URL
+
+Out of the box an attachment of type link is treated like a file:
+The MIME is set to text/html and the content of the target URL is served by a local URL
+e.g. www.accuride.com/amfile/file/download/file/66/product/2909/ will serve the exact HTML
+of the target links, but this can break the page, and can be safely used only for static assets
+The patch consists in redirecting to the provided URL instead
+---
+ Controller/File/Download.php | 25 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
+
+diff --git a/Controller/File/Download.php b/Controller/File/Download.php
+index fcb14d6..e6f3c1e 100644
+--- a/Controller/File/Download.php
++++ b/Controller/File/Download.php
+@@ -154,7 +154,26 @@ class Download extends Action\Action
+                     $params[RegistryConstants::PRODUCT] = (int)$productId;
+                 }
+                 $file = $this->fileScopeDataProvider->execute($params, 'downloadFile');
+-
++                ########################################################################################################
++                # BEGIN OF SITEWARDS PATCH
++                # Out of the box an attachment of type link is treated like a file:
++                # The MIME is set to text/html and the content of the target URL is served by a local URL
++                # e.g. www.accuride.com/amfile/file/download/file/66/product/2909/ will serve the exact HTML
++                # of the target links, but this can break the page, and can be safely used only for static assets
++                # The patch consists in redirecting to the provided URL instead
++                ########################################################################################################
++                if (
++                    $file &&
++                    $file->getAttachmentType() == \Amasty\ProductAttachment\Model\SourceOptions\AttachmentType::LINK
++                ) {
++                    /** @var \Magento\Framework\Controller\Result\Redirect $redirectResult */
++                    $redirectResult = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
++                    $redirectResult->setUrl($file->getLink());
++                    return $redirectResult;
++                }
++                ########################################################################################################
++                # END OF SITEWARDS PATCH
++                ########################################################################################################
+                 if ($file) {
+                     $this->saveStat();
+                     try {
+
+-- 
+2.17.1
+

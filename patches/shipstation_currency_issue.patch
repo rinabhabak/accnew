@@ -1,0 +1,23 @@
+--- a/Model/Action/Export.php	2021-07-13 11:41:06.000000000 +0530
++++ b/Model/Action/ExportChanged.php	2022-02-01 13:03:51.568826812 +0530
+@@ -235,7 +235,6 @@
+         $this->addXmlElement("OrderDate", "<![CDATA[{$order->getCreatedAt()}]]>");
+         $this->addXmlElement("OrderStatus", "<![CDATA[{$order->getStatus()}]]>");
+         $this->addXmlElement("LastModified", "<![CDATA[{$order->getUpdatedAt()}]]>");
+-        $this->addXmlElement("CurrencyCode", "<![CDATA[{$order->getOrderCurrencyCode()}]]>");
+ 
+         $this->addXmlElement(
+             "ShippingMethod",
+@@ -246,10 +245,12 @@
+             $orderTotal = $order->getBaseGrandTotal();
+             $orderTax = $order->getBaseTaxAmount();
+             $orderShipping = $order->getBaseShippingAmount();
++            $this->addXmlElement("CurrencyCode", "<![CDATA[{$order->getBaseCurrencyCode()}]]>");
+         } else {
+             $orderTotal = $order->getGrandTotal();
+             $orderTax = $order->getTaxAmount();
+             $orderShipping = $order->getShippingAmount();
++            $this->addXmlElement("CurrencyCode", "<![CDATA[{$order->getOrderCurrencyCode()}]]>");
+         }
+ 
+         $this->addXmlElement("OrderTotal", "<![CDATA[{$orderTotal}]]>");

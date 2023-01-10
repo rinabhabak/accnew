@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_UrlRewrites
+ *
+ * @category    Alpine
+ * @package     Alpine_UrlRewrites
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Alex Didenko <alex.didenko@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_UrlRewrites" setup_version="0.1.0"/>
+</config>

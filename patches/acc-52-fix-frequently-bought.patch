@@ -1,0 +1,26 @@
+From 32e050b58e1c23699e99cd6d738695195cbec1b7 Mon Sep 17 00:00:00 2001
+From: Laurentiu Tofan <laurentiu.tofan@sitewards.com>
+Date: Mon, 19 Aug 2019 17:39:39 +0200
+Subject: [PATCH] ACC-30 ACC-52 fix (Mageplaza_FrequentlyBought): solve
+ compatibility issue with Mage 2.3.x due to missing typehint
+
+---
+ Block/Product/View/Options/Type/Select.php | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Block/Product/View/Options/Type/Select.php b/Block/Product/View/Options/Type/Select.php
+index 777a2b3..265a73a 100644
+--- a/Block/Product/View/Options/Type/Select.php
++++ b/Block/Product/View/Options/Type/Select.php
+@@ -37,7 +37,7 @@ class Select extends \Magento\Catalog\Block\Product\View\Options\Type\Select
+      * @SuppressWarnings(PHPMD.NPathComplexity)
+      * @SuppressWarnings(PHPMD.ExcessiveMethodLength)
+      */
+-    public function getValuesHtml()
++    public function getValuesHtml() :string
+     {
+         $valueHtml = parent::getValuesHtml();
+ 
+-- 
+2.17.1
+

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Atwix\Richsnippets\Block\Catalog\ProductMeta" name="richsnippets_product_meta" template="general/head_meta.phtml"/>
+        </referenceBlock>
+        <!--<referenceBlock name="root">-->
+            <!--<arguments>-->
+                <!--<argument name="add_attribute" xsi:type="string"></argument>-->
+            <!--</arguments>-->
+        <!--</referenceBlock>-->
+        <referenceBlock name="page.main.title">
+            <arguments>
+                <argument name="add_base_attribute" xsi:type="string"></argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="product.info.sku">
+            <arguments>
+                <argument name="add_attribute" xsi:type="string"></argument>
+            </arguments>
+        </referenceBlock>
+
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="richsnippets_itemprop" template="Atwix_Richsnippets::product/view/itemprop.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

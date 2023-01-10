@@ -1,0 +1,23 @@
+{
+    "name": "amasty/module-shop-by-brand-graphql",
+    "description": "Brand Graphql By Amasty",
+    "require": {
+        "php": "7.0.2|7.0.4|~7.0.6|^7.1.0",
+        "amasty/base": ">=1.10.1",
+        "amasty/module-shop-by-brand": ">=2.10.9",
+        "magento/module-graph-ql": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.0.1",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\ShopbyBrandGraphQl\\": ""
+        }
+    }
+}

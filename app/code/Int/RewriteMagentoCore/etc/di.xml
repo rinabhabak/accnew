@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<!-- <preference for="Magento\Theme\Controller\Result\JsFooterPlugin" type="Int\RewriteMagentoCore\Rewrite\Magento\Theme\Controller\Result\JsFooterPlugin"/> -->
+	<preference for="Magento\QuoteGraphQl\Model\Cart\GetCartForUser" type="Int\RewriteMagentoCore\Rewrite\Magento\QuoteGraphQl\Model\Cart\GetCartForUser"/>
+	<preference for="Magento\Catalog\Ui\DataProvider\Product\Listing\Collector\Image" type="Int\RewriteMagentoCore\Rewrite\Magento\Catalog\Ui\DataProvider\Product\Listing\Collector\Image"/>
+	<preference for="ClassyLlama\AvaTax\Framework\Interaction\Tax" type="Int\RewriteMagentoCore\Rewrite\ClassyLlama\AvaTax\Framework\Interaction\Tax"/>
+</config>

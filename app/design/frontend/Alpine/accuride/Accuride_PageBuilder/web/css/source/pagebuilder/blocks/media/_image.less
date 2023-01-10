@@ -1,0 +1,22 @@
+& when (@media-common = true) {
+    .accuride-markets {
+        [data-content-type='row'] {
+
+            [data-content-type='image'] {
+                text-align: center;
+            }
+
+            &.masonry-images {
+                [data-content-type='image'] {
+                    text-align: left;
+                }
+
+                [data-element='desktop_image'] {
+                    display: block;
+                    width: 100% !important;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
+}

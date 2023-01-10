@@ -1,0 +1,28 @@
+<div class="accuit"
+     css="data.main.css"
+     ko-style="data.main.style"
+     attr="data.main.attributes">
+    <div class="accuit__wrap">
+        <a if="data.link.attributes().href"
+           attr="data.link.attributes"
+           class="accuit__link">
+            <span attr="data.accu_icon.attributes"
+            html="data.accu_icon.html"></span>
+        </a>
+        <div ifnot="data.link.attributes().href"
+             attr="data.link.attributes"
+             css="data.link.css">
+            <span attr="data.accu_icon.attributes"
+                  html="data.accu_icon.html"></span>
+        </div>
+    </div>
+    <h3 if="data.title.html"
+        attr="data.title.attributes"
+        class="accuit__title"
+        html="data.title.html"></h3>
+    <p if="data.accu_optional_html.html"
+       attr="data.accu_optional_html.attributes"
+       class="accuit__paragraph"
+       html="data.accu_optional_html.html"></p>
+</div>
+

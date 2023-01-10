@@ -1,0 +1,27 @@
+<?php
+/**
+ * Activates fancybox video lonks for videos inside page builder blocks
+ *
+ * @category    Accuride_BlueFootMigrate
+ * @package     Sitewards
+ * @copyright   Copyright (c) Sitewards GmbH (http://www.sitewards.com/)
+ */
+?>
+<script>
+    require([
+        'jquery',
+        'fancybox',
+    ], function ($, fancybox) {
+        $('.sens-vid-link').each(function(){
+            $(this).click(function(e){e.preventDefault();});
+            $(this).fancybox({
+                type: "iframe",
+                helpers: {
+                    overlay: {
+                        locked: false
+                    }
+                }
+            });
+        });
+    });
+</script>

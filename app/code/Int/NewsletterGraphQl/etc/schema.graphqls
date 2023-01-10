@@ -1,0 +1,15 @@
+type Mutation {
+    newsletterSubscription (
+        email: String @doc(description: "Enter valid email.")
+    ): NewsletterSubscriptionOutput @resolver( class: "Int\\NewsletterGraphQl\\Model\\Resolver\\NewsletterSubscription") @doc(description: "Newsletter subscription for guest customer.")
+}
+
+type NewsletterSubscriptionOutput {
+    message: notificationType @doc(description: "Success or error Message")
+}
+
+type notificationType {
+    notice: String @doc(description: "Notice Message")
+    error: String @doc(description: "error Message")
+    success: String @doc(description: "success Message")
+}

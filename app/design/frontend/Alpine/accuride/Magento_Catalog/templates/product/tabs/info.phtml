@@ -1,0 +1,108 @@
+<?php
+/**
+ * Accuride_Catalog
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+ */
+
+$info = $block->getInfo();
+$attributeCode = $block->getAttributeCode();
+
+if (isset($info[0])):
+?>
+<div class="<?php echo $attributeCode; ?>_list">
+    <?php if ($info[0] == 'html'):
+        echo $info[1];
+    else: ?>
+    <ul>
+        <?php foreach ($info[1] as $element): ?>
+        <li>
+            <div class="item">
+                <?php if (!isset($element['data-video'])): ?>
+                        <?php if (isset($element['image'])): ?>
+                            <img src="<?php echo $block->getImageUrl($element['image']); ?>" alt="img">
+                        <?php endif; ?>
+                        <?php if (isset($element['title'])): ?>
+                            <p class="name"><?php echo $block->escapeHtml($element['title']); ?></p>
+                        <?php endif; ?>
+                <?php endif; ?>
+                <?php if (isset($element['data-video'])): ?>
+                    <a class="youtubeVideo" href="<?php echo $element['link'] ?? '#'; ?>" data-video="<?php echo $element['data-video']; ?>"
+                        <?php if (isset($element['data-height'])): ?>
+                            data-height="<?php echo $element['data-height']; ?>"
+                        <?php endif; ?>
+                        <?php if (isset($element['data-width'])): ?>
+                            data-width="<?php echo $element['data-width']; ?>"
+                        <?php endif; ?>
+                    >
+                        <?php if (isset($element['image'])): ?>
+                            <img src="<?php echo $block->getImageUrl($element['image']); ?>" alt="img">
+                        <?php endif; ?>
+                    </a>
+                    <a class="youtubeVideo" href="<?php echo $element['link'] ?? '#'; ?>" data-video="<?php echo $element['data-video']; ?>"
+                        <?php if (isset($element['data-height'])): ?>
+                            data-height="<?php echo $element['data-height']; ?>"
+                        <?php endif; ?>
+                        <?php if (isset($element['data-width'])): ?>
+                            data-width="<?php echo $element['data-width']; ?>"
+                        <?php endif; ?>
+                    >
+                        <?php if (isset($element['title'])): ?>
+                            <p class="name"><?php echo $block->escapeHtml($element['title']); ?></p>
+                        <?php endif; ?>
+                    </a>
+                    <a class="youtubeVideo" href="<?php echo $element['link'] ?? '#'; ?>" data-video="<?php echo $element['data-video']; ?>"
+                        <?php if (isset($element['data-height'])): ?>
+                            data-height="<?php echo $element['data-height']; ?>"
+                        <?php endif; ?>
+                        <?php if (isset($element['data-width'])): ?>
+                            data-width="<?php echo $element['data-width']; ?>"
+                        <?php endif; ?>
+                    >
+                       <?php echo __('Learn More >'); ?>
+                    </a>
+                <?php elseif (isset($element['link'])): ?>
+                    <a href="<?php echo $element['link'] ?? '#'; ?>" class="link"><?php echo __('Learn More >'); ?></a>
+                <?php else: ?>
+                    <?php echo $block->escapeHtml($element); ?>
+                <?php endif; ?>
+            </div>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+    <?php endif; ?>
+</div>
+    <?php if ($block->getIsSlider()): ?>
+    <script>
+        require(['jquery', 'owlCarousel'], function ($) {
+            var attributeCode = '<?php echo $attributeCode; ?>';
+            $('.' + attributeCode + '_list ul').addClass('owl-carousel owl-theme');
+            $('.' + attributeCode + '_list ul').owlCarousel({
+                nav: true,
+                items: 3,
+                dots: false,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 1,
+                        nav: true
+                    },
+                    1000: {
+                        items: 3,
+                        nav: true
+                    }
+                }
+            });
+        });
+    </script>
+    <?php endif; ?>
+<?php endif; ?>

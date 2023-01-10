@@ -1,0 +1,99 @@
+& when (@media-common = true) {
+    .cms-content.products{
+        margin-top: 0;
+        margin-bottom: 0;
+
+        & > ul{
+            .lib-list-reset-styles();
+            .lib-vendor-prefix-display();
+            .lib-vendor-prefix-flex-wrap();
+            .lib-vendor-box-align();
+            justify-content: space-between;
+            margin-top: percentage(65 / 1400);
+
+            & > li{
+                position: relative;
+                padding-bottom: 50px;
+                margin-bottom: percentage(140 / 1400);
+
+                .button{
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    transform: translate3d(-50%, 0, 0);
+                    .lib-link-as-button();
+                    .lib-button();
+                    padding: percentage(18 / 690) percentage(35 / 690);
+                    font-size: 2.2rem;
+                    line-height: 2.2rem;
+                    white-space: nowrap;
+                }
+
+                &:before{
+                    display: none;
+                }
+            }
+
+            h2{
+                font-size: 3.2rem;
+                margin-top: 15px;
+            }
+
+            p{
+                max-width: 95%;
+                margin-left: auto;
+                margin-right: auto;
+                font-family: @font_light;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .cms-content.cms-content.products{
+
+        & > ul{
+            &.three-in-row {
+                justify-content: center;
+
+                & > li{
+                    width: percentage(400 / 1400);
+                    margin-bottom: percentage(75 / 1400);
+                    padding-left: percentage(50 / 1400);
+                    padding-right: percentage(50 / 1400);
+                }
+
+                p{
+                    max-width: none;
+                }
+            }
+
+            &.two-in-row{
+
+                & > li{
+                    width: percentage(690 / 1400);
+                    padding-bottom: percentage(70 / 1400);
+                    margin-bottom: percentage(75 / 1400);
+                }
+            }
+
+            h2{
+                margin-top: percentage(40 / 690);
+            }
+
+            p{
+                max-width: 85%;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cms-content.products {
+        .slider_selector {
+            width: 100vw;
+            margin-left: 50%;
+            transform: translate3d(-50%, 0, 0);
+        }
+    }
+}

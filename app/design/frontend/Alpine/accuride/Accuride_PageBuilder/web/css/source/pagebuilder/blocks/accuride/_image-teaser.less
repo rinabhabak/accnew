@@ -1,0 +1,82 @@
+& when (@media-common = true) {
+	.accuride-markets {
+		.accuimgt {
+			margin: 0 0 25px;
+			padding: 0 5px;
+			text-align: center;
+
+		  	&__title {
+		  		font-size: 22px;
+		  		font-weight: 300;
+			    margin: 35px auto 20px;
+				max-width: 210px;
+		  		text-align: center;
+		  		text-transform: uppercase;
+		  	}
+
+		  	&--capitalized {
+		  		.accuimgt__title {
+		  			color: @color-blue;
+				    font-size: 19px;
+		  			text-transform: none;
+		  		}
+		  	}
+
+		  	&--minheight-2 .accuimgt__title {
+		  		min-height: 2.2em;
+		  	}
+
+		  	&--minheight-3 .accuimgt__title {
+		  		min-height: 3.3em;
+		  	}
+
+		  	&--with-cta {
+		  		padding-bottom: 40px;
+		  	}
+
+			&__wrap {
+				text-align: center;
+
+			    svg {
+			    	display: inline-block;
+				    max-width: 85px;
+			    }
+			}
+
+			&__img {
+				display: block;
+				margin: 0 auto;
+			}
+
+			&__content > * {
+			    text-align: center;
+			    margin: 0 auto;
+			    max-width: 550px;
+			}
+		}
+	}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+	.accuride-markets {
+		.accuimgt {
+
+			&__content > * {
+			    font-size: 0.9em;
+			    max-width: 450px;
+			}
+
+		  	&--with-cta {
+		  		padding-bottom: 80px;
+		  	}
+
+			.accucta__hyperlink {
+				position: absolute;
+				bottom: 0;
+				left: 50%;
+				transform: translate3d(-50%, 50px, 0);
+			}
+		}
+	}
+}

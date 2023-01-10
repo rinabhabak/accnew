@@ -1,0 +1,23 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\CatalogGraphQl\DataProvider\Product\LayeredNavigation\Builder\Attribute">
+        <plugin name="Amasty_ShopbyGraphQl::add-option-data"
+                type="Amasty\ShopbyGraphQl\Plugin\CatalogGraphQl\DataProvider\Product\LayeredNavigation\Builder\AttributePlugin" />
+    </type>
+
+    <type name="Magento\CatalogGraphQl\DataProvider\Product\SearchCriteriaBuilder">
+        <plugin name="Amasty_ShopbyGraphQl::modify_filter"
+                type="Amasty\ShopbyGraphQl\Plugin\CatalogGraphQl\DataProvider\Product\SearchCriteriaBuilderPlugin" />
+    </type>
+
+    <type name="Magento\CatalogGraphQl\Model\Resolver\Products\FilterArgument\ProductEntityAttributesForAst" >
+        <arguments>
+            <argument name="additionalAttributes" xsi:type="array">
+                <item name="rating_summary" xsi:type="string">rating_summary</item>
+                <item name="stock_status" xsi:type="string">stock_status</item>
+                <item name="am_is_new" xsi:type="string">am_is_new</item>
+                <item name="other_field_to_sort" xsi:type="string">am_on_sale</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

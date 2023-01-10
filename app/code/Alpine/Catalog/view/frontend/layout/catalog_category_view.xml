@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Catalog
+ *
+ * @category    Alpine
+ * @package     Alpine_Catalog
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Aleksandr Mikhailov (aleksandr.mikhailov@alpineinc.com)
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="category.products.list">
+            <block class="Alpine\Catalog\Block\Product\ProductList\AvailableProductsToolbar" name="available_product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                <block class="Magento\Theme\Block\Html\Pager" name="available_product_list_toolbar_pager" as="product_list_toolbar_pager"/>
+            </block>
+            <action method="setAvailableProductsToolbarBlockName">
+                <argument name="name" xsi:type="string">available_product_list_toolbar</argument>
+            </action>
+            <block class="Alpine\Catalog\Block\Product\ProductList\OtherProductsToolbar" name="other_product_list_toolbar" template="Magento_Catalog::product/list/toolbar.phtml">
+                <block class="Alpine\Catalog\Block\Html\OtherProductsPager" name="other_product_list_toolbar_pager" as="product_list_toolbar_pager"/>
+            </block>
+            <action method="setOtherProductsToolbarBlockName">
+                <argument name="name" xsi:type="string">other_product_list_toolbar</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

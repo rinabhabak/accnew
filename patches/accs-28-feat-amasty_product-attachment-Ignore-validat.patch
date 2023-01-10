@@ -1,0 +1,58 @@
+From 63745864c2e11227783b1e9043e9f12fe870f928 Mon Sep 17 00:00:00 2001
+From: Laurentiu Tofan <laurentiu.tofan@sitewards.com>
+Date: Thu, 26 Sep 2019 17:01:41 +0200
+Subject: [PATCH] ACCS-28 feat (Amasty_ProductAttachment): Ignore validation of
+ Attachment of type URL
+
+---
+ Controller/Adminhtml/File/Checker.php | 13 +++++++++++++
+ Model/File/Repository.php             |  9 +++++++++
+ 2 files changed, 22 insertions(+)
+
+diff --git a/Controller/Adminhtml/File/Checker.php b/Controller/Adminhtml/File/Checker.php
+index 8bb51d4..0bb00c0 100644
+--- a/Controller/Adminhtml/File/Checker.php
++++ b/Controller/Adminhtml/File/Checker.php
+@@ -50,6 +50,19 @@ class Checker extends File
+         $resultJson = $this->resultFactory->create(ResultFactory::TYPE_JSON);
+ 
+         if ($url = $this->getRequest()->getParam('url')) {
++            ########################################################################################################
++            # BEGIN OF SITEWARDS PATCH
++            # Customer does not want to check if external URL is an actual static asset
++            ########################################################################################################
++            $jsonData = [
++                'status' => 'success',
++                'message' => __('Success'),
++            ];
++            return $resultJson->setData($jsonData);
++            ########################################################################################################
++            # END OF SITEWARDS PATCH
++            ########################################################################################################
++
+             $this->downloadHelper->setResource($url, DownloadHelper::LINK_TYPE_URL);
+             try {
+                 $fileName = $this->downloadHelper->getFilename();
+diff --git a/Model/File/Repository.php b/Model/File/Repository.php
+index 5afc9c2..ecce7e3 100644
+--- a/Model/File/Repository.php
++++ b/Model/File/Repository.php
+@@ -200,6 +200,15 @@ class Repository implements FileRepositoryInterface
+      */
+     public function needToCheckUrl($file)
+     {
++        ########################################################################################################
++        # BEGIN OF SITEWARDS PATCH
++        # Customer does not want to check if external URL is an actual static asset
++        ########################################################################################################
++        return false;
++        ########################################################################################################
++        # END OF SITEWARDS PATCH
++        ########################################################################################################
++        
+         if (!$file->getFileId()) {
+             return true;
+         }
+-- 
+2.17.1
+

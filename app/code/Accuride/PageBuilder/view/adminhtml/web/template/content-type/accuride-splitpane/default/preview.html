@@ -1,0 +1,28 @@
+<div attr="data.main.attributes"
+     ko-style="data.main.style"
+     class="pagebuilder-content-type"
+     css="data.main.css"
+     event="{ mouseover: onMouseOver, mouseout: onMouseOut }, mouseoverBubble: false">
+    <div class="split-pane-flex"
+         attr="class: 'split-pane-flex split-pane-flex--' + data.main.attributes().orientation + ' accusp--color-' + data.main.attributes().color">
+        <render args="getOptions().template" />
+
+        <div class="split-pane-flex__column" ko-style="data.pane.style">
+            <h3 class="pane-heading"
+                 html="data.pane.html"
+                 data-bind="liveEdit: { field: 'pane_heading', placeholder: $t('Enter Heading') }">
+            </h3>
+            <div if="data.textarea.html" html="data.textarea.html"></div>
+            <a if="data.link.attributes().href && data.link.html"
+               attr="data.link.attributes"
+               css="data.link.css"
+               html="data.link.html"
+               data-bind="liveEdit: { field: 'button_text', placeholder: $t('Button Text') }"></a>
+        </div>
+        <div attr="data.image.attributes"
+             class="split-pane-flex__column"
+             ko-style="data.image.style">
+        </div>
+    </div>
+</div>
+

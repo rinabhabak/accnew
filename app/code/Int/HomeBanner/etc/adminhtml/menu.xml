@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+	<!--<remove id="Int_HomeBanner::image" />-->
+        <!--<add id="Int_HomeBanner::slider_head" title="Int Main" module="Int_HomeBanner" sortOrder="50" resource="Int_HomeBanner::HomeBanner"/>-->
+
+        <add id="Int_HomeBanner::appsliderlist" title="Home Banner Slider" module="Int_HomeBanner" sortOrder="1" parent="Int_Core::menu" action="appslider/index" resource="Int_HomeBanner::appsliderlist" />
+        <add id="Int_HomeBanner::homesecondsliderlist" title="Home Second Banner Slider" module="Int_HomeBanner" sortOrder="2" parent="Int_Core::menu" action="owlslider/owlslider" resource="Int_HomeBanner::homesecondsliderlist" />
+        <add id="Int_HomeBanner::homepaginationsliderlist" title="Home Pagination Slider" module="Int_HomeBanner" sortOrder="3" parent="Int_Core::menu" action="pagslider/pagslider" resource="Int_HomeBanner::homepaginationsliderlist" />
+        <add id="Int_HomeBanner::configuration" title="Home New Product SKUs" module="Int_HomeBanner" sortOrder="4" parent="Int_Core::menu" action="adminhtml/system_config/edit/section/homebanner_newproducts" resource="Int_HomeBanner::configuration"/>
+        <add id="Int_HomeBanner::homethumbnailsliderlist" title="Home Thumbnail Slider" module="Int_HomeBanner" sortOrder="5" parent="Int_Core::menu" action="thumbnail/thumbnail" resource="Int_HomeBanner::homethumbnailsliderlist" />
+		<!--<add id="Int_Configurator::configurator" title="Configurators" module="Int_Configurator" sortOrder="6" parent="Int_Core::menu" action="int_configurator/items/" resource="Int_Configurator::items"/>-->
+    </menu>
+</config>

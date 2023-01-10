@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\ProductAttachment\Model\ConfigProvider" type="Int\ProductDownload\Model\ConfigProvider" />
+    <preference for="Amasty\ProductAttachment\Controller\Adminhtml\File\Checker" type="Int\ProductDownload\Controller\Adminhtml\File\Checker" />
+    <preference for="Amasty\ProductAttachment\Model\File\Repository" type="Int\ProductDownload\Model\File\Repository" />
+    <!-- <preference for="Amasty\ProductAttachment\Model\Filesystem\File" type="Int\ProductDownload\Model\Filesystem\File" /> -->
+</config>

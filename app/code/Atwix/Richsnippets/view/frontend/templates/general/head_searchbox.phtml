@@ -1,0 +1,21 @@
+<?php
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ */
+
+/** @var $block Atwix\Richsnippets\Block\Page\SearchBox */
+?>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "WebSite",
+  "url": "<?php echo $block->getBaseUrl(); ?>",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "<?php echo $block->getSearchUrl(); ?>",
+    "query-input": "required name=<?php echo $block->getSearchInputName(); ?>"
+  }
+}
+</script>

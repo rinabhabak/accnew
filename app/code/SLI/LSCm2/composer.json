@@ -1,0 +1,14 @@
+{
+  "name": "sli/module-lscm2",
+  "description": "Extension for integration with SLI Product range",
+  "type": "metapackage",
+  "version": "1.3.3",
+  "require": {
+    "php": "5.5.*|5.6.*|7.0.*",
+    "sli/module-lscm2-api": "1.0.2",
+    "sli/module-lscm2-feed": "1.3.3",
+    "sli/module-lscm2-form": "1.0.1",
+    "sli/module-lscm2-cors": "1.0.2",
+    "sli/module-lscm2-analytics": "1.0.1"
+  }
+}

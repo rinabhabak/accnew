@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+    <default>
+        <addthis_floatingsharebar>
+            <general>
+                <enable>1</enable>
+                <desktop_position>left</desktop_position>
+                <mobile_position>top</mobile_position>
+                <counts>none</counts>
+                <num_preferred_services>5</num_preferred_services>
+                <style>modern</style>
+                <mobile_button_size>large</mobile_button_size>
+                <theme>transparent</theme>
+            </general>
+        </addthis_floatingsharebar>
+    </default>
+</config>

@@ -1,0 +1,110 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Cms
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+//  */
+& when (@media-common = true) {
+    .videos {
+        &:extend(.customer-stories all);
+
+        .owl-carousel {
+            margin-bottom: 85px;
+            padding: 0 25px;
+
+            .owl-stage-outer {
+                z-index: 100;
+            }
+
+            .owl-nav {
+                z-index: 50;
+                top: 40%;
+            }
+
+            .owl-item {
+                .wrapper_item {
+                    a {
+                        width: 90%;
+                    }
+                }
+            }
+        }
+
+        h3 {
+            text-align: left;
+            font-weight: 400;
+            margin: 35px 0;
+        }
+
+    }
+
+
+    .page-layout-full-width {
+        .videos {
+            h3 {
+                padding-left: 15px;
+                padding-right: 15px;
+
+            }
+
+            .owl-carousel{
+                padding-left: 40px;
+                padding-right: 40px;
+
+                .owl-nav{
+                    left: 15px;
+                    right: 15px;
+                    width: auto;
+                }
+            }
+        }
+    }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .videos {
+        &:extend(.customer-stories all);
+
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .videos {
+        .heading {
+            h2 {
+                font-size: 3.4rem;
+                line-height: 3.8rem;
+                margin-bottom: 5%;
+            }
+            
+            p {
+                line-height: 2.4rem;
+            }
+            
+            .button {
+                padding: 18px 35px;
+            }
+        }
+        
+        > h1 {
+            margin-top: 50px;
+        }
+        
+        > p {
+            max-width: 1160px;
+            margin-bottom: 130px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .videos {
+        .heading {
+            p {
+                padding-right: 11%;
+            }
+        }
+    }
+}

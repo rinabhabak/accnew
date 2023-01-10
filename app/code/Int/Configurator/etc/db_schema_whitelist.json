@@ -1,0 +1,66 @@
+{
+    "configurator": {
+        "column": {
+            "configurator_id": true,
+            "customer_id": true,
+            "status": true,
+            "type_of_build": true,
+            "numbers_of_fixture": true,
+            "same_fixture_dimensions": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "configurator_fixtures": {
+        "column": {
+            "fixture_id": true,
+            "configurator_id": true,
+            "fixture_length": true,
+            "fixture_depth": true,
+            "fixture_height": true,
+            "cabinet_power_available": true,
+            "fixture_standing": true,
+            "fixture_data": true,
+            "additional_data": true,
+            "created_at": true,
+            "updated_at": true,
+            "fixture_name": true,
+            "opening_types_data": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "configurator_assigned_bdm_managers": {
+        "column": {
+            "entity_id": true,
+            "parent_id": true,
+            "assigned_to": true,
+            "created_by": true,
+            "created_at": true,
+            "updated_at": true,
+            "assigned_by": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_04B1282996B2ED2208D4C9313C0F025B": true
+        }
+    },
+    "configurator_fixtures_opening_types": {
+        "column": {
+            "opening_type_id": true,
+            "fixture_id": true,
+            "attribute_option_id": true,
+            "name": true,
+            "product_data": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

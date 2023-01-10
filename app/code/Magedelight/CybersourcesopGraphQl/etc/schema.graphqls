@@ -1,0 +1,55 @@
+input PaymentMethodInput {
+    cybersourcesop: CybersourcesopInput @doc(description: "Defines the required attributes for Cybersourcesop payments")
+    cybersourcesop_cc_vault: CybersourcesopVaultInput @doc(description: "Defines the required attributes for Cybersourcesop payments")
+}
+input CybersourcesopInput {
+    is_active_payment_token_enabler: Boolean @doc(description: "Is Active Payment Token Enabler")
+}
+input CybersourcesopVaultInput {
+    public_hash: String!
+}
+type Query {
+     tokenRequest(cart_id: String!,cc_type: String!):TokenRequestOutput @resolver(class: "\\Magedelight\\CybersourcesopGraphQl\\Model\\Resolver\\TokenRequest") @doc(description: "Resolver for token request form fields"),
+     cybersourcesopInit:CybersourcesopInitOutput @resolver(class: "\\Magedelight\\CybersourcesopGraphQl\\Model\\Resolver\\CybersourcesopInit") @doc(description: "Resolver for Cybersourcesop init configuration")
+}
+type CybersourcesopInitOutput  {
+     active: Boolean @doc(description: "method is active"),
+     title: String @doc(description: "method title"),
+     cybersourcesop_cc_vault_active: Boolean @doc(description: "vault active"),
+     sandbox_flag: Boolean @doc(description: "sandbox flag"),
+     cctypes: [CcTypeOutput] @doc(description: "billing address state"),
+     iframe_action_url: String @doc(description: "Iframe action url")
+}
+type CcTypeOutput {
+    code:String @doc(description: "cc code"),
+    label:String @doc(description: "cc label"),
+}
+
+type TokenRequestOutput  {
+     bill_to_address_city: String @doc(description: "billing address city"),
+     bill_to_address_country: String @doc(description: "bill to address country"),
+     bill_to_address_line1: String @doc(description: "billing to address line1"),
+     bill_to_address_postal_code: String @doc(description: "billing address postal code"),
+     bill_to_address_state: String @doc(description: "billing address state"),
+     bill_to_email: String @doc(description: "billing address email"),
+     bill_to_phone: String @doc(description: "billing address phone"),
+     bill_to_forename: String @doc(description: "billing address forename"),
+     bill_to_surname: String @doc(description: "billing address surname"),
+     access_key: String @doc(description: "access key"),
+     profile_id: String @doc(description: "profile id"),
+     override_custom_receipt_page: String @doc(description: "override custom receipt page"),
+     payment_method: String @doc(description: "payment method"),
+     transaction_uuid: String @doc(description: "transaction uuid"),
+     reference_number: String @doc(description: "reference number"),
+     transaction_type: String @doc(description: "transaction type"),
+     amount: String @doc(description: "amount"),
+     currency: String @doc(description: "currency"),
+     locale: String @doc(description: "locale"),
+     merchant_secure_data1: String @doc(description: "merchant secure data1"),
+     merchant_secure_data2: String @doc(description: "merchant secure data2"),
+     merchant_secure_data3: String @doc(description: "merchant secure data3"),
+     signed_date_time: String @doc(description: "singed date time"),
+     unsigned_field_names: String @doc(description: "unsinged date time"),
+     signed_field_names: String @doc(description: "signed field names"),
+     signature: String @doc(description: "signature"),
+}

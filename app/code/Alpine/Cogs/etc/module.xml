@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Alpine_Cogs
+*
+* @category    Alpine
+* @package     Alpine_Accuride
+* @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+* @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+* @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_Cogs" setup_version="0.2.0">
+        <sequence>
+            <module name="Magento_Ui"/>
+        </sequence>
+    </module>
+</config>

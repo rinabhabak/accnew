@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+* Alpine
+*
+* @category    Alpine
+* @package     Alpine_Accuride
+* @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+* @author      Denis Furman <denis.furman@alpineinc.com>
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="checkout.cart.methods.multishipping" remove="true"/>
+        <move element="checkout.cart.order.actions.gift_options" destination="wrapper.discount.cart" />
+        <move element="cart.discount" destination="wrapper.discount.cart" before="-"/>
+        <referenceContainer name="checkout.cart.container">
+            <container name="wrapper.discount.cart" htmlTag="div" htmlClass="wrapper_discount_cart" after="checkout.cart.form"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,190 @@
+#Int Customer attribule add
+
+input CustomerInput {
+    customer_category: [Int] @doc(description: "Customer Category")
+    pick_your_industry: String @doc(description: "Pick Your Industry")
+    other_industry: String @doc(description: "Other Industry")
+    senseon_industry: String @doc(description: "Senseon Industry")
+    jobTitle: String @doc(description: "updateJobTitle")
+    updatePassword: updatePasswordInput @doc(description:"Changes the password for the logged-in customer")
+    updateEmail: updateEmailInput @doc(description:"Changes the Email for the logged-in customer")
+    phone_number: String @doc(description: "Customer Phone Number")
+    zip_code: String @doc(description: "Customer Zipcode")
+    customer: String @doc(description: "Customer IP")
+    identifier: String @doc(description: "Identifier")
+}
+
+type Mutation {
+    updateCustomerJobTitle (input: JobTitleInput!): JobTitleOutput @resolver(class: "\\Int\\CustomerGraphQl\\Model\\Resolver\\JobTitle") @doc(description:" Update job title of customer account")
+    generateCustomerToken(email: String!, password: String!): CustomerToken @resolver(class: "\\Magento\\CustomerGraphQl\\Model\\Resolver\\GenerateCustomerToken") @doc(description:"Retrieve the customer token")
+    GetBdmListByConfigurator (input: GetBdmListByConfiguratorInput!): [GetBdmListByConfiguratorOutput] @resolver(class: "\\Int\\CustomerGraphQl\\Model\\Resolver\\GetBdmListByConfigurator") @doc(description:" Get BDM by Configurator ID")
+    getCustomerById(customer_id: Int!): CustomerOutput @resolver(class: "\\Int\\CustomerGraphQl\\Model\\Resolver\\ConfiguratorCustomer") @doc(description:"Get Customer by Customer Id")
+}
+input GetBdmListByConfiguratorInput {
+    configurator_id :  Int! @doc(description: "Configurator Id")
+}
+
+type GetBdmListByConfiguratorOutput {
+    user_id: String @doc(description: "User Id")
+    firstname: String @doc(description: "Firstname")
+    lastname: String @doc(description: "Lastname")
+    phone_number: String @doc(description: "phone number")
+    email: String @doc(description: "email")
+    customerGroup: String @doc(description: "The customer group")
+    active_task: Int @doc(description: "Active Task")
+    is_assigned: Int @doc(description: "Flag to check availability")
+}
+
+input JobTitleInput {
+    customer_id :  Int! @doc(description: "Customer Id")
+    job_title: String! @doc(description: "Job Title")
+}
+
+type JobTitleOutput {
+    message: String! @doc(description: "Success Message")
+}
+
+type CustomerAddress @doc(description: "CustomerAddress contains detailed information about a customer's billing and shipping addresses"){
+    country_name: String @doc(description: "The customer's country name")
+    @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\CountryName")
+}
+
+
+type Customer @doc(description: "Customer defines the customer registration") {
+    customer_id: String @doc(description: "The customer ID")
+    @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\CustomerId")
+    is_subscribed: String @doc(description: "The customer's country name")
+    @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\IsSubscribed")
+    company: String @doc(description: "The customer's country name")
+    @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\Company")
+    jobTitle: String @doc(description: "The customer's country name")
+    @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\GetJobTitle")
+    phone_number: String @doc(description: "The customer's phone number")
+    zip_code: String @doc(description: "The customer's Zipcode")
+}
+
+type Query {
+    customercategory : [CustomerCategory]
+    @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\CustomerCategory") @doc(description: "Customer Category")
+    pickYourIndustry : [PickYourIndustry]
+    @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\PickYourIndustry") @doc(description: "Pick Your Industry")
+    senseonIndustry : [SenseonIndustry]
+    @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\SenseonIndustry") @doc(description: "Senseon Industry")
+    getCustomerCompany : [GetCustomerCompany] @resolver(class: "\\Int\\CustomerGraphQl\\Model\\Resolver\\GetCustomerCompany") @doc(description: "Get Customer Company Details")
+    getCompanyUser : [GetCompanyUser] @resolver(class: "\\Int\\CustomerGraphQl\\Model\\Resolver\\GetCompanyUser") @doc(description: "Get Customer Company Users")
+    GetBdmList : [GetBdmList] @resolver(class: "\\Int\\CustomerGraphQl\\Model\\Resolver\\GetBdmList") @doc(description: "Get BDM List")
+	GetCustomerList : [GetCustomerList] @resolver(class: "\\Int\\CustomerGraphQl\\Model\\Resolver\\GetCustomerList") @doc(description: "Get normal customer List")
+	getCustomerHistoryUpdates: [getCustomerHistoryUpdates] @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\getCustomerHistoryUpdates")
+    @doc(description: "The API will return status of customer projects")
+	
+	customerLogout: logoutresult @resolver(class: "Int\\CustomerGraphQl\\Model\\Resolver\\RevokeCustomerToken")
+    @doc(description: "The API will return status of customer projects")
+}
+
+
+type logoutresult {
+	result: String @doc(description: "Result")
+}
+
+type CustomerCategory {
+    label :  String! @doc(description: "CustomerCategory label")
+    value: String! @doc(description: "CustomerCategory value")
+}
+
+type PickYourIndustry {
+    label :  String! @doc(description: "CustomerCategory label")
+    value: String! @doc(description: "CustomerCategory value")
+}
+
+type SenseonIndustry {
+    label :  String! @doc(description: "CustomerCategory label")
+    value: String! @doc(description: "CustomerCategory value")
+}
+
+type GetCustomerCompany {
+    company_name :  String @doc(description: "company name")
+    legal_name: String @doc(description: "legal name")
+    company_email : String @doc(description: "company email")
+    vat_tax_id: String @doc(description: "vat tax id")
+    reseller_id: String @doc(description: "reseller id")
+    comment :  String @doc(description: "comment")
+    street: String @doc(description: "street")
+    city :  String @doc(description: "city")
+    country_name :  String @doc(description: "country name")
+    region: String @doc(description: "region")
+    region_name: String @doc(description: "region name")
+    postcode :  String @doc(description: "postcode")
+    telephone: String @doc(description: "telephone")
+    administrator_name: String @doc(description: "administrator_name")
+    job_title: String @doc(description: "job title")
+    email: String @doc(description: "email")
+    sales_representative_name: String @doc(description: "sales representative name")
+    sales_representative_email: String @doc(description: "sales representative Email")
+    paymentMethods: [PaymentMethods] @doc(description: "get company available payment methods.")
+}
+
+
+type GetBdmList {
+    user_id: String @doc(description: "User Id")
+    firstname: String @doc(description: "Firstname")
+    lastname: String @doc(description: "Lastname")
+    phone_number: String @doc(description: "phone number")
+    email: String @doc(description: "email")
+    customerGroup: String @doc(description: "The customer group")
+    active_task: Int @doc(description: "Active Task")
+    completed_task: Int @doc(description: "Completed Task")
+    is_assigned: Int @doc(description: "Flag to check availability")
+    title: String @doc(description: "Title")
+}
+
+type GetCustomerList {
+    user_id: String @doc(description: "customer Id")
+    firstname: String @doc(description: "Firstname")
+    lastname: String @doc(description: "Lastname")
+    email: String @doc(description: "email")
+    customerGroup: String @doc(description: "The customer group")
+}
+
+type getCustomerHistoryUpdates {
+	customer_id: Int @doc(description: "Customer Id")
+	configurator_id: String @doc(description: "Configurator Id")
+    project_id: String @doc(description: "Configurator Id")
+	project_name: String @doc(description: "Project Name")
+	created_at: String @doc(description: "Created At")
+	updated_at: String @doc(description: "Updated At")
+	status: String @doc(description: "Status")
+	message: String @doc(description: "Message")
+}
+
+input updatePasswordInput {
+    currentPassword :  String! @doc(description: "Customer Id")
+    newPassword: String! @doc(description: "Job Title")
+}
+input updateEmailInput {
+    email :  String! @doc(description: "Customer Id")
+    currentPassword: String! @doc(description: "Job Title")
+}
+
+type PaymentMethods {
+    method_name :  String! @doc(description: "payment method name")
+}
+
+type GetCompanyUser {
+    id :  Int @doc(description: "Company User ID")
+    name :  String @doc(description: "Company User Name")
+    email :  String @doc(description: "Company User Email")
+    role :  String @doc(description: "Company User Role")
+    team :  String @doc(description: "Company User Team")
+    status :  String @doc(description: "Company User Status")
+    status_code :  String @doc(description: "Company User Status Code")
+}
+
+type CustomerToken {
+    token: String @doc(description: "The customer token")
+    customer_id: String @doc(description: "Customer Id")
+    firstname: String @doc(description: "Customer Firstname")
+    lastname: String @doc(description: "Customer Lastname")
+    customerGroup: String @doc(description: "The customer group")
+    lastLogin: String @doc(description: "Customer last login time")
+    isFirstLogin: Boolean @doc(description: "Check if customer login for the first time")
+}

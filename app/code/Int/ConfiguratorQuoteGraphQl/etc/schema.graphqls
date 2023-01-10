@@ -1,0 +1,72 @@
+type Mutation {
+    addConfiguratorProductsToCart(input: AddConfiguratorProductsToCartInput): AddConfiguratorProductsToCartOutput
+    @resolver(class: "Int\\ConfiguratorQuoteGraphQl\\Model\\Resolver\\AddConfiguratorProductsToCart")
+    @doc(description: "This mutuation allow to add configurator BOM products to cart.")
+    salesReorder(orderNumber: String!): SalesReorderItemsOutput @doc(description:"Adds all products from a customer's previous order to the cart.") @resolver(class: "Int\\ConfiguratorQuoteGraphQl\\Model\\Resolver\\Reorder")
+    removeCart(input: RemoveCartInput): RemoveCartOutput @resolver(class: "Int\\ConfiguratorQuoteGraphQl\\Model\\Resolver\\RemoveCart") @doc(description: "This mutation allow to remove all cart item.")
+}
+
+type Cart {
+    configurator_pid: String @doc(description:"Quote Project ID.") @resolver (class: "\\Int\\ConfiguratorQuoteGraphQl\\Model\\Resolver\\CartProject")
+    cart_items_projects: [ProjectsOutput] @doc(description:"Cart Item Project IDs.") @resolver (class: "\\Int\\ConfiguratorQuoteGraphQl\\Model\\Resolver\\Projects")
+}
+
+type SalesReorderItemsOutput {
+    cart: Cart! @doc(description:"Contains detailed information about the customer's cart.")
+    userInputErrors:[IntCheckoutUserInputError]! @doc(description:"An array of reordering errors.")
+}
+
+
+type IntCheckoutUserInputError @doc(description:"An error encountered while adding an item the the cart."){
+    message: String! @doc(description: "Localized error message")
+    path: [String]! @doc(description: "Path to the input field that caused an error. See the GraphQL specification about path errors for details: http://spec.graphql.org/draft/#sec-Errors")
+    code: CheckoutUserInputErrorCodes! @doc(description: "Checkout-specific error code")
+}
+
+input AddConfiguratorProductsToCartInput {
+    cart_id: String!
+    cart_items: [ConfiguratorProductCartItemInput!]!
+    configurator_pid: String @doc(description:"Configurator Project Id")
+}
+
+input ConfiguratorProductCartItemInput {
+    data: CartItemInput!
+    customizable_options:[CustomizableOptionInput!]
+}
+
+input AdditionalOptionInput {
+    label: String
+    value: String
+}
+
+type ProjectsOutput {
+    cart_item_id: String
+    project_name: String
+    project_id: String
+}
+
+type ConfiguratorAdditionalOptions {
+    label: String
+    value: String
+}
+
+input RemoveCartInput {
+    cart_id: String
+}
+
+type AddConfiguratorProductsToCartOutput {
+    cart: Cart!
+}
+
+type RemoveCartOutput {
+    status: Int
+    message: String
+}
+
+enum CheckoutUserInputErrorCodes {
+    REORDER_NOT_AVAILABLE
+    PRODUCT_NOT_FOUND
+    NOT_SALABLE
+    INSUFFICIENT_STOCK
+    UNDEFINED
+}

@@ -1,0 +1,7 @@
+<?php $_product = $block->getProduct(); ?>
+
+<?php if ($_product->hasData('is_top_choice') && $_product->getData('is_top_choice')) : ?>
+    <div class="label_product">
+        <img src="<?php echo $block->getViewFileUrl('images/icons/vector-smart-object.png'); ?>" alt="label">
+    </div>
+<?php endif; ?>

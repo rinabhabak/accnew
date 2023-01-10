@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Reviews
+ *
+ * @category    Alpine
+ * @package     Alpine_Reviews
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="alpine_review" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>PDP Review</label>
+            <tab>alpine</tab>
+            <resource>Alpine_Review::pdp_review</resource>
+            <group id="settings" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Review Settings</label>
+                <field id="pdp_review_count" translate="label comment" type="text" sortOrder="60"
+                       showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Limit</label>
+                    <comment>Count of reviews on PDP</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

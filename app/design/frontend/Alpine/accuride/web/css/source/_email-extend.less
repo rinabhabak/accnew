@@ -1,0 +1,217 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Accuride
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Alex Didenko <alex.didenko@alpineinc.com>
+//  */
+
+//
+//  Email extend styles
+//  _____________________________________________
+
+//  This file should be used for theme-specific styles for emails that extend or modify the styles in _email.less
+//  This will allow you to edit email styles without copying and editing the _email.less file
+
+//  Importing fonts from an external CSS file, rather than embedding @font-face declarations inside the <style> tag,
+//  as the latter will cause font rendering issues if the web fonts are inaccessible.
+
+@import url("@{baseUrl}css/email-fonts.css");
+
+.main {
+    width: auto;
+    max-width: 660px;
+    background-color: @email__background-color;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.main,
+p,
+span,
+em {
+    color: @color-gray20;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.header {
+    padding: 12px @email-body__padding 33px;
+    background-color: @email__background-color;
+    text-align: center;
+}
+
+.main-content {
+    padding: 0 @email-body__padding 21px;
+    line-height: 24px;
+}
+
+.email-img-wrapper {
+    font-size: 0;
+    line-height: 0;
+    text-align: center;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.email-confirmation {
+    background-color: @color-gray92;
+    border: 1px solid @color-gray-light2;
+    border-left: 0;
+    border-right: 0;
+    margin-bottom: 33px;
+}
+
+.email-confirmation-wrapper {
+    padding: 14px 20px 24px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.email-confirmation-text {
+    max-width: 390px;
+    margin-bottom: 24px;
+    font-weight: 200;
+    letter-spacing: 1.8px;
+    line-height: 26px;
+}
+
+.email-confirmation-button {
+    display: block;
+    width: 270px;
+    height: 38px;
+    background-color: @color-blue;
+    color: @color-white;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 38px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.new-account {
+    .new-account-wrapper {
+        padding: 0 @email-body__padding;
+    }
+
+    .greeting,
+    .sign-in,
+    .reset-password {
+        margin-bottom: 26px;
+    }
+
+    .credentials {
+        padding: 0;
+        margin: 0 0 1px;
+        list-style: none;
+    }
+
+    .credentials li {
+        margin: 0;
+    }
+
+    .advantages {
+        margin: 0;
+        text-align: center;
+    }
+
+    .advantages-wrapper {
+        padding-top: 25px;
+    }
+
+    .advantages-item-group {
+        display: inline-block;
+        width: 280px;
+        margin-bottom: 10px;
+        text-align: center;
+        vertical-align: top;
+    }
+
+    .advantages-item {
+        display: inline-block;
+        width: 120px;
+        margin: 0 5px;
+        vertical-align: top;
+    }
+
+    .advantage-text {
+        display: block;
+        margin-top: 9px;
+        font-size: 20px;
+    }
+}
+
+.footer {
+    padding: 45px @email-body__padding 0;
+    background-color: @background_gray;
+    text-align: center;
+}
+
+.footer,
+.footer a,
+.footer p {
+    color: @color-white;
+}
+
+.footer p {
+    margin-bottom: 22px;
+}
+
+.footer-socials {
+    margin: 0 0 29px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+.footer-socials__item {
+    display: inline-block;
+    margin: 0;
+}
+
+.footer-socials__link {
+    display: block;
+    overflow: hidden;
+    width: 40px;
+    height: 37px;
+    margin: 0 7px;
+}
+
+.footer-socials__link_facebook {
+    background: url("@{baseUrl}images/icons/fb_icon.png") no-repeat;
+}
+
+.footer-socials__link_instagram {
+    background: url("@{baseUrl}images/icons/instagram_icon.png") no-repeat;
+}
+
+.footer-socials__link_youtube {
+    background: url("@{baseUrl}images/icons/youtube_icon.png") no-repeat;
+}
+
+.footer-socials__link_twitter {
+    background: url("@{baseUrl}images/icons/twitter_icon.png") no-repeat;
+}
+
+.footer-socials__link_linkedin {
+    background: url("@{baseUrl}images/icons/linkedin_icon.png") no-repeat;
+}
+
+.footer-bottom {
+    padding-top: 0;
+    padding-bottom: 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.footer a:visited{
+    color: #fff !important;
+    text-decoration: none !important;
+}

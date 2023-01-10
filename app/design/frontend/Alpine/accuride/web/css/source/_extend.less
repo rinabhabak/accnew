@@ -1,0 +1,310 @@
+// /**
+//  * Copyright © Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+@import '../source/lib/_mixin';
+//
+//  Extend fallback
+//  _____________________________________________
+
+//  Magento extend fallback handling. Should be EMPTY.
+.page-wrapper {
+	.page-header {
+		.header.content {
+			width: 100%;
+		}
+	}
+}
+
+.cms-home.cms-index-index {
+	.page-main {
+		@media (max-width: @screen__m) { 
+			.slider_third_home {
+				.wrapper_item {
+					min-height: 725px;
+					background: #f7f7f7;
+				}
+				.owl-carousel{
+					margin-bottom: 0 !important;
+				}
+			}
+		}
+	}
+}
+
+.catalog-category-view {
+	#layered-filter-block {
+		.filter-options {
+			ol {
+				margin: 5px !important;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: @screen__m){
+	.page-layout-2columns-left.catalog-category-view {
+		.page-main {
+			.columns {
+				.column {
+					.toolbar-products{
+						&:first-child{
+							display: none;
+						}
+						display: block;
+					}
+				}
+			}
+
+		}
+	}
+	.flexd-inherit.v-align{
+		.accu-push-left-col {
+			padding-top: 25% !important;
+		}
+	}
+	
+}
+
+.accuride-markets{
+	a.product-item-link {
+		display: inline-block;
+		/*min-height: 66px;*/
+	}
+}
+.product.details.product-item-details{
+	.product-reviews-summary.short {
+		text-align: left;
+	}
+}
+.product-reviews-summary.short {
+	text-align: center;
+	margin-bottom: 15px;
+}
+.widget-product-grid {
+	.product-item-info {
+		.product-item-details {
+			min-height: 100px;
+		}
+	}
+}
+.flexd-inherit{
+	flex-direction: inherit !important;
+}
+.v-align{
+	align-items: center;
+}
+.owl-loaded {
+	.customer-stories-group-a.flexd-inherit {
+		display: flex !important;
+	}
+}
+.d-flex{ display: flex !important;}
+.py-50{
+	padding-top: 50px !important;
+	padding-bottom: 50px !important;
+} 
+.healthcare-linear-learnmore {
+	a {
+    text-decoration: none !important;
+    background-image: none;
+    cursor: pointer;
+    font-family: 'Roboto_regular','Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    margin: 0;
+        margin-top: 0px;
+    padding: 7px 15px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    background: #00529c;
+    color: #fff;
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: 1.8rem;
+    margin-top: 20px;
+    min-width: 150px;
+    padding: 12px 28px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: background .2s ease;
+    white-space: nowrap;
+border: 1px solid #fff;
+}
+}
+.catalog-product-view{
+	.product-details-related-item{
+		.block-content{
+			.block-title{
+				margin-top:60px !important;
+			}
+			.product-items{
+				padding-left:50px;
+				padding-right:50px;
+				margin:0;
+				.product-item{
+					padding: 0 10px 45px;
+					width: 100%;
+					.product-item-info{						
+						.product-image-wrapper{
+							border: 1px solid #dadada;
+						}
+						.product-item-details{
+							min-height: 170px;
+							@media only screen and (max-width: @screen__m){
+								min-height: 220px;
+							}
+							.product-item-name{
+								font-size: 20px;
+								text-transform: capitalize;
+								padding: 0 15px;
+								margin-bottom:10px;
+								.product-item-link{
+									text-transform: capitalize;
+								}
+							}
+							.price-final_price{
+								font-size: 20px;
+								span{
+									font-size: 20px;
+								}
+							}
+							.product-reviews-summary{
+								.rating-summary{
+									display:block;
+									margin:auto;
+									.rating-result{
+										display:block;
+										margin:auto;
+									}
+								}
+							}
+							.actions-primary{
+								.action{
+									display: inline-block;
+									padding: 0 15px;
+									width: auto !important;
+									margin:auto;
+								}
+							}
+						}
+					}	
+				}
+
+				.owl-nav{
+					button{
+						background-color:#e4e4e4 !important;
+						background-size: 36% !important;
+						background-position: center center !important;
+						width: 36px;
+						border-radius: 0;
+					}
+					.owl-prev{
+							background-image:url('../images/icons/back.png') !important;
+					}
+					.owl-next{
+							background-image:url('../images/icons/back.png') !important;
+						  -ms-transform: rotate(180deg);
+						  -webkit-transform: rotate(180deg);
+						  transform: rotate(180deg);
+						  background-size: 32 !important;
+					}
+				}	
+
+			}
+		}
+		
+	}
+}
+
+.newBoxArea{
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        .newBoxArea .newBox{
+            background:#fff;
+            border-top: 2px#fcdc31 solid;
+            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            padding: 0;
+            width: 32%;
+            margin: 0 5px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .newBoxArea .newBox a{
+            padding: 35px 15px;
+            display: block;
+        }
+        .newBoxArea .newBox a span{
+            color: #939393;
+            font-weight: 400;
+            display: block;
+        }
+        .newBoxArea .newBox a:hover span{
+            color: #939393;
+        }
+        .newBoxArea .newBox a:hover{
+            text-decoration: none;
+        }
+        @media only screen and (max-width: 1099px){
+            .newBoxArea .newBox{
+                width: calc((100% - 50px) / 3);
+            }
+        }
+        @media only screen and (max-width: 991px){            
+            .newBoxArea .newBox{
+                width: 100%;
+                margin: 10px 0;
+            }
+        }
+        @media only screen and (max-width: 480px){            
+            .newBoxArea .newBox a span{
+                display: inline;
+            }
+        }
+
+        .categoryLinkBoxArea {
+	padding: 30px 0;
+	.categoryLinkBox {
+		border-top: 1px #fcdc31 solid;
+		padding: 10px 0;
+		a {
+			&:hover {
+				text-decoration: none;
+			}
+		}
+		&:last-child {
+			border-bottom: 1px #fcdc31 solid;
+		}
+	}
+}
+.notification-container {
+	button{
+	&.primary{
+	line-height: 33px;border-radius: 0;
+	}
+	}
+}
+.product-info-main {
+	.amstockstatus-stockalert {
+		order: 7;
+	}
+}
+.link-stock-alert {
+	a {
+		text-transform: lowercase !important;
+		padding: 0 !important;
+	}
+}
+.product-info-main {
+	.product.stock {
+		order: 6;
+	}
+}
+.product-info-main {
+	.product.stock {
+		a {
+			text-transform: lowercase !important;
+			padding: 0 !important;
+		}
+	}
+}

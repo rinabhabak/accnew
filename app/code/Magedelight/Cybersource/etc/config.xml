@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <payment>
+            <magedelight_cybersource>
+                <active>0</active>
+                <title>Cybersource By MageDelight</title>
+                <order_status>processing</order_status>
+                <test>1</test>
+                <debug>1</debug>
+                <cctypes>AE,VI,MC,DI</cctypes>
+                <save_optional>1</save_optional>
+                <soap_gateway_url>https://ics2ws.ic3.com/commerce/1.x/transactionProcessor/CyberSourceTransaction_1.118.wsdl</soap_gateway_url>
+                <test_soap_gateway_url>https://ics2wstest.ic3.com/commerce/1.x/transactionProcessor/CyberSourceTransaction_1.118.wsdl</test_soap_gateway_url>
+                <merchantdefineddata>1</merchantdefineddata>
+                <merchantdefine_data1>store_url</merchantdefine_data1>
+                <merchantdefine_data2>store_name</merchantdefine_data2>
+                <merchantdefine_data3>order_id</merchantdefine_data3>
+                <merchantdefine_data4>shipping_amount</merchantdefine_data4>
+                <merchantdefine_data5>shipping_name</merchantdefine_data5>
+                <merchantdefine_data6>discount</merchantdefine_data6>
+                <merchantdefine_data7>coupon</merchantdefine_data7>
+                <model>Magedelight\Cybersource\Model\Payment</model>
+            </magedelight_cybersource>
+        </payment>
+    </default>
+</config>

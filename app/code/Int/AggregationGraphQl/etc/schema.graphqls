@@ -1,0 +1,42 @@
+#Int Rating  GraphQl Schema
+
+interface ProductInterface @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\ProductInterfaceTypeResolverComposite") @doc(description: "The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes.") {
+  average_rating: String @doc(description: "Product Rating. The value shows approved average rating.") @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Rating")
+  product_price_range: ProductPrice! @doc(description: "A PriceRange object, indicating the range of prices for the product") @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Product\\ProductPriceRange")
+  cross_image: String @doc(description: "The URL of the product image or video.") @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Product\\MediaGallery\\CrossImageGallery")
+  compare_attribute_list: [compareAttributeList] @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Product\\CompareAttributeList") @doc(description: "The query returns all comparable attributes with attribute name and value")
+  quantity_in: String @doc(description: "QuantityIn") @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Product\\QuantityIn")
+  product_logos: [productLogos] @doc(description: "Product Logos") @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Product\\ProductLogos")
+}
+
+type ProductPrice @doc(description: "Price range for a product. If the product has a single price, the minimum and maximum price will be the same."){
+  minimum_price: ProductProductPrice! @doc(description: "The lowest possible price for the product.")
+  maximum_price: ProductProductPrice @doc(description: "The highest possible price for the product.")
+}
+
+type ProductProductPrice @doc(description: "Represents a product price.") {
+  regular_price: Money! @doc(description: "The regular price of the product.")
+  final_price: Money! @doc(description: "The final price of the product after discounts applied.")
+}
+
+type compareAttributeList {
+  attribute_name: String @doc(description: "Attribute Name")
+  attribute_value: String @doc(description: "Attribute Value")
+  frontend_label: String @doc(description: "Attribute Frontend Label")
+}
+
+interface MediaGalleryInterface @doc(description: "Contains basic information about a product image or video.") @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\MediaGalleryTypeResolver") {
+  gallery_url: String @doc(description: "The URL of the product image or video.") @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Product\\MediaGallery\\Url")
+}
+
+interface CategoryInterface @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\CategoryInterfaceTypeResolver") @doc(description: "CategoryInterface contains the full set of attributes that can be returned in a category search.") {
+  category_image_url: String @doc(description: "The URL of the product image or video.") @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Category\\CategoryImage")
+}
+
+type productLogos {
+  logo_url: String @doc(description: "Logo Url")
+}
+
+type Aggregation {
+  position: Int @doc(description: "Layer Position") @resolver(class: "Int\\AggregationGraphQl\\Model\\Resolver\\Layer\\Position")
+}

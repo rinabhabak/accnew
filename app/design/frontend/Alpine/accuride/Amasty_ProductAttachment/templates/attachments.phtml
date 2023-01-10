@@ -1,0 +1,56 @@
+<?php
+/**
+ * Changes:
+ *   - refactor the attachments template to match the previous override for template files.phtml
+ *     from earlier version of the extension
+ *
+ * @category    Accuride
+ * @package     Accuride_CmsSetup
+ * @copyright   Copyright (c) Sitewards GmbH (http://www.sitewards.com/)
+ */
+?>
+<?php
+/** @var \Amasty\ProductAttachment\Block\Widgets\AttachmentsList $block */
+?>
+<?php
+$helper = $this->helper('Accuride\ProductAttachment\Helper\Data');
+$linkIcon = $helper->getLinkIcon();
+?>
+<?php if ($files = $block->getAttachments()) : ?>
+    <div class="downloads_list">
+        <div class="widget am-attachments am-attachments-<?= $block->escapeHtml($this->getWidgetType()); ?>">
+            <?php if ($block->getBlockTitle()) : ?>
+                <div class="block-title">
+                    <strong><?= $block->escapeHtml($block->getBlockTitle()); ?></strong>
+                </div>
+            <?php endif; ?>
+            <ul>
+                <?php foreach ($files as $file) : ?>
+                    <li class="am-fileline">
+                        <?php if($file->getAttachmentType() == '0'): ?>
+                            <?php if ($block->isShowIcon() && $file->getIconUrl()) : ?>
+                                    <span class="icon">
+                                    <img src="<?= $block->escapeUrl($file->getIconUrl()) ?>" class="am-fileicon" />
+                                    </span>
+                            <?php endif; ?>   
+                            <a href="<?= $block->escapeUrl($file->getFrontendUrl()) ?>" class="am-filelink" target="_blank">
+                                <span class="title"><?= $block->escapeHtml($file->getLabel()); ?></span>
+                            </a>
+                        <?php endif; ?>
+                        <?php if($file->getAttachmentType() == '1'): ?>
+                                <span class="icon">
+                                    <img src="<?php echo $linkIcon; ?>" class="am-fileicon" />
+                                </span>
+                                <a href="<?= $file->getLink() ?>" class="am-filelink" target="_blank">
+                                    <span class="title"><?= $block->escapeHtml($file->getLabel()); ?></span>
+                                </a>                            
+                        <?php endif; ?>
+                        <?php if ($block->isShowFilesize() && $file->getFileSize()) : ?>
+                            <span class="am-filesize">(<?= $block->escapeHtml($file->getReadableFileSize()) ?>)</span>
+                        <?php endif ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+<?php endif; ?>

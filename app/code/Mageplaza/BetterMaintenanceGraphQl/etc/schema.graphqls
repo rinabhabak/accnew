@@ -1,0 +1,95 @@
+type Query {
+    MpBetterMaintenanceConfig:MaintenanceConfig @resolver(class: "Mageplaza\\BetterMaintenanceGraphQl\\Model\\Resolver\\Configs\\Get") @doc(description: "Get configs")
+}
+
+type MaintenanceConfig {
+  general: GeneralConfig @doc(description: "General Config")
+  display_setting: DisplaySetting @doc(description: "Display Setting")
+  maintenance_setting: MaintenanceSetting @doc(description: "Maintenance Setting")
+  comingsoon_setting: ComingSoonSetting @doc(description: "ComingSoon Setting")
+}
+
+type GeneralConfig {
+  enabled: Boolean @doc(description: "Enabled")
+  redirect_to: String @doc(description: "Redirect To")
+  auto_switch: Boolean @doc(description: "Auto Switch")
+  end_time: String @doc(description: "End Time")
+  whitelist_ip: String @doc(description: "Whitelist Ip")
+  whitelist_page: [String] @doc(description: "Whitelist Page")
+}
+
+type DisplaySetting {
+  clock_setting: ClockSetting @doc(description: "Clock Setting")
+  subscribe_setting: SubscribeSetting @doc(description: "Subscribe Setting")
+  footer_block: FooterBlock @doc(description: "Footer Block")
+  social_contact: SocialContact @doc(description: "Social Contact")
+}
+
+type ClockSetting {
+  clock_enabled: Boolean @doc(description: "Clock Enabled")
+  clock_template: String @doc(description: "Clock Template")
+  clock_background_color: String @doc(description: "Clock Background Color")
+  clock_number_color: String @doc(description: "Clock Number Color")
+  clock_inner_color: String @doc(description: "Clock Inner Color")
+}
+
+type SubscribeSetting {
+  subscribe_type: String @doc(description: "Subscribe Type")
+  subscribe_label_color: String @doc(description: "Subscribe Label Color")
+  button_label: String @doc(description: "Button Label")
+  button_label_color: String @doc(description: "Button Label Color")
+  button_background_color: String @doc(description: "Button Background Color")
+  subscribe_label: String @doc(description: "Subscribe Label")
+}
+
+type FooterBlock {
+  cms_block: String @doc(description: "Cms Block")
+}
+
+type SocialContact {
+  social_enabled: Boolean @doc(description: "Social Enabled")
+  social_label_color: String @doc(description: "Social Label Color")
+  social_label: String @doc(description: "Social Label")
+  social_facebook: String @doc(description: "Social Facebook")
+  social_instagram: String @doc(description: "Social Instagram")
+  social_google: String @doc(description: "Social Google")
+  social_youtube: String @doc(description: "Social Youtube")
+  social_pinterest: String @doc(description: "Social Pinterest")
+  social_facebook_icon_url: String @doc(description: "Social Facebook Icon Url")
+  social_instagram_icon_url: String @doc(description: "Social Instagram Icon Url")
+  social_google_icon_url: String @doc(description: "Social Google Icon Url")
+  social_youtube_icon_url: String @doc(description: "Social Youtube Icon Url")
+  social_pinterest_icon_url: String @doc(description: "Social Pinterest Icon Url")
+}
+
+type MaintenanceSetting {
+  maintenance_layout: String @doc(description: "Maintenance Layout")
+  maintenance_title: String @doc(description: "Maintenance Title")
+  maintenance_description: String @doc(description: "Maintenance Description")
+  maintenance_color: String @doc(description: "Maintenance Color")
+  maintenance_background: String @doc(description: "Maintenance Background")
+  maintenance_progress_enabled: String @doc(description: "Maintenance Progress Enabled")
+  maintenance_progress_value: String @doc(description: "Maintenance Progress Value")
+  maintenance_progress_label_color: String @doc(description: "Maintenance Progress Label Color")
+  maintenance_progress_bar_color: String @doc(description: "Maintenance Progress Bar Color")
+  maintenance_progress_label: String @doc(description: "Maintenance Progress Label")
+  maintenance_logo: String @doc(description: "Maintenance Logo")
+  maintenance_background_video: String @doc(description: "Maintenance Background Video")
+  maintenance_background_image: String @doc(description: "Maintenance Background Image")
+  maintenance_background_multi_image: [String] @doc(description: "Maintenance Background Multi Image")
+}
+
+type ComingSoonSetting {
+  comingsoon_layout: String @doc(description: "Comingsoon Layout")
+  comingsoon_title: String @doc(description: "Comingsoon Title")
+  comingsoon_description: String @doc(description: "Comingsoon Description")
+  comingsoon_color: String @doc(description: "Comingsoon Color")
+  comingsoon_background: String @doc(description: "Comingsoon Background")
+  comingsoon_logo: String @doc(description: "Comingsoon Logo")
+  comingsoon_background_video: String @doc(description: "Comingsoon Background Video")
+  comingsoon_background_image: String @doc(description: "Comingsoon Background Image")
+  comingsoon_background_multi_image: [String] @doc(description: "Comingsoon Background Multi Image")
+  comingsoon_metatitle: String @doc(description: "Comingsoon Metatitle")
+  comingsoon_metakeywords: String @doc(description: "Comingsoon Metakeywords")
+  comingsoon_metadescription: String @doc(description: "Comingsoon Metadescription")
+}

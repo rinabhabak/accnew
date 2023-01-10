@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+* Alpine
+*
+* @category    Alpine
+* @package     Alpine_Accuride
+* @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+* @author      Denis Furman <denis.furman@alpineinc.com>
+* @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_Theme::css/owlCarousel/owl.carousel.css"/>
+        <css src="Magento_Theme::css/owlCarousel/owl.theme.default.css"/>
+    </head>
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template" name="custom_head" template="Magento_Theme::custom_head.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

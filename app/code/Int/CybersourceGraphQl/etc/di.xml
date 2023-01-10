@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="ParadoxLabs\CyberSource\Model\Service\CardinalCruise\EnrollmentParams">
+        <plugin name="disable_enroll_service" type="Int\CybersourceGraphQl\Plugin\Model\Service\CardinalCruise\EnrollmentParams"/>
+    </type>
+    <type name="ParadoxLabs\CyberSource\Gateway\Api\ObjectBuilder">
+        <plugin name="set_base_price" type="Int\CybersourceGraphQl\Plugin\Gateway\Api\ObjectBuilder"/>
+    </type>
+    <preference for="ParadoxLabs\CyberSource\Model\Service\CardinalCruise\JsonWebTokenGenerator" type="Int\CybersourceGraphQl\Model\Service\CardinalCruise\JsonWebTokenGenerator"/>
+    <preference for="ParadoxLabs\CyberSource\Model\Gateway" type="Int\CybersourceGraphQl\Model\Gateway"/>
+</config>

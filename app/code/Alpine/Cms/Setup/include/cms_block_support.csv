@@ -1,0 +1,20 @@
+"title","identifier","content"
+"CONSUMER SUPPORT","support","<div class=""cms-content support""><img class=""cms-header-image"" src=""{{view url=images/cms/support/header.jpg}}"" alt=""SUPPORT"" />
+<h2>SUPPORT</h2>
+<p>At Accuride, we offer you more than just movement solutions--we take pride in assisting our customers with world-class support throughout the entire process of bringing an application to life.</p>
+<ul>
+<li><img src=""{{view url=images/cms/support/1.jpg}}"" alt=""SHIPPING &amp; HANDLING"" />
+<h2>SHIPPING &amp; HANDLING</h2>
+<p>Have a question about shipping &amp; handling or need to follow-up on an online order? Feel free to send us a message, so we can help!</p>
+<a class=""button"" href=""#"">LEARN MORE</a></li>
+<li><img src=""{{view url=images/cms/support/2.jpg}}"" alt=""WARRANTY"" />
+<h2>WARRANTY</h2>
+<p>Read up on the limited lifetime warranty for our slides and Accuride Integrated Access Solutions here.</p>
+<a class=""button"" href=""#"">LEARN MORE</a></li>
+<li><img src=""{{view url=images/cms/support/3.jpg}}"" alt=""TECHNICAL SUPPORT"" />
+<h2>TECHNICAL SUPPORT</h2>
+<p>Do you have technical questions about a specific Accuride product or installation? Our experts will assist you with their extensive knowledge and professional backgrounds.</p>
+<a class=""button"" href=""#"">LEARN MORE</a></li>
+</ul>
+</div>
+"

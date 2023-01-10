@@ -1,0 +1,58 @@
+<?php
+/**
+ * Magento_Search
+ *
+ * @category    Alpine
+ * @theme       Alpine_accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+
+/** @var $block \Magento\Framework\View\Element\Template */
+/** @var $helper \Magento\Search\Helper\Data */
+$helper = $this->helper(\Magento\Search\Helper\Data::class);
+?>
+<div class="block block-search">
+    <div class="block block-title"><strong><?= /* @escapeNotVerified */ __('Search') ?></strong></div>
+    <div class="block block-content">
+      <form class="form minisearch sli_searchform" id="search_mini_form" method="GET" action="//accuride.resultsdemo.com/search" onsubmit="return SLI.searchSubmit(this,event);" accept-charset="utf-8">
+        <div class="field search">
+          <label class="label" for="search" data-role="minisearch-label">
+            <span>Search</span>
+          </label>
+          <div class="control">
+              <div class="searchbyvoice_mic searchbyvoice-trigger" id="searchbyvoice-trigger-tablet-desktop"></div><!-- tablet/desktop 'search by voice' icon -->
+              <input id="search" class="input-text sli_searchbox_textfield" onblur="if(this.value === '' ) { this.value = this.getAttribute('data-last-keyword'); }" data-provide="rac" onfocus="this.setAttribute('data-last-keyword', this.value); this.value = '';" autocomplete="off"
+                  name="w" placeholder="SEARCH" type="text" data-rac-input="0" data-rac-loaded="true" required="required">
+              <input type="hidden" name="ts" value="custom">
+              <input type="hidden" name="ts" value="custom">
+          </div>
+        </div>
+        <div class="actions">
+          <button type="button" title="Search" class="action search sli_searchbox_go_button" onclick="SLI.searchSubmit(this,event)" value="Search">
+            <span onclick="SLI.searchSubmit(this,event)" type="button" value="Search" class="sli_searchbox_go_button">
+              Search
+            </span>
+          </button>
+        </div>
+      </form>
+    </div>
+</div>
+<script>
+    require(['jquery','domReady!'], function($){
+        var $form = $('.minisearch.sli_searchform');
+        var $label = $('[data-role="minisearch-label"]', $form);
+        var $input = $('.sli_searchbox_textfield', $form);
+
+        $label.on('click', function(){
+            var $hasActive = $form.hasClass('active');
+            console.log('click');
+            console.log($hasActive);
+            $form.toggleClass('active', !$hasActive);
+        });
+        $input.on('blur', function() {
+            console.log('blur');
+            $form.removeClass('active');
+        })
+    });
+</script>

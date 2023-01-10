@@ -1,0 +1,271 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Accuride
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Denis Furman <denis.furman@alpineinc.com>
+//  * @author      Kirill Kosonogov <kirill.kosonogov@alpineinc.com>
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .select2-container{
+        z-index: 10;
+    }
+
+    .select2-container.select2-container {
+
+        .select2-selection--single{
+            height: auto;
+            border-radius: 0;
+            background: @select__background url('../images/select-bg.svg') no-repeat 100% 45%;
+            background-size: 30px 60px;
+            border: 1px solid @color-gray20;
+            min-width: 200px;
+
+            .select2-selection__rendered{
+                line-height: 43px;
+                padding-right: 30px;
+                text-transform: uppercase;
+            }
+
+            .select2-selection__arrow{
+                display: none;
+            }
+        }
+    }
+
+    .amlocator-index-index {
+        .page-main {
+            .full_width(false);
+        }
+        .wrapper_title_top {
+            height: 200px;
+            background: url('@{baseDir}images/bg_locator.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            .title_top {
+                .full_width(true);
+                line-height: 200px;
+                font-size: 32px;
+                text-transform: uppercase;
+                font-family: @font_light;
+                color: white;
+            }
+        }
+        #amasty_locator_filter {
+            display: flex;
+            flex-direction: column;
+            .full_width(true);
+            .title {
+                font-size: 28px;
+                color: @primary_color;
+                text-align: left;
+                margin: 45px 0;
+                text-transform: uppercase;
+            }
+            .description {
+                text-align: left;
+                span {
+                    font-size: 16px;
+                    margin-bottom: 20px;
+                    display: inline-block;
+                }
+            }
+            .search {
+                .block-content {
+                    display: flex;
+                    justify-content: start;
+                    align-items: flex-end;
+                    .amlocator_input {
+                        margin-right: 20px;
+                        &#current-address {
+                            width: 330px;
+                            input {
+                                width: 100%;
+                            }
+                        }
+                        input,
+                        select {
+                            width: 200px;
+                            height: 43px;
+                            border: 1px solid @color-gray20;
+                            &:focus {
+                                border: 1px solid @primary_color !important;
+                                color: @primary_color !important;
+                                box-shadow: none;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .amlocator_center {
+            padding: 40px 0 0 0;
+            overflow: hidden;
+            .full_width(true);
+            .amlocator_store_list {
+                margin-bottom: 0;
+            }
+            #amlocator_left {
+                .leftLocation {
+                    padding-bottom: 30px;
+                    margin-bottom: 30px;
+                    border-bottom: 1px solid @color-silver;
+                    margin-right: 10px;
+                    p {
+                        margin: 0;
+                        &.location_header,
+                        &.address,
+                        &.phone,
+                        &.fax,
+                        &.email {
+                            margin-bottom: 20px;
+                        }
+                    }
+                    .email {
+                        display: inline-block;
+                    }
+                    .site {
+                        word-break: break-all;
+                        display: block;
+                        margin-bottom: 20px;
+                    }
+                    span {
+                        border: 0;
+                        padding: 0;
+                        font-size: inherit;
+                    }
+                    .action.active {
+                        background: @color-silver;
+                        color: white;
+                        border-color: @color-silver;
+                    }
+                }
+            }
+            .bottom_info {
+                display: none;
+            }
+        }
+
+        .amlocator_input{
+            margin-top: 0;
+
+            .input-box{
+                margin-top: 0;
+            }
+        }
+    }
+
+    .stores-select{
+        .lib-vendor-prefix-display();
+        .lib-vendor-box-align(flex-start);
+        justify-content: space-between;
+        flex-direction: column;
+
+        .industry{
+            .lib-vendor-prefix-order();
+        }
+
+        .amlocator_input{
+            .lib-vendor-prefix-order(2);
+        }
+
+        .select2-container{
+            .lib-vendor-prefix-order(1);
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+    .stores-select{
+        flex-direction: row;
+
+        > *{
+            .lib-vendor-prefix-flex-basis(percentage(0.98 / 3));
+            .lib-vendor-prefix-flex-shrink();
+            .lib-vendor-prefix-flex-grow();
+        }
+    }
+}
+
+//
+//  Tables and mobile @screen__m
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .amlocator-index-index.page-layout-1column {
+        #amasty_locator_filter {
+            .search .block-content {
+                flex-wrap: wrap;
+                .amlocator_input_action {
+                    margin-top: 20px;
+                    width: 100%;
+                }
+            }
+        }
+        .wrapper_title_top {
+            display: none;
+        }
+        .amlocator_center {
+            .amlocator_store_list {
+                #amlocator_left {
+                    width: 100%;
+                }
+            }
+            .bottom_info {
+                width: 100%;
+            }
+        }
+    }
+
+
+    .stores-select{
+        flex-direction: row;
+
+        > *{
+            width: 100%;
+            margin-bottom: 15px !important;
+        }
+    }
+}
+
+//Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs-m) {
+    .amlocator-index-index.page-layout-1column {
+        #amasty_locator_filter {
+            .search .block-content {
+                .amlocator_input {
+                    width: 100%;
+                    margin-right: 0;
+                }
+            }
+            input,
+            select,
+            .action {
+                width: 100% !important;
+                margin: 0;
+            }
+        }
+        .amlocator_center {
+            display: flex;
+            flex-direction: column;
+            .amlocator_mapblock {
+                order: 2;
+            }
+            .amlocator_store_list {
+                margin-top: 20px;
+                order: 1;
+                border-top: 1px solid @color-silver;
+                .amlocator_left {
+                    .action {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,295 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Accuride
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  */
+
+& when (@media-common = true) {
+    footer.page-footer {
+        .webforms {
+            float: right;
+        }
+
+        .webforms-success-text p {
+            margin: 0;
+        }
+
+        .form {
+            display: flex;
+            top: 85px;
+            position: relative;
+
+            .fieldset {
+                margin: 0;
+            }
+
+            .webforms-gdpr {
+                display: none;
+            }
+
+            .block.newsletter {
+                float: none;
+                width: 100%;
+
+                .control {
+                    position: relative;
+
+                    &:before {
+                        background: url('@{baseDir}images/icons/email-icon.png') no-repeat;
+                        content: '';
+                        width: 24px;
+                        height: 19px;
+                        margin-top: 7px;
+                        display: inline-block;
+                        position: absolute;
+                        left: 9px;
+                    }
+                }
+
+                .field.newsletter {
+                    margin-right: 5px;
+                    width: 266px;
+                    background: @background_gray;
+                    border: 1px solid @white;
+                    color: @white;
+                    padding-left: 40px;
+                    height: 35px;
+                    color: @white !important;
+
+                    &::placeholder {
+                        color: @white;
+                    }
+
+                    &:focus {
+                        box-shadow: none;
+                    }
+
+                    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                        color: white;
+                    }
+                    ::-moz-placeholder { /* Firefox 19+ */
+                        color: white;
+                    }
+                    :-ms-input-placeholder { /* IE 10+ */
+                        color: white;
+                    }
+                    :-moz-placeholder { /* Firefox 18- */
+                        color: white;
+                    }
+                }
+            }
+            .actions-toolbar {
+                .action.submit {
+                    box-shadow: none;
+                    border-radius: 0;
+                    line-height: 34px;
+                }
+
+                .secondary {
+                    display: none;
+                }
+            }
+        }
+    }
+
+
+    .cms-literature .page-main .form {
+        flex-wrap: wrap;
+        align-items: stretch;
+        display: flex;
+
+        .legend {
+            display: none;
+        }
+
+        .fieldset.left,
+        .fieldset.right  {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap();
+            .lib-css(justify-content, space-between, 1);
+            width: 50%;
+            padding: 0 10px;
+            margin: 20px 0;
+            text-align: left;
+
+            br {
+                display: none;
+            }
+
+            .field {
+                width: 100%;
+
+                select,
+                input,
+                label {
+                    text-transform: uppercase;
+                }
+
+                .control label:before {
+                    display: none;
+                }
+
+                .webforms-fields-comment {
+                    margin-top: 2rem;
+                }
+
+                &.half {
+                    width: 49%;
+                    display: inline-block;
+                }
+
+                input[type='checkbox'] {
+                    background: @color-white;
+                    outline: 1px solid @color-black;
+                    padding: 3px;
+                    height: 18px;
+                    width: 18px;
+                    position: relative;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                }
+            }
+        }
+
+        .fieldset.bottom {
+            width: 100%;
+            padding: 0 10px;
+
+            textarea {
+                text-transform: uppercase;
+                height: 250px;
+            }
+        }
+
+        .actions-toolbar {
+            text-align: right;
+            width: 100%;
+            margin-right: 10px;
+
+            .primary {
+                float: none;
+                text-align: right;
+            }
+
+            .action.primary {
+                background: #00529c;
+                color: #fff;
+                border-radius: 0;
+                padding: 0 30px;
+            }
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  ---------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m){
+    .footer.content {
+        .webforms {
+            width: 100%;
+            margin-bottom: 0;
+
+            .form {
+                display: block;
+                top: 0;
+
+                .fieldset {
+                    display: inline-block;
+                    width: ~'calc(100% - 160px)';
+
+                    .block.newsletter {
+                        padding: 25px 5px 25px 25px;
+
+                        .control {
+                            &:before {
+                                background: url('@{baseDir}images/icons/email-icon-gray.png') no-repeat;
+                                background-size: contain;
+                            }
+
+                            .field.newsletter {
+                                width: 100%;
+                                background: white;
+                                border: 1px solid @color-gray20;
+                                height: 34px;
+
+                                &::placeholder {
+                                    color: @color-gray20;
+
+                                }
+
+                                ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                                    color: @color-gray20;
+                                }
+                                ::-moz-placeholder { /* Firefox 19+ */
+                                    color: @color-gray20;
+                                }
+                                :-ms-input-placeholder { /* IE 10+ */
+                                    color: @color-gray20;
+                                }
+                                :-moz-placeholder { /* Firefox 18- */
+                                    color: @color-gray20;
+                                }
+                            }
+                        }
+                    }
+                }
+                .actions-toolbar {
+                    display: inline-block;
+                    padding-right: 25px;
+                    position: absolute;
+                    top: 25px;
+
+                    .primary {
+                        position: relative;
+                    }
+                }
+            }
+        }
+    }
+
+    .cms-literature .page-main .columns .form {
+        .fieldset {
+            width: 100%;
+        }
+
+        .actions-toolbar {
+            width: auto;
+        }
+    }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__xs-l) {
+    .footer.content .webforms .form {
+        .fieldset {
+            display: block;
+            width: 100%;
+            padding: 0;
+
+            .block.newsletter {
+                padding: 0 @layout__width-xs-indent;
+                margin: 25px auto 10px auto;
+            }
+        }
+        .actions-toolbar {
+            position: static;
+            display: block;
+            margin: 0 0 25px 0;
+            padding: 0 @layout__width-xs-indent;
+        }
+    }
+}
+
+//
+//  Mobile
+//  ---------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){
+    footer.page-footer {
+        .webforms-success-text {
+            color: @white;
+        }
+    }
+}

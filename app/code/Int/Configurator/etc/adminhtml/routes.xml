@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Indusnet Technologies.
+ *
+ * @category  Indusnet
+ * @package   Int_ConfiguratorGraphQl
+ * @author    Indusnet
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
+    <router id="admin">
+        <route id="int_configurator" frontName="int_configurator">
+            <module name="Int_Configurator" />
+        </route>
+    </router>
+</config>

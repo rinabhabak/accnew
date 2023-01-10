@@ -1,0 +1,20 @@
+#Int Home Page Banner GraphQl Schema
+
+type Query {
+    productAttachment (input: ProductAttachmentInput!): [ProductAttachmentOutput]
+    @resolver(class: "Int\\ProductAttachmentGraphQl\\Model\\Resolver\\ProductAttachment") 
+    @doc(description: "The query returns information about product")
+}
+
+input ProductAttachmentInput {
+    productId: Int @doc(description: "Product Id")
+}
+
+type ProductAttachmentOutput {
+	file_id: Int @doc(description: "Product ID")
+    attachment_type: String @doc(description: "Contains price, value, and quantity")
+    icon_url: String! @doc(description: "Customer Nickname")
+    frontend_url: String! @doc(description: "Review Title")
+    label: String! @doc(description: "Review Detail")
+    link: String! @doc(description: "Product Attachment Link")
+}

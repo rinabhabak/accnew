@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Cron settings
+ *
+ * @category    Alpine
+ * @package     Alpine_SLIFeed
+ * @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+ * @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="alpine" translate="label" sortOrder="9999999">
+            <label>Alpine</label>
+        </tab>
+        <section id="alpine_feed_export" translate="label" sortOrder="9999" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Cron Feed Export</label>
+            <tab>alpine</tab>
+            <resource>Alpine_SLIFeed::sli_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="9999" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Cron settings</label>
+                <field id="sli_feed_cron_setting_enable" translate="label" type="select" sortOrder="1" showInDefault="1" 
+                       showInWebsite="0" showInStore="0">
+                    <label>Cron Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sli_feed_cron_setting" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cron Schedule</label>
+                </field>
+                <field id="sli_feed_cron_excluded_pages" translate="label" type="multiselect" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Excluded pages</label>
+                    <source_model>Alpine\SLIFeed\Model\Source\PagesSelect</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

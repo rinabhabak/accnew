@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amfile">
+            <group id="product_tab">
+                <field id="customer_group" translate="label" type="select" sortOrder="0" showInDefault="0" showInWebsite="0" showInStore="0" canRestore="0">
+                    <label>Custom New Order Status</label> <!-- Custom label -->
+                </field>                 
+                <field id="customer_group_updated" translate="label comment" type="multiselect" sortOrder="42" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>Choose Customer Groups to show the Tab</label>
+                    <source_model>Int\ProductDownload\Model\SourceOptions\CustomerGroup</source_model>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="amfile/product_tab/block_enabled">1</field>
+                    </depends>
+                    <comment>Don't choose any or select all to show the tab to all customer groups.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

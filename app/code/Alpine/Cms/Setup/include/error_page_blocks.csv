@@ -1,0 +1,16 @@
+"title","identifier","content"
+"Error page main","error_page_main","<div class=""error-page-main"">
+                                              <div class=""error-content"">
+                                              <h1>OOPS! ERROR 404 SORRY<br> THE PAGE NOT FOUND</h1>
+                                                   <h2>What can you do?</h2>
+                                                   <p>Try out our search above or below are a few areas that should be helpful</p>
+                                              </div>
+                                              <img src=""{{view url=images/cms/error-404/WS_AC_404_v4.png}}"" alt=""img"">
+                                     </div>"
+"Error page links","error_page_links","<ul class=""error-page-links"">
+                                              <li class=""link""><a href=""{{store url=""faq""}}"">FAQ's</a></li>
+                                              <li class=""link""><a href=""{{store direct_url=""contact#form.general_contact""}}"">GENERAL INFORMATION</a></li>
+                                              <li class=""link""><a href=""{{store url=""products""}}"">PRODUCTS</a></li>
+                                              <li class=""link""><a href=""{{store direct_url=""contact#form.technical_support""}}"">TECHNICAL SUPPORT</a></li>
+                                              <li class=""link""><a href=""{{store url=""shop/online-store""}}"">STORE</a></li>
+                                       </div>"

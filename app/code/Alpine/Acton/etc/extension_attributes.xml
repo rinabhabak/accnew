@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Acton
+ *
+ * @category    Alpine
+ * @package     Alpine_Acton
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Api/etc/extension_attributes.xsd">
+    <extension_attributes for="Magento\Customer\Api\Data\CustomerInterface">
+        <attribute code="newsletter" type="boolean" />
+    </extension_attributes>
+</config>

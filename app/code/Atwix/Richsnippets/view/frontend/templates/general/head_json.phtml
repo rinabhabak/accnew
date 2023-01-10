@@ -1,0 +1,22 @@
+<?php
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ *
+ * @see \Atwix\Richsnippets\Block\Catalog\CategoryJson::makeMetaTags() for assing $headJson
+ * OR
+ * @see \Atwix\Richsnippets\Block\Page\BreadcrumbsJson::makeBreadcrumbsJson() for assing $headJson
+ * OR
+ * @see \Atwix\Richsnippets\Block\Page\OrganizationJson::makeOrganizationJson() for assing $headJson
+ * OR
+ * @see \Atwix\Richsnippets\Block\Page\Sitename::makeSitenameSnippetsJson() for assing $headJson
+ *
+ * @var $headJson string
+ */
+?>
+<?php if (!empty($headJson) && $headJson != 'null') : ?>
+    <script type="application/ld+json">[<?php echo $headJson; ?>]</script>
+<?php endif; ?>

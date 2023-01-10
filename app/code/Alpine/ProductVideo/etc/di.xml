@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_ProductVideo
+ *
+ * @category    Alpine
+ * @package     Alpine_ProductVideo
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="alpine_product_video_block_product_view_gallery_image"
+                type="Alpine\ProductVideo\Plugin\Block\Product\View\Gallery"
+                sortOrder="10"
+        />
+    </type>
+    
+    <type name="Magento\ProductVideo\Block\Product\View\Gallery">
+        <plugin name="alpine_product_video_block_product_view_gallery_video"
+                type="Alpine\ProductVideo\Plugin\Block\Product\View\Gallery"
+                sortOrder="10"
+        />
+    </type>
+</config>

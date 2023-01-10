@@ -1,0 +1,49 @@
+& when (@media-common = true) {
+	.accuride-markets {
+		.accuit {
+			margin: 0 0 25px;
+
+		  	&__title {
+		  		font-size: 22px;
+		  		font-weight: 300;
+			    margin: 20px auto 0;
+				max-width: 210px;
+		  		text-align: center;
+		  		text-transform: uppercase;
+		  	}
+
+		  	&--minheight-2 .accuit__title {
+		  		min-height: 2.2em;
+		  	}
+
+			&__wrap {
+				text-align: center;
+
+				.accuit__link {
+					display: block;
+					text-align: center;
+				}
+
+			    svg {
+			    	display: inline-block;
+				    max-width: 100px;
+			    }
+			}
+
+			&__paragraph {
+			    text-align: center;
+			    max-width: 250px;
+			    margin: 20px auto 0;
+			}
+		}
+	}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+	.accuride-markets {
+		.accuit {
+			margin: 0;
+		}
+	}
+}

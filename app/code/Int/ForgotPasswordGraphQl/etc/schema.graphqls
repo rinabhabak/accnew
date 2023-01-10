@@ -1,0 +1,21 @@
+
+type Mutation {
+    forgotPassword (
+        email: String @doc(description: "Query by email.")
+    ): ForgotPasswordOutput @resolver(class: "Int\\ForgotPasswordGraphQl\\Model\\Resolver\\ForgotPassword") @doc(description: "Query by Send Forgot Password Reset.")
+     changePassword (
+        newPassword: String @doc(description: "New Password")
+        confirmPassword: String @doc(description: "confirm Password")
+        newPasswordToken: String @doc(description: "New Password Token")
+    ): ChangePasswordOutput @resolver(class: "Int\\ForgotPasswordGraphQl\\Model\\Resolver\\ChangePassword") @doc(description: "Query by Send Change Password.")
+}
+
+type ForgotPasswordOutput {
+    message: String! @doc(description: "Success or Error Message")
+}
+
+
+
+type ChangePasswordOutput {
+    message: String! @doc(description: "Success or Error Message")
+}

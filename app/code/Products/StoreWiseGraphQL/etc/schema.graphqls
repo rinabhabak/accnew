@@ -1,0 +1,17 @@
+type Query {
+    productsStore (
+    	store_id: Int @doc(description: "Query by Store ID.")
+    ) : ProductsStore @resolver( class: "Products\\StoreWiseGraphQL\\Model\\Resolver\\ProductsStore")  
+}
+
+type ProductsStore {
+    products: [productList]
+}
+
+type productList {
+	product_id  : Int  @doc(description: "Get Product ID.")
+	product_name: String @doc(description: "Get Product Name.")
+	product_status: Int @doc(description: "Get Product Status.")
+	product_visibility: Int @doc(description: "Get Product Visibility.")
+    store_id: Int @doc(description: "Get Store ID.")
+}

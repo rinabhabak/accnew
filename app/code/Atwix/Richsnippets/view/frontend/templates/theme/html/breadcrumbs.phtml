@@ -1,0 +1,84 @@
+<?php
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ *
+ * @var $block \Magento\Theme\Block\Html\Breadcrumbs
+ * @var $crumbs array
+ *
+ * @see Atwix\Richsnippets\Plugin\Block\Html\Breadcrumbs::afterSetTemplateContext() for assing $snippetsHelper
+ * @var $snippetsHelper \Atwix\Richsnippets\Helper\Data
+ */
+?>
+
+<?php if ($crumbs && is_array($crumbs)) : ?>
+    <?php if ($snippetsHelper->getBreadcrumbsSnippetType() == $snippetsHelper::BC_SNIPPET_TYPE_SCHEMA) : ?>
+        <div class="breadcrumbs">
+            <ul class="items" itemscope itemtype="http://schema.org/BreadcrumbList">
+                <?php foreach ($crumbs as $crumbName => $crumbInfo) : $cnt = 0; ?>
+                    <li class="item <?php /* @escapeNotVerified */ echo $crumbName ?>" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+                        <?php if($crumbInfo['first']): ?>
+                            <?php $firstCrumbLabel = $block->escapeHtml($crumbInfo['label']); ?>
+                            <a itemprop="item" href="<?php echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>"><span itemprop="name"><?php echo $snippetsHelper->getFirstBreadcrumbLabel($firstCrumbLabel) ?></span></a>
+                        <?php else : ?>
+                            <?php if ($crumbInfo['link']) : ?>
+                                <a itemprop="item" href="<?php echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>"><span itemprop="name"><?php echo $block->escapeHtml($crumbInfo['label']) ?></span></a>
+                            <?php elseif ($crumbInfo['last']) : ?>
+                                <strong><span itemprop="name"><?php echo $block->escapeHtml($crumbInfo['label']) ?></span></strong>
+                            <?php else: ?>
+                                <span itemprop="name"><?php echo $block->escapeHtml($crumbInfo['label']) ?></span>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                        <meta property="position" content="<?php echo $cnt++; ?>">
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php elseif ($snippetsHelper->getBreadcrumbsSnippetType() == $snippetsHelper::BC_SNIPPET_TYPE_RDF) : ?>
+        <div class="breadcrumbs">
+            <ul class="items">
+                <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+                    <li class="item <?php /* @escapeNotVerified */ echo $crumbName ?>">
+                        <?php if($crumbInfo['first']): ?>
+                            <?php $firstCrumbLabel = $block->escapeHtml($crumbInfo['label']); ?>
+                            <span typeof="v:Breadcrumb">
+                                <a href="<?php echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>" rel="v:url" property="v:title"><?php echo $snippetsHelper->getFirstBreadcrumbLabel($firstCrumbLabel) ?></a>
+                            </span>
+                        <?php else : ?>
+                            <?php if ($crumbInfo['link']) : ?>
+                                <span typeof="v:Breadcrumb">
+                                    <a href="<?php /* @escapeNotVerified */ echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>" rel="v:url" property="v:title">
+                                        <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+                                    </a>
+                                </span>
+                            <?php elseif ($crumbInfo['last']) : ?>
+                                <strong><?php echo $block->escapeHtml($crumbInfo['label']) ?></strong>
+                            <?php else: ?>
+                                <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php else: ?>
+        <div class="breadcrumbs">
+            <ul class="items">
+                <?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+                    <li class="item <?php /* @escapeNotVerified */ echo $crumbName ?>">
+                        <?php if ($crumbInfo['link']) : ?>
+                            <a href="<?php /* @escapeNotVerified */ echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>">
+                                <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+                            </a>
+                        <?php elseif ($crumbInfo['last']) : ?>
+                            <strong><?php echo $block->escapeHtml($crumbInfo['label']) ?></strong>
+                        <?php else: ?>
+                            <?php echo $block->escapeHtml($crumbInfo['label']) ?>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

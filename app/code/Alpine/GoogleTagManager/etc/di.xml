@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_GoogleTagManager
+ *
+ * @category    Alpine
+ * @package     Alpine_GoogleTagManager
+ * @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+ * @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Checkout\CustomerData\Cart">
+        <plugin name="alpine_tag_manager_cart_plugin"
+                type="Alpine\GoogleTagManager\Plugin\CartCustomerData" sortOrder="10" disabled="false"/>
+    </type>
+</config>

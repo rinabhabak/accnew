@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_ProductVideo
+ *
+ * @category    Alpine
+ * @package     Alpine_ProductVideo
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_ProductVideo" setup_version="0.1.0">
+        <sequence>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_ProductVideo"/>
+        </sequence>
+    </module>
+</config>

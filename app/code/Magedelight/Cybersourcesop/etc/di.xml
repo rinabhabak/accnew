@@ -1,0 +1,520 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Magedelight
+* Copyright (C) 2017 Magedelight <info@magedelight.com>
+*
+* NOTICE OF LICENSE
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+*
+* @category Magedelight
+* @package Magedelight_Cybersourcedc
+* @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Url\SecurityInfo">
+        <arguments>
+            <argument name="secureUrlList" xsi:type="array">
+                <item name="cybersourcesop" xsi:type="string">/cybersourcesop/</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="CybersourcesopFacade" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="string">cybersourcesop</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Transparent\Info</argument>
+            <argument name="infoBlockType" xsi:type="string">Magedelight\Cybersourcesop\Block\Info</argument>
+            <argument name="valueHandlerPool" xsi:type="object">CybersourcesopValueHandlerPool</argument>
+            <argument name="validatorPool" xsi:type="object">CybersourcesopValidatorPool</argument>
+            <argument name="commandPool" xsi:type="object">CybersourcesopCommandPool</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CybersourcesopCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="TokenCreateCommand" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Command\SilentOrder\Token\CreateCommand</item>
+                <item name="TokenProcessCommand" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Command\SilentOrder\Token\ResponseProcessCommand</item>
+                <item name="authorize" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Command\AuthorizeStrategyCommand</item>
+                <item name="secure_acceptance_authorize" xsi:type="string">CybersourcesopAuthorizeCommand</item>
+                <item name="simple_order_authorize" xsi:type="string">CybersourcesopSOAPAuthorizeCommand</item>
+                <item name="simple_order_sale" xsi:type="string">CybersourcesopSOAPSaleCommand</item>
+                <item name="simple_order_subscription" xsi:type="string">CybersourcesopSOAPSubscriptionCommand</item>
+                <item name="secure_acceptance_sale" xsi:type="string">CybersourcesopSASaleCommand</item>
+                <item name="capture" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Command\CaptureStrategyCommand</item>
+                <item name="simple_order_capture" xsi:type="string">CybersourcesopCapture</item>
+                <item name="void" xsi:type="string">CybersourcesopVoid</item>
+                <item name="cancel" xsi:type="string">CybersourcesopVoid</item>
+                <item name="refund" xsi:type="string">CybersourcesopRefund</item>
+                <item name="deny_payment" xsi:type="string">CybersourcesopVoid</item>
+                <item name="vault_authorize" xsi:type="string">CybersourcesopVaultAuthorizeCommand</item>
+                <item name="vault_sale" xsi:type="string">CybersourcesopVaultSaleCommand</item>
+                <item name="vault_capture" xsi:type="string">CybersourcesopVaultCaptureCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magedelight\Cybersourcesop\Controller\SilentOrder\TokenRequest">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+            <argument name="commandPool" xsi:type="object">CybersourcesopCommandPool</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Cybersourcesop\Controller\SilentOrder\TokenResponse">
+        <arguments>
+            <argument name="commandPool" xsi:type="object">CybersourcesopCommandPool</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Cybersourcesop\Gateway\Command\CaptureStrategyCommand">
+        <arguments>
+            <argument name="commandPool" xsi:type="object">CybersourcesopCommandPool</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Cybersourcesop\Gateway\Command\AuthorizeStrategyCommand">
+        <arguments>
+            <argument name="commandPool" xsi:type="object">CybersourcesopCommandPool</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="CybersourcesopAmountCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="handler" xsi:type="object">CybersourcesopAmountHandler</argument>
+            <argument name="validator" xsi:type="object">CybersourcesopSilentOrderValidator</argument>
+            <argument name="client" xsi:type="object">HtmlConverterZendClient</argument>
+            <argument name="transferFactory" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Http\SilentOrder\TransferFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopAuthorizeCommand" type="CybersourcesopAmountCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopPaymentAuthorizeRequest</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopSASaleCommand" type="CybersourcesopAmountCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopPaymentSaleRequest</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopPaymentSaleRequest" type="Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\SignCompositeDecorator">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\MerchantDataBuilder</item>
+                <item name="payment_token" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\PaymentTokenBuilder</item>
+                <item name="sale" xsi:type="string">CybersourcesopSaleTransactionBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopPaymentAuthorizeRequest" type="Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\SignCompositeDecorator">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\MerchantDataBuilder</item>
+                <item name="payment_token" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\PaymentTokenBuilder</item>
+                <item name="aithorize" xsi:type="string">CybersourcesopAuthorizeTransactionBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopSaleTransactionBuilder" type="Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\TransactionDataBuilder">
+        <arguments>
+            <argument name="transactionType" xsi:type="string">sale</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopAuthorizeTransactionBuilder" type="Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\TransactionDataBuilder">
+        <arguments>
+            <argument name="transactionType" xsi:type="string">authorization</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopCaptureBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="capture" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\CaptureDataBuilder</item>
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\MerchantDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVoidBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="void" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\VoidDataBuilder</item>
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\MerchantDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopSoapCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="handler" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Response\Soap\RequestIdHandler</argument>
+            <argument name="client" xsi:type="object">CybersourcesopSoapClient</argument>
+            <argument name="validator" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Validator\DecisionValidator</argument>
+            <argument name="transferFactory" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Http\Soap\TransferFactory</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopSoapHandler" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="transaction_info" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\Soap\RequestIdHandler</item>
+                <item name="fraud" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\Soap\FraudHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopCapture" type="CybersourcesopSoapCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopCaptureBuilder</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVoid" type="CybersourcesopSoapCommand">
+        <arguments>
+            <argument name="handler" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Response\Soap\VoidTransactionHandler</argument>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopVoidBuilder</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedelight\Cybersourcesop\Gateway\Command\SilentOrder\Token\ResponseProcessCommand">
+        <arguments>
+            <argument name="validator" xsi:type="object">CybersourcesopSilentOrderValidator</argument>
+            <argument name="handler" xsi:type="object">CybersourcesopTokenResponseHandler</argument>
+            <argument name="logger" xsi:type="object">CybersourcesopLogger</argument>
+        </arguments>
+    </type>
+    <virtualType name="CybersourcesopSilentOrderValidator" type="Magento\Payment\Gateway\Validator\ValidatorComposite">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="decision" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Validator\DecisionValidator</item>
+                <item name="sign" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Validator\SilentOrder\SignValidator</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    
+    <type name="Magedelight\Cybersourcesop\Gateway\Command\SilentOrder\Token\CreateCommand">
+        <arguments>
+            <argument name="builder" xsi:type="object">CybersourcesopPaymentTokenRequest</argument>
+            <argument name="logger" xsi:type="object">CybersourcesopLogger</argument>
+        </arguments>
+    </type>
+    <virtualType name="CybersourcesopTokenTransactionBuilder" type="Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\TransactionDataBuilder">
+        <arguments>
+            <argument name="transactionType" xsi:type="string">create_payment_token</argument>
+        </arguments>
+    </virtualType>
+    
+    <virtualType name="CybersourcesopPaymentTokenRequest" type="Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\SignCompositeDecorator">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="billing_address" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\BillingAddressDataBuilder</item>
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\MerchantDataBuilder</item>
+                <item name="cc" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\CcDataBuilder</item>
+                <item name="token" xsi:type="string">CybersourcesopTokenTransactionBuilder</item>
+                <item name="quote_data" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\MerchantSecureDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\SignCompositeDecorator">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Cybersourcesop\Gateway\Request\SilentOrder\MerchantDataBuilder">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="CybersourcesopConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">cybersourcesop</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopDefaultValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">CybersourcesopDefaultValueHandler</item>
+                <item name="can_void" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Config\CanVoidHandler</item>
+                <item name="can_cancel" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Config\CanVoidHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CybersourcesopCountryValidator" type="Magento\Payment\Gateway\Validator\CountryValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopValidatorPool" type="Magento\Payment\Gateway\Validator\ValidatorPool">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="country" xsi:type="string">CybersourcesopCountryValidator</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedelight\Cybersourcesop\Gateway\Validator\SilentOrder\SignValidator">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Cybersourcesop\Gateway\Http\SilentOrder\TransferFactory">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+    <virtualType name="HtmlConverterZendClient" type="Magento\Payment\Gateway\Http\Client\Zend">
+        <arguments>
+            <argument name="converter" xsi:type="object">Magento\Payment\Gateway\Http\Converter\HtmlFormConverter</argument>
+            <argument name="logger" xsi:type="object">CybersourcesopLogger</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopTokenResponseHandler" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="token" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\TokenHandler</item>
+                <item name="reference_number" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\ReferenceNumberHandler</item>
+                <item name="transaction_info" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\TransactionInfoHandler</item>
+                <item name="fraud" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\FraudHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopAmountHandler" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="reference_number" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\ReferenceNumberHandler</item>
+                <item name="transaction_info" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\TransactionInfoHandler</item>
+                <item name="transaction_id" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\TransactionIdHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\TransactionInfoHandler">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Cybersourcesop\Gateway\Request\Soap\PaymentVaultDataBuilder">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+    <virtualType name="CybersourcesopLogger" type="Magento\Payment\Model\Method\Logger">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedelight\Cybersourcesop\Block\Info">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Cybersourcesop\Gateway\Request\Soap\MerchantDataBuilder">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\Cybersourcesop\Gateway\Http\Soap\TransferFactory">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopConfig</argument>
+        </arguments>
+    </type>
+    <virtualType name="CybersourcesopSoapClient" type="Magento\Payment\Gateway\Http\Client\Soap">
+        <arguments>
+            <argument name="logger" xsi:type="object">CybersourcesopLogger</argument>
+            <argument name="converter" xsi:type="object">Magento\Payment\Gateway\Http\Converter\Soap\ObjectToArrayConverter</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CybersourcesopRefundBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="refund" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\RefundDataBuilder</item>
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\MerchantDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopRefund" type="CybersourcesopSoapCommand">
+        <arguments>
+            <argument name="handler" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Response\Soap\RefundTransactionHandler</argument>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopRefundBuilder</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CybersourcesopSOAPAuthorizeBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="authorize" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\AuthorizeDataBuilder</item>
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\MerchantDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopSOAPAuthorizeCommand" type="CybersourcesopSoapCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopSOAPAuthorizeBuilder</argument>
+            <argument name="handler" xsi:type="object">CybersourcesopSoapHandler</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CybersourcesopSOAPSaleBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="sale" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\SaleDataBuilder</item>
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\MerchantDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopSOAPSaleCommand" type="CybersourcesopSoapCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopSOAPSaleBuilder</argument>
+            <argument name="handler" xsi:type="object">CybersourcesopSoapHandler</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="CybersourcesopSOAPSubscriptionBuilder" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="subscription" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\SubscriptionDataBuilder</item>
+                <item name="merchant" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\MerchantDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopSubscriptionValidator" type="Magento\Payment\Gateway\Validator\ValidatorComposite">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="decision" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Validator\DecisionValidator</item>
+                <item name="sign" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Validator\Soap\SubscriptionIdValidator</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopSOAPSubscriptionCommand" type="CybersourcesopSoapCommand">
+        <arguments>
+            <argument name="handler" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Response\Soap\SubscriptionIdHandler</argument>
+            <argument name="validator" xsi:type="object">CybersourcesopSubscriptionValidator</argument>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopSOAPSubscriptionBuilder</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Config\Model\Config\Export\ExcludeList">
+        <arguments>
+            <argument name="configs" xsi:type="array">
+                <item name="payment/cybersourcesop/merchant_id" xsi:type="string">1</item>
+                <item name="payment/cybersourcesop/transaction_key" xsi:type="string">1</item>
+                <item name="payment/cybersourcesop/profile_id" xsi:type="string">1</item>
+                <item name="payment/cybersourcesop/access_key" xsi:type="string">1</item>
+                <item name="payment/cybersourcesop/secret_key" xsi:type="string">1</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- vault implementation -->
+    <!--  Command managers section for Vault -->
+    <virtualType name="CybersourcesopCommandManager" type="Magento\Payment\Gateway\Command\CommandManager">
+        <arguments>
+            <argument name="commandPool" xsi:type="object">CybersourcesopCommandPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Payment\Gateway\Command\CommandManagerPool">
+        <arguments>
+            <argument name="executors" xsi:type="array">
+                <item name="cybersourcesop" xsi:type="string">CybersourcesopCommandManager</item>
+            </argument>
+        </arguments>
+    </type>
+  <!--   END command managers section for Vault -->
+    <virtualType name="CybersourcesopCreditCardVaultFacade" type="Magento\Vault\Model\Method\Vault">
+        <arguments>
+            <argument name="config" xsi:type="object">CybersourcesopVaultPaymentConfig</argument>
+            <argument name="valueHandlerPool" xsi:type="object">CybersourcesopVaultPaymentValueHandlerPool</argument>
+            <argument name="vaultProvider" xsi:type="object">CybersourcesopFacade</argument>
+            <argument name="code" xsi:type="string">cybersourcesop_cc_vault</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVaultPaymentConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="string">cybersourcesop_cc_vault</argument>
+        </arguments>
+    </virtualType>
+     <virtualType name="CybersourcesopVaultPaymentValueHandler" type="VaultPaymentDefaultValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">CybersourcesopVaultPaymentConfig</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVaultPaymentValueHandlerPool" type="VaultPaymentValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">CybersourcesopVaultPaymentValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVaultAuthorizeCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+         <arguments>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopVaultAuthorizeRequest</argument>
+            <argument name="transferFactory" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Http\Soap\TransferFactory</argument>
+            <argument name="client" xsi:type="object">CybersourcesopSoapClient</argument>
+            <argument name="handler" xsi:type="object">CybersourcesopVaultResponseHandler</argument>
+            <argument name="validator" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Validator\DecisionValidator</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVaultAuthorizeRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="authorize" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\AuthorizeDataBuilder</item>
+                <item name="payment" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\PaymentVaultDataBuilder</item>
+                <item name="address" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\AddressDataBuilder</item>
+                <item name="iteminfo" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\ItemInfoDataBuilder</item>
+                 <item name="merchant_data" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\MerchantDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVaultResponseHandler" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="payment_details" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\Soap\PaymentDetailsHandler</item>
+                <item name="txn_id" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Response\Soap\RequestIdHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+     <virtualType name="CybersourcesopVaultSaleCommand" type="CybersourcesopVaultAuthorizeCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopVaultSaleRequest</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVaultSaleRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="authorize" xsi:type="string">CybersourcesopVaultAuthorizeRequest</item>
+                <item name="settlement" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\SettlementDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVaultCaptureCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">CybersourcesopVaultCaptureRequest</argument>
+            <argument name="transferFactory" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Http\Soap\TransferFactory</argument>
+            <argument name="client" xsi:type="object">CybersourcesopSoapClient</argument>
+            <argument name="handler" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Response\Soap\RequestIdHandler</argument>
+            <argument name="validator" xsi:type="object">Magedelight\Cybersourcesop\Gateway\Validator\DecisionValidator</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="CybersourcesopVaultCaptureRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="settlement" xsi:type="string">Magedelight\Cybersourcesop\Gateway\Request\Soap\SettlementDataBuilder</item>
+            </argument>
+        </arguments>
+    </virtualType>
+     <type name="Magedelight\Cybersourcesop\Gateway\Response\SilentOrder\TokenHandler">
+        <arguments>
+            <argument name="paymentTokenFactory" xsi:type="object">Magento\Vault\Model\CreditCardTokenFactory</argument>
+        </arguments>
+    </type>
+</config>

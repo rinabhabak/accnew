@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_CmsSetup
+ *
+ * @category    Alpine
+ * @package     Alpine_CmsSetup
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc (www.alpineinc.com)
+ * @author      jjosephson@alpineinc.com
+ * @author      iurii.ziukov@alpineinc.com
+ * @author      Valery Shishkin <valery.shishkin@alpineinc.com>
+ * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_CmsSetup" setup_version="0.18.2">
+        <sequence>
+            <module name="Alpine_Setup"/>
+            <module name="Magento_Cms"/>
+        </sequence>
+    </module>
+</config>

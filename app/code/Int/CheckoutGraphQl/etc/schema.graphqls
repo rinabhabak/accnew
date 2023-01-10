@@ -1,0 +1,4 @@
+interface CartAddressInterface @typeResolver(class: "\\Magento\\QuoteGraphQl\\Model\\Resolver\\CartAddressTypeResolver") {
+    region_id: Int! @resolver(class: "Int\\CheckoutGraphQl\\Model\\Resolver\\RegionId")
+}
+

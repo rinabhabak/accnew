@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Accuride_PageBuilder
+ * @package     Sitewards
+ * @copyright   Copyright (c) Sitewards GmbH (http://www.sitewards.com/)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Accuride_PageBuilder" setup_version="1.4.2">
+        <sequence>
+            <module name="Magento_PageBuilder"/>
+            <module name="Lof_All"/>
+        </sequence>
+    </module>
+</config>

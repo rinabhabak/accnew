@@ -1,0 +1,194 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Cms
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Valery Shishkin <valery.shishkin@alpineinc.com>
+//  */
+& when (@media-common = true) {
+    .careers {
+        .heading {
+            &:extend(.customer-stories .heading all);
+        }
+        
+        > h1 {
+            margin-top: 40px;
+        }
+        
+        .join {
+            font-family: @font_light;
+            border-bottom: solid 1px @color-silver;
+
+            ul {
+                .lib-vendor-prefix-display(flex);
+                .lib-vendor-prefix-flex-wrap(wrap);
+                -webkit-justify-content: space-between;
+                justify-content: space-between;
+                list-style: none;
+                padding: 0;
+                
+                li {
+                    &:before {
+                        display: none;
+                    }
+                }
+                
+                span {
+                    display: block;
+                    text-transform: uppercase;
+                }
+            }
+            
+            a {
+                &,
+                &:hover,
+                &:active {
+                    color: @text__color;
+                }
+            }
+        }
+        
+        > h2 {
+            margin-top: 20px;
+        }
+        
+        .accordion {
+            h3 {
+                font-size: @font-size__base;
+                line-height: 1.5;
+                margin: 0;
+                font-family: @font-family__base;
+                color: @color-black;
+            }
+            
+            ul {
+                padding: 0;
+            }
+            
+            p {
+                margin-bottom: 0;
+            }
+            
+            li {
+                margin-bottom: 2px;
+                padding-left: 0;
+            }
+            
+            .panel-collapse li:before {
+                background: transparent;
+                position: static;
+                line-height: 20px;
+                
+                .page-main & {
+                    color: @text__color;
+                }
+            }
+            
+            .actions {
+                .action {
+                    color: @color-white;
+                }
+            }
+        }
+        
+        .actions {
+            .action {
+                .lib-link-as-button();
+                .lib-button();
+                width: 100%;
+                margin-bottom: 15px;
+            }
+        }
+    }
+
+
+    .page-layout-full-width {
+        .careers{
+            .join{
+                max-width: none;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .careers {
+        .heading {
+            &:extend(.customer-stories .heading all);
+        }
+        
+        .join {
+            margin-top: 46px;
+            padding-bottom: 30px;
+            font-size: 2.4rem;
+            
+            ul {
+                margin-top: 70px;
+                
+                span {
+                    margin-top: 15px;
+                }
+            }
+        }
+        
+        > h2 {
+            margin-top: 70px;
+        }
+        
+        .accordion {
+            margin-top: 60px;
+        
+            .panel-heading {
+                padding-bottom: 16px;
+            }
+
+            .panel-collapse {
+                > div {
+                    padding: 0px 45px;
+                }
+            }
+            
+            .actions {
+                .action {
+                    width: 210px;
+                    
+                    + .action {
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .careers {
+        .heading {
+            &:extend(.customer-stories .heading all);
+        }
+        
+        .join {
+            margin: 0 auto;
+            max-width: 1170px;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .careers {
+        .heading {
+            div {
+                top: 22%;
+                bottom: 17%;
+                right: 113px;
+                max-width: 450px;
+            }
+            
+            .button {
+                letter-spacing: 1px;
+            }
+        }
+    }
+}

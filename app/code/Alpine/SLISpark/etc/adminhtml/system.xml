@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_SLISpark
+ *
+ * @category    Alpine
+ * @package     Alpine_SLISpark
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Danila Vasenin <danila.vasenin@alpineinc.com>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="alpine_sli" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>SLI</label>
+            <tab>alpine</tab>
+            <resource>Alpine_SLISpark::config_js</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="js" translate="label"
+                    type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                </field> 
+            </group>
+        </section>
+    </system>
+</config>

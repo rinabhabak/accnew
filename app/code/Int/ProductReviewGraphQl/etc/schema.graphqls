@@ -1,0 +1,26 @@
+#Int ProductReview GraphQl Schema
+
+type Query {
+    productReview (input: ProductReviewInput!): [ProductReview] @resolver(class: "Int\\ProductReviewGraphQl\\Model\\Resolver\\ProductReview") @doc(description: "The Review query returns information about a product review by ID")
+}
+
+input ProductReviewInput {
+    productId: Int @doc(description: "Product Id")
+}
+
+type ProductReview {
+    review_id: Int @doc(description: "Review id")
+    detail: String @doc(description: "Review title")
+    created_at: String @doc(description: "Review created date")
+    status_id: Int @doc(description: "Review status")
+    title: String @doc(description: "Review title")
+    nickname: String @doc(description: "Review customer nickname")
+    customer_id: Int @doc(description: "Review customer ID")
+    entity_code: String @doc(description: "Review entity code")
+    rating: [ratingValue] @doc(description: "Rating summary")
+}
+
+type ratingValue {
+    rating_code: String! @doc(description: "Rating code")
+    rating_percent: String! @doc(description: "Rating Percent")
+}

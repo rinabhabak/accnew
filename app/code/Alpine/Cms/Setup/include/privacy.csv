@@ -1,0 +1,37 @@
+"store","identifier","title","content_heading","content","page_layout"
+"0","privacy","Privacy","Privacy","<div class=""wrapper_content"">
+                                          <div class=""tabs"">
+                                              <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                  <div class=""title"" data-role=""title"">
+                                                      <p>Privacy Policy, Terms of Use and Cookie Policy</p>
+                                                  </div>
+                                                  <div class=""content"" data-role=""content"">
+                                                      <p class=""paragraph"">
+                                                         Accuride International Inc. does not obtain personally identifying information from those who visit www.accuride.com unless the visitors choose to provide such information.<br> If a user visits our site to read or download information, the site collects and stores the following information about the user's visit: the name of the domain from which the user accessed the Internet (for example, aol.com); the date and time the user accessed our site; and the pages the user retrieved from our site.
+                                                      </p>
+                                                      <p class=""paragraph"">
+                                                          Accuride International Inc. uses the collected information to measure the number of visitors to the different sections of the site, and to help Accuride make its site more useful to visitors
+                                                      </p>
+                                                      <p class=""paragraph"">
+                                                          Accuride International Inc. will only send company news and information to those users who have opted to receive it. Any such correspondence includes instructions to allow the user to request they be removed from our email list
+                                                      </p>
+                                                      <p class=""paragraph"">
+                                                          Accuride International Inc. does not disclose any personally identifying information collected to any outside companies or organizations.
+                                                      </p>
+                                                      <p class=""paragraph"">
+                                                          To inquire further about Accuride International Inc.'s privacy policy, send an e-mail to <a href=""mailto:info@accuride.com"">info@accuride.com</a>.
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                              <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                  <div class=""title"" data-role=""title"">
+                                                      <p>Legal</p>
+                                                  </div>
+                                                  <div class=""content"" data-role=""content"">
+                                                      <p class=""paragraph"">
+                                                         Reproduction, modification, transmittal, distribution, or publication of any part of this site is not allowed without written permission from Accuride International Inc.
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>","1column"

@@ -1,0 +1,91 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Cms
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Valery Shishkin <valery.shishkin@alpineinc.com>
+//  * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+//  * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+//  */
+& when (@media-common = true) {
+    .cms-content.cads {
+        .heading {
+            position: relative;
+            
+            img {
+                margin-bottom: 0;
+            }
+            
+            h1 {
+                position: absolute;
+                color: @color-white;
+                top: 50%;
+                margin: 0;
+                -webkit-transform: translateY(-50%);
+                        transform: translateY(-50%);
+            }
+        }
+        
+        .group {
+            .lib-vendor-prefix-display(flex);
+            .lib-vendor-prefix-flex-wrap(wrap);
+            -webkit-justify-content: space-between;
+                    justify-content: space-between;
+            margin: 20px auto;
+            max-width: 1049px;
+            
+            .item {
+                font-size: 1.6rem;
+                line-height: 40px;
+                text-align: left;
+                text-transform: uppercase;
+                .lib-vendor-prefix-flex-basis(100%);
+                padding: 0 15px;
+
+                a {
+                    display: block;
+
+                    &:after {
+                        content: ">";
+                        float: right;
+                    }
+                }
+            }
+        }
+        .pages-item-previous,
+        .pages-item-next {
+            position: relative;
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .cms-content.cads {
+        .heading {
+            h1 {
+                top: 46%;
+                margin-left: 8%;
+                -webkit-transform: translateY(0);
+                        transform: translateY(0);
+            }
+        }
+        
+        .group {
+            .item {
+                .lib-vendor-prefix-flex-basis(48%);
+                max-width: 450px;
+                font-size: 1.6rem;
+                line-height: 60px;
+                
+                &:nth-child(16n - 1),
+                &:nth-child(16n) {
+                    border-bottom: none;
+                }
+            }
+        }
+        
+        .pages-wrapper {
+            margin-top: 30px;
+        }
+    }
+}

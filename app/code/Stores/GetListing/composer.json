@@ -1,0 +1,22 @@
+{
+    "name": "stores/module-getlisting",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "ankit.ahilwal@indusnet.co.in",
+            "name": "Indus Net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Stores\\GetListing\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

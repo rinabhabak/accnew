@@ -1,0 +1,17 @@
+<!--
+/**
+ * Alpine_Acton
+ *
+ * @category    Alpine
+ * @package     Alpine_Acton
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc (www.alpineinc.com)
+ * @author      Aleksandr Mikhailov (aleksandr.mikhailov@alpineinc.com)
+ */
+-->
+<div class="subscribe-for-newsletter-block field choice" data-bind="visible: showSubscribeForNewsletterBlock()">
+    <input type="checkbox" name="subscribe-for-newsletter"
+           data-bind="checked: isSubscribeForNewsletter, click: subscribeForNewsletter, attr: {id: 'subscribe-for-newsletter-' + getCode($parent)}"/>
+    <label data-bind="attr: {for: 'subscribe-for-newsletter-' + getCode($parent)}"><span
+            data-bind="i18n: 'Subscribe for Newsletter'"></span></label>
+    <span class="span-newsletter">Yes, I want Accuride to send me occasional emails</span>
+</div>

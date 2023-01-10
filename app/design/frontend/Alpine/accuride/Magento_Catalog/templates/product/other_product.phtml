@@ -1,0 +1,61 @@
+<?php
+/**
+ * Accuride_Catalog
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ * @author      Aleksandr Mikhailov <aleksandr.mikhailov@alpineinc.com>
+ *
+ * @var $block \Alpine\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+    $otherProducts = $block->getOtherProducts();
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+?>
+<?php if (count($otherProducts)) : ?>
+<div class="other_products products wrapper grid products-grid">
+    <div class="title">
+        <?php echo __('Other products') ?>
+    </div>
+    <?php $iterator = 1; ?>
+    <ol class="products list items product-items">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($otherProducts as $_product): ?>
+                <li class="item product product-item">
+                    <div class="product-item-info" data-container="product-grid">
+                        <?php $productImage = $block->getImage($_product, 'category_page_grid'); ?>
+                        <a href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                            <?= $productImage->toHtml() ?>
+                        </a>
+                        <div class="product details product-item-details">
+                            <?php $_productNameStripped = $block->stripTags($_product->getName(), null, true); ?>
+                            <strong class="product name product-item-name">
+                                <a class="product-item-link"
+                                   href="<?= /* @escapeNotVerified */ $_product->getProductUrl() ?>">
+                                    <?= /* @escapeNotVerified */ $_helper->productAttribute($_product, $_product->getName(), 'name') ?>
+                                </a>
+                                <?php if ($_product->hasData('is_top_choice') && $_product->getData('is_top_choice')) : ?>
+                                    <div class="label_product">
+                                        <img src="<?php echo $block->getViewFileUrl('images/icons/vector-smart-object.png'); ?>" alt="label">
+                                    </div>
+                                <?php endif; ?>
+                            </strong>
+                            <?= /* @escapeNotVerified */ $block->getProductPrice($_product) ?>
+                            <?= $block->getReviewsSummaryHtml($_product, \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW) ?>
+                            <div class="product-item-inner">
+                                <div class="product actions product-item-actions">
+                                    <div class="actions-primary">
+                                        <a href="<?php echo $_product->getProductUrl()?>" class="action blue primary"><span><?php echo __('View product') ?></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+</div>
+<?php endif; ?>

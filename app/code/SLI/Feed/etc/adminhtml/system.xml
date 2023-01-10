@@ -1,0 +1,175 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2015 S.L.I. Systems, Inc. (www.sli-systems.com) - All Rights Reserved
+ * This file is part of Learning Search Connect.
+ * Learning Search Connect is distributed under a limited and restricted
+ * license – please visit www.sli-systems.com/LSC for full license details.
+ *
+ * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+ * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+ * PARTICULAR PURPOSE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO
+ * EVENT WILL SLI BE LIABLE TO YOU OR ANY OTHER PARTY FOR ANY GENERAL, DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL LOSS OR DAMAGES OF ANY
+ * CHARACTER ARISING OUT OF THE USE OF THE CODE AND/OR THE LICENSE INCLUDING
+ * BUT NOT LIMITED TO PERSONAL INJURY, LOSS OF DATA, LOSS OF PROFITS, LOSS OF
+ * ASSIGNMENTS, DATA OR OUTPUT FROM THE SERVICE BEING RENDERED INACCURATE,
+ * FAILURE OF CODE, SERVER DOWN TIME, DAMAGES FOR LOSS OF GOODWILL, BUSINESS
+ * INTERRUPTION, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER DAMAGES
+ * OR LOSSES OF WHATEVER NATURE, EVEN IF SLI HAS BEEN INFORMED OF THE
+ * POSSIBILITY OF SUCH DAMAGES.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="lsc" translate="label" sortOrder="100">
+            <label>SLI Systems LSC</label>
+        </tab>
+        <section id="sli_feed_generation" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Feed Generation</label>
+            <tab>lsc</tab>
+            <resource>Sli_Feed::config_feed</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="log_level" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log Level</label>
+                    <comment>Please set to "Debug" if SLI support is required.</comment>
+                    <source_model>SLI\Feed\Model\Config\Source\Log</source_model>
+                </field>
+                <field id="version" translate="label" type="label" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Version</label>
+                    <frontend_model>SLI\Feed\Block\System\Config\Version</frontend_model>
+                </field>
+            </group>
+
+            <group id="feed" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Feed Settings</label>
+                <field id="advanced_pricing" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Advanced Pricing</label>
+                    <comment>Enable if need advanced prices from: Catalog Price Rules, Group or Tiered Pricing.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="include_out_of_stock" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include Out of Stock Items</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="generate" translate="label comment" type="button" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Generate Feed</label>
+                    <frontend_model>SLI\Feed\Block\System\Config\Generate</frontend_model>
+                    <comment>Manually generates feed. If FTP is enabled, also sends the feed.</comment>
+                </field>
+            </group>
+
+            <group id="ftp" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>FTP Settings</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="user" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>FTP User</label>
+                    <comment>Provided by SLI.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="password" translate="label comment" type="obscure" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>FTP Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <comment>Provided by SLI.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="host" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>FTP Host</label>
+                    <comment>Provided by SLI.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="upload_path" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>FTP Upload Path</label>
+                    <comment>Provided by SLI.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="product" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Attributes</label>
+                <field id="attributes_select" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Attributes to include</label>
+
+                    <frontend_model>SLI\Feed\Block\System\Config\Form\Field\FeedAttributesConfig</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+
+                    <comment>
+                        <![CDATA[
+                        The following attributes are automatically added to the feed: <br />
+                        <ul style="margin-left: 2em;">
+                            <li><small>attribute_set_id</small></li>
+                            <li><small>categories</small></li>
+                            <li><small>child_ids</small></li>
+                            <li><small>created_at</small></li>
+                            <li><small>entity_id</small></li>
+                            <li><small>final_price</small></li>
+                            <li><small>has_options</small></li>
+                            <li><small>is_salable</small></li>
+                            <li><small>is_virtual</small></li>
+                            <li><small>max_price</small></li>
+                            <li><small>min_price</small></li>
+                            <li><small>minimal_price</small></li>
+                            <li><small>name</small></li>
+                            <li><small>price</small></li>
+                            <li><small>special_from_date</small></li>
+                            <li><small>special_price</small></li>
+                            <li><small>special_to_date</small></li>
+                            <li><small>request_path</small></li>
+                            <li><small>required_options</small></li>
+                            <li><small>sku</small></li>
+                            <li><small>tax_class_id</small></li>
+                            <li><small>tier_price</small></li>
+                            <li><small>type_id</small></li>
+                            <li><small>updated_at</small></li>
+                            <li><small>url_key</small></li>
+                            <li><small>visibility</small></li>
+                            <li><small>image</small></li>
+                        </ul>
+                        ]]>
+                    </comment>
+                </field>
+                <field id="cached_image" translate="label comment" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Cached Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Enable this to create a cached thumbnail image for each product. SLI uses the cached image when appropriate.<br />
+                        If the system has not already cached the thumbnail image, the length of time to generate the first feed will be longer than normal.<br />
+                        Set up the cache so that it persists at least until the system generates the next feed and SLI indexes that feed.]]>
+                    </comment>
+                </field>
+                <field id="cached_image_width" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Width</label>
+                    <depends>
+                        <field id="cached_image">1</field>
+                    </depends>
+                    <frontend_class>validate-number required-entry</frontend_class>
+                </field>
+                <field id="cached_image_height" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Height</label>
+                    <depends>
+                        <field id="cached_image">1</field>
+                    </depends>
+                    <frontend_class>validate-number required-entry</frontend_class>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

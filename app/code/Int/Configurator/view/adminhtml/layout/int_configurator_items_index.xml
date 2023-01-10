@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Indusnet Technologies.
+ *
+ * @category  Indusnet
+ * @package   Int_ConfiguratorGraphQl
+ * @author    Indusnet
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="int_configurator_index_listing"/>
+			 <block class="Int\Configurator\Block\Adminhtml\Items\Index" name="int_block_adminhtml_items_index"  template="Int_Configurator::configurator.phtml" />
+        </referenceContainer>
+    </body>
+</page>

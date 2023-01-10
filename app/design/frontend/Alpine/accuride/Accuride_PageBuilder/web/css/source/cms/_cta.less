@@ -1,0 +1,101 @@
+& when (@media-common = true) {
+	.accuride-markets {
+		.accucta {
+			text-align: center;
+
+			&__hyperlink {
+				.lib-link-as-button();
+                .lib-button();
+				background: @color-blue;
+			    color: @acc-color-white;
+			    display: inline-block;
+                font-size: 1.6rem;
+                line-height: 1.8rem;
+			    margin-top: 20px;
+			    min-width: 150px;
+                padding: 12px 28px;
+			    text-align: center;
+			    text-transform: uppercase;
+			    transition: background .2s ease;
+			    white-space: nowrap;
+
+			    &--white {
+			    	background: transparent;
+				    border: 1px solid @color-blue;
+				    color: @color-blue;
+				    text-decoration: none !important;
+
+				    &:hover {
+				    	background: @color-blue !important;
+				    	border: 1px solid @color-blue;
+				    	color: @acc-color-white;
+				    }
+
+				    &:focus,
+				    &:active {
+						background: @acc-color-yellow !important;
+				    	border: 1px solid @acc-color-yellow !important;
+				    	color: @color-blue !important;
+				    }
+			    }
+
+				&:hover {
+				    background: @color-blue-light;
+				    color: @acc-color-white;
+				    text-decoration: none;
+				}
+
+			    &:focus,
+			    &:active {
+					background: @acc-color-yellow !important;
+			    	border: 1px solid @acc-color-yellow !important;
+			    	color: @color-blue !important;
+			    }
+			}
+		}
+
+		.accu-allow-cta-wrap .accucta__hyperlink {
+			white-space: normal;
+		}
+
+		.bluefoot-buttons {
+			text-align: center;
+
+			button.bluefoot-button.button.bluefoot-entity {
+				.lib-link-as-button();
+	            .lib-button();
+				background: @color-blue;
+			    color: @acc-color-white;
+			    display: inline-block;
+	            font-size: 2.2rem;
+	            line-height: 2.2rem;
+			    margin-top: 20px;
+	            padding: 14px 34px;
+			    text-align: center;
+			    text-transform: uppercase;
+			    transition: background .4s ease;
+			    white-space: nowrap;
+
+				&:hover {
+				    background: @color-blue-light;
+				    color: @acc-color-white;
+				    text-decoration: none;
+				}
+			}
+		}
+	}
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+	.accuride-markets {
+		.accucta,
+		.bluefoot-buttons {
+			text-align: left;
+
+			&--align-center {
+				text-align: center;
+			}
+		}
+	}
+}
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+* Alpine_OrdersExport
+*
+* @category    Alpine
+* @package     Alpine_OrdersExport
+* @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+* @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+*/
+-->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <exportButton name="export_button">
+            <settings>
+                <options>
+                    <option name="ExportReport1Name" xsi:type="array">
+                        <item name="value" xsi:type="string">ExportReport1Value</item>
+                        <item name="label" xsi:type="string" translate="true">Slide Series</item>
+                        <item name="url" xsi:type="string">ordersexport/Export/Report1</item>
+                    </option>
+                    <option name="ExportReport2Name" xsi:type="array">
+                        <item name="value" xsi:type="string">ExportReport2Value</item>
+                        <item name="label" xsi:type="string" translate="true">BBU</item>
+                        <item name="url" xsi:type="string">ordersexport/Export/Report2</item>
+                    </option>
+                </options>
+            </settings>
+        </exportButton>
+    </listingToolbar>
+</listing>

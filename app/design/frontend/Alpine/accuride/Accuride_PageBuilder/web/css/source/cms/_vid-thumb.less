@@ -1,0 +1,94 @@
+& when (@media-common = true) {
+    .accuride-markets {
+        /* acuride youtube embeds ratio */
+
+        .accu-vid .fluid-width-video-wrapper {
+            padding-top: 56.3% !important;    
+        }
+
+        .sens-vid-wrap {
+            background: #252525;
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        .sens-vid-link {
+            background-position: center;
+            background-size: cover;
+            display: block;
+            height: 0;
+            margin-left: -30px;
+            margin-right: -30px;
+            overflow: hidden;
+            padding-bottom: 56%;
+            position: relative;
+        }
+
+        .acc-yt-icon {
+            background: @acc-color-white;
+            border-radius: 40%;
+            display: block;
+            height: 45px;
+            left: 50%;
+            margin-left: -30px;
+            margin-top: -22px;
+            position: absolute;
+            top: 50%;
+            width: 65px;
+            z-index: 1;
+
+        }
+
+        .acc-yt-icon svg path {
+            fill: rgba(0,0,0,1);
+            transition: all .25s;
+            -moz-transition: all .25s;
+            -webkit-transition: all .25s;
+        }
+
+        .sens-vid-link:hover .acc-yt-icon svg path {
+            fill: red;
+        }
+
+        .sens-vid-thumb {
+            opacity: 1;
+            transition: all .25s;
+            -moz-transition: all .25s;
+            -webkit-transition: all .25s;
+        }
+
+        .sens-vid-link:hover .sens-vid-thumb {
+            opacity: 0.85;
+        }
+
+        .pagebuilder-accordion {
+            .sens-vid-wrap {
+                width: 100%;
+                max-width: 100%;
+                margin: 0 25px 0 0;
+
+                .sens-vid-link {
+                    margin: 0;
+                    padding-bottom: 54%;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .accuride-markets {
+
+        .sens-vid-link {
+            margin-left: 0;
+        }
+
+        .pagebuilder-accordion {
+            .sens-vid-wrap {
+                width: 320px;
+                max-width: 320px;
+                float: left;
+            }
+        }
+    }
+}

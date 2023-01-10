@@ -1,0 +1,19 @@
+{
+  "name": "accuride/page-builder",
+  "description": "Adds custom content types to the Page Builder system.",
+  "require": {
+    "magento/module-page-builder": "~1.0.0"
+  },
+  "conflict": {
+    "gene/bluefoot": "*"
+  },
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Accuride\\PageBuilder\\": ""
+    }
+  }
+}

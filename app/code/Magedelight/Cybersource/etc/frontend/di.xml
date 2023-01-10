@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Payment\Model\CcGenericConfigProvider">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="magedelight_cybersource" xsi:type="const">Magedelight\Cybersource\Model\Payment::CODE</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="magedelight_cybersource_config_provider" xsi:type="object">Magedelight\Cybersource\Model\ConfigProvider</item>
+            </argument>
+        </arguments>
+    </type> 
+    <type name="Magento\Sales\Model\Order\CustomerManagement">
+            <plugin name="save-customer-cart-plugin"
+            type="Magedelight\Cybersource\Model\CustomerManagement" sortOrder="10"/>
+    </type>
+</config>

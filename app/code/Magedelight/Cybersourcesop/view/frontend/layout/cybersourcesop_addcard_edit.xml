@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">   
+    <update handle="customer_account"/>
+    <head>
+        <title>Edit Card</title>
+        <css src="Magedelight_Cybersourcesop::css/cybersource.css"/>
+         <link src="Magedelight_Cybersourcesop::js/cybersourcevalid.js"/>
+    </head>
+    <body> 
+        <referenceBlock name="customer-account-navigation-my-credit-cards-link">
+            <arguments>
+                <argument name="is_highlighted" xsi:type="boolean">true</argument>
+            </arguments>
+        </referenceBlock>               
+        <referenceContainer name="content">
+            <block class="Magedelight\Cybersourcesop\Block\Customer\Edit" name="md-card-edit" template="Magedelight_Cybersourcesop::edit.phtml" />
+        </referenceContainer>
+    </body>
+</page>

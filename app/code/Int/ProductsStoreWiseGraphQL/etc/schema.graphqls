@@ -1,0 +1,28 @@
+type Query {
+    productsStore (
+    	storeId: Int @doc(description: "Query by Store ID.")
+    	categoryId: Int @doc(description: "Query by Category ID.")
+    	productsPerPage: Int @doc(description: "Pagination Parameters Products Per Page.")
+    	pageNumber: Int @doc(description: "Pagination Parameters Page Number.")
+    	sortBy: String @doc(description: "Sort By Field")
+    	sortOrder: String @doc(description: "Sort By Order")
+    	filters: [String]
+    ) : ProductsStore @resolver( class: "Int\\ProductsStoreWiseGraphQL\\Model\\Resolver\\ProductsStore")  
+}
+
+type ProductsStore {
+    products: [productList]
+    totalProducts: Int @doc(description: "Total Number of Products.")
+}
+
+type productList {
+	productId: Int  @doc(description: "Get Product ID.")
+	productSku: String @doc(description: "Get Product SKU.")
+	productName: String @doc(description: "Get Product Name.")
+	regularPrice: String @doc(description: "Get Product Price.")
+	specialPrice: String @doc(description: "Get Product Special Price.")
+	productImage: String @doc(description: "Get Product Image.")
+	productStatus: Int @doc(description: "Get Product Status.")
+	productVisibility: Int @doc(description: "Get Product Visibility.")
+    storeId: Int @doc(description: "Get Store ID.")
+}

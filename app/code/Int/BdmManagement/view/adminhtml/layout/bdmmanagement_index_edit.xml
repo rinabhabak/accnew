@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <link src="jquery/fileUploader/bootstrap.js"/>
+    </head>
+    <update handle="editor"/>
+    <body>
+        <referenceContainer name="content">
+            <block class="Int\BdmManagement\Block\Adminhtml\BdmManagement\Edit" name="bdmmanagement_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Int\BdmManagement\Block\Adminhtml\BdmManagement\Edit\Tabs" name="bdmmanagement_edit_tabs">
+                <block class="Int\BdmManagement\Block\Adminhtml\BdmManagement\Edit\Tab\Main" name="bdmmanagement_edit_tab_main"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">main_section</argument>
+                    <argument name="block" xsi:type="string">bdmmanagement_edit_tab_main</argument>
+                </action>               
+            </block>
+        </referenceContainer>
+    </body>
+</page>

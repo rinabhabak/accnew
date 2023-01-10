@@ -1,0 +1,95 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Accuride
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Valery Shishkin <valery.shishkin@alpineinc.com>
+//  * @author      Denis Furman <denis.furman@alpineinc.com>
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+    .customer-account-login {
+        .page-title {
+            font-weight: normal;
+            font-size: 32px;
+            margin-bottom: 52px;
+        }
+        .login-container .block .block-title {
+            margin-bottom: 23px;
+            border-bottom: 1px solid @color-gray20;
+            strong {
+                font-size: 28px;
+            }
+        }
+        .form-login {
+            .note {
+                font-size: 16px;
+                margin-bottom: 31px;
+            }
+            .fieldset > .field {
+                .label {
+                    margin-bottom: 22px;
+                    font-size: 16px;
+                }
+                .control {
+                    width: 69%;
+                    input {
+                        height: 60px;
+                        border: 1px solid @color-gray20;
+                    }
+                }
+                &.choice {
+                    margin-top: 25px;
+                }
+            }
+            .actions-toolbar {
+                margin-top: 31px;
+                .login {
+                    width: 208px;
+                    margin-right: 50px;
+                }
+                .secondary {
+                    a {
+                        margin: 0;
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+        .block-content {
+            > p {
+                font-size: 16px;
+            }
+        }
+        .block-new-customer{
+            .action.create{
+                width: 272px;
+            }
+        }
+    }
+}
+
+//Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .customer-account-login.page-layout-1column {
+        .form-login {
+            .fieldset > .field {
+                .control {
+                    width: 100%;
+                }
+            }
+            .actions-toolbar {
+                .login {
+                    width: 100%;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}

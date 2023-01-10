@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Accuride_PageBuilder
+ * @package     Sitewards
+ * @copyright   Copyright (c) Sitewards GmbH (http://www.sitewards.com/)
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="pagebuilder_accuride_cta_form"/>
+        </referenceContainer>
+    </body>
+</page>

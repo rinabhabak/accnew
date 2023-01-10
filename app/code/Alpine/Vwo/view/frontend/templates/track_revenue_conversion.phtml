@@ -1,0 +1,19 @@
+<?php
+/**
+ * Alpine_Vwo
+ *
+ * @category    Alpine
+ * @package     Alpine_Vwo
+ * @copyright   Copyright (c) 2019 Alpine Consulting Inc.
+ * @author      Alex Didenko <alex.didenko@alpineinc.com>
+ */
+?>
+
+<?php
+$helper = $this->helper('Alpine\Vwo\Helper\Data');
+?>
+
+<script type="text/javascript">
+    window.VWO = window.VWO || [];
+    window.VWO.push(['track.revenueConversion', <?php echo $helper->getRevenue(); ?>]);
+</script>

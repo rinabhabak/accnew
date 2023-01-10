@@ -1,0 +1,22 @@
+{
+    "name": "int/module-storesgetlistinggraphql",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "email": "ankit.ahilwal@indusnet.co.in",
+            "name": "Indus Net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Int\\StoresGetListingGraphQL\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

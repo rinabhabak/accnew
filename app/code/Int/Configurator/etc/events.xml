@@ -1,0 +1,8 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="int_configurator_sales_model_service_quote_submit_before" instance="Int\Configurator\Observer\ConfiguratorProjectIdObserver" />
+    </event>
+    <event name="sales_order_place_after">
+        <observer name="int_configurator_sales_order_place_after" instance="Int\Configurator\Observer\UpdateConfiguratorStatusObserver" />
+    </event>
+</config>

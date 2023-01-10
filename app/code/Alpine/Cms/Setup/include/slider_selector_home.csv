@@ -1,0 +1,2 @@
+"title","identifier","content"
+"Slide selector home","slider_selector_home","<p>{{block class=""Alpine\Theme\Block\SlideSelector"" name=""slider_selector_home"" template=""Magento_Theme::slider_selector_home.phtml""}}</p>"

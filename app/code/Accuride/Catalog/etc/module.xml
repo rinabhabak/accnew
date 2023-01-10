@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Accuride
+ * @package   Accuride_Catalog
+ * @copyright Copyright (c) Sitewards GmbH (http://www.sitewards.com)
+ * @contact   mail@sitewards.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Accuride_Catalog" setup_version="1.0.0" />
+</config>

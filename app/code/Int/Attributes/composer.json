@@ -1,0 +1,22 @@
+{
+    "name": "int/module-attributes",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+         {
+            "email": "ankit.ahilwal@indusnet.co.in",
+            "name": "indusnet"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Int\\Attributes\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

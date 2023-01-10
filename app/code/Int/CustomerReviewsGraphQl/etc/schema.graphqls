@@ -1,0 +1,35 @@
+# Copyright © Int, Inc. All rights reserved.
+
+type Query {
+    customerReviews: [CustomerReviewsList] @resolver(class: "\\Int\\CustomerReviewsGraphQl\\Model\\Resolver\\CustomerReviews") @doc(description: "Customer reviews returns information about reviews list")
+    reviewDetails (id: Int @doc(description: "Id of the Review")
+    ): ReviewDetails @resolver(class: "\\Int\\CustomerReviewsGraphQl\\Model\\Resolver\\ReviewDetails") @doc(description: "provides review details.")
+}
+ 
+type CustomerReviewsList @doc(description: "Customer reviews graphql gather Data of specific product list") {
+    product_name: String @doc(description: "Product Name")
+    product_url: String @doc(description: "Product Url")
+    review_id: String @doc(description: "Review Id")
+    rating: String @doc(description: "Rating")
+    review: String @doc(description: "Review")
+    created: String @doc(description: "Created at")
+}
+
+type ReviewDetails @doc(description: "Customer reviews graphql gather Data of specific review information") {
+    product_name: String @doc(description: "Product Name")
+    product_image: String @doc(description: "Product Image")
+    product_url_key: String @doc(description: "Product Url Key")
+    product_description: String @doc(description: "Product Description")
+    rating: Rating @doc(description: "An array of all rating data of review") @resolver(class: "\\Int\\CustomerReviewsGraphQl\\Model\\Resolver\\Items")
+    avg_rating: String @doc(description: "avg rating")
+    approved_review_count: String @doc(description: "Approved review Count")
+    review_title: String @doc(description: "Review Title")
+    review_detail: String @doc(description: "Review Details")
+    submitted: String @doc(description: "Submitted on")
+}
+
+type Rating @doc(description: "An array containing all the items of Rating") {
+    price: String @doc(description: "Price rating") 
+    quality: String @doc(description: "Quality rating")
+    value: String @doc(description: "Value rating")
+}

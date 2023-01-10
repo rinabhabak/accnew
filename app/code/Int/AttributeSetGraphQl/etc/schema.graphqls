@@ -1,0 +1,41 @@
+##
+# Copyright © Indus Net Technologies All rights reserved.
+# See COPYING.txt for license details.
+##
+
+type Query {
+    getAttributes: GetAttributeList
+    @resolver( class: "Int\\AttributeSetGraphQl\\Model\\Resolver\\GetAttributeList")
+    @doc(description: "Get 3D Configurator Attribute List.")
+
+    getAttribute (
+        where: AttributeCodeFilterInput @doc(description: "Identifies which attribute to search for and return.")
+    ): GetAttribute
+    @resolver( class: "Int\\AttributeSetGraphQl\\Model\\Resolver\\GetAttributeData")
+    @doc(description: "Get Attribute Data Based on code.")
+}
+
+type GetAttributeList {
+    attributes: [AttributeData]  @doc(description: "Attributes Data")
+}
+
+type GetAttribute {
+    attribute: [AttributeData]  @doc(description: "Attributes Data")
+}
+
+type AttributeData {
+    attribute_code: String @doc(description: "Attribute Code")
+    attribute_label: String @doc(description: "Attribute Label")
+    attribute_id: String @doc(description: "Attribute Id")
+    attribute_options: [Options] @doc(description: "Attribute Options")
+    position: Int! @doc(description: "Attribute Position")
+}
+
+type Options {
+    option_value: String @doc(description: "Option Value")
+    option_label: String @doc(description: "Option Label")
+}
+
+input AttributeCodeFilterInput {
+    attribute_code: String! @doc(description: "Filter attributes by attribute code")
+}

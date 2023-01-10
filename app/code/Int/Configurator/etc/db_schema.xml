@@ -1,0 +1,79 @@
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="configurator">
+        <column xsi:type="int" name="configurator_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Configurator Id"/>
+        <column xsi:type="int" name="customer_id" padding="11" unsigned="true" nullable="false" comment="Customer Id"/>
+        <column xsi:type="smallint" name="status" nullable="false" padding="6" comment="Status"/>
+        <column xsi:type="varchar" name="type_of_build" nullable="false" length="255" comment="Type of build"/>
+        <column xsi:type="int" name="numbers_of_fixture" nullable="false" padding="11" comment="Numbers Of Fixtures"/>
+        <column xsi:type="smallint" name="same_fixture_dimensions" nullable="false" padding="6" comment="Are the fixtures simensions the same?"/>
+		<column xsi:type="varchar" name="project_id" nullable="false" length="255" comment="Project Id"/>
+		<column xsi:type="varchar" name="project_name" nullable="false" length="255" comment="Project Name"/>
+        <column xsi:type="datetime" name="created_at" comment="created_at"/>
+        <column xsi:type="datetime" name="updated_at" comment="updated_at"/>
+		<column xsi:type="datetime" name="completed_at" comment="completed_at"/>
+		<column xsi:type="text" name="pdf_link" nullable="false" comment="PDF link"/>
+		<column xsi:type="int" name="is_consulatative_sale" padding="11" unsigned="true" nullable="false" comment="Is Consulatative Sale"/>
+		<column xsi:type="smallint" name="bds_status" nullable="false" padding="6" comment="BDS Status Start 1, in-progress 2, pending 3, completed 4, purchased 5"/>
+        <column xsi:type="datetime" name="bds_completed_date" comment="BDS Completed Date"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="configurator_id"/>
+        </constraint>
+    </table>
+
+    <table name="configurator_fixtures">
+        <column xsi:type="int" name="fixture_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Fixture Id"/>
+        <column xsi:type="int" name="configurator_id" padding="11" unsigned="true" nullable="false" comment="Configurator Id"/>
+        <column xsi:type="varchar" name="fixture_name" nullable="false" length="255" comment="Fixture Name"/>
+        <column xsi:type="decimal" scale="2" precision="10" name="fixture_length" unsigned="false" default="0" nullable="false" comment="Fixture Length"/>
+        <column xsi:type="decimal" scale="2" precision="10" name="fixture_depth" unsigned="false" default="0" nullable="false" comment="Fixture Depth"/>
+        <column xsi:type="decimal" scale="2" precision="10" name="fixture_height" unsigned="false" default="0" nullable="false" comment="Fixture Height"/>
+        <column xsi:type="smallint" name="cabinet_power_available" nullable="false" padding="6" comment="Is power available in the cabinet?"/>
+        <column xsi:type="varchar" name="fixture_standing" nullable="false" length="255" comment="Fixture freestanding or connected"/>
+        <column xsi:type="text" name="opening_types_data" nullable="false" comment="Fixture Data"/>
+        <column xsi:type="text" name="additional_data" nullable="false" comment="Additional Data"/>
+        <column xsi:type="smallint" name="status" nullable="false" default="0" padding="6" comment="Fixture Status, 0 = Incomplete, 1 = Complete" />
+        <column xsi:type="datetime" name="created_at" comment="created_at"/>
+        <column xsi:type="datetime" name="updated_at" comment="updated_at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="fixture_id"/>
+        </constraint>
+    </table>
+
+    <table name="configurator_fixtures_opening_types">
+        <column xsi:type="int" name="opening_type_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Type Id"/>
+        <column xsi:type="int" name="fixture_id" padding="10" nullable="false"  comment="Fixture Id"/>
+        <column xsi:type="int" name="attribute_option_id" padding="11" unsigned="true" nullable="false" comment="Fixture Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="text" name="product_data" nullable="false" comment="Product Data"/>
+        <column xsi:type="smallint" name="status" nullable="false" default="0" padding="6" comment="Opening Type Status, 0 = Incomplete, 1 = Complete" />
+        <column xsi:type="datetime" name="created_at" comment="created_at"/>
+        <column xsi:type="datetime" name="updated_at" comment="updated_at"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="opening_type_id"/>
+        </constraint>
+        <column xsi:type="int" name="is_same" padding="11" unsigned="true" nullable="false" comment="Same as another or not"/>
+    </table>
+
+    <table name="configurator_assigned_bdm_managers">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+        <column xsi:type="int" name="parent_id" padding="10" unsigned="true" nullable="false" comment="Configurator Id"/>
+        <column xsi:type="int" name="assigned_to" padding="11" unsigned="true" nullable="false" comment="Assigned To"/>
+        <column xsi:type="int" name="assigned_by" padding="11" unsigned="true" nullable="false" comment="Assigned By"/>
+        <column xsi:type="timestamp" name="created_at" default="CURRENT_TIMESTAMP" on_update="false" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="CONFIGURATOR_CONFIGURATOR_ID_CONFIGURATOR_ASSIGNED_BDM_MANAGERS_PARENT_ID" table="configurator_assigned_bdm_managers" column="parent_id" referenceTable="configurator" referenceColumn="configurator_id"/>
+    </table>
+	
+	<table name="3d_view">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="int" name="configurator_id" padding="11" unsigned="true" nullable="false" comment="Configurator Id"/>
+        <column xsi:type="int" name="fixture_id" padding="11" nullable="false"  comment="Fixture Id"/>
+        <column xsi:type="text" name="details" nullable="false"  comment="Details"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+    </table>
+</schema>

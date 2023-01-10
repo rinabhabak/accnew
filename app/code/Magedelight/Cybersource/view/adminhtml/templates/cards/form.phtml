@@ -1,0 +1,429 @@
+
+<?php $code = \Magedelight\Cybersource\Model\Payment::CODE; 
+?>
+<?php $card = $this->getCard(); ?>
+<?php
+$action = 'add';
+$state = '';
+$firstName = '';
+$lastName = '';
+$streetAddress = '';
+$city = '';
+$telephone = '';
+$fax = '';
+$company = '';
+$regionId = '';
+$countryId = null;
+$ccLastFour = '';
+$postCode = '';
+$customerPaymentProfile = '';
+$cardid = '';
+
+if(!is_null($card)){
+    
+    $action = 'edit';
+//    echo '<pre>';
+//    print_r($card);
+//    return;
+    if($card['region_id'])
+    {
+        $regionId = $card["region_id"];
+    }
+    if($card['card_id'])
+    {
+        $cardid = $card["card_id"];
+    }
+    if($card['state']){
+        $state = $card["state"];
+    }
+    if(isset($card['country_id']))
+    {
+        $countryId = $card['country_id'];
+    }
+    if(isset($card['firstname']))
+    {
+        $firstName = (string) $card['firstname'];
+    }
+    if(isset($card['lastname']))
+    {
+        $lastName = (string)$card['lastname'];
+    }
+    if(isset($card['street']))
+    {
+        $streetAddress = (string)$card['street']; 
+    }
+    if(isset($card['city']))
+    {
+        $city = (string)$card['city']; 
+    }
+    if(isset($card['postcode']))
+    {
+        $postCode = (string)$card['postcode']; 
+    }
+    if(isset($card['cc_last_4']))
+    {
+        $ccLastFour = (string)$card['cc_last_4']; 
+    }
+    if(isset($card['telephone'])){
+        $telephone = (string)$card['telephone']; 
+    }
+    if(isset($card['company'])){
+        $company = (string)$card['company']; 
+    }
+    
+}
+?>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('First Name') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" name="<?php echo $code ?>[address_info][firstname]" class="admin__control-text" id="<?php echo $code ?>_firstname" value="<?php echo $firstName ?>" />
+    </div>
+</div>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Last Name') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" name="<?php echo $code ?>[address_info][lastname]" class="admin__control-text" id="<?php echo $code ?>_lastname" value="<?php echo $lastName ?>" />
+    </div>
+</div>
+<div class="admin__field">
+    <label class="admin__field-label"><span><?php echo __('Company') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" name="<?php echo $code ?>[address_info][company]" class="admin__control-text" id="<?php echo $code ?>_company" value="<?php echo $company ?>" />
+    </div>
+</div>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Street Address') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" name="<?php echo $code ?>[address_info][street]" class="admin__control-text" id="<?php echo $code ?>_street" value="<?php echo $streetAddress ?>" />
+    </div>
+</div>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('City') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" name="<?php echo $code ?>[address_info][city]" class="admin__control-text" id="<?php echo $code ?>_city" value="<?php echo $city ?>" />
+    </div>
+</div>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('State/Province') ?></span></label>
+    <div class="admin__field-control">
+        <select id="<?php echo $code ?>_region_id" name="<?php echo $code ?>[address_info][region_id]" class="admin__control-select validate-select">
+            <option value=""><?php echo __('Please select a region, state or province.') ?></option>
+        </select>
+        <input type="text" id="<?php echo $code ?>_region" name="<?php echo $code ?>[address_info][region]" value="<?php echo $state ?>"  title="<?php echo __('State/Province') ?>" class="input-text required-entry" />
+    </div>
+</div>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Zip/Postal Code') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" name="<?php echo $code ?>[address_info][postcode]" class="admin__control-text" id="<?php echo $code ?>_zip" value="<?php echo $postCode ?>" />
+    </div>
+</div>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Country') ?></span></label>
+    <div class="admin__field-control">
+        <?php echo $block->getCountryHtmlSelect($countryId, $code.'[address_info][country_id]', $code.'_country_id') ?>
+    </div>
+</div>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Telephone') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" name="<?php echo $code ?>[address_info][telephone]" class="admin__control-text" id="<?php echo $code ?>_telephone" value="<?php echo $telephone ?>" />
+    </div>
+</div>
+
+<?php
+if(!is_null($card)): ?>
+
+<div class="admin__field">
+    <label class="admin__field-label"><span><?php echo __('Select Card') ?></span></label>
+    <div class="admin__field-control">
+        <select onchange="cstoggleCards(this.value,'<?php echo 'XXXXXX-'.$ccLastFour ?>');return false;" id="<?php echo $code ?>_cc_action" name="<?php echo $code ?>[payment_info][cc_action]" class="admin__control-select">
+            <option value="existing" selected="selected"><?php echo __("Continue using card XXXXXX-".$ccLastFour) ?></option>
+            <option value="new"><?php echo __("Update credit card details.") ?></option>
+        </select>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Credit Card Type') ?></span></label>
+    <div class="admin__field-control">
+        <select <?php echo (!is_null($card)) ? "disabled='disabled'": '' ?> id="<?php echo $code ?>_cc_type" name="<?php echo $code ?>[payment_info][cc_type]" class="admin__control-select">
+            <option value=""><?php echo __('--Please Select--') ?></option>
+            <?php foreach ($this->getCcAvailableTypes() as $_typeCode => $_typeName): ?>
+                    <option value="<?php echo $_typeCode ?>"><?php echo $_typeName ?></option>
+                    <?php endforeach ?>
+        </select>
+    </div>
+</div>
+
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Credit Card Number') ?></span></label>
+    <div class="admin__field-control">
+        <input type="text" <?php echo (!is_null($card)) ? "disabled='disabled'": '' ?> name="<?php echo $code ?>[payment_info][cc_number]" class="admin__control-text" id="<?php echo $code ?>_cc_number" value="" />
+    </div>
+</div>
+
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Expiration Date') ?></span></label>
+    <div class="admin__field-control">
+        <select <?php echo (!is_null($card)) ? "disabled='disabled'": '' ?> id="<?php echo $code ?>_cc_exp_month" name="<?php echo $code ?>[payment_info][cc_exp_month]" class="admin__control-select admin__control-select-month">
+                                <?php foreach ($this->getCcMonths() as $k => $v): ?>
+                                    <option value="<?php echo $k ? $k : '' ?>"><?php echo $v ?></option>
+                                <?php endforeach ?>
+                            </select>
+        <select <?php echo (!is_null($card)) ? "disabled='disabled'": '' ?> id="<?php echo $code ?>_cc_exp_year" name="<?php echo $code ?>[payment_info][cc_exp_year]" class="admin__control-select admin__control-select-year">
+                                <?php foreach ($this->getCcYears() as $k => $v): ?>
+                                    <option value="<?php echo $k ? $k : '' ?>"><?php echo $v ?></option>
+                                <?php endforeach ?>
+                            </select>
+    </div>
+</div>
+
+<?php if ($this->hasVerification()): ?>
+<div class="admin__field _required">
+    <label class="admin__field-label"><span><?php echo __('Card Verification Number') ?></span></label>
+    <div class="admin__field-control">
+        <input <?php echo (!is_null($card)) ? "disabled='disabled'": '' ?> type="text" name="<?php echo $code ?>[payment_info][cc_cid]" class="admin__control-text" id="<?php echo $code ?>_cc_cid" value="" />
+    </div>
+</div>
+<?php endif; ?>
+<div class="admin__field">
+    <div class="admin__field-control">
+        <?php if(!is_null($card)): ?>
+        <button class="button" type="button" onclick="csupdateCardFromList();"><span><span><?php echo __("Update") ?></span></span></button>
+        <?php else: ?>
+        <button class="button" type="button" onclick="cssaveCardFromList();"><span><span><?php echo __("Save") ?></span></span></button>
+         <?php endif; ?>
+        <a href="#" onclick="addNewForm();return false;"><?php echo __("Cancel") ?></a>
+    </div>
+</div>
+
+<input type="hidden" name="<?php echo $code ?>[card_id]" value="<?php echo $cardid ?>" id="<?php echo $code?>_card_id" />
+<input type="hidden" name="<?php echo $code ?>[card_mode]" value="<?php echo $action ?>" />
+<input type="hidden" name="<?php echo $code ?>[payment_profile_id]" value="<?php echo $customerPaymentProfile ?>" />
+<input type="hidden" name="<?php echo $code ?>[card_number_masked]" value="<?php echo $ccLastFour ?>" />
+<script>
+    require(["prototype", "mage/adminhtml/form"],function(){
+        $('<?php echo $code ?>_region_id').setAttribute('defaultValue',  "<?php echo $regionId ?>");
+        new regionUpdater(<?php echo $code ?>_country_id, <?php echo $code ?>_region, <?php echo $code ?>_region_id, <?php echo $this->helper('Magento\Directory\Helper\Data')->getRegionJson() ?>);
+    });
+    <?php if(!is_null($card)): ?>
+    require(['jquery'], function($){
+        $('#cards-edit-option').hide();
+        $('#<?php echo $code ?>_cc_action').on('change',function(event){
+            if($(this).val() == 'existing'){
+                $('#cards-edit-option').hide();
+            }else{
+                $('#cards-edit-option').show();
+            }
+        });
+    });
+    
+    <?php endif; ?>
+    var cvvcheck=0;
+     var cs_cardSaveAjaxUrl = '<?php echo $this->getUrl("magedelight_cybersource/cards/save",array("id"=>$this->getCustomer()->getId())) ?>';
+     var cs_cardUpdateAjaxUrl = '<?php echo $this->getUrl("magedelight_cybersource/cards/update",array("id"=>$this->getCustomer()->getId())) ?>';
+    <?php if ($this->hasVerification() && is_null($card)): ?>
+            cvvcheck=1;
+    <?php endif; ?>
+     function cstoggleCards(selectedValue, current_card)
+    {
+        switch(selectedValue){
+            case 'existing':
+                $('<?php echo $code ?>_cc_type').disabled = true;
+                $('<?php echo $code ?>_cc_number').disabled = true;
+                $('<?php echo $code ?>_cc_exp_month').disabled = true;
+                $('<?php echo $code ?>_cc_exp_year').disabled = true;
+                if($('<?php echo $code ?>_cc_cid') != null){
+                    $('<?php echo $code ?>_cc_cid').disabled = true;
+                     cvvcheck=0;
+                   
+                }
+                break;
+            case 'new':
+                $('<?php echo $code ?>_cc_type').disabled = false;
+                $('<?php echo $code ?>_cc_number').disabled = false;
+                $('<?php echo $code ?>_cc_exp_month').disabled = false;
+                $('<?php echo $code ?>_cc_exp_year').disabled = false;
+               if($('<?php echo $code ?>_cc_cid') != null){
+                    $('<?php echo $code ?>_cc_cid').disabled = false;
+                     cvvcheck=1;
+                }
+                break;
+        }
+    }
+    function cssaveCardFromList()
+    {
+       
+        var addfname=$('<?php echo $code ?>_firstname').getValue();
+        var addlname=$('<?php echo $code ?>_lastname').getValue();
+        var addstreet=$('<?php echo $code ?>_street').getValue();
+        var addcity=$('<?php echo $code ?>_city').getValue();
+        var addpost=$('<?php echo $code ?>_zip').getValue();
+        var addcountry=$('<?php echo $code ?>_country_id').getValue();
+        var addcctype=$('<?php echo $code ?>_cc_type').getValue();
+        var addccnumber=$('<?php echo $code ?>_cc_number').getValue();
+        var addexpmonth=$('<?php echo $code ?>_cc_exp_month').getValue();
+        var addexpyr=$('<?php echo $code ?>_cc_exp_year').getValue();
+        var addregionid=$('<?php echo $code ?>_region_id').getValue();
+        var addcvv=($('<?php echo $code ?>_cc_cid')) ? $('<?php echo $code ?>_cc_cid').getValue(): '';
+        var addphone=$('<?php echo $code ?>_telephone').getValue();
+        
+        
+        
+        if(addfname.length && addlname.length && addstreet.length && addcity.length && addpost.length && addcountry.length && addcctype.length && addccnumber.length && addexpmonth.length && addexpyr.length && addphone.length){
+            if(cvvcheck=='1'){
+                if(!addcvv.length){
+                    alert('<?php echo __('Please enter Card Verification Number.')?>');
+                    return false;  
+                }
+            }
+            
+           
+           // var maskedCard = $$('#magedelight-cybersource-card-form input[name="<?php echo $code ?>[card_number_masked]"]')[0];
+            var paymentParam = {
+                firstname:jQuery('#<?php echo $code ?>_firstname').val(),
+                lastname:jQuery('#<?php echo $code ?>_lastname').val(),
+                company:jQuery('#<?php echo $code ?>_company').val(),
+                street:jQuery('#<?php echo $code ?>_street').val(),
+                city:jQuery('#<?php echo $code ?>_city').val(),
+                region_id:jQuery('#<?php echo $code ?>_region_id').val(),
+                state:jQuery('#<?php echo $code ?>_state').val(),
+                postcode:jQuery('#<?php echo $code ?>_zip').val(),
+                country_id:jQuery('#<?php echo $code ?>_country_id').val(),
+                telephone:jQuery('#<?php echo $code ?>_telephone').val(),
+                cc_type:jQuery('#<?php echo $code ?>_cc_type').val(),
+                cc_number:jQuery('#<?php echo $code ?>_cc_number').val(),
+                cc_exp_month:jQuery('#<?php echo $code ?>_cc_exp_month').val(),
+                cc_exp_year:jQuery('#<?php echo $code ?>_cc_exp_year').val(),
+                cc_cid:(jQuery('#<?php echo $code ?>_cc_cid')) ? jQuery('#<?php echo $code ?>_cc_cid').val(): '',
+                
+            };            
+
+               jQuery.ajax(''+cs_cardSaveAjaxUrl+'?isAjax=true',{
+               data: {paymentParam,form_key:jQuery("input[name=form_key]").val()},
+               method: 'POST',
+               dataType: 'json',
+                beforeSend: function(){
+                    jQuery('.admin__data-grid-loading-mask').show();
+                    jQuery('.admin__data-grid-loading-mask').css("position","fixed");
+               },
+               complete: function(transport){
+                    jQuery('#messages').remove();
+                    var resultData = transport.responseText.evalJSON(); 
+                    if(!resultData.error)
+                    {
+                       jQuery('#magedelight-cybersource-cards-list-container').parent().html(resultData.append);
+                    }
+                    jQuery('.page-main-actions').after(resultData.message);
+                    jQuery('.admin__data-grid-loading-mask').hide();
+                    jQuery('.admin__data-grid-loading-mask').css("position","absolute");
+               },
+               error: function(transport){
+                    jQuery('.page-main-actions').after('Error during processing...');
+               },
+            
+            });
+           
+        }
+        else{
+            alert('<?php echo __('Please enter required fields.')?>');
+            return false;  
+
+        }
+    }
+     function csupdateCardFromList(){
+
+        var upfname=$('<?php echo $code ?>_firstname').getValue();
+        var uplname=$('<?php echo $code ?>_lastname').getValue();
+        var upstreet=$('<?php echo $code ?>_street').getValue();
+        var upcity=$('<?php echo $code ?>_city').getValue();
+        var uppost=$('<?php echo $code ?>_zip').getValue();
+        var upcountry=$('<?php echo $code ?>_country_id').getValue();
+        var upccaction=$('<?php echo $code ?>_cc_action').getValue();
+        var upcctype=$('<?php echo $code ?>_cc_type').getValue();
+        var upccnumber=$('<?php echo $code ?>_cc_number').getValue();
+        var upexpmonth=$('<?php echo $code ?>_cc_exp_month').getValue();
+        var upexpyr=$('<?php echo $code ?>_cc_exp_year').getValue();
+        var upregionid=$('<?php echo $code ?>_region_id').getValue();
+        var upcvv=($('<?php echo $code ?>_cc_cid')) ? $('<?php echo $code ?>_cc_cid').getValue(): '';
+        var upphone=$('<?php echo $code ?>_telephone').getValue();
+
+        if(upfname.length && uplname.length && upstreet.length && upcity.length && uppost.length && upcountry.length && upphone.length){
+            if(upccaction=='new'){
+                if(!upcctype.length || !upccnumber.length || !upexpmonth.length || !upexpyr.length){
+                    alert('<?php echo __('Please enter required fields.')?>');
+                    return false;  
+                }
+                
+            }
+           if(cvvcheck=='1'){
+                    if(!upcvv.length){
+                        alert('<?php echo __('Please enter Card Verification Number.')?>');
+                        return false;  
+                    }
+                }
+         
+            var ccAction = jQuery('#<?php echo $code ?>_cc_action');
+            var paymentParam = { 
+                card_id:jQuery('#<?php echo $code ?>_card_id').val(),
+                customer_id:jQuery('#<?php echo $code ?>_customer_id').val(),
+                cc_type:jQuery('#<?php echo $code ?>_cc_type').val(),
+                cc_number:jQuery('#<?php echo $code ?>_cc_number').val(),
+                cc_exp_month:jQuery('#<?php echo $code ?>_cc_exp_month').val(),
+                cc_exp_year:jQuery('#<?php echo $code ?>_cc_exp_year').val(),
+                cc_cid:(jQuery('#<?php echo $code ?>_cc_cid')) ? jQuery('#<?php echo $code ?>_cc_cid').val(): '',
+                firstname:jQuery('#<?php echo $code ?>_firstname').val(),
+                lastname:jQuery('#<?php echo $code ?>_lastname').val(),
+                company:jQuery('#<?php echo $code ?>_company').val(),
+                street:jQuery('#<?php echo $code ?>_street').val(),
+                city:jQuery('#<?php echo $code ?>_city').val(),
+                region_id:jQuery('#<?php echo $code ?>_region_id').val(),
+                state:jQuery('#<?php echo $code ?>_state').val(),
+                postcode:jQuery('#<?php echo $code ?>_zip').val(),
+                country_id:jQuery('#<?php echo $code ?>_country_id').val(),
+                telephone:jQuery('#<?php echo $code ?>_telephone').val(),
+                cc_action:jQuery('#<?php echo $code ?>_cc_action').val(),
+            };
+            if($('<?php echo $code ?>_cc_cid') == null){
+                delete paymentParam.cc_cid;
+            }
+            
+            
+            jQuery.ajax(''+cs_cardUpdateAjaxUrl+'?isAjax=true',{
+               data: {paymentParam,form_key:jQuery("input[name=form_key]").val()},
+               method: 'POST',
+               dataType: 'html',
+                beforeSend: function(){
+                    jQuery('.admin__data-grid-loading-mask').show();
+                    jQuery('.admin__data-grid-loading-mask').css("position","fixed");
+               },
+               complete: function(transport){
+                    jQuery('#messages').remove();
+                    var resultData = transport.responseText.evalJSON(); 
+                    if(!resultData.error)
+                    {
+                       jQuery('#magedelight-cybersource-cards-list-container').parent().html(resultData.append);
+                    }
+                    jQuery('.page-main-actions').after(resultData.message);
+                    jQuery('.admin__data-grid-loading-mask').hide();
+                    jQuery('.admin__data-grid-loading-mask').css("position","absolute");
+                    
+               },
+               error: function(transport){
+                    jQuery('.page-main-actions').after('Error during processing...');
+               },
+            
+            });
+            
+            
+            
+        }
+        else{
+            alert('<?php echo __('Please enter required fields.')?>');
+            return false;  
+
+        }
+    }
+</script>

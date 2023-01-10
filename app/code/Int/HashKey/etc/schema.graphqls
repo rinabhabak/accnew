@@ -1,0 +1,11 @@
+type Mutation {
+    getHashKey (input: GetHashKeyInput!): GetHashKeyOutput @resolver(class: "\\Int\\HashKey\\Model\\Resolver\\GenerateKey") @doc(description:" Generate Hash Key")
+}
+
+type GetHashKeyOutput {
+    hashkey: String! @doc(description: "Generated Key")
+}
+
+input GetHashKeyInput {
+    identifier:  String! @doc(description: "User Identifier")
+}

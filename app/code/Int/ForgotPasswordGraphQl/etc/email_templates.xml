@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="customer_password_reset_password_template_pwa" label="Forget Password PWA" file="forget_password_pwa.html" type="html" module="Int_ForgotPasswordGraphQl" area="frontend"/>
+</config>

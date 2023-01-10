@@ -1,0 +1,146 @@
+"title","identifier","content"
+"Top slider home","top_slider_home","<div class=""slide_top_owl"">
+                                         <ul class=""owl-carousel owl-theme"">
+                                             <li>
+                                                 <div class=""wrapper_image"">
+                                                     <img src=""{{view url=images/cms/home/banner.jpg}}"" alt=""image"">
+                                                     <p>PREMIUM DRAWER SLIDES AND SLIDING SOLUTIONS MANUFACTURER</p>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class=""wrapper_image"">
+                                                     <img src=""{{view url=images/cms/home/banner.jpg}}"" alt=""image"">
+                                                     <p>PREMIUM DRAWER SLIDES AND SLIDING SOLUTIONS MANUFACTURER</p>
+                                                 </div>
+                                             </li>
+                                             <li>
+                                                 <div class=""wrapper_image"">
+                                                     <img src=""{{view url=images/cms/home/banner.jpg}}"" alt=""image"">
+                                                     <p>PREMIUM DRAWER SLIDES AND SLIDING SOLUTIONS MANUFACTURER</p>
+                                                 </div>
+                                             </li>
+                                         </ul>
+                                     </div>
+                                     <script>
+                                         require(['jquery', 'owlCarousel'], function ($) {
+                                                 $('.slide_top_owl .owl-carousel').owlCarousel({
+                                                     nav: false,
+                                                     items: 1,
+                                                     dots: false,
+                                                     loop:true,
+                                                     autoplay:true,
+                                                     autoplayTimeout:8000,
+                                                     autoplayHoverPause:true
+                                                 });
+                                         });
+                                     </script>"
+"Slider second home","slider_second_home","<div class=""slider_second_home"">
+                                               <div class=""left_part""><p>LET US HELP YOU FIND THE PERFECT MOVEMENT SOLUTION</p></div>
+                                               <div class=""rigth_part"">
+                                                   <div class=""owl-carousel owl-theme"">
+                                                       <div class=""wrapper_item"">
+                                                           <img src=""{{view url=images/cms/home/cabinethardware-icon.png}}"" alt=""img"">
+                                                           <p>WOODWORKING & CABINETRY</p>
+                                                       </div>
+                                                       <div class=""wrapper_item"">
+                                                           <img src=""{{view url=images/cms/home/ie-icon.png}}"" alt=""img"">
+                                                           <p>INDUSTRIAL & ELECTROMECHANICAL</p>
+                                                       </div>
+                                                       <div class=""wrapper_item"">
+                                                            <a href=""{{store url=""company/oem-direct""}}"">
+                                                                <img src=""{{view url=images/cms/home/oem-icon.png}}"" alt=""img"">
+                                                                <p>OEM DIRECT</p>
+                                                            </a>
+                                                       </div>
+                                                       <div class=""wrapper_item"">
+                                                           <img src=""{{view url=images/cms/home/ad-icon.png}}"" alt=""img"">
+                                                           <p>ARCHITECTURAL & DESIGN</p>
+                                                       </div>
+                                                       <div class=""wrapper_item"">
+                                                           <img src=""{{view url=images/cms/home/cabinethardware-icon.png}}"" alt=""img"">
+                                                           <p>WOODWORKING & CABINETRY</p>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+                                           <script>
+                                               require(['jquery', 'owlCarousel'], function ($) {
+                                                   $('.slider_second_home .owl-carousel').owlCarousel({
+                                                       nav: true,
+                                                       items: 4,
+                                                       dots: false,
+                                                       loop:true,
+                                                       responsive:{
+                                                               0:{
+                                                                   items:1,
+                                                                   nav:true
+                                                               },
+                                                               600:{
+                                                                   items:1,
+                                                                   nav:true
+                                                               },
+                                                               1000:{
+                                                                   items:4,
+                                                                   nav:true,
+                                                                   loop:true
+                                                               }
+                                                           }
+                                                   });
+                                               });
+                                           </script>"
+"Slider third home","slider_third_home","<div class=""slider_third_home"">
+           <div class=""owl-carousel owl-theme"">
+               <div class=""wrapper_item"">
+                   <img src=""{{view url=images/cms/home/2-layers.png}}"" alt=""img"">
+                   <p class=""left"">PREMIUM DRAWER SLIDES AND SLIDING SOLUTIONS MANUFACTURER</p>
+                   <div class=""right"">
+                       <p class=""title"">Heavy Duty</p>
+                       <p class=""text"">Bulity to withstand the toughest environments, our heavy-duty drawer slides have load
+                           ratings ranging from 170 lbs. - 1,323 lbs. </p>
+                       <a href=""{{store url=""#""}}"" class=""action primary"">LEARN MORE</a>
+                   </div>
+               </div>
+               <div class=""wrapper_item"">
+                   <img src=""{{view url=images/cms/home/2-layers.png}}"" alt=""img"">
+                   <p class=""left"">PREMIUM DRAWER SLIDES AND SLIDING SOLUTIONS MANUFACTURER</p>
+                   <div class=""right"">
+                       <p class=""title"">Heavy Duty</p>
+                       <p class=""text"">Bulity to withstand the toughest environments, our heavy-duty drawer slides have load
+                           ratings ranging from 170 lbs. - 1,323 lbs. </p>
+                       <a href=""{{store url=""#""}}"" class=""action primary"">LEARN MORE</a>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <script>
+           require(['jquery', 'owlCarousel'], function ($) {
+               $('.slider_third_home .owl-carousel').owlCarousel({
+                   nav: true,
+                   items: 1,
+                   dots: true,
+                   loop:true
+               });
+           });
+       </script>"
+"Block fourth home","block_fourth_home","<div class=""block_fourth_home"">
+           <div class=""item"">
+               <a href=""{{store url=""drawer-slides""}}"">
+                   <img src=""{{view url=images/cms/home/drawer-slides.png}}"" alt=""img"">
+                   <p class=""text"">Drawer Slides</p>
+               </a>
+           </div>
+           <div class=""item"">
+               <a href=""{{store url=""blog""}}"">
+                   <img src=""{{view url=images/cms/home/blog.png}}"" alt=""img"">
+                   <p class=""text"">Blog</p>
+               </a>
+           </div>
+           <div class=""item"">
+               <a href=""{{store url=""distributors""}}"">
+                   <img src=""{{view url=images/cms/home/ditributor.png}}"" alt=""img"">
+                   <p class=""text"">Find a Distributor</p>
+               </a>
+           </div>
+       </div>"
+"Slider selector home","slider_selector_home","{{block class=""Alpine\Theme\Block\SliderSelector"" name=""slider_selector"" template=""Magento_Theme::slider_selector_home.phtml""}}"
+"Collection products home","collection_products_home","{{block class=""Alpine\Catalog\Block\Product\ListProduct"" name=""other.product"" template=""Magento_Catalog::product/other_product.phtml""}}"

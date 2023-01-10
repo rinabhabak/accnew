@@ -1,0 +1,62 @@
+#Int webforms
+
+type Query {
+    getWebForms(
+    formId: Int @doc(description: "Form ID.")
+    ) : GetWebForms
+    @resolver(class: "Int\\WebformsGraphQl\\Model\\Resolver\\WebForms") @doc(description: "get Form by form ID")
+}
+
+type GetWebForms {
+    form_key :  String @doc(description: "Form Key")
+    description :  String @doc(description: "Form description")
+    webform_id :  Int @doc(description: "Form ID")
+    form_name :  String @doc(description: "Form Name")
+    form_code :  String @doc(description: "Form Code")
+    form_description :  String @doc(description: "Form description")
+    webformfields :  [Webformfields] @doc(description: "Form fields")
+    act_on_url: String @doc(description: "Acton URL for Send Data")
+}
+
+type Webformfields {
+	field_id :  String @doc(description: "Field ID")
+	field_label :  String @doc(description: "Field Label")
+	field_label_hide :  String @doc(description: "Field label hide")
+	field_type :  String @doc(description: "Field Type")
+    field_code :  String @doc(description: "Field Code")
+    field_position :  Int @doc(description: "Field Position")
+	field_hint :  String @doc(description: "Field Hint")
+	required :  String @doc(description: "Field required")
+	is_active :  String @doc(description: "Field is active")
+	multiselect :  String @doc(description: "Field multiselect")
+	position :  String @doc(description: "Field position")
+	field_width :  String @doc(description: "Field width")
+	validation_advice :  String @doc(description: "Field validation message")
+    field_hidden_value: String @doc(description: "Field Hidden Value")
+	select_options : [SelectOptions] @doc(description: "Field Hint")
+}
+
+type SelectOptions {
+	label :  String @doc(description: "Select field label")
+	value :  String @doc(description: "Select field label value")
+}
+
+type Mutation {
+    submitWebForms (input: WebFormInput!): WebFormOutput @resolver(class: "\\Int\\WebformsGraphQl\\Model\\Resolver\\SubmitWebForms") @doc(description:"Submit WebForms based on form ID")
+}
+
+input WebFormInput {
+    formId : Int! @doc(description: "WebForm ID")
+    formData : [WebFormData] @doc(description: "formData")
+}
+
+input WebFormData {
+	fieldId : String! @doc(description: "Field ID")
+	fieldValue : String! @doc(description: "Field Value")
+}
+
+type WebFormOutput {
+    message : String! @doc(description: "Success Message")
+    redirect_url : String @doc(description: "Redirect Url")
+    files_url : String @doc(description: "Files Url")
+}

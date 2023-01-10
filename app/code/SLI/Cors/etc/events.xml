@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- Mini Cart -->
+    <event name="controller_action_postdispatch_customer_section_load">
+        <observer name="CartObserver" instance="SLI\Cors\Observer\CorsObserver"/>
+    </event>
+    <event name="controller_action_postdispatch_checkout_sidebar_removeItem">
+        <observer name="CartObserver" instance="SLI\Cors\Observer\CorsObserver"/>
+    </event>
+    <event name="controller_action_postdispatch_checkout_sidebar_updateItemQty">
+        <observer name="CartObserver" instance="SLI\Cors\Observer\CorsObserver"/>
+    </event>
+
+    <!-- Cart -->
+    <event name="controller_action_postdispatch_checkout_cart_add">
+        <observer name="CartObserver" instance="SLI\Cors\Observer\CorsObserver"/>
+    </event>
+
+    <!-- Wishlist -->
+    <event name="controller_action_postdispatch_wishlist_index_add">
+        <observer name="CartObserver" instance="SLI\Cors\Observer\CorsObserver"/>
+    </event>
+    <event name="controller_action_postdispatch_wishlist_index_remove">
+        <observer name="CartObserver" instance="SLI\Cors\Observer\CorsObserver"/>
+    </event>
+
+    <!-- Compare -->
+    <event name="controller_action_postdispatch_catalog_product_compare_add">
+        <observer name="CartObserver" instance="SLI\Cors\Observer\CorsObserver"/>
+    </event>
+    <event name="controller_action_postdispatch_catalog_product_compare_remove">
+        <observer name="CartObserver" instance="SLI\Cors\Observer\CorsObserver"/>
+    </event>
+</config>

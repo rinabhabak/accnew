@@ -1,0 +1,34 @@
+{
+  "name": "addthis/addthis-floating-share-bar",
+  "description": "Magento 2 extension for AddThis Floating Share Bar",
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0"
+  },
+  "type": "magento2-module",
+  "version": "1.0.1",
+  "license": "AddThis License",
+  "keywords": [
+      "magento 2",
+      "addthis",
+      "share",
+      "social share",
+      "floating bar",
+      "magento 2 social share"
+  ],
+  "authors": [
+    {
+      "name": "AddThis",
+      "email": "admin@addthis.com",
+      "homepage": "https://www.addthis.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "AddThis\\FloatingShareBar\\": ""
+    }
+  }
+}

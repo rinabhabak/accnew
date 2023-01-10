@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Default values for FTP credentials and cron schedule setting
+ *
+ * @category    Alpine
+ * @package     Alpine_Cogs
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ * @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <alpine_cogs>
+            <credentials>
+                <ftp_export_hostname>ftp.accuride.com</ftp_export_hostname>
+                <ftp_export_port>21</ftp_export_port>
+                <ftp_export_username>magento</ftp_export_username>
+                <ftp_export_password></ftp_export_password>
+                <ftp_export_path>var/export/</ftp_export_path>
+                <ftp_export_path_processed>var/export/processed/</ftp_export_path_processed>
+            </credentials>
+            <ftp_cron>
+                <ftp_cron_setting>* * * * *</ftp_cron_setting>
+            </ftp_cron>
+        </alpine_cogs>
+    </default>
+</config>

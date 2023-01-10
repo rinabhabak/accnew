@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Contact</title>
+    </head>
+    <body>
+        <referenceBlock name="contactForm" remove="true" />
+
+        <referenceContainer name="content">
+            <block class="VladimirPopov\WebForms\Block\Form" name="form-wrapper"
+                   template="Magento_Contact::form-wrapper.phtml">
+
+                <block class="VladimirPopov\WebForms\Block\Form" name="form.general_contact"
+                       template="Magento_Contact::form/default.phtml" group="contact_forms">
+                    <arguments>
+                        <argument xsi:type="string" name="webform_code">general_contact</argument>
+                        <argument name="title" translate="true" xsi:type="string">General Contact</argument>
+                    </arguments>
+                </block>
+
+                <block class="VladimirPopov\WebForms\Block\Form" name="form.technical_support"
+                       template="Magento_Contact::form/default.phtml" group="contact_forms">
+                    <arguments>
+                        <argument xsi:type="string" name="webform_code">technical_support</argument>
+                        <argument name="title" translate="true" xsi:type="string">Technical support</argument>
+                    </arguments>
+                </block>
+                <block class="VladimirPopov\WebForms\Block\Form" name="form.architectural_support"
+                       template="Magento_Contact::form/default.phtml" group="contact_forms">
+                    <arguments>
+                        <argument xsi:type="string" name="webform_code">architectural_support</argument>
+                        <argument name="title" translate="true" xsi:type="string">Architectural Support</argument>
+                    </arguments>
+                </block>
+
+                <block class="VladimirPopov\WebForms\Block\Form" name="form.eac_support"
+                       template="Magento_Contact::form/default.phtml" group="contact_forms">
+                    <arguments>
+                        <argument xsi:type="string" name="webform_code">eac_support</argument>
+                        <argument name="title" translate="true" xsi:type="string">Integrated Access Control Support</argument>
+                    </arguments>
+                </block>
+
+                <block class="VladimirPopov\WebForms\Block\Form" name="form.oem_direct"
+                       template="Magento_Contact::form/default.phtml" group="contact_forms">
+                    <arguments>
+                        <argument xsi:type="string" name="webform_code">oem_direct</argument>
+                        <argument name="title" translate="true" xsi:type="string">OEM Direct</argument>
+                    </arguments>
+                </block>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Accuride
+ *
+ * @category    Alpine
+ * @package     Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ * @author      Aleksandr Mikhailov <aleksandr.mikhailov@alpineinc.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <move element="page.main.title" destination="wrapper.description" before="-"/>
+        <move element="category.view.container" destination="wrapper.description" after="-"/>
+        <move element="category.image" destination="category.view.container" before="-"/>
+        <move element="category.description" destination="category.view.container" after="category.image"/>
+        <block class="Magento\Catalog\Block\Category\View" name="category.cms_block_list" template="Int_CategoryAttribute::category/category_sidebar.phtml" />
+        <move element="category.cms_block_list" destination="sidebar.additional" after="catalog.sidebar.compare"/>
+        <referenceBlock name="multiple-wishlist_sidebar" remove="true"/>
+
+        <referenceContainer name="main.content">
+            <container name="wrapper.description" htmlTag="div" htmlClass="wrapper_description" before="-"/>
+        </referenceContainer>
+        <referenceBlock name="page.main.title">
+            <container name="toggle.button" htmlTag="ul" htmlClass="toggle_button">
+                <block class="Magento\Framework\View\Element\Html\Link" name="toggle">
+                    <arguments>
+                        <argument name="class" xsi:type="string">toggle_btn</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceBlock>
+    </body>
+</page>

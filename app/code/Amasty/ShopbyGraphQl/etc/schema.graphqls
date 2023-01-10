@@ -1,0 +1,69 @@
+type Aggregation {
+    amshopby_filter_data: AmShopbyFilterData @resolver(class: "\\Amasty\\ShopbyGraphQl\\Model\\Resolver\\FilterData")
+}
+
+type AmShopbyFilterData {
+    index_mode: Int @doc(description: "Allow Google to INDEX the Category Page with the Filter Applied")
+    follow_mode: Int @doc(description: "Allow Google to FOLLOW Links on the Category Page with the Filter Applied")
+    rel_nofollow: Int @doc(description: "Add rel='nofollow' to Filter Links")
+    filter_code: String @doc(description: "Filter Code")
+    is_multiselect: Boolean @doc(description: "Allow Multiselect")
+    display_mode: Int @doc(description: "Display Mode")
+    is_seo_significant: Boolean @doc(description: "Generate SEO URL")
+    slider_step: Float @doc(description: "Slider Step")
+    units_label_use_currency_symbol: Int @doc(description: "Measure Units")
+    units_label: String @doc(description: "Unit Label")
+    is_expanded: Boolean @doc(description: "Expand")
+    sort_options_by: Int @doc(description: "Sort Options By")
+    show_product_quantities: Int @doc(description: "Show Product Quantities")
+    is_show_search_box: Boolean @doc(description: "Show Search Box")
+    number_unfolded_options: Int @doc(description: "Number of Unfolded Options")
+    tooltip: String @doc(description: "Tooltip")
+    is_use_and_logic: Boolean @doc(description: "Multiple Values Logic")
+    add_from_to_widget: Boolean @doc(description: "Add From-To Widget")
+    visible_in_categories: String @doc(description: "Visible in Categories")
+    categories_filter: String @doc(description: "Categories Filter")
+    attributes_filter: String @doc(description: "Show Only when Any Option of Attributes is Selected")
+    attributes_options_filter: String @doc(description: "Show Only if the Following Option is Selected")
+    block_position: Int @doc(description: "Show in the Block")
+    slider_min: Float @doc(description: "Minimum Slider Value")
+    slider_max: Float @doc(description: "Maximum Slider Value")
+    show_icons_on_product: Boolean @doc(description: "Show Icon on the Product Page")
+    category_tree_display_mode: Int @doc(description: "Category Tree Display Mode")
+    position_label: Int @doc(description: "Position Label")
+    limit_options_show_search_box: Int @doc(description: "Show the searchbox if the number of options more than")
+    category_tree_depth: Int @doc(description: "Category Tree Depth")
+    subcategories_view: Int @doc(description: "Subcategories View")
+    subcategories_expand: Int @doc(description: "Expand Subcategories")
+    render_categories_level: Int @doc(description: "Render Categories Level")
+    render_all_categories_tree: Boolean @doc(description: "Render All Categories Tree")
+}
+
+type AggregationOption {
+    filter_code: String @doc(description: "Filter Code")
+    url_alias: String @doc(description: "URL Alias")
+    is_featured: Boolean @doc(description: "Is Featured or Show in Brand Slider")
+    meta_title: String @doc(description: "Meta Title")
+    meta_description: String @doc(description: "Meta Description")
+    meta_keywords: String @doc(description: "Meta Keywords")
+    title: String @doc(description: "Option Title")
+    description: String @doc(description: "Option Description")
+    image: String @doc(description: "Option Image")
+    top_cms_block_id: Int @doc(description: "Top CMS Block")
+    bottom_cms_block_id: Int @doc(description: "Bottom CMS Block")
+    slider_position: Int @doc(description: "Position in Slider")
+    slider_image: String @doc(description: "Small Image")
+    short_description: String @doc(description: "Short Description")
+    small_image_alt: String @doc(description: "Small Image Alt")
+}
+
+input ProductAttributeFilterInput {
+    rating_summary: AmShopbyCustomFilterTypeInput @doc(description: "Rating Filter")
+    stock_status: AmShopbyCustomFilterTypeInput @doc(description: "Stock Filter")
+    am_is_new: AmShopbyCustomFilterTypeInput @doc(description: "New Filter")
+    am_on_sale: AmShopbyCustomFilterTypeInput @doc(description: "Sale Filter")
+}
+
+input AmShopbyCustomFilterTypeInput {
+    eq: Int @doc(description: "Rating Value")
+}

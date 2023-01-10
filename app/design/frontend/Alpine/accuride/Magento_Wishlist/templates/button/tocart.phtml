@@ -1,0 +1,20 @@
+<?php
+/**
+ * Magento_Wishlist
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+
+/** @var \Magento\Wishlist\Block\Customer\Wishlist\Button $block */
+
+$helper = $this->helper('Alpine\ProductForSales\Helper\Data');
+$wishlist = $block->getWishlist();
+?>
+<?php if ($wishlist->getItemsCount() && $wishlist->isSalable() && $helper->isForSales($wishlist)): ?>
+    <button type="button" data-role="all-tocart" title="<?= $block->escapeHtmlAttr(__('Add All to Cart')) ?>" class="action tocart">
+        <span><?= $block->escapeHtml(__('Add All to Cart')) ?></span>
+    </button>
+<?php endif;?>

@@ -1,0 +1,13 @@
+#Int Home Page Banner GraphQl Schema
+
+type Query {
+    getClientIp : clientIp
+    @resolver(class: "Int\\CustomerIp\\Model\\Resolver\\ClientIp") @doc(description: "Return Client IP address")
+}
+
+type clientIp {
+    ip: String @doc(description: "Client IP address")
+    code: String @doc(description: "Client IP country code")
+    name: String @doc(description: "Client IP country name")
+    defaultLocale: String @doc(description: "Store default locale")
+}

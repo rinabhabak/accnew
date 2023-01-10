@@ -1,0 +1,86 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_ProductStockAlert
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2017 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Bss\ProductStockAlert\Block\Email\Stock */
+?>
+<?php if ($_productDataArr = $block->getProductData()): ?>
+    <p><?= /* @escapeNotVerified */  __('This is the back in stock notification you requested. Click the product to return to the page:') ?></p>
+    <table>
+        <?php foreach ($_productDataArr as $_productData): ?>
+            <?php $_product = $block->getProductFromData($_productData); ?>
+            <?php $_parentProduct = $block->getProductFromData($_productData, false); ?>
+            <tr>
+                <td class="col photo">
+
+                    <?php if ($block->hasProductUrl($_product)):?>
+                    <a href="<?= /* @escapeNotVerified */ $block->getProductUrl($_parentProduct) ?>"
+                       title="<?= $block->escapeHtml($block->getProductName()) ?>"
+                       tabindex="-1"
+                       class="product-item-photo">
+                        <?php else:?>
+                        <span class="product-item-photo">
+            <?php endif;?>
+            <?= $block->getImage($_parentProduct, 'cart_page_product_thumbnail')->toHtml() ?>
+            <?php if ($block->hasProductUrl($_product)):?>
+                    </a>
+                <?php else: ?>
+                    </span>
+                <?php endif; ?>
+                </td>
+                <td class="col item" style="vertical-align: middle;padding-left: 12px; font-family: sans-serif;">
+                    <strong class="product sku" style="color: #00529c; font-family: sans-serif;"><?= $block->escapeHtml($_product->getSku()) ?></strong>
+                    <p class="product name" style="margin-bottom: 2px;">
+                        <a style="color: #00529c; font-family: sans-serif;" href="<?= /* @escapeNotVerified */  $block->getProductUrl($_parentProduct) ?>"><?= $block->escapeHtml($_product->getName()) ?></a>
+                    </p>
+                    <?php if($_product->getLength()): ?>
+                    <p style="margin-bottom: 2px; font-family: sans-serif;">
+                        <strong><?= __('Length:') ?></strong>
+                        <?= $_product->getResource()->getAttribute('length')->getFrontend()->getValue($_product) ?>
+                    </p>
+                    <?php endif; ?>
+
+                    <?php if($_product->getHanded()): ?>
+                    <p style="font-family: sans-serif;">
+                        <strong><?= __('Handed:') ?></strong>
+                        <?= $_product->getResource()->getAttribute('handed')->getFrontend()->getValue($_product) ?>
+                    </p>
+                    <?php endif; ?>
+
+                    <?php if ($shortDescription = $block->getFilteredContent($_product->getShortDescription())): ?>
+                        <p><small><?= /* @escapeNotVerified */  $shortDescription ?></small></p>
+                    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </table>
+<?php endif; ?>
+<br><br>
+
+<p style="text-align: center; line-height: 1; font-size: 13px">
+
+</p>
+<p style="text-align: center; line-height: 1; font-size: 13px">
+    Having trouble checking out? We are here to help. 
+</p>
+<p style="text-align: center; line-height: 1; font-size: 13px">
+  <span>
+    For any questions reply to this email (websupport@accuride.com) or call us (866) 893-4499.
+  </span>
+</p>

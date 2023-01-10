@@ -1,0 +1,22 @@
+{
+    "name": "int/module-productfiltersgraphql",
+    "description": "",
+    "type": "magento2-module",
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Indusnet",
+            "email": "ankit.ahilwal@indusnet.co.in"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Int\\ProductFiltersGraphQL\\": ""
+        }
+    }
+}

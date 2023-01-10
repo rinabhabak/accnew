@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_CustomerCompany
+ *
+ * @category    Alpine
+ * @package     Alpine_CustomerCompany
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="company_account_create">
+            <block class="Alpine\CustomerCompany\Block\Form" name="customer_industry_attributes" template="Alpine_CustomerCompany::company/account/industry/attributes.phtml">
+                <action method="setFormCode">
+                    <argument name="code" xsi:type="string">customer_account_create</argument>
+                </action>
+                <action method="setEntityModelClass">
+                    <argument name="code" xsi:type="string">Magento\Customer\Model\Customer</argument>
+                </action>
+            </block>
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Alpine_CustomerCompany::company/account/create.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

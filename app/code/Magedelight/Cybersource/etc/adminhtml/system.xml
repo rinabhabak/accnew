@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="magedelight_cybersource" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cybersource By MageDelight</label>
+
+                <field id="active" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Title</label>
+                </field>
+
+                <field id="merchantid" translate="label" type="obscure" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Merchant ID</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+
+                <field id="trans_key" translate="label" type="obscure" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Transaction Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+
+                <field id="test" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Test Mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="payment_action" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment Action</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\PaymentAction</source_model>
+                </field>
+
+                <field id="soap_gateway_url" translate="label" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Gateway Url</label>
+                </field>
+
+
+                <field id="test_soap_gateway_url" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Test Gateway Url</label>
+                </field>
+
+
+                <field id="debug" translate="label" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Debug</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="cctypes" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Credit Card Types</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\CcType</source_model>
+                </field>
+
+                <field id="useccv" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Credit Card Verification</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="save_optional" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Save Optional</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="order_status" translate="label" type="select" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>New Order Status</label>
+                    <source_model>Magento\Sales\Model\Config\Source\Order\Status\Processing</source_model>
+                </field>
+
+
+                <field id="allowspecific" translate="label" type="allowspecific" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Applicable Countries</label>
+                    <source_model>Magento\Payment\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Payment from Specific Countries</label>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+
+                <field id="min_order_total" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0">
+                     <validate>validate-number</validate>
+                    <label>Minimum Order Total</label>
+                </field>
+
+
+                <field id="max_order_total" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="0">
+                     <validate>validate-number</validate>
+                    <label>Maximum Order Total</label>
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                </field>
+
+                 <field id="merchantdefineddata" translate="label" type="select" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Merchant Define Data</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If Yes, additional field will be display in transaction details of merchant panel</comment>
+                </field>
+
+                <field id="merchantdefine_data1" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Additional Field 1</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\Additionalfield</source_model>
+                    <comment>Note: This field only display if its contain values</comment>
+                    <depends><field id="merchantdefineddata">1</field></depends>
+                </field>
+
+                <field id="merchantdefine_data2" translate="label" type="select" sortOrder="21" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Additional Field 2</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\Additionalfield</source_model>
+                    <comment>Note: This field only display if its contain values</comment>
+                    <depends><field id="merchantdefineddata">1</field></depends>
+                </field>
+
+                <field id="merchantdefine_data3" translate="label" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Additional Field 3</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\Additionalfield</source_model>
+                    <comment>Note: This field only display if its contain values</comment>
+                    <depends><field id="merchantdefineddata">1</field></depends>
+                </field>
+
+                <field id="merchantdefine_data4" translate="label" type="select" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Additional Field 4</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\Additionalfield</source_model>
+                    <comment>Note: This field only display if its contain values</comment>
+                    <depends><field id="merchantdefineddata">1</field></depends>
+                </field>
+
+                <field id="merchantdefine_data5" translate="label" type="select" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Additional Field 5</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\Additionalfield</source_model>
+                    <comment>Note: This field only display if its contain values</comment>
+                    <depends><field id="merchantdefineddata">1</field></depends>
+                </field>
+
+                <field id="merchantdefine_data6" translate="label" type="select" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Additional Field 6</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\Additionalfield</source_model>
+                    <comment>Note: This field only display if its contain values</comment>
+                    <depends><field id="merchantdefineddata">1</field></depends>
+                </field>
+
+                <field id="merchantdefine_data7" translate="label" type="select" sortOrder="26" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Additional Field 7</label>
+                    <source_model>Magedelight\Cybersource\Model\Source\Additionalfield</source_model>
+                    <comment>Note: This field only display if its contain values</comment>
+                    <depends><field id="merchantdefineddata">1</field></depends>
+                </field>
+                <field id="delete_cards" translate="label" type="Magedelight\Cybersource\Block\Adminhtml\Deletecards\Index" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Delete Cards</label>
+                    <comment>WARNING ! This action will delete all the records of saved cards associated to current Merchant Id</comment>
+                </field>
+            </group>
+        </section>
+        <tab id="magedelight" translate="label" sortOrder="300">
+            <label>Magedelight</label>
+        </tab>
+        <section id="magedelight_cybersource" translate="label" type="text" sortOrder="1" showInStore="1" showInDefault="1" showInWebsite="1">
+            <class>separator-top</class>
+            <label>Cybersource Settings</label>
+            <tab>magedelight</tab>
+            <resource>Magedelight_Cybersource::config_cybersource</resource>
+           <group id="general" translate="label" sortOrder="1" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+            </group>
+        </section>
+    </system>
+</config>

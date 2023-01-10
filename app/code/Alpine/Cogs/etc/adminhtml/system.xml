@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * FTP Export credentials in the system configuration
+ * Cron settings
+ *
+ * @category    Alpine
+ * @package     Alpine_Cogs
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ * @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="alpine_cogs" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>FTP Export</label>
+            <tab>alpine</tab>
+            <resource>Alpine_Cogs::ftp_export</resource>
+            <group id="credentials" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>FTP Credentials</label>
+                <field id="ftp_export_hostname" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>FTP server Hostname</label>
+                    <comment>Host name for FTP server</comment>
+                </field>
+                <field id="ftp_export_port" translate="label" type="text" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>FTP server Port</label>
+                    <comment>Port for FTP server</comment>
+                </field>
+                <field id="ftp_export_username" translate="label" type="text" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>FTP server Username</label>
+                    <comment>Username for FTP server</comment>
+                </field>
+                <field id="ftp_export_password" translate="label" type="password" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>FTP server Password</label>
+                    <comment>Password for FTP server</comment>
+                </field>
+                <field id="ftp_export_path" translate="label comment" type="text" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Magento server export path</label>
+                    <comment>Path as source of files. Without starting slashes. Sample: var/export/</comment>
+                </field>
+                <field id="ftp_export_path_processed" translate="label comment" type="text" sortOrder="60"
+                       showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Magento server processed path</label>
+                    <comment>Path for processed files. Without starting slashes. Sample: var/export/processed/</comment>
+                </field>
+            </group>
+            <group id="ftp_cron" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Cron settings</label>
+                <field id="ftp_cron_setting" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Cron Schedule</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

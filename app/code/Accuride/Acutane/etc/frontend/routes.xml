@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category  Accuride
+ * @package   Accuride_Acutane
+ * @copyright Copyright (c) Sitewards GmbH (http://www.sitewards.com)
+ * @contact   mail@sitewards.com
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
+    <router id="standard">
+        <route id="acutane_api" frontName="api">
+            <module name="Auctane_Api" />
+        </route>
+    </router>
+</config>

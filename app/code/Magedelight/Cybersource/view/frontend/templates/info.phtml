@@ -1,0 +1,72 @@
+<?php
+    /**
+    * Magedelight
+    * Copyright (C) 2015 Magedelight <info@magedelight.com>
+    *
+    * NOTICE OF LICENSE
+    *
+    * This program is free software: you can redistribute it and/or modify
+    * it under the terms of the GNU General Public License as published by
+    * the Free Software Foundation, either version 3 of the License, or
+    * (at your option) any later version.
+    *
+    * This program is distributed in the hope that it will be useful,
+    * but WITHOUT ANY WARRANTY; without even the implied warranty of
+    * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    * GNU General Public License for more details.
+    *
+    * You should have received a copy of the GNU General Public License
+    * along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+    *
+    * @category Magedelight
+    * @package Magedelight_Cybersource
+    * @copyright Copyright (c) 2015 Mage Delight (http://www.magedelight.com/)
+    * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+    * @author Magedelight <info@magedelight.com>
+    */
+?>
+<?php
+
+ // $cards = $block->getSpecificInformation();
+
+$cards = $block->getCards();
+$customHelper = $this->helper('Magedelight\Cybersource\Helper\Data');
+$cybersourceIsEnabled = $customHelper->getConfig('payment/magedelight_cybersource/active');
+if($cybersourceIsEnabled == 1) {
+// echo "<pre>";
+// print_r($cards);
+// die();
+//   die();
+   ?>
+<div class="cards-list">
+    
+        <div class="bold"><?php echo $block->escapeHtml($block->getMethod()->getTitle()); ?></div>
+     
+</div>
+<?php
+
+    // $cards = $block->getSpecificInformation();
+   $showCount = count($cards) > 1;
+
+?>
+<?php foreach ($cards as $key => $card): ?>
+
+    <?php if ($showCount): ?>
+        <span><?php  echo sprintf(__('Credit Card %s'), $key + 1); ?></span>
+        <?php endif;?>
+
+    <table class="info-table<?php if ($showCount):?> offset<?php endif;?>">
+        <tbody>
+            <?php foreach ($card as $_label => $_value):?>
+                <tr>
+                    <td><?php echo $this->escapeHtml($_label)?>:</td>
+                    <td><?php echo nl2br(implode($this->getValueAsArray($_value, true), "\n"))?></td>
+                </tr>
+                <?php endforeach; ?>
+        </tbody>
+    </table>
+
+    <?php endforeach; 
+}
+ 
+ 

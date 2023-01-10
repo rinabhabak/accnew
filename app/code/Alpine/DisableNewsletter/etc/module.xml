@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_DisableNewsletter
+ *
+ * @category    Alpine
+ * @package     Alpine_DisableNewsletter
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Aleksandr Mikhailov (aleksandr.mikhailov@alpineinc.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_DisableNewsletter" setup_version="0.1.0">
+        <sequence>
+            <module name="Magento_Newsletter" />
+        </sequence>
+    </module>
+</config>

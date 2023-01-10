@@ -1,0 +1,46 @@
+<?php
+/**
+ * Alpine_Catalog
+ *
+ * @category     Alpine
+ * @package      Alpine_Catalog
+ * @copyright    Copyright (C) 2018 Alpine Consulting, Inc
+ * @author       Iurii Ziukov <iurii.ziukov@alpineinc.com>
+ */
+?>
+<?php
+// @codingStandardsIgnoreFile
+
+/** @var $block Alpine\Catalog\Pricing\Render\Grouped\FinalPriceBox */
+
+?>
+<?php if ($block->showRangePrice()): ?>
+    <div class="price-range">
+        <span class="price-range-from">
+            <?php /* @escapeNotVerified */ echo $block->renderAmount($block->getMinAmount(), [
+                'display_label'     => __('From'),
+                'price_id'          => $block->getPriceId('from-'),
+                'price_type'        => 'minPrice',
+                'include_container' => true
+            ]); ?>
+        </span>
+        <span class="price-range-delimeter">-</span>
+        <span class="price-range-to">
+            <?php /* @escapeNotVerified */ echo $block->renderAmount($block->getMaxAmount(), [
+                'display_label'     => __('To'),
+                'price_id'          => $block->getPriceId('to-'),
+                'price_type'        => 'maxPrice',
+                'include_container' => true
+            ]); ?>
+        </span>
+    </div>
+<?php elseif ($block->showPrice()): ?>
+    <div class="price-final">
+        <span class="price-no-range">
+            <?php /* @escapeNotVerified */ echo $block->renderAmount($block->getMinAmount(), [
+                'price_id'          => $block->getPriceId('product-price-'),
+                'include_container' => true
+            ]); ?>
+        </span>
+    </div>
+<?php endif; ?>

@@ -1,0 +1,123 @@
+<?php
+/**
+ * Accuride_Catalog
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+ * @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+ *
+ * @var $block Magento\Review\Block\Product\View\ListView
+ */
+
+$_items = $block->getReviewsCollection()->getItems();
+$format = $block->getDateFormat() ?: \IntlDateFormatter::MEDIUM;
+$helper = $this->helper('Alpine\Reviews\Helper\Data');
+$limit  = $helper->getLimit();
+?>
+<?php if (count($_items)):?>
+    <div class="block review-list" id="customer-reviews">
+        <div class="block-content">
+            <div class="toolbar review-toolbar">
+                <?= $block->getChildHtml('toolbar') ?>
+            </div>
+            <ol class="items review-items">
+                <?php foreach ($_items as $_review):?>
+                    <li class="item review-item" itemscope itemprop="review" itemtype="http://schema.org/Review">
+                        <?php if (count($_review->getRatingVotes())): ?>
+                            <div class="review-ratings">
+                                <?php foreach ($_review->getRatingVotes() as $_vote): ?>
+                                    <div class="rating-summary item" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+                                        <span class="label rating-label"><span><?= $block->escapeHtml($_vote->getRatingCode()) ?></span></span>
+                                        <div class="rating-result" title="<?= $block->escapeHtmlAttr($_vote->getPercent()) ?>%">
+                                            <meta itemprop="worstRating" content = "1"/>
+                                            <meta itemprop="bestRating" content = "100"/>
+                                            <span style="width:<?= $block->escapeHtmlAttr($_vote->getPercent()) ?>%">
+                                                <span itemprop="ratingValue"><?= $block->escapeHtml($_vote->getPercent()) ?>%</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
+                        <div class="review-title" itemprop="name"><?= $block->escapeHtml($_review->getTitle()) ?></div>
+                        <div class="review-details">
+                            <p class="review-author">
+                                <span class="review-details-label"><?= $block->escapeHtml(__('Posted by')) ?></span>
+                                <strong class="review-details-value" itemprop="author"><?= $block->escapeHtml($_review->getNickname()) ?></strong>
+                            </p>
+                            <p class="review-date">
+                                <span class="review-details"><?= $block->escapeHtml(__('on')) ?></span>
+                                <time class="review-details-value" itemprop="datePublished" datetime="<?= $block->escapeHtmlAttr($block->formatDate($_review->getCreatedAt(), $format)) ?>"><?= $block->escapeHtml($block->formatDate($_review->getCreatedAt(), $format)) ?></time>
+                            </p>
+                        </div>
+                        <div class="review-content" itemprop="description">
+                            <?= nl2br($block->escapeHtml($_review->getDetail())) ?>
+                        </div>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
+            <div class="showMore">
+                <button class="action primary" id="showMoreReviews">
+                    <?php echo __('Show More'); ?>
+                </button>
+                <button class="action primary" id="showLessReviews">
+                    <?php echo __('Show Less'); ?>
+                </button>
+            </div>
+            <div class="toolbar review-toolbar">
+                <?= $block->getChildHtml('toolbar') ?>
+            </div>
+            <script>
+                require([
+                    'jquery'
+                ], function ($) {
+                    $(function () {
+                        var reviewsCount = 0;
+                        var limit = <?php echo $limit; ?>;
+
+                        $('#showMoreReviews').on( "click", showMore);
+                        $('#showLessReviews').on( "click", showLess);
+
+                        function showMore () {
+                            for (var i = 0; i < limit; i++) {
+                                $('.review-item').eq(reviewsCount).addClass("visible");
+                                reviewsCount++;
+                            }
+
+                            checkButtonVisible ()
+                        }
+
+                        function showLess () {
+                            for (var i = 0; i < limit; i++) {
+                                reviewsCount--;
+                                $('.review-item').eq(reviewsCount).removeClass("visible");
+                            }
+
+                            checkButtonVisible ()
+                        }
+
+                        function checkButtonVisible () {
+
+                            if (reviewsCount >= <?php echo count($_items); ?>) {
+                                $('#showMoreReviews').hide();
+                            } else {
+                                $('#showMoreReviews').show();
+                            }
+
+                            if (reviewsCount <= limit) {
+                                $('#showLessReviews').hide();
+                            } else {
+                                $('#showLessReviews').show();
+                            }
+                        }
+
+                        showMore ();
+                    });
+                });
+            </script>
+        </div>
+    </div>
+<?php endif;?>

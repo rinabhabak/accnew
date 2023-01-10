@@ -1,0 +1,21 @@
+type Query {
+    productFilters(
+    	categoryId: Int @doc(description: "Query by Category ID.")
+    )  : ProductFilters @resolver( class: "Int\\ProductFiltersGraphQL\\Model\\Resolver\\ProductFilters")  
+}
+
+type ProductFilters {
+    availableFilters: [availableFilters]
+}
+
+type availableFilters {
+	attributeCode: String  @doc(description: "Available Filter Attribute Code")
+	attributeName: String  @doc(description: "Available Filter Attribute Name")
+	filters: [filters]
+}
+
+type filters {
+	attributeDisplayText: String  @doc(description: "Available Filter Attribute Display Text")
+	attributeValue: String  @doc(description: "Available Filter Attribute Value")
+	attributeValueCount: Int  @doc(description: "Available Filter Attribute Value Count")
+}

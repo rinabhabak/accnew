@@ -1,0 +1,64 @@
+<?php
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ *
+ * @var $block \Atwix\Richsnippets\Block\Catalog\CategoryVisible
+ *
+ * @see \Atwix\Richsnippets\Block\Catalog\CategoryVisible::makeCategorySnippets() for assing $categorySnippets
+ * @var $categorySnippets array
+ */
+?>
+<div class="block snippets-sidebar" itemscope itemtype="http://schema.org/Product">
+	<div class="block-title">
+		<strong><span itemprop="name"><?php echo $categorySnippets['name']; ?></span></strong>
+	</div>
+	<div class="block-content">
+		<?php if($categorySnippets['thumbnail']) : ?>
+			<div class="thumb">
+				<img itemprop="image" src="<?php echo $categorySnippets['thumbnail']; ?>" width="100%">
+			</div>
+		<?php endif; ?>
+		<?php if($categorySnippets['description']) : ?>
+			<span itemprop="description"><?php echo $categorySnippets['description']; ?></span>
+		<?php endif; ?>
+		<?php if($categorySnippets['rating']['count'] && ($categorySnippets['rating']['percentage'] > 0)) : ?>
+			<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+				<div class="rating-box">
+					<div class="rating" style="width: <?php echo $categorySnippets['rating']['percentage']; ?>%"></div>
+				</div>
+				<i><?php echo __('Rating: %1 based on %2 review(s)',
+						'<span itemprop="ratingValue">' . $categorySnippets['rating']['avg'] . '</span>'
+						.'/<span itemprop="bestRating">' . $categorySnippets['rating']['best'] .'</span>',
+						'<span itemprop="' .  $categorySnippets['rating']['type'] . '">' . $categorySnippets['rating']['count'] . '</span>'
+						); ?>
+				</i>
+			</div>
+		<?php endif; ?>
+		<div class="snippets-fields">
+				<span itemprop="offers" itemscope itemtype="http://schema.org/AggregateOffer">
+					<?php if($categorySnippets['offers']['price_high'] && ($categorySnippets['offers']['clean_low'] != $categorySnippets['offers']['clean_high'])) : ?>
+						<?php echo __('Prices from %1 to %2',
+							'<span itemprop="lowprice" content="' . $categorySnippets['offers']['clean_low'] . '">' . $categorySnippets['offers']['clean_low'] .  '</span>',
+							'<span itemprop="highprice" content="' . $categorySnippets['offers']['clean_high'] . '">' . $categorySnippets['offers']['clean_high'] .  '</span>'
+						); ?>
+					<?php else : ?>
+						<?php if($categorySnippets['offers']['clean_low']) : ?>
+							<?php echo __("Starting at:"); ?>
+								<span itemprop="lowprice" content="<?php echo $categorySnippets['offers']['clean_low']; ?>"><?php echo $categorySnippets['offers']['price_low']; ?></span>
+						<?php endif; ?>
+					<?php endif; ?>
+					<meta itemprop="priceCurrency" content="<?php echo $categorySnippets['offers']['currency']; ?>" />
+					<?php if(isset($categorySnippets['availability'])) : ?>
+						<link itemprop="availability" href="<?php echo $categorySnippets['availability']; ?>">
+					<?php endif; ?>
+				</span>
+			<?php if (isset($categorySnippets['extra'])) : ?>
+				<?php foreach($categorySnippets['extra'] as $field) : ?>
+					<li><?php echo $field['label'] . ': ' . $field['value'];?></li>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>

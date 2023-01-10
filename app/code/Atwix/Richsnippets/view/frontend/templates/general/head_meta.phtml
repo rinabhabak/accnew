@@ -1,0 +1,22 @@
+<?php
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ *
+ * @var $block \Magento\Framework\View\Element\Template
+ *
+ * @see \Atwix\Richsnippets\Block\Catalog\CategoryMeta::makeMetaTags() for assing $metaTags
+ * OR
+ * @see \Atwix\Richsnippets\Block\Catalog\ProductMeta::makeMetaTags() for assing $metaTags
+ * OR
+ * @see \Atwix\Richsnippets\Block\Page\CmsMeta::makeMetaTags() for assing $metaTags
+ *
+ * @var $metaTags array
+ */
+?>
+<?php if (is_array($metaTags)) : ?>
+    <?php foreach ($metaTags as $tagName => $tagValue) : ?>
+        <meta property="<?php echo $tagName; ?>" content="<?php echo $tagValue; ?>" />
+    <?php endforeach; ?>
+<?php endif; ?>

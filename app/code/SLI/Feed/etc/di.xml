@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright (c) 2015 S.L.I. Systems, Inc. (www.sli-systems.com) - All Rights Reserved
+ * This file is part of Learning Search Connect.
+ * Learning Search Connect is distributed under a limited and restricted
+ * license – please visit www.sli-systems.com/LSC for full license details.
+ *
+ * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+ * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+ * PARTICULAR PURPOSE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO
+ * EVENT WILL SLI BE LIABLE TO YOU OR ANY OTHER PARTY FOR ANY GENERAL, DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL LOSS OR DAMAGES OF ANY
+ * CHARACTER ARISING OUT OF THE USE OF THE CODE AND/OR THE LICENSE INCLUDING
+ * BUT NOT LIMITED TO PERSONAL INJURY, LOSS OF DATA, LOSS OF PROFITS, LOSS OF
+ * ASSIGNMENTS, DATA OR OUTPUT FROM THE SERVICE BEING RENDERED INACCURATE,
+ * FAILURE OF CODE, SERVER DOWN TIME, DAMAGES FOR LOSS OF GOODWILL, BUSINESS
+ * INTERRUPTION, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER DAMAGES
+ * OR LOSSES OF WHATEVER NATURE, EVEN IF SLI HAS BEEN INFORMED OF THE
+ * POSSIBILITY OF SUCH DAMAGES.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <preference for="SLI\Feed\Logging\LoggerFactoryInterface" type="SLI\Feed\Logging\LoggerFactory" />
+
+    <type name="SLI\Feed\Logging\LoggerFactory">
+        <arguments>
+            <argument name="logfileTemplates" xsi:type="array">
+                <!-- [prefix]-[storeId] -->
+                <item name="store" xsi:type="string">sli_lsc%s-%s.log</item>
+                <!-- general -->
+                <item name="general" xsi:type="string">sli_lsc.log</item>
+            </argument>
+            <argument name="logLevel" xsi:type="const">Monolog\Logger::INFO</argument>
+            <argument name="logFilePath" xsi:type="string">log/sli/</argument>
+        </arguments>
+    </type>
+
+    <type name="SLI\Feed\Helper\GeneratorHelper">
+        <arguments>
+            <argument name="xmlPathMap" xsi:type="array">
+                <item name="xmlPathEnabled" xsi:type="string">sli_feed_generation/general/enabled</item>
+                <item name="xmlPathAdvancedPricing" xsi:type="string">sli_feed_generation/feed/advanced_pricing</item>
+                <item name="xmlPathIncludeOutOfStock" xsi:type="string">sli_feed_generation/feed/include_out_of_stock</item>
+                <item name="xmlPathAttributesSelect" xsi:type="string">sli_feed_generation/product/attributes_select</item>
+                <item name="xmlPathCachedImage" xsi:type="string">sli_feed_generation/product/cached_image</item>
+                <item name="xmlPathCachedImageWidth" xsi:type="string">sli_feed_generation/product/cached_image_width</item>
+                <item name="xmlPathCachedImageHeight" xsi:type="string">sli_feed_generation/product/cached_image_height</item>
+                <item name="xmlPathLogLevel" xsi:type="string">sli_feed_generation/general/log_level</item>
+                <item name="xmlPathUnsecureBaseUrl" xsi:type="string">web/unsecure/base_url</item>
+            </argument>
+            <argument name="feedFileTemplate" xsi:type="string">sli/feeds/sli-feed-%s.xml</argument>
+        </arguments>
+    </type>
+
+    <type name="SLI\Feed\FeedGenerator">
+        <arguments>
+            <argument name="generators" xsi:type="array">
+                <item name="sliMetaGenerator" xsi:type="object">SLI\Feed\Model\Generators\MetaGenerator</item>
+                <item name="sliProductGenerator" xsi:type="object">SLI\Feed\Model\Generators\ProductGenerator</item>
+                <item name="sliAttributeGenerator" xsi:type="object">SLI\Feed\Model\Generators\AttributeGenerator</item>
+                <item name="sliCategoryGenerator" xsi:type="object">SLI\Feed\Model\Generators\CategoryGenerator</item>
+                <item name="sliPriceGenerator" xsi:type="object">SLI\Feed\Model\Generators\PriceGenerator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="sliFeedProcessCommand" xsi:type="object">SLI\Feed\Console\Command\ProcessFeedCommand</item>
+                <item name="sliFeedUploadToFtpCommand" xsi:type="object">SLI\Feed\Console\Command\UploadToFtpCommand</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,108 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Accuride
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Daria Mishina <daria.mishina@alpineinc.com>
+//  * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+//  */
+
+& when (@media-common = true) {
+    .modals-wrapper .modal-popup.footer-video,
+    .modals-wrapper .modal-popup.modal-video {
+        pointer-events: none;
+        z-index: -1;
+
+        &._show{
+            z-index: 901 !important;
+
+            ~ .modals-overlay{
+                z-index: 900 !important;
+
+            }
+        }
+
+        .modal-inner-wrap {
+            pointer-events: none;
+            width: 480px;
+            margin: auto;
+            transform: translateY(0);
+            background: transparent;
+            box-shadow: none;
+            height: 100%;
+        }
+
+        .modal-content {
+            pointer-events: auto;
+            margin: auto;
+        }
+
+        .modal-header,
+        .modal-content {
+            padding: 0;
+        }
+
+        .action-close {
+            padding: 0;
+
+            &:before {
+                padding: 5px;
+                color: @white;
+            }
+        }
+    }
+    .footer-video{
+        .action-close{
+            display: none;
+        }
+    }
+    .imgAfter{
+        display: inline-block;
+        position: relative;
+
+        &:after{
+            content: "";
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('@{baseDir}Alpine_VideoWidget/images/videoPlay.png') no-repeat 50% rgba(0, 0, 0, 0.42);
+            background-size: 25%;
+            transition: background-color 0.17s ease-in;
+        }
+
+        &:hover:after {
+            background-color: rgba(0, 0, 0, 0.67);
+        }
+    }
+    body.cms-page-view._has-modal{
+        overflow-y: auto;
+    }
+}
+
+
+//
+//  Mobile
+//  ---------------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m){
+    .modals-wrapper .modal-popup.modal-video.modal-slide,
+    .modals-wrapper .modal-popup.footer-video.modal-slide {
+        left: 0;
+
+        .modal-inner-wrap {
+            width: 480px;
+            background: transparent;
+            box-shadow: none;
+        }
+    }
+    .footer-video{
+        .action-close{
+            display: none;
+        }
+    }
+    body.cms-page-view._has-modal{
+        overflow: hidden;
+    }
+}

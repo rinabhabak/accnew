@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <atwix_richsnippets>
+            <general>
+                <enabled>0</enabled>
+                <json_breadcrumbs>0</json_breadcrumbs>
+                <review_fix_enabled>1</review_fix_enabled>
+            </general>
+            <cms>
+                <opengraph>0</opengraph>
+                <opengraph_title>0</opengraph_title>
+                <opengraph_description>0</opengraph_description>
+                <opengraph_logo>0</opengraph_logo>
+                <twitter>0</twitter>
+            </cms>
+            <organization>
+                <enabled>0</enabled>
+            </organization>
+            <social>
+                <gplus>0</gplus>
+                <facebook>0</facebook>
+                <linkedin>0</linkedin>
+                <pinterest>0</pinterest>
+                <instagram>0</instagram>
+                <twitter>0</twitter>
+            </social>
+            <breadcrumbs>
+                <enabled>0</enabled>
+            </breadcrumbs>
+            <category>
+                <enabled>0</enabled>
+            </category>
+            <products>
+                <enabled>0</enabled>
+            </products>
+            <sitename>
+                <enabled>0</enabled>
+            </sitename>
+            <search_box>
+                <enabled>0</enabled>
+            </search_box>
+        </atwix_richsnippets>
+    </default>
+</config>

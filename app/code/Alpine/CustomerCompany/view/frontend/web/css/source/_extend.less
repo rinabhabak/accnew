@@ -1,0 +1,27 @@
+// /**
+//  * Alpine_CustomerCompany
+//  *
+//  * @category    Alpine
+//  * @package     Alpine_CustomerCompany
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+//  */
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    form.form-create-account {
+        fieldset.create {
+            .field {
+                select[multiple] {
+                    height: auto;
+                }
+                
+                &.hidden {
+                    display: none;
+                }
+            }
+        }
+    }
+}

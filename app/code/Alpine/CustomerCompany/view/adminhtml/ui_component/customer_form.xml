@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Alpine_CustomerCompany
+ *
+ * @category    Alpine
+ * @package     Alpine_CustomerCompany
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+-->
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="customer">
+        <field name="customer_category" formElement="multiselect">
+            <settings>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="pick_your_industry" formElement="select">
+            <settings>
+                <visible>true</visible>
+            </settings>
+        </field>
+        <field name="other_industry" formElement="input">
+            <settings>
+                <visible>true</visible>
+            </settings>
+        </field>
+    </fieldset>
+</form>

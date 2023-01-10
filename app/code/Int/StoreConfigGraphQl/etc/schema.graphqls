@@ -1,0 +1,12 @@
+#Int StoreConfig  GraphQl Schema
+
+type StoreConfig {
+  countryList : [countryList] @resolver(class: "Int\\StoreConfigGraphQl\\Model\\Resolver\\countryList") @doc(description: "The query returns all countryList")
+  checkoutActonUrl : String! @resolver(class: "Int\\StoreConfigGraphQl\\Model\\Resolver\\CheckoutActonUrl") @doc(description: "The query returns checkout acton url")
+}
+
+type countryList {
+  country_code: String @doc(description: "Country Code")
+  country_name: String @doc(description: "Country Name")
+  is_default: Int @doc(description: "Is default Country")
+}

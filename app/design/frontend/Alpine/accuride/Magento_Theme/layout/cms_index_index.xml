@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+* Alpine
+*
+* @category    Alpine
+* @package     Alpine_Accuride
+* @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+* @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <meta name="p:domain_verify" content="d2ce2ea9ea7be837879000ed090fcea1"/>
+    </head>
+</page>

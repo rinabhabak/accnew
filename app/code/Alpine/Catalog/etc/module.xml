@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Catalog
+ *
+ * @category    Alpine
+ * @package     Alpine_Catalog
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ * @author      Aleksandr Mikhailov <aleksandr.mikhailov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_Catalog" setup_version="1.0.0">
+        <sequence>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_ConfigurableProduct"/>
+            <module name="Alpine_Install"/>
+        </sequence>
+    </module>
+</config>

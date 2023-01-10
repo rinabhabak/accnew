@@ -1,0 +1,24 @@
+<page layout="2columns-left" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">   
+    <update handle="customer_account"/>
+    <head>
+        <title>Add New Card</title>
+            <css src="Magedelight_Cybersourcesop::css/cybersource.css"/>
+        <link src="Magedelight_Cybersourcesop::js/cybersourcevalid.js"/>
+    </head>
+    <body>
+        <referenceBlock name="customer-account-navigation-my-credit-cards-link">
+            <arguments>
+                <argument name="is_highlighted" xsi:type="boolean">true</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Add New Card</argument>
+            </action>
+        </referenceBlock>
+    <referenceContainer name="content">
+        <link src="Magedelight_Cybersourcesop::js/cybersourcevalid.js"/>
+        <block class="Magedelight\Cybersourcesop\Block\Customer\Addcard" cacheable="false" name="md-card-add" template="Magedelight_Cybersourcesop::add.phtml"/>
+    </referenceContainer>
+    </body>
+</page>

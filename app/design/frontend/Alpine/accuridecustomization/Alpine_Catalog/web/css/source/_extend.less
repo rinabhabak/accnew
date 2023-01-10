@@ -1,0 +1,53 @@
+// /**
+//  * Alpine_Catalog
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Accuridecustomization
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+//  */
+
+@color-optional-kits-title: #008ccb;
+@border-optional-kits: 2px solid #dedede;
+
+//
+//  Common
+//  _____________________________________________
+& when (@media-common = true) {
+    //Product page
+    .catalog-product-view {
+        &.page-layout-1column .product.media {
+            .fotorama__nav-wrap {
+                text-align: right;
+            }
+        }
+        
+        .block.related.optional-kits {
+            border-top: @border-optional-kits;
+                
+            .block-title.title {
+                margin: 15px 0;
+                
+                strong {
+                    color: @color-optional-kits-title;
+                }
+            }
+            
+            .block-content.content {
+                .products.products-related {
+                    margin: auto;
+                    
+                    ol.products.product-items {
+                        li.product.product-item {
+                            width: 100%;
+                            
+                            &:last-child {
+                                padding: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

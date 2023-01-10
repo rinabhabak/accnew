@@ -1,0 +1,146 @@
+<?php
+/**
+ * Copyright (c) 2015 S.L.I. Systems, Inc. (www.sli-systems.com) - All Rights Reserved
+ * This file is part of Learning Search Connect.
+ * Learning Search Connect is distributed under a limited and restricted
+ * license – please visit www.sli-systems.com/LSC for full license details.
+ *
+ * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY
+ * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+ * PARTICULAR PURPOSE. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO
+ * EVENT WILL SLI BE LIABLE TO YOU OR ANY OTHER PARTY FOR ANY GENERAL, DIRECT,
+ * INDIRECT, SPECIAL, INCIDENTAL OR CONSEQUENTIAL LOSS OR DAMAGES OF ANY
+ * CHARACTER ARISING OUT OF THE USE OF THE CODE AND/OR THE LICENSE INCLUDING
+ * BUT NOT LIMITED TO PERSONAL INJURY, LOSS OF DATA, LOSS OF PROFITS, LOSS OF
+ * ASSIGNMENTS, DATA OR OUTPUT FROM THE SERVICE BEING RENDERED INACCURATE,
+ * FAILURE OF CODE, SERVER DOWN TIME, DAMAGES FOR LOSS OF GOODWILL, BUSINESS
+ * INTERRUPTION, COMPUTER FAILURE OR MALFUNCTION, OR ANY AND ALL OTHER DAMAGES
+ * OR LOSSES OF WHATEVER NATURE, EVEN IF SLI HAS BEEN INFORMED OF THE
+ * POSSIBILITY OF SUCH DAMAGES.
+ */
+?>
+<?php /* @var $block \SLI\Feed\Block\System\Config\Generate */ ?>
+<script>
+require([
+    'jquery',
+    'prototype',
+    'mage/backend/validation',
+    'jquery/validate'
+], function(jQuery) {
+    function enableUI() {
+        enableConfigField();
+        enableGenerateButton();
+        disableSpinner();
+    }
+
+    function disableUI() {
+        disableConfigField();
+        disableGenerateButton();
+        enableSpinner();
+        $('generate_status').update('');
+    }
+
+    function enableConfigField() {
+        $('sli_feed_generation_feed_include_out_of_stock').enable('enable');
+    }
+
+    function disableConfigField() {
+        $('sli_feed_generation_feed_include_out_of_stock').disable('disabled');
+    }
+
+    function enableGenerateButton() {
+        Form.Element.enable('generate_button');
+        $('generate_button').removeClassName('disabled').update('Generate Feed');
+    }
+
+    function disableGenerateButton() {
+        Form.Element.disable('generate_button');
+        $('generate_button').addClassName('disabled').update('Generating...');
+    }
+
+    function enableSpinner() {
+        $('generate_span').removeClassName('no-display');
+    }
+
+    function disableSpinner() {
+        $('generate_span').addClassName('no-display');
+    }
+
+    var _updater;
+    function _abortUpdater() {
+        if (typeof _updater !== 'undefined' && _updater !== null) {
+            _updater.stop();
+            _updater = undefined;
+        }
+    }
+
+    var checkStatus = function() {
+        _abortUpdater();
+        _updater = new Ajax.PeriodicalUpdater('', '<?php echo $block->getAjaxStatusUpdateUrl() ?>', {
+            method: 'get',
+            frequency: 5,
+            loaderArea: false,
+
+            onSuccess: function(transport) {
+                var response;
+
+                try {
+                    response = eval('(' + transport.responseText + ')');
+
+                    if (response.message) {
+                        $('generate_status').update(response.message);
+                    }
+
+                    if (response.state == '<?php echo \SLI\Feed\Model\GenerateFlag::STATE_RUNNING ?>') {
+                        disableUI();
+                    } else {
+                        _updater.stop();
+                        enableUI();
+                    }
+                } catch (e) {
+                    response = {};
+                    try {
+                        console.log(e);
+                    } catch (e2) {
+                        alert(e.name + '\n' + e.message);
+                    }
+                }
+            }
+        });
+    };
+
+    var _ajax;
+    var generateFeed = function() {
+        if (typeof _ajax !== 'undefined' && _ajax !== null && _ajax.transport) {
+            _abortUpdater();
+            _ajax.transport.abort();
+        }
+        _ajax = new Ajax.Request('<?php echo $block->getAjaxGenerateUrl() ?>', {
+            loaderArea: false,
+            asynchronous: true
+        });
+    };
+
+    Event.observe(window, 'load', function() {
+        // wait for next tick
+        window.setTimeout(checkStatus, 1);
+    });
+
+    jQuery('#generate_button').click(function() {
+        // wait for next tick
+        window.setTimeout(generateFeed, 1);
+
+        // wait for the backend to start running
+        window.setTimeout(checkStatus, 200);
+
+        disableUI();
+    });
+});
+</script>
+
+<?php echo $block->getButtonHtml() ?>
+<span class="generate-indicator no-display" id="generate_span">
+    <img alt="Generate" style="margin:0 5px" src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+</span>
+<p id="generate_status" style="margin-top: 0.5em;"></p>

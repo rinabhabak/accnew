@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Plugins declarations to add SKU to product captions
+ *
+ * @category    Alpine
+ * @package     Alpine_ProductImageCaption
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Catalog\Block\Product\View\Gallery">
+        <plugin name="alpine_product_image_caption_block_product_view_gallery"
+                type="Alpine\ProductImageCaption\Plugin\Block\Product\View\Gallery"
+                sortOrder="10"
+        />
+    </type>
+</config>

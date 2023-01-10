@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_ProductStockAlertApi
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2020-2021 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/stock-notice/configuration/:storeId" method="GET">
+        <service class="Bss\ProductStockAlertApi\Api\StockNoticeManagementInterface" method="getConfiguration"/>
+        <resources>
+            <resource ref="Bss_ProductStockAlertApi::stock-notice"/>
+        </resources>
+    </route>
+    <route url="/V1/stock-notice/products/:productId/websiteId/:websiteId" method="GET">
+        <service class="Bss\ProductStockAlertApi\Api\StockNoticeManagementInterface" method="getProductData"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/stock-notice/products/subscribe" method="POST">
+        <service class="Bss\ProductStockAlertApi\Api\StockNoticeManagementInterface" method="subscribeStockNotice"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/stock-notice/products/unsubscribe" method="POST">
+        <service class="Bss\ProductStockAlertApi\Api\StockNoticeManagementInterface" method="unsubscribeStockNotice"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/stock-notice/products/unsubscribe-all" method="POST">
+        <service class="Bss\ProductStockAlertApi\Api\StockNoticeManagementInterface" method="unsubscribeAllStockNotice"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/stock-notice/customer" method="GET">
+        <service class="Bss\ProductStockAlertApi\Api\StockNoticeManagementInterface" method="getListByCustomer"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/stock-notice/:stockId" method="GET">
+        <service class="Bss\ProductStockAlertApi\Api\StockNoticeManagementInterface" method="getById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerId" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+</routes>

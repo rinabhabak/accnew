@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xnotif
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+ <type name="Magento\Quote\Model\Quote\Payment">
+        <plugin sortOrder="1" name="set_extra_data"
+                type="Int\CybersourceGraphQl\Plugin\QuotePaymentPlugin"/>
+    </type>
+</config>

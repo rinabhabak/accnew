@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_UrlRewrites
+ *
+ * @category    Alpine
+ * @package     Alpine_UrlRewrites
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Alex Didenko <alex.didenko@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="alpine_url_rewrites" xsi:type="object">Alpine\UrlRewrites\Console\UrlRewritesImport</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

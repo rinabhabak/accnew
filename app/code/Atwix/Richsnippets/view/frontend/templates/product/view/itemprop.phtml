@@ -1,0 +1,19 @@
+<?php
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ *
+ * @see \Atwix\Richsnippets\Plugin\Block\Product\View::afterSetTemplateContext() for assing $productSnippets
+ * @var $productSnippets array
+ */
+?>
+<?php if ($productSnippets): ?>
+    <!--<div itemscope itemtype="http://schema.org/Product">-->
+        <span itemprop="name" content="<?php echo $productSnippets['name']; ?>"></span>
+        <span itemprop="sku"  content="<?php echo $productSnippets['sku']; ?>"></span>
+        <span itemprop="image" content="<?php echo $productSnippets['logo']; ?>"></span>
+    <!--</div>-->
+<?php endif; ?>

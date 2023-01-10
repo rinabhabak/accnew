@@ -1,0 +1,26 @@
+<?php
+/**
+ * Show the logos under product tabs
+ *
+ * @category    Alpine
+ * @package     Alpine_Catalog
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ *
+ * @var $block Alpine\Catalog\Block\Product\Logos
+ */
+
+if ($product = $block->getProduct()) { ?>
+    <div class="certs-logos"><?php
+    $mediaUrl = $block->getViewFileUrl('images/cms/logos');
+    if ($block->getAttributeValue('rohs') == 1) {
+        ?><img src="<?php echo $mediaUrl . '/rohs.png'; ?>" alt="RoHS"/><?php
+    }
+    if ($block->getAttributeValue('bhma') == 1) {
+        ?><img src="<?php echo $mediaUrl . '/bhma-new.png'; ?>" alt="BHMA"/><?php
+    }
+    if ($block->getAttributeValue('awi') == 1) {
+        ?><img src="<?php echo $mediaUrl . '/awi-new.png'; ?>" alt="AWI"/><?php
+    } ?>
+    </div><?php
+}

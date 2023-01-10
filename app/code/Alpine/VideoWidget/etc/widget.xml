@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_VideoWidget
+ *
+ * @category    Alpine
+ * @package     Alpine_VideoWidget
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Daria Mishina <daria.mishina@alpineinc.com>
+ * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="video_popup" class="Alpine\VideoWidget\Block\Video">
+        <label>Video Widget</label>
+        <description></description>
+        <parameters>
+            <parameter name="data-video" xsi:type="text" required="true" visible="true">
+                <label>Video Link</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

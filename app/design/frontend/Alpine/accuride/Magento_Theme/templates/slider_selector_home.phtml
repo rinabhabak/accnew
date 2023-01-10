@@ -1,0 +1,47 @@
+<?php
+/**
+ * Accuride_Theme
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+$helper = $this->helper('Alpine\Theme\Helper\SlideSelector');
+?>
+<!--It's temporary static content-->
+<div class="slider_selector">
+    <div class="selectors">
+        <form method="get" action="<?php echo $this->getProductsUrl() ?>" id="slider_selector">
+            <div class="fields">
+                <a href="slide-selector"><p class="title"><?php echo __('Slide Selector') ?></p></a>
+                <p class="description">Need to find out what kind of movement solution you need? Use our handy Slide Selector tool to find the perfect slide system for your project and design!</p>
+                <div class="wrapper_field">
+                    <?php foreach ($block->getAttributesCodes() as $code): ?>
+                    <div class="field">
+                        <select name="<?php echo $code; ?>">
+                            <?php $attribute = $helper->getAttributeByCode($code); ?>
+                            <option value=""><?php echo __($helper->getSelectorLabel($attribute)); ?></option>
+                            <?php
+                            foreach ($helper->getOptionsValues($attribute) as $key => $value) {
+                                echo "<option value=\"$value\">$key</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="actions">
+                    <button type="submit" title="<?php echo __('SEARCH') ?>" class="action search primary">
+                        <span><?php echo __('SEARCH') ?></span>
+                    </button>
+                    <button type="reset" title="<?php echo __('RESET') ?>" class="action reset primary">
+                        <span><?php echo __('RESET') ?></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div class="accuimgt"
+     css="data.main.css"
+     ko-style="data.main.style"
+     attr="data.main.attributes">
+
+    <div class="accuimgt__wrap">
+        <img if="data.image.attributes().src"
+             attr="data.image.attributes"
+             css="data.image.css"
+             ko-style="data.image.style"/>
+    </div>
+
+    <h3 if="data.title.html"
+        class="accuimgt__title"
+        html="data.title.html"
+        attr="data.title.attributes"></h3>
+    <div if="data.textarea.html"
+         class="accuimgt__content"
+         html="data.textarea.html"
+         attr="data.textarea.attributes"></div>
+
+    <a if="data.link.attributes().href && data.link.html"
+       class="accucta__hyperlink accucta--blue"
+       attr="data.link.attributes"
+       html="data.link.html"></a>
+</div>
+

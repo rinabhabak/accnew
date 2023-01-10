@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Alpine_Install
+*
+* @category    Alpine
+* @package     Alpine_Cms
+* @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+* @author      Denis Furman <denis.furman@alpineinc.com>
+* @author      Aleksandr Mikhailov <aleksandr.mikhailov@alpineinc.com>
+* @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_Install" setup_version="0.12.5">
+        <sequence>
+            <module name="Magento_Catalog" />
+            <module name="Amasty_ProductAttachment" />
+            <module name="Magento_NegotiableQuote" />
+            <module name="Magento_Store" />
+            <module name="Magento_CatalogUrlRewrite" />
+        </sequence>
+    </module>
+</config>

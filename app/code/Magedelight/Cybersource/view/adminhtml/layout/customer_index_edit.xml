@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magedelight_Cybersource/css/cards.css" />
+    </head>
+    <body>
+        <referenceBlock name="customer_form">
+            <block class="Magedelight\Cybersource\Block\Adminhtml\CardTab" name="cybersourceSavedCards">
+                <block class="Magedelight\Cybersource\Block\Adminhtml\CardForm" name="cybersourceAddCards" />
+            </block>
+        </referenceBlock>
+       
+    </body>
+</page>

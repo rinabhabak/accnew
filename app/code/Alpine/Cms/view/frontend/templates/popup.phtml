@@ -1,0 +1,35 @@
+<?php
+/**
+ * Alpine_Cms
+ *
+ * @category    Alpine
+ * @package     Alpine_Cms
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Aleksandr Mikhailov <aleksandr.mikhailov@alpineinc.com>
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ */
+
+/* @var \Alpine\Cms\Block\ProductInfoStatic $block */
+/* @var Magento\Framework\DataObject $cmsBlock */
+?>
+
+<?php foreach ($block->getCmsBlocks() as $cmsBlock) : ?>
+    <div class="cms-page-popup <?php echo $cmsBlock->getData('id') ?>">
+        <?php echo $cmsBlock->getData('content'); ?>
+    </div>
+<?php endforeach; ?>
+
+<script type="text/x-magento-init">
+{
+    ".cms-page-popup": {
+        "Magento_Ui/js/modal/modal": {
+            "type": "popup",
+            "innerScroll": true,
+            "title": ""
+        }
+    },
+    "*": {
+        "cmsPagePopup": {}
+    }
+}
+</script>

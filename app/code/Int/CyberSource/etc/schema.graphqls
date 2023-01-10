@@ -1,0 +1,140 @@
+#Int CyberSource GraphQl Schema
+
+type Query {
+    generateCyberSourceKey : generateCyberSourceKeyOutput @resolver(class: "\\Int\\CyberSource\\Model\\Resolver\\GenerateCyberSourceKey") @doc(description:"GenerateCyberSource KeyId")
+}
+
+type generateCyberSourceKeyOutput {
+    date : String @doc(description: "Generate key date")
+    digest: String @doc(description: "CyberSource digest key")
+    signature : String @doc(description: "CyberSource Signature")
+    keyId : String @doc(description: "CyberSource KeyId")
+}
+
+type Mutation {
+    setupPayerAuthEnrollment(input: SetupPayerAuthEnrollmentInput): SetupPayerAuthEnrollmentOutput @resolver(class: "\\Int\\CyberSource\\Model\\Resolver\\SetupPayerAuthEnrollment") @doc(description: "Setup Payer Auth Enrollment")
+    checkPayerAuthEnrollment(input: CheckPayerAuthEnrollmentInput): CheckPayerAuthEnrollmentOutput @resolver(class: "\\Int\\CyberSource\\Model\\Resolver\\CheckPayerAuthEnrollment") @doc(description: "Check Payer Auth Enrollment")
+    validatePayerAuthEnrollment(input: ValidatePayerAuthEnrollmentInput): ValidatePayerAuthEnrollmentOutput @resolver(class: "\\Int\\CyberSource\\Model\\Resolver\\ValidatePayerAuthEnrollment") @doc(description: "Validate Payer Auth Enrollment")
+}
+
+input SetupPayerAuthEnrollmentInput {
+  clientReferenceInformation: [ClientReferenceInformation!]!
+  paymentInformation: [PaymentInfo!]!
+}
+
+input CheckPayerAuthEnrollmentInput {
+  clientReferenceInformation: [ClientReferenceInformation!]!
+  orderInformation: [OrderInfo!]!
+  paymentInformation: [PaymentCheckInfo!]!
+  consumerAuthenticationInformation: [ConsumerAuthenticationInformation!]!
+}
+
+input ValidatePayerAuthEnrollmentInput {
+  consumerAuthenticationInformation: [AuthInfo!]!
+}
+input ConsumerAuthenticationInformation {
+    referenceId: String! @doc(description: "referenceId")
+    returnUrl: String! @doc(description: "returnUrl")
+}
+
+input ClientReferenceValidateInformation {
+    code: String! @doc(description: "code")
+    partner: [PartnerInfo!]!
+}
+
+input PartnerInfo {
+    developerId: String! @doc(description: "developerId")
+    solutionId: String! @doc(description: "solutionId")
+}
+
+input OrderItemsInfo {
+    amountDetails: [AmountDetails!]!
+    lineItems: [LineItems!]!
+}
+
+input LineItems {
+    unitPrice: String! @doc(description: "unitPrice")
+    quantity: String! @doc(description: "quantity")
+    taxAmount: String! @doc(description: "taxAmount")
+}
+
+input PaymentCardInfo {
+    card: [CardInfo!]!
+}
+
+input CardInfo {
+    type: String! @doc(description: "type")
+    expirationMonth: String! @doc(description: "expirationMonth")
+    expirationYear: String! @doc(description: "expirationYear")
+    number: String! @doc(description: "number")
+}
+
+input AuthInfo {
+    authenticationTransactionId: String! @doc(description: "authenticationTransactionId")
+}
+
+input ClientReferenceInformation {
+    code: String! @doc(description: "code")
+}
+
+input OrderInfo {
+    amountDetails: [AmountDetails!]!
+    billTo: [BillTo!]!
+}
+
+input AmountDetails {
+    currency: String! @doc(description: "currency")
+    totalAmount: String! @doc(description: "totalAmount")
+}
+
+input BillTo {
+    address1: String! @doc(description: "Billing administrative area")
+    administrativeArea: String! @doc(description: "Billing administrative area")
+    country: String! @doc(description: "Billing country")
+    locality: String! @doc(description: "Billing locality")
+    firstName: String! @doc(description: "Billing fast name")
+    lastName: String! @doc(description: "Billing last name")
+    email: String! @doc(description: "Billing email")
+    postalCode: String! @doc(description: "Billing postal code")
+}
+
+input PaymentCheckInfo {
+    customer: [CustomerInfo!]!
+}
+
+input PaymentInfo {
+    customer: [CustomerInfo!]!
+}
+
+input CustomerInfo {
+    customerId: String! @doc(description: "Customer ID")
+}
+
+type SetupPayerAuthEnrollmentOutput {
+    id: String @doc(description: "Setup Payer Auth Enrollment Id")
+    status: String @doc(description: "Setup Payer Auth Enrollment Status")
+    submitTimeUtc: String @doc(description: "Setup Payer Auth Enrollment Time")
+    referenceId: String @doc(description: "Setup Payer Auth Enrollment referenceId")
+    accessToken: String @doc(description: "Setup Payer Auth Enrollment accessToken")
+    deviceDataCollectionUrl: String @doc(description: "Setup Payer Auth Enrollment deviceDataCollectionUrl")
+}
+
+type CheckPayerAuthEnrollmentOutput {
+    id: String @doc(description: "Check Payer Auth Enrollment Id")
+    status: String @doc(description: "Check Payer Auth Enrollment Status")
+    submitTimeUtc: String @doc(description: "Check Payer Auth Enrollment Time")
+    authenticationTransactionId: String @doc(description: "Check Payer Auth Enrollment authenticationTransactionId")
+    pareq: String @doc(description: "Check Payer Auth Enrollment pareq")
+    stepUpUrl: String @doc(description: "Check Payer Auth Enrollment pareq")
+    accessToken: String @doc(description: "Check Payer Auth Enrollment accessToken")
+    reason: String @doc(description: "Check Payer Auth Enrollment reason")
+    message: String @doc(description: "Check Payer Auth Enrollment message")
+}
+
+type ValidatePayerAuthEnrollmentOutput {
+    id: String @doc(description: "Validate Payer Auth Enrollment Id")
+    status: String @doc(description: "Validate Payer Auth Enrollment Status")
+    authenticationStatusMsg: String @doc(description: "Validate Payer Auth Enrollment authenticationStatusMsg")
+    submitTimeUtc: String @doc(description: "Validate Payer Auth Enrollment Time")
+    message: String @doc(description: "Validate Payer Auth Enrollment message")
+}

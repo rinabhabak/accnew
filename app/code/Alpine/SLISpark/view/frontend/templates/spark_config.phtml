@@ -1,0 +1,44 @@
+<?php
+/**
+ * Alpine_SLISpark
+ *
+ * @category    Alpine
+ * @package     Alpine_SLISpark
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Aleksandr Mikhailov (aleksandr.mikhailov@alpineinc.com)
+ * @author      Evgeniy Derevyanko (evgeniy.derevyanko@alpineinc.com)
+ */
+
+/** @var \Alpine\SLISpark\Block\SparkConfig $block */
+?>
+<script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i[r]=i[r]||function(){
+        (i[r].a=i[r].a||[]).push(arguments)};i[r].t=1;a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script',"<?php echo $block->getSparkJs();?>", 'sliSpark');
+
+    <?php if ($block->inSuccessPage()) : ?>
+        <?php
+            $sparkConfig = $block->getSparkConfig();
+        ?>
+        <?php foreach ($sparkConfig->getProducts() as $product) : ?>
+
+        sliSpark("sli:addProduct", {
+            id: "<?php echo $block->escapeJs($product['id']); ?>",
+            price: "<?php echo $block->escapeJs($product['price']) ?>",
+            quantity: "<?php echo $block->escapeJs($product['quantity']) ?>",
+            currency: "<?php echo $block->escapeJs($product['currency']) ?>"
+        });
+        <?php endforeach; ?>
+
+        sliSpark("sli:setAction", "purchase", {
+            id: "<?php echo $block->blockUnicodeDecode($block->escapeJs($sparkConfig->getConfig()['id'])) ?>",
+            revenue: "<?php echo $block->escapeJs($sparkConfig->getConfig()['revenue']) ?>",
+            tax: "<?php echo $block->escapeJs($sparkConfig->getConfig()['tax']) ?>",
+            shipping: "<?php echo $block->escapeJs($sparkConfig->getConfig()['shipping']) ?>",
+            currency: "<?php echo $block->escapeJs($sparkConfig->getConfig()['currency']) ?>"
+        });
+    <?php endif; ?>
+
+    sliSpark('send', 'pageview');
+</script>

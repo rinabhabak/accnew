@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Ga
+ *
+ * @category    Alpine
+ * @package     Alpine_Ga
+ * @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\GoogleTagManager\Block\Ga" type="Alpine\Ga\Block\Ga"/>
+    <preference for="Magento\GoogleTagManager\Block\ListJson" type="Alpine\Ga\Block\ListJson"/>
+</config>

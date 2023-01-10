@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Indusnet Technologies.
+ *
+ * @category  Indusnet
+ * @package   Int_ConfiguratorGraphQl
+ * @author    Indusnet
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<virtualType name="IntConfiguratorGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+		<arguments>
+			<argument name="appliers" xsi:type="array">
+				<item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+				<item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+			</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="IntConfiguratorGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<arguments>
+			<argument name="collection" xsi:type="object" shared="false">Int\Configurator\Model\ResourceModel\Configurator\Collection</argument>
+			<argument name="filterPool" xsi:type="object" shared="false">IntConfiguratorGridFilterPool</argument>
+		</arguments>
+	</virtualType>
+	<virtualType name="Int\Configurator\Model\ResourceModel\Configurator\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">configurator</argument>
+			<argument name="resourceModel" xsi:type="string">Int\Configurator\Model\ResourceModel\Configurator</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="int_configurator_index_listing_data_source" xsi:type="string">Int\Configurator\Model\ResourceModel\Configurator\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+
+	<preference for="Int\Configurator\Api\ConfiguratorManagementInterface" type="Int\Configurator\Model\Api\ConfiguratorManagement" />
+	
+    <type name="Magento\Quote\Model\Quote\Item\ToOrderItem">
+        <plugin name="cedapi_quote_to_order_item" type="Int\Configurator\Plugin\Model\Quote\QuoteToOrderItem"/>
+    </type>
+</config>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Quote form layout
+ *
+ * @category    Alpine
+ * @package     Alpine_Cms
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Alpine\Cms\Block\QuoteForm" name="quoteForm" template="Alpine_Cms::form.phtml">
+                <container name="form.additional.info" label="QUOTE FORM INFO"/>
+            </block>
+
+            <container name="form.wrapper" htmlTag="div" htmlClass="contact-wrapper form-wrapper">
+                <block class="VladimirPopov\WebForms\Block\Form" name="form.general_contact"
+                       template="VladimirPopov_WebForms::webforms/form/default.phtml" group="contact_forms">
+                    <arguments>
+                        <argument xsi:type="string" name="webform_code">quote_form</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

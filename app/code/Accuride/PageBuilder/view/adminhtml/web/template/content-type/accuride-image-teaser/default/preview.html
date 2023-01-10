@@ -1,0 +1,21 @@
+<div attr="data.main.attributes"
+     ko-style="data.main.style"
+     class="pagebuilder-content-type accuride-image-teaser"
+     css="data.main.css"
+     event="{ mouseover: onMouseOver, mouseout: onMouseOut }, mouseoverBubble: false">
+    <render args="getOptions().template" />
+
+    <scope args="getUploader().getUiComponent()">
+        <render />
+    </scope>
+
+    <img if="data.image.attributes().src"
+         attr="data.image.attributes"
+         class="preview-image"
+         css="data.image.css"
+         ko-style="data.image.style" />
+    <h3 attr="data.title.attributes"
+        data-bind="liveEdit: { field: 'title', placeholder: $t('Title') }">
+    </h3>
+    <div attr="data.textarea.attributes" html="data.textarea.html"></div>
+</div>

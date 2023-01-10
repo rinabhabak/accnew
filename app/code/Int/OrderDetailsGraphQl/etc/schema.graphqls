@@ -1,0 +1,167 @@
+# Copyright © Int, Inc. All rights reserved.
+
+type Query {
+    orderDetails (id: Int @doc(description: "Id of the Order")
+    ): SalesOrder @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\SalesOrder") @doc(description: "The Sales Order query returns information about a Sales order")
+    orderMailSend (orderId: Int @doc(description: "Id of the Order")
+    ): OrderMailSend @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\OrderMailSend") @doc(description: "The OrderMailSend send Order mail to the customer")
+    allInvoiceMailSend (orderId: Int @doc(description: "Id of the Order")
+    ): AllInvoiceMailSend @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\AllInvoiceMailSend") @doc(description: "The AllInvoiceMailSend send Invoice mail to the customer")
+    invoiceMailSend (invoiceId: Int @doc(description: "Id of the Order")
+    ): InvoiceMailSend @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\InvoiceMailSend") @doc(description: "The InvoiceMailSend send Invoice mail to the customer")
+    allShipmentMailSend (orderId: Int @doc(description: "Id of the Order")
+    ): AllShipmentMailSend @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\AllShipmentMailSend") @doc(description: "The AllShipmentMailSend send Invoice mail to the customer")
+    shipmentMailSend (shipmentId: Int @doc(description: "Id of the Order")
+    ): ShipmentMailSend @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\ShipmentMailSend") @doc(description: "The ShipmentMailSend send Invoice mail to the customer")
+}
+ 
+type SalesOrder @doc(description: "Sales Order graphql gather Data of specific order information") {
+    increment_id: String @doc(description: "Increment Id of Sales Order")
+    configurator_pid: String @doc(description: "Configurator Project Id of Sales Order")
+    customer_name: String @doc(description: "Customername of Sales Order")
+    sub_total: String @doc(description: "Sub total of Sales Order")
+    base_sub_total: String @doc(description: "base Sub total of Sales Order")
+    shipping_amount: String @doc(description: "shipping amount")
+    base_shipping_amount: String @doc(description: "base shipping amount")
+    tax_amount: String @doc(description: "tax amount")
+    base_tax_amount: String @doc(description: "base tax amount")
+    grand_total: String @doc(description: "Grand total of Sales Order")
+    base_grand_total: String @doc(description: "Base Grand total of Sales Order")
+    is_guest_customer: Boolean @doc(description: "Specifies if this otder was placed by Guest cusotmer")
+    created_at: String @doc(description: "Creation date of Sales Order")
+    shipping_method: String @doc(description: "Shipping method of Sales Order")
+    payment_method: String @doc(description: "Payment method of Sales Order")
+    order_status: String @doc(description: "Order status of Sales Order")
+    shipping: [Shipping] @doc(description: "An array of shipping data of order") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\Shipping")
+    billing: [Billing] @doc(description: "An array of billing data of order") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\Billing")
+    items: [Items] @doc(description: "An array of all items data of order") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\Items")
+    is_shipped: String @doc(description: "Is Shipped")
+    is_invoiced: String @doc(description: "Is Invoiced")
+    card_details: [CardDetails] @doc(description: "An array of all items data of order") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\CardDetails")
+    invoice: [Invoice] @doc(description: "An array of all items data of order") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\Invoice")
+    shipment: [Shipment] @doc(description: "An array of all items data of order") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\Shipment")
+}
+ 
+type Billing @doc(description: "An array containing all the billing fields of order") {
+    name: String @doc(description: "Billing name")
+    street: String @doc(description: "Billing street")
+    city: String @doc(description: "Billing city")
+    region: String @doc(description: "Billing region")
+    country: String @doc(description: "Billing country")
+    postcode: String @doc(description: "Billing postcode")
+    telephone: String @doc(description: "Billing telephone")
+    fax: String @doc(description: "Billing fax")
+    company: String @doc(description: "Billing company")
+}
+ 
+type Shipping @doc(description: "An array containing all the shipping fields of order") {
+    name: String @doc(description: "Shipping name")
+    street: String @doc(description: "Shipping street")
+    city: String @doc(description: "Shipping city")
+    region: String @doc(description: "Shipping region")
+    country: String @doc(description: "Shipping country")
+    postcode: String @doc(description: "Shipping postcode")
+    telephone: String @doc(description: "Shipping telephone")
+    fax: String @doc(description: "Shipping fax")
+    company: String @doc(description: "Shipping company")
+}
+ 
+type Items @doc(description: "An array containing all the items of order") {
+
+    parent_sku: String @doc(description: "SKU of configurable Item")
+    sku: String @doc(description: "SKU of Sales Order Item")
+    title: String @doc(description: "title of Sales Order Item")
+    price: Float @doc(description: "price of Sales Order Item")
+    base_price: Float @doc(description: "base price of Sales Order Item")
+    row_total: Float @doc(description: "sub total of Sales Order Item")
+    base_row_total: Float @doc(description: "base sub total of Sales Order Item")
+    qty: Int @doc(description: "Quantity of Sales Order Item")
+    product_type: String @doc(description: "product type")   
+    product_id: Int @doc(description: "SKU of Sales Order Item")
+    productoptions: [ProductOptions] @doc(description: "Configurable options label")
+}
+
+type CustomerOrder @doc(description: "Order mapping fields") {
+   created_date: String @doc(description: "Order Date") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\OrderCreatedDate")
+   ship_to: String @doc(description: "Order Date") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\ShipTo")
+   base_amount: Float @doc(description: "Use the totals.base_grand_total attribute instead") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\BaseGrandTotal")
+   order_rate: Float @doc(description: "Use the totals.base_to_order_rate attribute instead") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\OrderRate")
+   configurator_pid: String @doc(description: "Configurator project id") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\ConfiguratorPid")
+   configurator_name: String @doc(description: "Configurator name") @resolver(class: "\\Int\\OrderDetailsGraphQl\\Model\\Resolver\\ConfiguratorName")
+}
+
+type CardDetails @doc(description: "Order details") {
+    method_title: String @doc(description: "Order Date")
+    cc_type_code: String @doc(description: "CCtype Code")
+    cc_type: String @doc(description: "CCtype")
+    cc_card_number: String @doc(description: "Card Last 4 digits")
+    processed_amount: String @doc(description: "Card Processed Amount")
+}
+
+type Invoice @doc(description: "Order mapping fields") {
+   invoice_id: String @doc(description: "Invoice ID")
+   invoice_increment_id: String @doc(description: "Invoice Increment ID")
+   sub_total: String @doc(description: "Invoice Sub Total")
+   base_sub_total: String @doc(description: "Base Invoice Sub Total")
+   shipping_amount: String @doc(description: "Invoice Shipping Amount")
+   base_shipping_amount: String @doc(description: "Base Invoice Shipping Amount")
+   grand_total: String @doc(description: "Invoice Grand Total")
+   base_grand_total: String @doc(description: "Base Invoice Grand Total")
+   created_at: String @doc(description: "Invoice created at")
+   invoiceItems: [InvoiceItems]
+}
+
+type InvoiceItems @doc(description: "An array containing all the items of order") {
+    title: String @doc(description: "title of Sales Order Item")
+    sku: String @doc(description: "SKU of Sales Order Item")
+    price: Float @doc(description: "price of Sales Order Item")
+    base_price: Float @doc(description: "price of Sales Order Item")
+    qty: Int @doc(description: "Quantity of Sales Order Item")
+    product_type: String @doc(description: "product type")  
+    sub_total: Float @doc(description: "Sub total of item")
+    base_sub_total: Float @doc(description: "Sub total of item")
+    productoptions: [ProductOptions] @doc(description: "Configurable options label")
+}
+
+type OrderMailSend {
+    message: String! @doc(description: "Success or Error Message")
+}
+
+type AllInvoiceMailSend {
+    message: String! @doc(description: "Success or Error Message")
+}
+
+type InvoiceMailSend {
+    message: String! @doc(description: "Success or Error Message")
+}
+
+type AllShipmentMailSend {
+    message: String! @doc(description: "Success or Error Message")
+}
+
+type ShipmentMailSend {
+    message: String! @doc(description: "Success or Error Message")
+}
+
+type Shipment @doc(description: "Shipment mapping fields") {
+   shipment_id: String @doc(description: "Shipment ID")
+   shipment_increment_id: String @doc(description: "Shipment Increment ID")
+   shipmentItems: [ShipmentItems] @doc(description: "An array of all items data of order Shipment")
+
+}
+
+type ShipmentItems @doc(description: "An array containing all the items of order") {
+    title: String @doc(description: "title of Sales Order Item")
+    sku: String @doc(description: "SKU of Sales Order Item")
+    qty: Float @doc(description: "Quantity of Sales Order Item")
+    product_type: String @doc(description: "product type")  
+    productoptions: [ProductOptions] @doc(description: "Configurable options label")
+}
+
+type ProductOptions @doc(description: "An array containing all the items of order") {
+    label: String @doc(description: "label")
+    value: String @doc(description: "value")
+}
+
+
+

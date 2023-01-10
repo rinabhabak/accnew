@@ -1,0 +1,145 @@
+# Copyright © Magento, Inc. All rights reserved.
+type Query {
+    getDistributors : [Distributors] @resolver(class: "\\Int\\DistributorGraphQl\\Model\\Resolver\\Distributors") @doc(description: "Get Distributors Details")
+    getDistributorsAttributes : [Attributes]
+    @resolver(class: "Int\\DistributorGraphQl\\Model\\Resolver\\Attributes") @doc(description: "Get Distributors Attribute Details")
+    getDistributorsAttributesById(
+    attributeId: Int @doc(description: "Attribute ID")
+    ) : [AttributesById]
+    @resolver(class: "Int\\DistributorGraphQl\\Model\\Resolver\\AttributesById") @doc(description: "Get Distributors Attribute Details By Id")
+    filterDistributorsByAttribute(
+        optionValue: String @doc(description: "Give ALl attributes")
+    ) : [DistributorByOption]
+    @resolver(class: "Int\\DistributorGraphQl\\Model\\Resolver\\FilterDistributorsByAttribute") @doc(description: "Get Distributors Attribute Details By by Attribute Option Values")  @cache(cacheIdentity: "Int\\DistributorGraphQl\\Model\\Resolver\\FilterDistributorsByAttribute\\Identity")
+    filterDistributorsByLocation(
+        optionValue: String @doc(description: "Give ALl attributes")
+    ) : [DistributorByLocations]
+    @resolver(class: "Int\\DistributorGraphQl\\Model\\Resolver\\FilterDistributorsByLocation") @doc(description: "Get Distributors Attribute Details By by Attribute Option Values") @cache(cacheIdentity: "Int\\DistributorGraphQl\\Model\\Resolver\\FilterDistributorsByLocation\\Identity")
+}
+
+type Distributors {
+    id : Int @doc(description: "Distributor ID")
+	name :  String @doc(description: "distributors name")
+    country :  String @doc(description: "distributors country")
+    city :  String @doc(description: "distributors city")
+    zip :  String @doc(description: "distributors zip")
+    address :  String @doc(description: "distributors address")
+    status :  String @doc(description: "distributors status")
+    lat :  String @doc(description: "distributors latitude")
+    lng :  String @doc(description: "distributors longitude")
+    photo :  String @doc(description: "distributors photo")
+    marker :  String @doc(description: "distributors marker")
+    position :  String @doc(description: "distributors position")
+    state :  String @doc(description: "distributors state")
+    description :  String @doc(description: "distributors description")
+    phone :  String @doc(description: "distributors phone")
+    email :  String @doc(description: "distributors email")
+    website :  String @doc(description: "distributors website")
+    category :  Int @doc(description: "distributors category")
+    store_img :  String @doc(description: "distributors store_img")
+    stores :  String @doc(description: "distributors stores")
+    schedule :  String @doc(description: "distributors schedule")
+    marker_img :  String @doc(description: "distributors marker_img")
+    fax :  String @doc(description: "distributors fax")
+    show_schedule :  String @doc(description: "distributors show_schedule")
+}
+
+type Attributes {
+    attribute_id : Int @doc(description: "Attribute ID")
+    label :  String @doc(description: "Attribute Label")
+    options :  [attributeOptions] @doc(description: "Distributors options")
+}
+
+type AttributesById {
+    attribute_id : Int @doc(description: "Attribute ID")
+    label :  String @doc(description: "Attribute Label")
+    options :  [attributeOptions] @doc(description: "Distributors options")
+}
+
+type attributeOptions {
+    value : Int @doc(description: "Options value")
+    label :  String @doc(description: "Options Label")
+}
+
+type DistributorByOption {
+    totalRecords : Int @doc(description: "Total Distributor Count")
+    items :  [distributorItems] @doc(description: "Distributor items")
+}
+
+type distributorItems {
+    address : String @doc(description: "Distributor address")
+    category : String @doc(description: "Distributor category")
+    city :  String @doc(description: "Distributor city")
+    country :  String @doc(description: "Distributor country")
+    description :  String @doc(description: "Distributor description")
+    email :  String @doc(description: "Distributor email")
+    fax :  String @doc(description: "Distributor fax")
+    id :  Int @doc(description: "Distributor id")
+    lat :  String @doc(description: "Distributor lat")
+    lng :  String @doc(description: "Distributor lng")
+    marker :  String @doc(description: "Distributor marker")
+    marker_img :  String @doc(description: "Distributor marker_img")
+    name :  String @doc(description: "Distributor name")
+    phone :  String @doc(description: "Distributor phone")
+    photo :  String @doc(description: "Distributor photo")
+    position :  String @doc(description: "Distributor position")
+    schedule :  String @doc(description: "Distributor schedule")
+    show_schedule :  String @doc(description: "Distributor show_schedule")
+    state :  String @doc(description: "Distributor state")
+    status :  String @doc(description: "Distributor status")
+    store_img :  String @doc(description: "Distributor store_img")
+    stores :  String @doc(description: "Distributor stores")
+    website :  String @doc(description: "Distributor website")
+    zip :  String @doc(description: "Distributor zip")
+    attributes : [itemAttributeDetails] @doc(description: "Distributor items")
+}
+
+type itemAttributeDetails {
+    attribute_code : String @doc(description: "Item Attribute Code")
+    attribute_id : Int @doc(description: "Item attribute_id")
+    entity_id : Int @doc(description: "Item entity_id")
+    frontend_input : String @doc(description: "Item frontend_input")
+    frontend_label : String @doc(description: "Item frontend_label")
+    is_required : String @doc(description: "Item is_required")
+    store_id : Int @doc(description: "Item store_id")
+    value : String @doc(description: "Item value")
+    value_id : Int @doc(description: "Item value_id")
+    option_title : [optionTitle] @doc(description: "Distributor Option Title Details")
+}
+
+type optionTitle {
+    value : String @doc(description: "Options value")
+    title :  String @doc(description: "Option Title")
+}
+
+type DistributorByLocations {
+    totalRecords : Int @doc(description: "Total Distributor Count")
+    items :  [DistributorItemByLocation] @doc(description: "Distributor items")
+}
+
+type DistributorItemByLocation {
+    address : String @doc(description: "Distributor address")
+    category : String @doc(description: "Distributor category")
+    city :  String @doc(description: "Distributor city")
+    country :  String @doc(description: "Distributor country")
+    description :  String @doc(description: "Distributor description")
+    email :  String @doc(description: "Distributor email")
+    fax :  String @doc(description: "Distributor fax")
+    id :  Int @doc(description: "Distributor id")
+    lat :  String @doc(description: "Distributor lat")
+    lng :  String @doc(description: "Distributor lng")
+    marker :  String @doc(description: "Distributor marker")
+    marker_img :  String @doc(description: "Distributor marker_img")
+    name :  String @doc(description: "Distributor name")
+    phone :  String @doc(description: "Distributor phone")
+    photo :  String @doc(description: "Distributor photo")
+    position :  String @doc(description: "Distributor position")
+    schedule :  String @doc(description: "Distributor schedule")
+    show_schedule :  String @doc(description: "Distributor show_schedule")
+    state :  String @doc(description: "Distributor state")
+    status :  String @doc(description: "Distributor status")
+    store_img :  String @doc(description: "Distributor store_img")
+    stores :  String @doc(description: "Distributor stores")
+    website :  String @doc(description: "Distributor website")
+    zip :  String @doc(description: "Distributor zip")
+}

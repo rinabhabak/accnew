@@ -1,0 +1,25 @@
+<?php
+/**
+ * Accuride_Catalog
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ * @var $product \Magento\Catalog\Model\Product
+ */
+if ($product = $block->getProduct()): ?>
+    <div class="additional-attributes-wrapper table-wrapper">
+        <div class="specs_list">
+            <?php
+            /* @var $customAttribute \Magento\Framework\Api\AttributeInterface */
+            if ($customAttribute = $product->getCustomAttribute('specifications')) {
+                echo $customAttribute->getValue();
+            }
+            ?>
+        </div>
+    </div>
+<?php endif; ?>

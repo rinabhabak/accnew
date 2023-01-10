@@ -1,0 +1,52 @@
+#Int Home Page Banner GraphQl Schema
+
+type Query {
+    homeBanner : [HomeBannerData] 
+    @resolver(class: "Int\\HomeBannerGraphQl\\Model\\Resolver\\Slider") @doc(description: "The banner query returns information about a banner")
+    homeOwlBanner : [homeOwlBannerData] 
+    @resolver(class: "Int\\HomeBannerGraphQl\\Model\\Resolver\\SecondSlider") @doc(description: "The banner query returns information about a banner")
+    homePaginateBanner : [homePaginateBannerData] 
+    @resolver(class: "Int\\HomeBannerGraphQl\\Model\\Resolver\\PagSlider") @doc(description: "The banner query returns information about a banner")
+    homeNewProduct(
+        product_image_width: Int @doc(description: "Product Image width")
+        product_image_height: Int @doc(description: "Product Image height")
+    ) : [HomeNewProductData] @resolver(class: "Int\\HomeBannerGraphQl\\Model\\Resolver\\NewProducts") 
+    @doc(description: "The query returns information about product")
+}
+
+type HomeBannerData {
+    slider_id: Int @doc(description: "Banner id")
+    home_banner_image: String @doc(description: "Banner image url")
+    link: String @doc(description: "Banner link")
+    image_type: String @doc(description: "Banner Type")
+    target: String @doc(description: "Banner HTML target")
+}
+
+type homeOwlBannerData {
+    slider_id: Int @doc(description: "Banner id")
+    title: String @doc(description: "Banner Title")
+    home_banner_image: String @doc(description: "Banner image url")
+    link: String @doc(description: "Banner link")
+    target: String @doc(description: "Banner HTML target")
+}
+
+type homePaginateBannerData {
+    slider_id: Int @doc(description: "Banner id")
+    image_caption: String @doc(description: "Banner Image Caption")
+    category_name: String @doc(description: "Category Name")
+    category_description: String @doc(description: "Category Description")
+    home_banner_image: String @doc(description: "Banner image url")
+    link: String @doc(description: "Banner link")
+    target: String @doc(description: "Banner HTML target")
+}
+
+type HomeNewProductData {
+    prod_id: Int @doc(description: "Product Id")
+    prod_sku: String @doc(description: "Product Sku")
+    prod_name: String @doc(description: "Product Name")
+    prod_image:  String @doc(description: "Product Image")
+    prod_rating: Int @doc(description: "Product Rating")
+    prod_url: String @doc(description: "Product Url")
+    
+
+}

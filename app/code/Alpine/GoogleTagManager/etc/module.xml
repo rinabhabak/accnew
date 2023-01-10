@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_GoogleTagManager
+ *
+ * @category    Alpine
+ * @package     Alpine_GoogleTagManager
+ * @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+ * @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_GoogleTagManager" setup_version="0.1.0">
+        <sequence>
+            <module name="Magento_GoogleTagManager"/>
+        </sequence>
+    </module>
+</config>

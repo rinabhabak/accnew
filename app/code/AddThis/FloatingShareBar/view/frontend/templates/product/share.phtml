@@ -1,0 +1,95 @@
+
+<?php
+    // get magento2 version
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $productMetadata = $objectManager->get('Magento\Framework\App\ProductMetadataInterface');
+    $version = $productMetadata->getVersion(); //will return the magento version
+    
+    $desktopPosition = $this->getDesktopPosition();
+    $mobilePosition = $this->getMobilePosition();
+    $counts = $this->getCounts();
+    $numPreferredServices = $this->getNumPreferredServices();
+    $style = $this->getStyle();
+    $mobileButtonSize = $this->getMobileButtonSize();
+    $theme = $this->getTheme();
+
+    $output = array();
+
+    // setting up SmartLayers API confis for desktop version of this tool
+    $desktopConfigs = array(
+        'counts'               => $counts,
+        'numPreferredServices' => $numPreferredServices,
+        'mobile'               => false,
+        'position'             => $desktopPosition,
+        'theme'                => $theme,
+    );
+
+    if ($style === 'modern') {
+        $desktopPco = 'share';
+    } elseif ($style === 'bordered') {
+        $desktopPco = 'customsidebar';
+        $desktopConfigs['offset'] = array('top' => '20%');
+        unset($desktopConfigs['theme']);
+    }
+
+    if ($desktopPosition !== 'hide') {
+        $output[$desktopPco] = $desktopConfigs;
+    }
+
+    // setting up SmartLayers API confis for mobile version of this tool
+    $mobileConfigs = array(
+        'counts'               => $counts,
+        'numPreferredServices' => $numPreferredServices,
+        'mobileButtonSize'     => $mobileButtonSize,
+        'position'             => $mobilePosition,
+        'theme'                => $theme,
+    );
+
+    if ($style === 'modern') {
+        $mobilePco = 'sharedock';
+    } elseif ($style === 'bordered') {
+        $mobilePco = 'custommobilebar';
+        $mobileConfigs['textColor'] = '#222222';
+        unset($mobileConfigs['theme']);
+    }
+    if ($mobilePosition !== 'hide') {
+        $output[$mobilePco] = $mobileConfigs;
+    }
+?>
+
+<script>
+    require([], function (){
+        //`addthis_config.ignore_server_config` means profile ID settings
+        // will be ignored.
+        window.addthis_config = {ignore_server_config: true};
+
+        // Variable for tracking module usage to help guide AddThis in deciding how
+        // many resources to devote to maintaining this integration and what
+        // versions of Angular to focus on or test with.
+        window.addthis_plugin_info = {
+            info_status    : 'enabled',
+            cms_name       : 'Magento',
+            cms_version    : '<?php echo $version?>',
+            plugin_name    : 'magento2',
+            plugin_version : '1.0.1',
+            plugin_mode    : 'Magento'
+        };
+
+        // Load AddThis Smartlayer SDK and render the Tools;
+        var head = document.getElementsByTagName('head')[0];
+        var script= document.createElement('script');
+        script.type= 'text/javascript';
+        script.src = 'https://s7.addthis.com/js/300/addthis_widget.js';
+        head.appendChild(script);
+        script.onload = setupAddthisTools;
+
+        var setupAddthisTools = setInterval(function () {
+            if (typeof window.addthis !== 'undefined') {
+                window.addthis.layers(
+                    <?php echo json_encode($output) ?>
+                );
+                window.clearInterval(setupAddthisTools);
+            }
+        },200);  
+    });
+</script>

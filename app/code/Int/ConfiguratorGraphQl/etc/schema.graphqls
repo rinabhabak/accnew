@@ -1,0 +1,900 @@
+#Int Configurator GraphQl Schema
+
+type Query {
+    configuratorData(
+        configurator_id: Int @doc(description: "Configurator Id")
+    ): ConfiguratorData @resolver(class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\Configurator")
+    @doc(description: "The configurator query returns information about a configurator")
+	
+	getConfiguratorById(
+        configurator_id: Int @doc(description: "Configurator Id")
+    ): getConfiguratorById @resolver(class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\Configuratordetails")
+    @doc(description: "The configurator query returns information about a configurator")
+	
+    fixtureData(
+        fixture_id: Int @doc(description: "Fixture Id")
+    ): FixtureData @resolver(class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\Fixture")
+    @doc(description: "The fixture query returns information about a fixture")
+
+    getCustomerConfigurator (
+        customer_id: Int @doc(description: "Customer Id")
+    ): GetCustomerConfigurator
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetConfigurator")
+    @doc(description: "This query returns configurator list based on the customer.")
+
+    getBdmManagerConfiguratorsData (
+        configurator_id: Int @doc(description: "Configurator Id")
+    ) : BdmManagerConfiguratorData
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetBdmManagerConfiguratorsDetails")
+    @doc(description: "This query returns configurator details based on the Configurator.")
+
+    getLastSavedConfigurators(
+		no_of_configurator: Int @doc(description: "No of configurator to return")
+	): GetLastSavedConfiguratorsData
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetSavedConfiguratorsData")
+    @doc(description: "This query returns last five configurator data.")
+	
+	generateBom(
+        configurator_id: Int @doc(description: "Configurator Id")
+    ): generateBom @resolver(class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GenerateBom")
+    @doc(description: "The generateBom query returns information about a configurator product filterations")
+    
+    FixtureAdditionalData(
+        input: FixtureGetAdditional!
+    ): FixtureAdditionalOuput @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\FixtureAdditionalData")
+    @doc(description:"Fixture addiontional data save")
+    
+	dependencyAttributes(
+        attribute_code: String @doc(description: "Attribute code")
+		option_id: Int @doc(description: "Selected option id for attribute code")
+    ): [DependencyAttributes] @resolver(class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\DependencyAttributes")
+    @doc(description: "The DependencyAttributes query returns dependency between attributes")
+	
+	previewConfirmation(
+        configurator_id: Int @doc(description: "Configurator Id")
+    ): PreviewConfirmation @resolver(class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\PreviewConfirmation")
+    @doc(description: "The preview confirmation query returns product list based on configurator id")
+	
+	getBdmManagerActiveTaskList (
+        bdm_id: Int @doc(description: "BDM Id")
+    ) : [BdmManagerActiveTaskList]
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetBdmManagerActiveTaskList")
+    @doc(description: "This query returns active task list of BDM based on bdm_id.")
+	
+	getSameOpeningData(
+        fixture_id: Int @doc(description: "Fixture Id")
+    ): [getSameOpeningData] @resolver(class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetSameOpeningData")
+    @doc(description: "The getSameOpeningData query returns information about same type opening data based on fixture id")
+
+	getCustomerConsultativeData (
+        customer_id: Int @doc(description: "Customer Id")
+    ) : [BdmManagerConsultativeData]
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetCustomerConsultativeData")
+    @doc(description: "This query returns configurator details based on the Configurator.")
+	
+	getSaveforlaterbdm (
+        bdm_id: Int @doc(description: "Customer Id")
+    ) : [BdmManagerSaveforLaterData]
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetSaveforlaterbdm")
+    @doc(description: "This query returns configurator details based on the BDM id.")
+
+    configuratorOrderList (configurator_pid: String @doc(description: "Configurator Project Id of the Order")
+    ): ConfiguratorOrder @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\ConfiguratorOrder") @doc(description: "The Configurator Order List query returns information about the configurator project id order list")
+}
+
+type Mutation {
+    ConfiguratorDataSave(input: ConfiguratorInput!): ConfiguratorData @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\ConfiguratorSave") @doc(description:"configurator data save")
+    FixtureDataSave(input: FixtureInput!): FixtureOuput @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\FixtureSave") @doc(description:"Fixture data save")
+    FixtureAdditionalDataSave(input: FixtureAdditionalInput!): FixtureAdditionalOuput @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\FixtureAdditionalDataSave") @doc(description:"Fixture addiontional data save")
+    ConfiguratorDataAssigned(input: ConfiguratorAssignInput!):
+    ConfiguratorDataAssignedOutput @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\ConfiguratorDataAssigned")
+    @doc(description:"configurator data save")
+    UpdateFixtureName(input: FixtureNameUpdateDataInput!): FixtureNameUpdateDataOutput @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\UpdateFixtureName") @doc(description:"Fixture Name Update")
+    SaveOpeningType(input: OpeningTypeSaveDataInput!): OpeningTypeSaveDataOutput @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\OpeningTypeSave") @doc(description:"Opening Type Save Data")
+    SaveFixturesOpeningTypes(input: FixturesOpeningTypesDataInput!):
+    FixturesOpeningTypesDataOutput @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\SaveFixturesOpeningTypes")
+    @doc(description:"Opening Type Save Data")
+    SetSameAsOpeningType(input: SetFixtureElementInput!): SetFixtureElementData @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\SetFixtureElementSave") @doc(description:"fixture elements data save")
+
+    getOpeningTypeDetails(input: getOpeningTypeDetailsInput!): getOpeningTypeDetailsOutput @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetOpeningTypeDetailsOutput")
+    @doc(description:"Opening Type Save Data")
+
+    BdmManagerConfigurators(input: BdmManagerConfiguratorsInput!): BdmManagerConfiguratorsList @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\BdmManagerConfiguratorsList")
+    @doc(description: "This mutation returns configurator list based on the BDM Manager.")
+      
+    BdmConfigurators(input: BdmConfiguratorsInput!): BdmConfiguratorsList @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\BdmConfiguratorsList")
+    @doc(description: "This mutation returns configurator list based on the BDM.")
+
+
+    BdmManagerPastConfigurators(input: BdmManagerPastConfiguratorsInput!): BdmManagerPastConfiguratorsList @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\BdmManagerPastConfiguratorsList")
+    @doc(description: "This mutation returns past configurator list of BDM Manager.")
+
+    BdmPastConfigurators(input: BdmPastConfiguratorsInput!): BdmPastConfiguratorsList @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\BdmPastConfiguratorsList")
+    @doc(description: "This mutation returns past configurator list of BDM.")
+    
+    ThankyouPage(input: ThankyouPageInput!): ThankyouPageData @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\Thankyou")
+    @doc(description: "This mutation is for thank you page.")
+	
+	getBdmManagerConsultativeData(input: BdmConfiguratorsInput!) : [BdmManagerConsultativeData]
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetBdmManagerConsultativeDetails")
+    @doc(description: "This query returns configurator details based on the Configurator.")
+	
+	getBdmConsultativeData(input: BdmConfiguratorsconsultativeInput!) : [BdmManagerConsultativeData]
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetBdmConsultativeDetails")
+    @doc(description: "This query returns configurator details based on the Configurator.")
+	
+	getBdmManagerPastConsultativeData(input: BdmConfiguratorsInput!) : [BdmManagerConsultativeData]
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetBdmManagerPastConsultativeDetails")
+    @doc(description: "This query returns configurator details based on the Configurator.")
+	
+	getBdmPastConsultativeData(input: BdmConfiguratorsconsultativeInput!) : [BdmManagerConsultativeData]
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetBdmPastConsultativeDetails")
+    @doc(description: "This query returns configurator details based on the Configurator.")	
+	
+	setConfiguratorBdmStatus(input: StatusInput!): ConfiguratorBdmStatusData @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\ConfiguratorBdmStatusSave") @doc(description:"configurator data save")
+	
+	setConfiguratorAssign(input: AssignInput!): AssignConfiguratorData @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\ConfiguratorAssigned") @doc(description:"configurator data save")
+	
+	getFixtureDimensionsDetails(input: DimensionsInput!): DimensionDetails @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\FixtureDimensions") @doc(description:"Fixture dimension details")
+	
+	getSaveforlaterBdmManager(input: StatusInput!) : [BdmManagerSaveforLaterData]
+    @resolver( class: "Int\\ConfiguratorGraphQl\\Model\\Resolver\\GetSaveforlaterBdmManager")
+    @doc(description: "This query returns configurator details based on the Configurator.")
+}
+
+input AssignInput {
+    configurator_id: Int @doc(description: "Configurator Id / Project Id")
+    assign_by: Int @doc(description: " Assign By ")
+	assign_to: Int @doc(description: " Assign To ")
+}
+
+
+type AssignConfiguratorData @doc(description: "Configurator graphql gather Data of specific configurator information")
+{
+    message: String @doc(description: "Configurator Id")
+}
+
+
+input StatusInput {
+    configurator_id: Int @doc(description: "Configurator Id / Project Id")
+    bds_status: String @doc(description: " BDS Status ")
+}
+
+type ConfiguratorBdmStatusData @doc(description: "Configurator graphql gather Data of specific configurator information")
+{
+    configurator_id: Int @doc(description: "Configurator Id")
+	bds_status: Int @doc(description: "Bds Status")
+}
+
+input BdmConfiguratorsconsultativeInput {
+    status: String @doc(description: "'' = All Status, 1 = Pending, 2 = In Progress, 3 = In review, 4 = Completed")
+	bdm_id: Int @doc(description: "Total number of no_of_configurator used to get results. By default value is 5")
+}
+
+input getOpeningTypeDetailsInput {
+    opening_type_id: Int! @doc(description: "Opening Type Id")
+}
+
+type getOpeningTypeDetailsOutput {
+    opening_type_id: Int! @doc(description: "Opening Type Id")
+    fixture_id: Int! @doc(description: "Fixture Id")
+    attribute_option_id: Int! @doc(description: "Attribute Option Id")
+    attributes_fields_data: [AttributesFieldsDataOutput] @doc(description: "Attributes Fields Data")
+    custom_fields_data: [CustomFieldsDataOutput] @doc(description: "Custom Fields Data")
+}
+
+
+input DimensionsInput {
+	configurator_id: Int @doc(description: "Configurator Id / Project Id")
+    fixture_id: Int @doc(description: " Fixture Id ")
+	height: String @doc(description: "Height")
+	width: String @doc(description: "Width")
+	depth: String @doc(description: "Depth")
+	opening_id: Int @doc(description: "Opening Id")
+}
+
+type DimensionDetails @doc(description: "Configurator graphql gather Data of specific configurator information")
+{
+    message: String @doc(description: "Configurator Id")
+	status: Int @doc(description: "Status")
+}
+
+type ConfiguratorData @doc(description: "Configurator graphql gather Data of specific configurator information")
+{
+    configurator_id: Int! @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Id")
+    customer_id: String @doc(description: "Customer Id")
+    status: Int! @doc(description: "Configurator status")
+    type_of_build: String! @doc(description: "Type of build")
+    numbers_of_fixture: String! @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: Int! @doc(description: "Are the fixtures dimensions the same?")
+    fixtures: [ConfiguratorFixturesData] @doc(description: "Return Configurator's all fixtures")
+    created_at: String! @doc(description: "Configurator start time")
+    updated_at: String! @doc(description: "Configurator modify time")
+    completed_at: String @doc(description: "Configurator completed time")
+}
+
+type DependencyAttributes @doc(description: "DependencyAttributes graphql gather Data based on attributes dependencies ")
+{
+    attribute_code: String! @doc(description: "Attribute Code")
+    option_id: Int! @doc(description: "Option Id")
+    option_label: String! @doc(description: "Option Label")
+	attribute_label: String! @doc(description: "Attribute Label")
+	attribute_id: String! @doc(description: "Attribute Id")
+}
+
+type PreviewConfirmation @doc(description: "PreviewConfirmation graphql gather products of specific configurator")
+{
+   fixtures: [ConfiguratorFixtures] @doc(description: "Fixture Details")
+   logo: [system_logo_url] @doc(description: "logo Url")   
+}
+
+type system_logo_url
+{    
+	logo_url: String @doc(description: "Logo Url")	
+}
+
+type ConfiguratorFixtures @doc(description: "ConfiguratorFixtures graphql gather products of specific fixture")
+{
+    fixture_id: Int @doc(description: "Fixture Id")
+	fixture_name: String @doc(description: "Fixture Name")
+	fixture_logo: String @doc(description: "Fixture Logo")
+    fixture_total: String @doc(description: "Fixture Total Price")
+    is_senseon_plus: Int @doc(description: "Is fixture contain any senseon plus product or not?")
+    products: [ConfiguratorFixturesProducts] @doc(description: "Return Configurator's all fixtures products")
+	
+}
+
+type ConfiguratorFixturesProducts @doc(description: "ConfiguratorFixturesProducts graphql gather products of specific fixture")
+{
+    sku: String @doc(description: "Product SKU")
+    name: String @doc(description: "Product Name")
+    price: String @doc(description: "Product Price")
+    qty: String @doc(description: "Product Qty")   
+	uom: String @doc(description: "UOM")
+	row_total: String @doc(description: "Row total price")
+    row_total_formatted: String @doc(description: "Row total formatted price")
+    is_salable: Int @doc(description: "Is product salable or not?")
+}
+
+type BdmManagerActiveTaskList @doc(description: "BdmManagerActiveTaskList graphql gather active task list of configurators based on bdm_id")
+{
+    entity_id: Int @doc(description: "Entity Id")
+	parent_id: Int @doc(description: "Parent Id")
+	assigned_to: String @doc(description: "Assigned to")
+	created_at: String @doc(description: "Created At")
+	updated_at: String @doc(description: "Updated At")
+	assigned_by: String @doc(description: "Assigned By")
+	configurator_id: Int @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Name")
+	customer_id: Int @doc(description: "Customer Id")
+	status: Int @doc(description: "Status")
+    bds_status: Int @doc(description: "Configurator BDS status")
+	type_of_build: String @doc(description: "Type of build")
+	numbers_of_fixture: Int @doc(description: "Numbers of fixture")
+	same_fixture_dimensions: Int @doc(description: "Same fixture dimensions")
+	completed_at: String @doc(description: "Completed At")
+	config_created_at: String @doc(description: "Config created at")
+	config_updated_at: String @doc(description: "Config updated at")
+}
+
+type getConfiguratorById @doc(description: "Configurator graphql gather Data of specific configurator information from configurator_id")
+{
+    configurator_id: Int! @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Name")
+    customer_id: String! @doc(description: "Customer Id")
+	customer_name: String! @doc(description: "Customer Name")
+	customer_email: String! @doc(description: "Customer Email")
+	assigned_bdm_name: String! @doc(description: "Assign BDM Name")
+	assigned_bdm_date: String! @doc(description: "Assign BDM Date")
+	assigned_bdm_id: String! @doc(description: "Assign BDM Id")
+    status: Int! @doc(description: "Configurator status")
+    bds_status: Int @doc(description: "Configurator BDS status")
+    bds_completed_date: String @doc(description: "Configurator Completed Date by BDS or BDM manager")  
+    type_of_build: String! @doc(description: "Type of build")
+    numbers_of_fixture: String! @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: Int! @doc(description: "Are the fixtures dimensions the same?")
+    fixtures: [ConfiguratorIdFixturesData] @doc(description: "Return Configurator's all fixtures")
+	pdf_link: String @doc(description: "PDF link")
+    created_at: String! @doc(description: "Configurator start time")
+    updated_at: String! @doc(description: "Configurator modify time")
+	completed_at: String @doc(description: "Configurator completed time")
+}
+type ConfiguratorIdFixturesData {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    fixture_name: String! @doc(description: "Fixture Name")
+    configurator_id: Int! @doc(description: "Configurator Id")
+    fixture_length: Float! @doc(description: "Fixture Length")
+    fixture_depth: Float! @doc(description: "Fixture Depth")
+    fixture_height: Float! @doc(description: "Fixture Height")
+    cabinet_power_available: Int! @doc(description: "Is power available in the cabinet?")
+    fixture_standing: String! @doc(description: "Fixture freestanding or connected")
+    created_at: String! @doc(description: "Fixture created time")
+    updated_at: String! @doc(description: "Fixture updated time")
+    opening_types: [ConfiguratorIdFixturesOpeningTypesOutput] @doc(description: "Opentype Data output")
+}
+
+type ConfiguratorIdFixturesOpeningTypesOutput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    opening_type_id: Int! @doc(description: "Opening Type Id")
+    attribute_option_id: Int! @doc(description: "Attribute Option Id")
+    name: String! @doc(description: "Name")
+    created_at: String! @doc(description: "Created At")
+    updated_at: String! @doc(description: "Updated At")
+	attributes_field : [ConfiguratorIdFixturesOpeningTypesOutputAttributesFields] @doc(description: "Opentype Data output")
+	custom_field : [ConfiguratorIdFixturesOpeningTypesOutputCustomFields] @doc(description: "Opentype Data output")
+}
+type ConfiguratorIdFixturesOpeningTypesOutputAttributesFields {
+    attribute_id: Int! @doc(description: "Attribute Id")
+    attribute_code: String! @doc(description: "Attribute code")
+    attribute_option_id: Int! @doc(description: "Option Id")
+    attribute_option_value: String! @doc(description: "value")
+	attribute_label: String! @doc(description: "value")
+	option_type_id: Int! @doc(description: "Option Type Id")
+}
+
+type ConfiguratorIdFixturesOpeningTypesOutputCustomFields {
+    field_label: String! @doc(description: "Label")
+    field_name: String! @doc(description: "Name")
+    field_value: String! @doc(description: "Value")
+}
+
+type getSameOpeningData @doc(description: "getSameOpeningData graphql gather opening Data of fixture ID")
+{
+    same_as: Int @doc(description: "Same As")
+	type_id: Int @doc(description: "Type Id")
+	name: String @doc(description: "Opening Name")
+}
+
+input ConfiguratorInput {
+    configurator_id: Int @doc(description: "Configurator Id")
+	project_name: String @doc(description: "Project Name")
+    customer_id: String @doc(description: "Customer Id")
+    type_of_build: String! @doc(description: "Type of build")
+    numbers_of_fixture: String! @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: Int! @doc(description: "Are the fixtures dimensions the same?")
+}
+
+input SetFixtureElementInput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    same_as_data: [SameAsOpeningTypeInput] @doc(description: "Same as other opening types")
+    
+}
+
+input SameAsOpeningTypeInput {
+    same_as_opening_type_id: Int @doc(description: "The fixture element ID, From where you want to fetch product data.")
+    current_opening_type_id: Int @doc(description: "The fixture element ID, where you want to set product data.")
+}
+
+type SetFixtureElementData @doc(description: "Configurator graphql gather Data of specific configurator information")
+{
+    fixture_id: Int! @doc(description: "Fixture Id")
+    same_as_data: [SameAsOpeningTypeResponse] @doc(description: "Same as other opening types")
+    
+}
+
+type SameAsOpeningTypeResponse {
+    same_as_opening_type_id: Int @doc(description: "The fixture element ID, From where you want to fetch product data.")
+    current_opening_type_id: Int @doc(description: "The fixture element ID, where you want to set product data.")
+    message: String @doc(description: "Success Message")
+}
+
+type ConfiguratorOutput {
+    configurator_id: Int @doc(description: "Configurator Id")
+    customer_id: String @doc(description: "Customer Id")
+    status: Int @doc(description: "Configurator status")
+    type_of_build: String @doc(description: "Type of build")
+    numbers_of_fixture: Int @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: Int @doc(description: "Are the fixtures dimensions the same?")
+    created_at: String @doc(description: "Configurator created time")
+    updated_at: String @doc(description: "Configurator updated time")
+    completed_at: String @doc(description: "Configurator completed time")
+}
+
+
+
+type FixtureData {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    configurator_id: Int! @doc(description: "Configurator Id")
+    fixture_length: Float! @doc(description: "Fixture Length")
+    fixture_depth: Float! @doc(description: "Fixture Depth")
+    fixture_height: Float! @doc(description: "Fixture Height")
+    cabinet_power_available: Int! @doc(description: "Is power available in the cabinet?")
+    fixture_standing: String! @doc(description: "Fixture freestanding or connected")
+    created_at: String! @doc(description: "Fixture created time")
+    updated_at: String! @doc(description: "Fixture updated time")
+}
+
+
+input FixtureInput {
+    configurator_id: Int! @doc(description: "Configurator Id")
+    fixture_id: Int! @doc(description: "Fixture Id")
+    fixture_length: Float! @doc(description: "Fixture Length")
+    fixture_depth: Float! @doc(description: "Fixture Depth")
+    fixture_height: Float! @doc(description: "Fixture Height")
+    cabinet_power_available: Int! @doc(description: "Is power available in the cabinet?")
+    fixture_standing: String! @doc(description: "Fixture freestanding or connected")
+}
+
+type FixtureOuput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    configurator_id: Int! @doc(description: "Configurator Id")
+    fixture_length: Float! @doc(description: "Fixture Length")
+    fixture_depth: Float! @doc(description: "Fixture Depth")
+    fixture_height: Float! @doc(description: "Fixture Height")
+    cabinet_power_available: Int! @doc(description: "Is power available in the cabinet?")
+    fixture_standing: String! @doc(description: "Fixture freestanding or connected")
+    created_at: String! @doc(description: "Fixture created time")
+    updated_at: String! @doc(description: "Fixture updated time")
+    additional_data: [FixtureAdditionalOuput] @doc(description: "Fixture Additional Data Input")
+}
+
+type ConfiguratorFixturesData {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    fixture_name: String! @doc(description: "Fixture Name")
+    configurator_id: Int! @doc(description: "Configurator Id")
+    fixture_length: Float! @doc(description: "Fixture Length")
+    fixture_depth: Float! @doc(description: "Fixture Depth")
+    fixture_height: Float! @doc(description: "Fixture Height")
+    cabinet_power_available: Int! @doc(description: "Is power available in the cabinet?")
+    fixture_standing: String! @doc(description: "Fixture freestanding or connected")
+    created_at: String! @doc(description: "Fixture created time")
+    updated_at: String! @doc(description: "Fixture updated time")
+    status: Int @doc(description: "Fixture Status")
+    opening_types: [ConfiguratorFixturesOpeningTypesOutput] @doc(description: "Opentype Data output")
+}
+
+type BdmManagerConsultativeData @doc(description: "BdmManagerConsultativeData graphql gather list of configurators that have Consultative Sale = 1 based on bdm_id")
+{
+    entity_id: Int @doc(description: "Entity Id")
+	parent_id: Int @doc(description: "Parent Id")
+	assigned_to: String @doc(description: "Assigned to")
+	created_at: String @doc(description: "Created At")
+	updated_at: String @doc(description: "Updated At")
+	assigned_by: String @doc(description: "Assigned By")
+	configurator_id: Int @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Name")
+	customer_id: Int @doc(description: "Customer Id")
+	customer_name: String @doc(description: "Customer name")
+	status: String @doc(description: "Status")
+    	bds_status: Int @doc(description: "Configurator BDS status")
+	type_of_build: String @doc(description: "Type of build")
+	numbers_of_fixture: Int @doc(description: "Numbers of fixture")
+	same_fixture_dimensions: Int @doc(description: "Same fixture dimensions")
+	completed_at: String @doc(description: "Completed At")
+	config_created_at: String @doc(description: "Config created at")
+	config_updated_at: String @doc(description: "Config updated at")
+	fixtures: [ConfiguratorFixturesData] @doc(description: "Return Configurator's all fixtures")
+}
+
+type BdmManagerSaveforLaterData @doc(description: "BdmManagerSaveforLaterData graphql gather list of configurators that have pending and processing status")
+{
+   
+	assigned_to: String @doc(description: "Assigned to")	
+	configurator_id: Int @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Name")
+	customer_id: Int @doc(description: "Customer Id")
+	customer_name: String @doc(description: "Customer name")
+	status: String @doc(description: "Status")
+    	bds_status: Int @doc(description: "Configurator BDS status")
+	bdm_id: Int @doc(description: "BDM Id")
+	completed_at: String @doc(description: "Completed At")
+	config_created_at: String @doc(description: "Config created at")
+	config_updated_at: String @doc(description: "Config updated at")
+	assigned_date: String @doc(description: "BDM Assigned Date")
+	
+}
+
+input FixtureGetAdditional {
+    fixture_id: Int! @doc(description: "Fixture Id")
+}
+
+input FixtureAdditionalInput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    additional_data: [FixtureAdditionalDataInput] @doc(description: "Fixture Additional Data Input")   
+}
+
+input FixtureAdditionalDataInput {
+    attributes_fields_data: [FixtureAdditionalAttributesFieldsDataInput] @doc(description: "Attributes Fields Data")
+    custom_fields_data: [FixtureAdditionaCustomFieldsDataInput] @doc(description: "Custom Fields Data")
+}
+
+input FixtureAdditionalAttributesFieldsDataInput {
+    attribute_id: Int! @doc(description: "Attribute Id")
+    attribute_code: String! @doc(description: "Attribute Code")
+    attribute_label: String @doc(description: "Attribute Label")
+    attribute_option_label: String @doc(description: "Attribute Option Label")
+    attribute_option_value: String @doc(description: "Attribute Option Value")
+}
+
+input FixtureAdditionaCustomFieldsDataInput {
+    field_label: String! @doc(description: "Custom Field Label")
+    field_name: String! @doc(description: "Custom Field Name")
+    field_value: String! @doc(description: "Custom Field Value")
+}
+
+
+type FixtureAdditionalOuput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    additional_data: [FixtureAdditionalDataOutput] @doc(description: "Fixture Additional Data Input")
+}
+
+type FixtureAdditionalDataOutput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    attributes_fields_data: [FixtureAdditionalAttributesFieldsDataOutput] @doc(description: "Attributes Fields Data")
+    custom_fields_data: [FixtureAdditionalCustomFieldsDataOutput] @doc(description: "Custom Fields Data")
+}
+
+type FixtureAdditionalAttributesFieldsDataOutput {
+    attribute_id: Int! @doc(description: "Attribute Id")
+    attribute_code: String! @doc(description: "Attribute Code")
+    attribute_label: String @doc(description: "Attribute Label")
+    attribute_option_label: String @doc(description: "Attribute Option Label")
+    attribute_option_value: String @doc(description: "Attribute Option Value")
+}
+
+type FixtureAdditionalCustomFieldsDataOutput {
+    field_label: String! @doc(description: "Custom Field Label")
+    field_name: String! @doc(description: "Custom Field Name")
+    field_value: String! @doc(description: "Custom Field Value")
+}
+
+type GetCustomerConfigurator {
+    configurator: [CustomerConfiguratorData]  @doc(description: "Query by Get Configurator Data.")
+}
+
+type CustomerConfiguratorData {
+    project_id: Int! @doc(description: "Configurator/Project Id")
+	project_no: String @doc(description: "Project no/Project Id")
+    project_name: String @doc(description: "Project name")
+    type_of_build: String! @doc(description: "Configurator Type Of Build")
+    status: String! @doc(description: "Configurator status")
+    numbers_of_fixture: Int! @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: String! @doc(description: "Configurator fixture dimensions")
+    customer_id: String! @doc(description: "Customer Id")
+    created_at: String! @doc(description: "Configurator created time")
+    updated_at: String! @doc(description: "Configurator updated time")
+    is_salable: Int! @doc(description: "Configurator is salable or not")
+    order_items: [ConfiguratorOrderItemData] @doc(description: "Configurator order items")
+}
+
+type ConfiguratorOrderItemData {
+    id: Int! @doc(description: "Configurator order item id")
+    name: String! @doc(description: "Configurator order item name")
+    sku: String! @doc(description: "Configurator order item sku")
+    qty: Int! @doc(description: "Configurator order item quantity")
+    uom: String! @doc(description: "Configurator order item uom")
+    price: String! @doc(description: "Configurator order item price")
+    row_total: String! @doc(description: "Configurator order item row total")
+    row_total_formatted: String! @doc(description: "Configurator order item row total formatted")
+    is_salable: Int! @doc(description: "Configurator order item is salable")
+}
+
+type FixtureProductData {
+    attribute_id: Int! @doc(description: "Selected Attribute Id")
+    attribute_code: String! @doc(description: "Selected Attribute code")
+    attribute_option_id: Int! @doc(description: "Selected Attribute  Option Id")
+    attribute_option_value: Int! @doc(description: "Selected Attribute Option Value")
+}
+
+
+type BdmManagerConfiguratorsList {
+    configurator_list: [ConfiguratorListData]  @doc(description: "Get BDM Manager Configurator List Data.")
+}
+
+type BdmConfiguratorsList {
+    configurator_list: [BdmConfiguratorListData]  @doc(description: "Get BDM Configurator List Data.")
+}
+
+
+type BdmManagerPastConfiguratorsList {
+    configurator_list: [BdmManagerPastConfiguratorsListData]  @doc(description: "Get BDM Manager Configurator List Data.")
+}
+
+type BdmPastConfiguratorsList {
+    configurator_list: [BdmPastConfiguratorsListData]  @doc(description: "Get BDM Configurator List Data.")
+}
+
+
+type ConfiguratorListData {
+    configurator_id: Int! @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Name")
+    customer_id: Int @doc(description: "Customer Id")
+    customer_name: String @doc(description: "Customer Created the Configurator")
+    type_of_build: String @doc(description: "Configurator Type Of Build")
+    status: String @doc(description: "Configurator status")
+	bds_status: Int @doc(description: "Configurator BDS status")
+    bds_completed_date: String @doc(description: "Configurator Completed Date by BDS or BDM manager")    
+    numbers_of_fixture: Int @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: String @doc(description: "Configurator fixture dimensions")
+    creation_date: String @doc(description: "Assigned Date to the BDM Manager")
+	config_created_at: String @doc(description: "configurator creation date")
+	config_updated_at: String @doc(description: "configurator updated date")
+    completed_at: String @doc(description: "Configurator completed time")
+    assigned_bdm_name: String @doc(description: "Assigned BDM Name")
+    assigned_bdm_id: String @doc(description: "Assigned BDM Id")
+    assigned_bdm_date: String @doc(description: "BDM Assigned Date")
+}
+
+type BdmConfiguratorListData {
+    configurator_id: Int! @doc(description: "Configurator Id")
+    customer_id: Int! @doc(description: "Customer Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Name")
+    customer_name: String! @doc(description: "Customer Created the Configurator")
+    type_of_build: String! @doc(description: "Configurator Type Of Build")
+    status: String! @doc(description: "Configurator status")
+    bds_status: Int @doc(description: "Configurator BDS status")
+    numbers_of_fixture: Int! @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: String! @doc(description: "Configurator fixture dimensions")
+    creation_date: String @doc(description: "Assigned Date to the BDM Manager")
+    completed_at: String @doc(description: "Configurator completed time")
+	config_updated_at: String @doc(description: "Configurator updated time")
+}
+
+type BdmManagerPastConfiguratorsListData {
+    configurator_id: Int! @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Name")
+    customer_id: Int @doc(description: "Customer Id")
+    customer_name: String @doc(description: "Customer Created the Configurator")
+    type_of_build: String @doc(description: "Configurator Type Of Build")
+    status: String @doc(description: "Configurator status")
+    bds_status: Int @doc(description: "Configurator BDS status")
+    bds_completed_date: String @doc(description: "Configurator Completed Date by BDS or BDM manager")  
+    numbers_of_fixture: Int @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: String! @doc(description: "Configurator fixture dimensions")
+    creation_date: String @doc(description: "Assigned Date to the BDM Manager")
+    completed_at: String @doc(description: "Configurator completed time")
+    assigned_bdm_name: String @doc(description: "Assigned BDM Name")
+    assigned_bdm_id: String @doc(description: "Assigned BDM Id")
+    assigned_bdm_date: String @doc(description: "BDM Assigned Date")
+}
+
+type BdmPastConfiguratorsListData {
+    configurator_id: Int! @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+	project_name: String @doc(description: "Project Name")
+    customer_id: Int! @doc(description: "Customer Id")
+    customer_name: String! @doc(description: "Customer Created the Configurator")
+    type_of_build: String! @doc(description: "Configurator Type Of Build")
+    status: String! @doc(description: "Configurator status")
+    bds_status: Int @doc(description: "Configurator BDS status")
+    numbers_of_fixture: Int! @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: String! @doc(description: "Configurator fixture dimensions")
+    creation_date: String @doc(description: "Assigned Date to the BDM Manager")
+    completed_at: String @doc(description: "Configurator completed time")
+}
+
+
+
+type BdmManagerConfiguratorData {
+    configurator_id: Int! @doc(description: "Configurator Id")
+	project_id: String @doc(description: "Project Id")
+    customer_id: String! @doc(description: "Customer Id")
+    status: String! @doc(description: "Configurator status")
+    bds_status: Int @doc(description: "Configurator BDS status")
+    type_of_build: String! @doc(description: "Type of build")
+    numbers_of_fixture: String! @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: Boolean! @doc(description: "Are the fixtures dimensions the same?")
+    fixtures: [ConfiguratorFixturesData] @doc(description: "Return Configurator's all fixtures")
+    created_at: String! @doc(description: "Configurator start time")
+    updated_at: String! @doc(description: "Configurator modify time")
+    completed_at: String @doc(description: "Configurator completed time")
+}
+
+input ConfiguratorAssignInput {
+    configurator_id: Int! @doc(description: "Configurator Id")
+    bdm_manager_id: Int! @doc(description: "Assigned BDM Manager Id")
+}
+
+type ConfiguratorDataAssignedOutput {
+    assigned_id: Int! @doc(description: "Assigned Id")
+    message: String! @doc(description: "Response Message")
+}
+
+input FixtureNameUpdateDataInput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    fixture_name: String! @doc(description: "Fixture Name")
+}
+
+type FixtureNameUpdateDataOutput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    fixture_name: String! @doc(description: "Fixture Name")
+}
+
+input OpeningTypeSaveDataInput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    opening_types: [OpeningTypeInput] @doc(description: "Opentype Data input")
+}
+
+input OpeningTypeInput {
+    attribute_id: Int! @doc(description: "Attribute Id")
+    attribute_code: String! @doc(description: "Attribute Id")
+    attribute_option_id: Int! @doc(description: "Attribute Option Id")
+    attribute_option_label: String! @doc(description: "Attribute Option Label like Drawer, Sliding Cabinet Door etc")
+    quantity: Int! @doc(description: "Attribute Option Id")
+}
+
+type OpeningTypeSaveDataOutput {
+    opening_types: [OpeningTypeOutput] @doc(description: "Opentype Data output")
+}
+
+type OpeningTypeOutput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    opening_type_id: Int! @doc(description: "Opening Type Id")
+    attribute_option_id: Int! @doc(description: "Attribute Option Id")
+    name: String! @doc(description: "Name")
+    created_at: String! @doc(description: "Created At")
+    updated_at: String! @doc(description: "Updated At")
+
+}
+
+input FixturesOpeningTypesDataInput {
+    opening_type_id: Int! @doc(description: "Opening Type Id")
+    fixture_id: Int! @doc(description: "Fixture Id")
+    attribute_option_id: Int! @doc(description: "Attribute Option Id")
+    attributes_fields_data: [AttributesFieldsDataInput] @doc(description: "Attributes Fields Data")
+    custom_fields_data: [CustomFieldsDataInput] @doc(description: "Custom Fields Data")
+}
+
+
+input AttributesFieldsDataInput {
+    attribute_id: Int! @doc(description: "Attribute Id")
+    attribute_code: String! @doc(description: "Attribute Code")
+    attribute_label: String @doc(description: "Attribute Label")
+    attribute_option_label: String @doc(description: "Attribute Option Label")
+    attribute_option_value: String @doc(description: "Attribute Option Value")
+}
+
+input CustomFieldsDataInput {
+    field_label: String! @doc(description: "Custom Field Label")
+    field_name: String! @doc(description: "Custom Field Name")
+    field_value: String! @doc(description: "Custom Field Value")
+}
+
+
+type FixturesOpeningTypesDataOutput {
+    opening_type_id: Int! @doc(description: "Opening Type Id")
+    fixture_id: Int! @doc(description: "Fixture Id")
+    attribute_option_id: Int! @doc(description: "Attribute Option Id")
+    attributes_fields_data: [AttributesFieldsDataOutput] @doc(description: "Attributes Fields Data")
+    custom_fields_data: [CustomFieldsDataOutput] @doc(description: "Custom Fields Data")
+}
+
+type AttributesFieldsDataOutput {
+    attribute_id: Int! @doc(description: "Attribute Id")
+    attribute_code: String! @doc(description: "Attribute Code")
+    attribute_label: String @doc(description: "Attribute Label")
+    attribute_option_label: String @doc(description: "Attribute Option Label")
+    attribute_option_value: String @doc(description: "Attribute Option Value")
+}
+
+type CustomFieldsDataOutput {
+    field_label: String! @doc(description: "Custom Field Label")
+    field_name: String! @doc(description: "Custom Field Name")
+    field_value: String! @doc(description: "Custom Field Value")
+}
+
+type GetLastSavedConfiguratorsData {
+    last_saved_list: [LastSavedConfiguratorList] 
+}
+
+type LastSavedConfiguratorList {
+    project_id: String @doc(description: "Project Id")
+    configurator_id: String @doc(description: "Configurator Id")    
+    project_name: String @doc(description: "Project Name")
+    last_save_at: String @doc(description: "Last Saved")
+}
+
+type ConfiguratorFixturesOpeningTypesOutput {
+    fixture_id: Int! @doc(description: "Fixture Id")
+    opening_type_id: Int! @doc(description: "Opening Type Id")
+    attribute_option_id: Int! @doc(description: "Attribute Option Id")
+    name: String! @doc(description: "Name")
+    status: Int @doc(description: "Opening Type Status")
+    created_at: String! @doc(description: "Created At")
+    updated_at: String! @doc(description: "Updated At")
+}
+
+type generateBom @doc(description: "generateBom graphql gather Data of specific configurator information and generate PDF")
+{
+    configurator_id: Int @doc(description: "Configurator Id")
+    pdf_link: String @doc(description: "PDF Link")
+}
+
+input BdmManagerConfiguratorsInput {
+    status: String @doc(description: "'' = All Status, 1 = Pending, 2 = In Progress, 3 = In review, 4 = Completed")
+	no_of_configurator: Int @doc(description: "Total number of no_of_configurator used to get results. By default value is 5")
+}
+
+input BdmConfiguratorsInput {
+    status: String @doc(description: "'' = All Status, 1 = Pending, 2 = In Progress, 3 = In review, 4 = Completed")
+}
+
+input BdmManagerPastConfiguratorsInput {
+    status: String @doc(description: "'' = All Status, 1 = Pending, 2 = In Progress, 3 = In review, 4 = Completed")
+	no_of_configurator: Int @doc(description: "Total number of no_of_configurator used to get results. By default value is 5")
+}
+
+input BdmPastConfiguratorsInput {
+    status: String @doc(description: "'' = All Status, 1 = Pending, 2 = In Progress, 3 = In review, 4 = Completed")
+}
+
+input ThankyouPageInput {
+    configurator_id: Int @doc(description: "Configurator Id")
+}
+
+type ThankyouPageData {
+    configurator: getConfiguratorById @doc(description: "Return Configurator Details By Id")
+}
+
+type ConfiguratorOrder @doc(description: "Configurator order item information") {
+    configuratorOrderRecords: [OrderRecord] @doc(description: "An array containing the configurator order data")
+    configuratorDetails: [getConfiguratorDetails] @doc(description: "The configurator query returns information about a configurator")
+}
+
+type OrderRecord @doc(description: "Configurator Order graphql gather Data of specific order list information") {
+    order_id: Int @doc(description: "Order Id of Sales Order")
+    increment_id: String @doc(description: "Increment Id of Sales Order")
+    configurator_pid: String @doc(description: "Configurator Project Id of Sales Order")
+    customer_name: String @doc(description: "Customername of Sales Order")
+    shipping_amount: String @doc(description: "shipping amount")
+    tax_amount: String @doc(description: "tax amount")
+    grand_total: String @doc(description: "Grand total of Sales Order")
+    is_guest_customer: Boolean @doc(description: "Specifies if this otder was placed by Guest cusotmer")
+    created_at: String @doc(description: "Creation date of Sales Order")
+    shipping_method: String @doc(description: "Shipping method of Sales Order")
+    order_status: String @doc(description: "Order status of Sales Order")
+    items: [Items] @doc(description: "An array of all items data of order") @resolver(class: "\\Int\\ConfiguratorGraphQl\\Model\\Resolver\\Items")
+}
+
+type getConfiguratorDetails @doc(description: "Configurator graphql gather Data of specific configurator information from configurator project id")
+{
+    configurator_id: Int! @doc(description: "Configurator Id")
+    project_id: String @doc(description: "Project Id")
+    project_name: String @doc(description: "Project Name")
+    customer_id: String! @doc(description: "Customer Id")
+    customer_name: String! @doc(description: "Customer Name")
+    customer_email: String! @doc(description: "Customer Email")
+    assigned_bdm_name: String! @doc(description: "Assign BDM Name")
+    assigned_bdm_date: String! @doc(description: "Assign BDM Date")
+    assigned_bdm_id: String! @doc(description: "Assign BDM Id")
+    status: Int! @doc(description: "Configurator status")
+    bds_status: Int @doc(description: "Configurator BDS status")
+    bds_completed_date: String @doc(description: "Configurator Completed Date by BDS or BDM manager")  
+    type_of_build: String! @doc(description: "Type of build")
+    numbers_of_fixture: String! @doc(description: "Numbers of fixture")
+    same_fixture_dimensions: Int! @doc(description: "Are the fixtures dimensions the same?")
+    pdf_link: String @doc(description: "PDF link")
+    created_at: String! @doc(description: "Configurator start time")
+    updated_at: String! @doc(description: "Configurator modify time")
+    completed_at: String @doc(description: "Configurator completed time")
+}
+
+type Items @doc(description: "An array containing all the items of order") {
+    parent_sku: String @doc(description: "SKU of configurable Item")
+    sku: String @doc(description: "SKU of Sales Order Item")
+    configurator_pid: String @doc(description: "Configurator project id of Sales Order Item")
+    title: String @doc(description: "title of Sales Order Item")
+    image: String @doc(description: "Image of Sale Order Item")
+    length: String @doc(description: "Length of Sale Order Item")
+    system_compatibility: String @doc(description: "System compatiblity of Sale Order Item")
+    is_salable: Int @doc(description: "Product availability of Sale Order Item")
+    price: Float @doc(description: "price of Sales Order Item")
+    qty: Int @doc(description: "Quantity of Sales Order Item")
+    product_type: String @doc(description: "product type")   
+    product_id: Int @doc(description: "SKU of Sales Order Item")
+    productoptions: [ProductOptions] @doc(description: "Configurable options label")
+}
+
+type ProductOptions @doc(description: "An array containing all the items of order") {
+    label: String @doc(description: "label")
+    value: String @doc(description: "value")
+}

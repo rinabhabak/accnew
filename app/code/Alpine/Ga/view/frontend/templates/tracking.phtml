@@ -1,0 +1,44 @@
+<?php
+/**
+ * Alpine_Ga
+ *
+ * @category    Alpine
+ * @package     Alpine_Ga
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+?>
+
+<?php
+	/** @var Alpine\Ga\Helper\Data $helper */
+	$helper = $this->helper(Alpine\Ga\Helper\Data::class);
+
+	/** @var Magento\GoogleTagManager\Helper\Data $gtmHelper */
+	$gtmHelper = $this->helper(Magento\GoogleTagManager\Helper\Data::class);
+?>
+<?php
+	if ($gtmHelper->isGoogleAnalyticsAvailable()) {
+?>
+		<script>
+		    function gtag(){
+		        if (typeof dataLayer !== 'undefined') {
+                    dataLayer.push(arguments);
+		        } else {
+		            console.log('dataLayer is still not loaded, following cannot be pushed');
+                    console.log(arguments);
+		        }
+		    }
+		</script>
+<?php
+    }
+	if  (!$gtmHelper->isTagManagerAvailable() && $gtmHelper->isGoogleAnalyticsAvailable()) {
+?>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=<?= /* @escapeNotVerified */ $helper->getGoogleApiKey(); ?>"></script>
+		<script>
+            window.dataLayer = window.dataLayer || [];
+	        gtag('js', new Date());
+	        gtag('config', '<?= /* @escapeNotVerified */ $helper->getGoogleApiKey(); ?>');
+		</script>
+<?php
+	}
+?>

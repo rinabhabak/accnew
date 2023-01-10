@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--
+* Alpine
+*
+* @category    Alpine
+* @package     Alpine_Accuridecustomization
+* @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+* @author      Denis Furman <denis.furman@alpineinc.com>
+* @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="breadcrumbs" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceBlock name="product.info.addtocart" remove="true"/>
+        <referenceContainer name="product.info.social" remove="true"/>
+        <referenceBlock name="product.info.overview" remove="true"/>
+        <referenceBlock name="product.info.faq" remove="true"/>
+        <referenceBlock name="product.info.description" remove="true"/>
+        <referenceContainer name="mageplaza.frequently.bought.together" remove="true"/>
+        <move element="product.info.main" destination="product.info.main.wrapper" before="-"/>
+        <move element="product.info.media" destination="product.info.main.wrapper" before="-"/>
+        <move element="amfile.attachment" destination="product.info.details" after="-"/>
+        <move element="product.info.logos" destination="content" after="product.info.details"/>
+
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Catalog\Block\Product\View" name="page.main.title.product" template="Magento_Catalog::product/title.phtml" before="-"/>
+            <block class="Magento\Framework\View\Element\Template" name="addthis.inline.share.toolbox" template="Magento_Catalog::product/share.phtml" after="page.main.title.product"/>
+            <block class="Magento\Framework\View\Element\Template" name="product.showmore" template="Magento_Catalog::product/showmore.phtml" after="-"/>
+        </referenceContainer>
+        <referenceContainer name="product.info.form.content">
+            <block class="Alpine\Catalog\Block\Product\View" name="product.info.addtocart.custom" template="Magento_Catalog::product/view/addtocart.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="product.info.extrahint">
+            <block class="Magento\Cms\Block\Block" name="info_static" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">product_info_static</argument>
+                </arguments>
+            </block>
+            <block class="Alpine\Cms\Block\ProductInfoStatic" name="info_static_popups" after="info_static" template="Alpine_Cms::popup.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <container name="product.info.main.wrapper" htmlTag="div" htmlClass="product-info-wrapper" before="-"/>
+        </referenceContainer>
+        <referenceBlock name="product.info.details">
+            <block class="Magento\Catalog\Block\Product\View\Attributes" name="product.specifications"
+                   as="specifications" template="Magento_Catalog::product/view/attributes.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="priority" xsi:type="string">10</argument>
+                    <argument translate="true" name="title" xsi:type="string">SPECIFICATIONS</argument>
+                </arguments>
+            </block>
+
+            <block class="Alpine\Catalog\Block\Product\Tabs\Info" name="product.info.features"
+                   template="Magento_Catalog::product/tabs/info.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="priority" xsi:type="string">20</argument>
+                    <argument name="attribute_code" xsi:type="string">product_features</argument>
+                    <argument translate="true" name="title" xsi:type="string">PRODUCT FEATURES</argument>
+                    <argument name="is_slider" xsi:type="boolean">false</argument>
+                </arguments>
+            </block>
+            
+            <block class="Alpine\Catalog\Block\Product\Tabs\Info" name="product.info.applications"
+                   template="Magento_Catalog::product/tabs/info.phtml" group="detailed_info">
+                <arguments>
+                    <argument name="priority" xsi:type="string">30</argument>
+                    <argument name="attribute_code" xsi:type="string">applications</argument>
+                    <argument translate="true" name="title" xsi:type="string">APPLICATIONS</argument>
+                    <argument name="is_slider" xsi:type="boolean">true</argument>
+                </arguments>
+            </block>
+            
+            <referenceBlock name="amfile.attachment">
+                <arguments>
+                    <argument name="priority" xsi:type="string">40</argument>
+                </arguments>
+            </referenceBlock>
+            
+            <referenceBlock name="reviews.tab">
+                <arguments>
+                    <argument name="priority" xsi:type="string">50</argument>
+                </arguments>
+            </referenceBlock>
+        </referenceBlock>
+        <referenceContainer name="main">
+            <block class="Alpine\Catalog\Block\Product\Logos" name="product.info.logos" template="Magento_Catalog::product/logos.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Catalog\Block\Product\View" name="top_choice" template="Magento_Catalog::product/view/top_choice.phtml" />
+        </referenceContainer>
+    </body>
+</page>

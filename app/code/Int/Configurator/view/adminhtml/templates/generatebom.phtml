@@ -1,0 +1,90 @@
+<?php 
+	$configuratorCol = $block->getConfiguratorDetails();  
+	$customerDetails = $block->getCustomerDetails($configuratorCol->getCustomerId()); 
+	$fixtureDetails = $block->getFixtureDetails();
+?>
+<style>
+	.configurator-details ul li{list-style: none;}
+	.heading{margin-top: 15px}
+	.notes{margin-top: 20px;}
+</style>
+<div class="configurator-details">
+	<ul>
+		<li><b>Configurator:</b> 3D Configurator #<?php echo $configuratorCol->getId();?></li>
+		<li><b>Created Date:</b> <?php echo $configuratorCol->getCreatedAt();?></li>
+		<li><b>Modified Date:</b> <?php echo $configuratorCol->getUpdatedAt();?></li>
+		<li><b>Customer Name:</b> <?php echo $customerDetails->getfirstname()." ". $customerDetails->getlastname()?></li>
+		<li><b>Status:</b> <?php echo $block->getStatus($configuratorCol->getStatus());?></li>
+	</ul>
+</div>
+
+	<?php foreach($fixtureDetails as $key=>$fixturecol) {?>
+			<h2><?php echo $fixturecol['fixture_name'];?>:</h2>
+			<?php $optionsdetails = $block->getOptionsDetails($fixturecol['fixture_id']); ?>
+			<?php foreach($optionsdetails as $keycounter=>$_openingType) {
+					$productDataCollection = array();
+					if($_openingType->getProductData() !='') {
+						$serializeProductData  = unserialize($_openingType->getProductData());					
+						
+						
+						$attributes_fields_data = $serializeProductData['attributes_fields_data'];
+						$productCollections = $block->getProductCollection($attributes_fields_data);
+						
+						if(count($productCollections) > 0 ) {
+							
+						?>
+						<h2 class="heading"><center><?php echo $_openingType->getName();?>:<center></h2>
+						<table class="data-grid">
+							<thead>
+								<tr>
+									<th class="data-grid-th sortable draggable"><b>Name</b></th>
+									<th class="data-grid-th sortable draggable"><b>SKU</b></th>
+								</tr>
+							</thead>		
+									
+							<tbody>
+							<?php $counter = 1;?>
+							<?php foreach($productCollections->getData() as $keydata=>$productData) { ?>
+							<?php $prdobj = $block->getProductdetails($productData['entity_id']);?>
+								<tr class="data-row <?php if($counter%2==0){ echo '_odd-row';} ?>">
+									
+									<td class="title"><?php echo $prdobj->getName();?></td>
+									<td class="active-status"><?php echo $prdobj->getSku();?></td>
+								</tr>
+								<?php $counter++;?>
+							<?php }?>
+							</tbody>
+						</table>
+						<?php }else{?>
+							<h2 class="heading"><center><?php echo $_openingType->getName();?>:<center></h2>
+							<table class="data-grid">
+							<thead>
+								<tr>
+									<th class="data-grid-th sortable draggable" colspan="2"><b>Specification</b></th>
+								</tr>
+							</thead>									
+							<tbody>
+								<tr class="data-row">
+									<td class="title" colspan="2">No record found.</td>									
+								</tr>
+								</tbody>
+						</table>
+						<?php }?>
+				<?php }else{?>
+							<h2 class="heading"><center><?php echo $_openingType->getName();?>:<center></h2>
+							<table class="data-grid">
+							<thead>
+								<tr>
+									<th class="data-grid-th sortable draggable" colspan="2"><b>Specification</b></th>
+								</tr>
+							</thead>									
+							<tbody>
+								<tr class="data-row">
+									<td class="title" colspan="2">No record found.</td>									
+								</tr>
+								</tbody>
+						</table>
+				<?php }?>
+			<?php }?>
+	
+	<?php }?>

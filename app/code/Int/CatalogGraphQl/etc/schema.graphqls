@@ -1,0 +1,3 @@
+interface MediaGalleryInterface @doc(description: "Contains basic information about a product image or video.") @typeResolver(class: "Magento\\CatalogGraphQl\\Model\\MediaGalleryTypeResolver") {
+    url(width: Int, height: Int): String @doc(description: "The URL of the product image or video.") @resolver(class: "Int\\CatalogGraphQl\\Model\\Resolver\\Product\\MediaGallery\\Url")
+}

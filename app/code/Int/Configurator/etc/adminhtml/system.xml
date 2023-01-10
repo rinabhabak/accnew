@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        
+        <section id="configurator" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Configurator</label>
+            <tab>intcore</tab>
+            <resource>Int_Configurator::configurator_config</resource>
+            
+            
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>System Logo</label>
+                
+                <field id="bom_logo" translate="label comment" type="image" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>BOM Logo</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system" scope_info="1">configurator/logo</upload_dir> 
+                    <base_url type="media" scope_info="1">configurator/logo</base_url>
+                </field>
+                
+                <field id="senseon_one" translate="label comment" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Senseon One</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system" scope_info="1">configurator/logo</upload_dir> 
+                    <base_url type="media" scope_info="1">configurator/logo</base_url>
+                </field>
+                 
+                 <field id="senseon_core" translate="label comment" type="image" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Senseon Core</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">configurator/logo</base_url>
+                    <upload_dir config="system" scope_info="1">configurator/logo</upload_dir>
+                </field>
+                 
+                <field id="senseon_plus" translate="label comment" type="image" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Senseon Plus</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">configurator/logo</base_url>
+                    <upload_dir config="system" scope_info="1">configurator/logo</upload_dir>
+                </field>
+               
+            </group>
+            
+        </section>
+    </system>
+</config>
+

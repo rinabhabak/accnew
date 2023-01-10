@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Create our type SliderGridDataProvider -->
+    
+    <virtualType name="SliderGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Int\HomeBanner\Model\Resource\Slider\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SliderGridFilterPool</argument> <!-- Define new object for filters -->
+        </arguments>
+    </virtualType>
+    
+	<!-- Create our type SliderGridFilterPool -->
+    <virtualType name="SliderGridFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    
+    <!-- Type for app_slider_listing_data_source -->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="app_slider_listing_data_source" xsi:type="string">Int\HomeBanner\Model\ResourceModel\Grid\Slider\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="owl_slider_listing_data_source" xsi:type="string">Int\HomeBanner\Model\ResourceModel\Grid\SecondSlider\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="pag_slider_listing_data_source" xsi:type="string">Int\HomeBanner\Model\ResourceModel\Grid\PagSlider\Collection</item>
+            </argument>
+            <argument name="collections" xsi:type="array">
+                <item name="thumbnail_slider_listing_data_source" xsi:type="string">Int\HomeBanner\Model\ResourceModel\Grid\Thumbnail\Collection</item>
+            </argument>
+        </arguments>
+
+    </type>
+    
+    <!-- Simulate our class Int\HomeBanner\Model\ResourceModel\Grid\Slider\Collection -->
+    <virtualType name="Int\HomeBanner\Model\ResourceModel\Grid\Slider\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">int_home_banner_slider</argument>
+            <argument name="resourceModel" xsi:type="string">Int\HomeBanner\Model\ResourceModel\Slider</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Int\HomeBanner\Model\ResourceModel\Grid\SecondSlider\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">int_home_second_banner_slider</argument>
+            <argument name="resourceModel" xsi:type="string">Int\HomeBanner\Model\ResourceModel\SecondSlider</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Int\HomeBanner\Model\ResourceModel\Grid\PagSlider\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">int_home_pagination_slider</argument>
+            <argument name="resourceModel" xsi:type="string">Int\HomeBanner\Model\ResourceModel\PagSlider</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Int\HomeBanner\Model\ResourceModel\Grid\Thumbnail\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">int_home_thumbnail_slider</argument>
+            <argument name="resourceModel" xsi:type="string">Int\HomeBanner\Model\ResourceModel\Thumbnail</argument>
+        </arguments>
+    </virtualType>
+</config> 
+    

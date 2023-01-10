@@ -1,0 +1,51 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<script>
+// <![CDATA[
+require(['jquery'], function ($) {
+
+
+var waitForEl = function(selector, callback) {
+  if (jQuery(selector).length) {
+    callback();
+  } else {
+    setTimeout(function() {
+      waitForEl(selector, callback);
+    }, 100);
+  }
+};
+
+waitForEl('#export_filter_grid_filter_skip', function() {
+    var html = '<label class="data-grid-checkbox-cell-inner" for="id_export_filter_grid_filter_skip"><input type="checkbox" name="skip_attr[]" value="" id="id_export_filter_grid_filter_skip" class="checkbox admin__control-checkbox"><label for="id_export_filter_grid_filter_skip"></label></label>';
+    $('#export_filter_grid_filter_skip').after(html);
+    $('#export_filter_grid_filter_skip').hide();
+});
+
+// $('#id_export_filter_grid_filter_skip').on('click', function(){
+//     alert();
+//     $('#export_filter_grid_table tbody .checkbox').attr('checked', true);
+// });
+
+// $('#id_export_filter_grid_filter_skip').on('change', function(){
+//     alert();
+// });
+
+$('#export_filter_form').on('click','#id_export_filter_grid_filter_skip',function(){
+    
+if($('#id_export_filter_grid_filter_skip').is(':checked'))
+{
+    $('#export_filter_grid_table tbody input.checkbox').prop("checked", true);
+}else
+{
+    $('#export_filter_grid_table tbody input.checkbox').prop("checked", false);
+}
+});
+
+});
+//]]>
+</script>

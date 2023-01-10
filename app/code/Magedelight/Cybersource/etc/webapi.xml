@@ -1,0 +1,46 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/cardmanagement/cardlisting/me" method="GET">
+        <service class="Magedelight\Cybersource\Api\CardManagementInterface" method="getCardListing"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerid" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/cardmanagement/cardadd/me" method="POST">
+        <service class="Magedelight\Cybersource\Api\CardManagementInterface" method="addCustomerCard"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerid" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/cardmanagement/cardupdate/me" method="POST">
+        <service class="Magedelight\Cybersource\Api\CardManagementInterface" method="updateCustomerCard"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerid" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/cardmanagement/deletecard/me" method="POST">
+        <service class="Magedelight\Cybersource\Api\CardManagementInterface" method="deleteCustomerCard"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="customerid" force="true">%customer_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/cardmanagement/availcardtype" method="GET">
+        <service class="Magedelight\Cybersource\Api\CardManagementInterface" method="getAvailCard"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Vwo
+ *
+ * @category    Alpine
+ * @package     Alpine_Vwo
+ * @copyright   Copyright (c) 2019 Alpine Consulting Inc.
+ * @author      Alex Didenko <alex.didenko@alpineinc.com>
+ */
+-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="vwo-track-revenue-conversion"
+                   template="Alpine_Vwo::track_revenue_conversion.phtml" />
+        </referenceBlock>
+    </body>
+</page>

@@ -1,0 +1,117 @@
+<div class="cms-content slides">
+    <img src='{{view url="images/cms/slides/header.jpg"}}'
+         alt="Slides 101" class="cms-header-image">
+
+    <h1>Slides 101</h1>
+
+    <p>Explore our many helpful guides below. Whether it’s looking at the inner mechanics of a ball-bearing slide or understanding the special features within them, we have you covered.</p>
+    <p>For more help and information, check out our <a href="#">Frequently Asked Questions</a>, or feel free to
+        <a href="#">Email a Technical Expert</a>.</p>
+
+    <ul>
+        <li>
+            <img src='{{view url="images/cms/slides/1.jpg"}}'
+                 alt="ABOUT SLIDES">
+            <h2>ABOUT SLIDES</h2>
+            <p>Start here to better understand the ins and outs of the jargon we use when talking about your movement solution. We’ve compiled a list of helpful definitions and features, a breakdown of the anatomy of a slide, along with a few considerations to help aid you in the slide selection process--all so you can keep your project moving forward.</p>
+            <a href='{{store direct_url="about-slides"}}' class="button">LEARN MORE</a>
+        </li>
+        <li>
+            <img src='{{view url="images/cms/slides/2.jpg"}}'
+                 alt="DESIGN CONSIDERATIONS">
+            <h2>DESIGN CONSIDERATIONS</h2>
+            <p>Delve deeper into the multitude of possibilities our slides offer your design scheme and utilitarian application. Our index of factors, slide testing criteria, and overview of unique features have all been created to inform the specific style and function of your project.</p>
+            <a href="#" class="button">LEARN MORE</a>
+        </li>
+    </ul>
+
+    <div class="wide-block">
+        <div class="image-wrapper">
+            <img src='{{view url="images/cms/slides/3.jpg"}}'
+                 alt="How to Select a Slide Q & A">
+        </div>
+        <div class="text">
+            <h2>How to Select a Slide Q & A</h2>
+            <p>Whether perusing the catalog or using our handy Slide Selector, asking the following questions will help filter products into a manageable number of choices..</p>
+        </div>
+    </div>
+
+    <dl class="accordion">
+        <dt class="panel-heading active">How wide is your drawer?</dt>
+        <dd class="panel-collapse">
+            <div class="text-image">
+                <div class="image">
+                    <img src='{{view url="images/cms/slides/4.jpg"}}'
+                         alt="How wide is your drawer?">
+                </div>
+                <div class="text">
+                    <p>Whether the slides are intended to hold a drawer, door, component, or chassis, the width of the pull-out unit has a large effect on performance. If the slide does not have the strength and load capacity that corresponds to the width, it can cause racking or side-to-side movement. Excessive racking causes instability and can result in drawer failure.</p>
+
+                    <p>Take note of the maximum recommended drawer widths for the slide products you are considering. When widths are 24" or greater, adding stability by using a slide with a larger cross section and a higher load rating is often the best solution.</p>
+                </div>
+            </div>
+        </dd>
+        <dt class="panel-heading active">How heavy are the contents?</dt>
+        <dd class="panel-collapse">
+            <div class="text-image">
+                <div class="image">
+                    <img src='{{view url="images/cms/slides/5.jpg"}}'
+                         alt="How heavy are the contents?">
+                </div>
+                <div class="text">
+                    <p>Will the drawer hold dish towels or bricks? Equipment or paper medical gowns? As with drawer width, exceeding the established load rating may cause the drawer to fail. Be sure to include the weight of the drawer into the total anticipated weight the slides will carry. Accuride specifies a maximum load based on specific conditions, such as 18-inch slides mounted on a 16-inch-wide drawer. Refer to the product technical sheet to determine how load capacity is affected if your application calls for a drawer that is deeper or wider than the tested load conditions. Always test the slide in the intended application if it differs from the typical usage for the product.</p>
+                </div>
+            </div>
+        </dd>
+        <dt class="panel-heading active">Where and how will the drawer be used?</dt>
+        <dd class="panel-collapse">
+            <div class="text-image">
+                <div class="image">
+                    <img src='{{view url="images/cms/slides/6.jpg"}}'
+                         alt="Where and how will the drawer be used?">
+                </div>
+                <div class="text">
+                    <p>The slide selected for a residential kitchen drawer will be different than a slide chosen for an identically sized drawer in a toolbox. In commercial, institutional, or industrial environments, drawers encounter greater use--and abuse. Think about your intended application and the environment. You will want to select a more robust slide to offset conditions that are more rigorous.</p>
+                </div>
+            </div>
+        </dd>
+        <dt class="panel-heading active">What is the expected usage and lifetime of the product?</dt>
+        <dd class="panel-collapse">
+            <div class="text-image">
+                <div class="image">
+                    <img src='{{view url="images/cms/slides/7.jpg"}}'
+                         alt="What is the expected usage and lifetime of the product?">
+                </div>
+                <div class="text">
+                    <p>Will use be infrequent and require a low cycle count or will the application require greater durability with usage reaching 50,000 to 75,000 cycles—or more? Review the testing data on the product technical sheet to determine if it is appropriate for your application. If you are having trouble with slide selection, contact Technical Support for assistance. If you can't find an off-the-shelf solution that meets your specifications, don’t rule out custom options. For larger projects, we offer customized options such as additional slide lengths, varied hole patterns, materials, finishes, and mounting brackets to help meet the specific needs of your project.</p>
+                </div>
+            </div>
+        </dd>
+    </dl>
+    <div class="wide-footer">
+        <div class="image">
+            <img src='{{view url="images/cms/slides/8.jpg"}}'
+                 alt="STORE">
+        </div>
+        <div class="text">
+            <h2>STORE</h2>
+            <p>Ready to start browsing and adding Accuride products to your shopping cart? Visit our online store, try our trusty Slide Selector tool, search through our distribution partners, or check out our OEM custom program to find the movement solution that brings your application one step closer to completion.</p>
+            <a href="#" class="button transparent-button">SHOP MORE</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    require([
+        'jquery',
+        'domReady!'
+    ], function($){
+        "use strict";
+
+        $('.accordion').on('click', '.panel-heading', function(e){
+            e.preventDefault();
+
+            $(this).toggleClass('active');
+        })
+    });
+</script>

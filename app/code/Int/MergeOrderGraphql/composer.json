@@ -1,0 +1,22 @@
+{
+    "name": "int/module-mergeordergraphql",
+    "description": "Merge Guest Order after create customer account",
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "email": "somnath.mondal@indusnet.co.in",
+            "name": "Somnath Mondal"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Int\\MergeOrderGraphql\\": ""
+        }
+    }
+}

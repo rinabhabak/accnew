@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+* @category    Alpine
+* @theme       Alpine_Accuridecustomization
+* @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+* @author      Denis Furman <denis.furman@alpineinc.com>
+* @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="product.info.media">
+            <block class="Magento\Catalog\Block\Product\ProductList\Related" name="optional.kits" template="Magento_Catalog::product/optional/items.phtml">
+                <arguments>
+                    <argument name="type" xsi:type="string">optional_kits</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

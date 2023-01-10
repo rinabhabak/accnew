@@ -1,0 +1,15 @@
+diff --git a/module-kp/Observer/AssignData.php b/module-kp/Observer/AssignData.php
+index e3b5a6f..6a8821a 100644
+--- a/module-kp/Observer/AssignData.php
++++ b/module-kp/Observer/AssignData.php
+@@ -94,7 +94,9 @@ class AssignData extends AbstractDataAssignObserver
+         try {
+             /** @var QuoteInterface $klarnaQuote */
+             $klarnaQuote = $this->klarnaQuoteRepository->getActiveByQuote($quote);
+-            $klarnaQuote->setAuthorizationToken($additionalData->getData('authorization_token'));
++            if (!$klarnaQuote->getAuthorizationToken() && $additionalData->getData('authorization_token')) {
++                $klarnaQuote->setAuthorizationToken($additionalData->getData('authorization_token'));
++            }
+             $payment->setAdditionalInformation('method_title', $additionalData->getData('method_title'));
+             $payment->setAdditionalInformation('logo', $additionalData->getData('logo'));
+             $payment->setAdditionalInformation('method_code', $payment->getMethodInstance()->getCode());

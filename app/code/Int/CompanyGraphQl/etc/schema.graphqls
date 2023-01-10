@@ -1,0 +1,50 @@
+# Copyright © Magento, Inc. All rights reserved.
+
+type Mutation {
+    createCompany (input: CompanyInput!): CompanyOutput @resolver(class: "\\Int\\CompanyGraphQl\\Model\\Resolver\\CompanyRegistration") @doc(description:"Create customer account")
+    getCompanyCustomerToken (input: CompanyDetails!): CompanyTokenOutput @resolver(class: "\\Int\\CompanyGraphQl\\Model\\Resolver\\CompanyTokenGeneration") @doc(description:"Generate token for company customer account")
+}
+
+input CompanyDetails {
+    company_customer_email: String! @doc(description: "Company Customer Email")
+}
+
+input CompanyInput {
+    company: [CompanyInfo]! @doc(description: "Company Information")
+    job_title: String! @doc(description: "Job Title")
+    customer_email: String! @doc(description: "Customer Email")
+    firstname: String! @doc(description: "Customer Firstname")
+    lastname: String! @doc(description: "Customer Lastname")
+    gender: Int! @doc(description: "Gender")
+    customer_category: [Int]! @doc(description: "Customer Category")
+    pick_your_industry: String! @doc(description: "Pick Your Industry")
+    other_industry: String @doc(description: "Other Industry")
+}
+
+input CompanyInfo {
+    company_name: String! @doc(description: "Company Name")
+    company_email: String! @doc(description: "Company Email")
+    legal_name: String! @doc(description: "Company Legal Name")
+    vat_tax_id: String! @doc(description: "VAT/TAX ID")
+    reseller_id: String! @doc(description: "Re-seller ID")
+    street: [String]! @doc(description: "Street Address")
+    city: String! @doc(description: "City")
+    country_id: String! @doc(description: "Country")
+    region: RegionInput @doc(description: "Contains region name, region code, and region ID")
+    postcode: String! @doc(description: "Post Code")
+    telephone: String! @doc(description: "Telephone")
+}
+
+input RegionInput @doc(description: "RegionInput defines the customer's state or province") {
+    region_code: String @doc(description: "The address region code")
+    region: String @doc(description: "The state or province name")
+    region_id: Int @doc(description: "region_id is deprecated. Region ID is excessive on storefront and region code should suffice for all scenarios")
+}
+
+type CompanyOutput {
+    message: String! @doc(description: "Success Message")
+}
+
+type CompanyTokenOutput {
+    company_token: String! @doc(description: "Company Token Return")
+}

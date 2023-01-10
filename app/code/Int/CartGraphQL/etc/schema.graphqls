@@ -1,0 +1,29 @@
+type Query {
+    cartDetails: CartDetails @resolver( class: "Int\\CartGraphQL\\Model\\Resolver\\CartDetails")  
+}
+
+type CartDetails {
+    items: [cartItems]
+    total_items: Int  @doc(description: "Get Total Items")
+    total_quantity: Int  @doc(description: "Get Total Qty.")
+    subtotal: String  @doc(description: "Get Sub Total")
+    shipping: String  @doc(description: "Get Sub Total")
+    tax: String  @doc(description: "Get Sub Total")
+    grandtotal: String  @doc(description: "Get Grand Total")
+}
+
+type cartItems {
+	product_thumbnail: String  @doc(description: "Get Current Product Thumbnail.")
+	product_id: Int  @doc(description: "Get Current Product ID.")
+    product_name: String  @doc(description: "Get Current Product Name.")
+    product_sku: String  @doc(description: "Get Current Product SKU.")
+    product_qty: String  @doc(description: "Get Current Product Qty.")
+    product_price: String  @doc(description: "Get Current Product Price.")
+    product_subtotal: String  @doc(description: "Get Current Product Subtotal.")
+    options: [cartItemOptions]
+}
+
+type cartItemOptions {
+	option_label: String  @doc(description: "Get Current Option Label.")
+	option_value: String  @doc(description: "Get Current Option Value.")
+}

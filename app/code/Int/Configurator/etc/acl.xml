@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin" title="Magento Backend">
+                
+                <resource id="Int_Core::menu" title="Int Main" translate="title" sortOrder="100">                    
+                    <resource id="Int_Configurator::items" title="3D Configurator" translate="title" sortOrder="79" />                    
+                </resource>
+                
+                <resource id="Magento_Backend::stores" title="Magento Backend Store" >
+                    <resource id="Magento_Backend::stores_settings" title="Magento Store Settings">
+                        <resource id="Magento_Config::config" title="Magento Config">
+                            <resource id="Int_Core::config" title="Int Main">
+                                <resource id="Int_Configurator::configurator_config" title="3D Configurator Settings" />
+                            </resource>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

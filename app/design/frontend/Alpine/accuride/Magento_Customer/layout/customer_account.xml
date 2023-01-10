@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer-account-navigation-my-credit-cards-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-checkout-sku-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-billing-agreements-link" remove="true"/>
+        <referenceBlock name="customer-account-navigation-company-link" remove="true"/>
+        <referenceBlock name="magedelight-cybersource-save-card">
+            <arguments>
+                <argument name="label" xsi:type="string">My Saved Card</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-delimiter-b2b" remove="true"/>
+        <referenceBlock name="customer-account-navigation-delimiter-1">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Customer::navigation-delimiter.phtml</argument>
+            </action>
+        </referenceBlock>
+        <referenceBlock name="customer-account-navigation-delimiter-2">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Magento_Customer::navigation-delimiter.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

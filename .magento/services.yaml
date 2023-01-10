@@ -1,0 +1,18 @@
+# The services of the project.
+#
+# Each service listed will be deployed to power your project.
+
+mysql:
+    type: mysql:10.4
+    disk: 2048
+
+redis:
+    type: redis:6.0
+
+elasticsearch7:
+    type: elasticsearch:7.9
+    disk: 1024
+    configuration:
+        plugins:
+            - analysis-icu
+            - analysis-phonetic

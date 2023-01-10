@@ -1,0 +1,190 @@
+<?php 
+	$configurator = $block->getConfiguratorDetails();
+	$bdmDetails = $block->getBDMdetails($configurator->getId());
+	
+	$customerDetails = $block->getCustomerDetails($configurator->getCustomerId()); 
+	$fixtureDetails = $block->getFixtureDetails();
+
+	$url = $this->getUrl('int_configurator/items/viewbom',array('id'=>$configurator->getId()));
+	
+	
+?>
+<style>
+	.configurator-details ul li{list-style: none;}
+	.heading{margin-top: 15px}
+	.notes{margin-top: 20px;}
+	.divider{margin-top: 35px; float: left; width: 100%; border-top: .1rem dashed #d6d6d6; margin-bottom: 35px;}
+</style>
+<div class="configurator-details">
+	<ul>
+        <li><b><?php echo __('Project Id') ?>:</b> <?php echo $configurator->getProjectId();?></li>
+		<li><b><?php echo __('Configurator') ?>:</b> <?php echo __('3D Configurator #%1', $configurator->getId());?></li>
+		<li><b><?php echo __('Created Date') ?>:</b> <?php echo $configurator->getCreatedAt();?></li>
+		<li><b><?php echo __('Modified Date') ?>:</b> <?php echo $configurator->getUpdatedAt();?></li>
+		<li><b><?php echo __('Customer Name') ?>:</b> <?php echo $customerDetails->getfirstname(). ' ' .$customerDetails->getlastname()?></li>
+		<li><b><?php echo __('Type of build') ?>:</b> <?php echo $configurator->getTypeOfBuild();?></li>
+		<li><b><?php echo __('Numbers of fixture') ?>:</b> <?php echo $configurator->getNumbersOfFixture();?></li>
+		<li><b><?php echo __('Same fixture dimensions') ?>:</b> <?php echo $configurator->getSameFixtureDimensions();?></li>
+		<li><b><?php echo __('Status') ?>:</b> <?php echo $block->getStatus($configurator->getStatus());?></li>
+		<li><b><?php echo __('BDM Name') ?>:</b> <?php if(isset($bdmDetails['name'])) { echo $bdmDetails['name']; }?></li>
+		<li><b><?php echo __('BDM Email') ?>:</b> <?php if(isset($bdmDetails['email'])) { echo $bdmDetails['email']; }?></li>
+		<li><b><?php echo __('BDM Assign date') ?>:</b> <?php if(isset($bdmDetails['created_at'])) { echo $bdmDetails['created_at']; }?></li>
+		
+	</ul>
+</div>
+<div class="configurator-details-button right">
+<div class="page-actions-buttons">
+        <button id="add" title="Generatebom" type="button" class="action- scalable primary" onclick="location.href = '<?php echo $url; ?>'" data-ui-id="add-button">
+            <span><?php echo __('Generate BOM'); ?></span>
+        </button>
+    </div>
+</div>
+	<?php foreach($fixtureDetails as $key=>$fixturecol) {?>
+			<h2><?php echo $fixturecol->getFixtureName();?>:</h2>
+			<h2 class="heading"><center><?php echo __('Fixture Details');?></center></h2>
+				<table class="data-grid">
+					<thead>
+						<tr>
+							<th class="data-grid-th sortable draggable" style="width: 50%" ><b><?php echo __('Specification') ?></b></th>
+							<th class="data-grid-th sortable draggable" style="width: 50%" ><b><?php echo __('User Data') ?></b></th>
+						</tr>
+					</thead>									
+					<tbody>
+						<tr class="data-row">
+							<td class="title"><?php echo __('Length');?></td>
+							<td class="active-status"><?php echo $fixturecol->getFixtureLength();?></td>
+						</tr>
+						<tr class="data-row  _odd-row">
+							<td class="title"><?php echo __('Depth');?></td>
+							<td class="active-status"><?php echo $fixturecol->getFixtureDepth();?></td>
+						</tr>
+						<tr class="data-row">
+							<td class="title"><?php echo __('Height');?></td>
+							<td class="active-status"><?php echo $fixturecol->getFixtureHeight();?></td>
+						</tr>
+						<tr class="data-row  _odd-row">
+							<td class="title"><?php echo __('Cabinet power available');?></td>
+							<td class="active-status"><?php echo $fixturecol->getCabinetPowerAvailable();?></td>
+						</tr>
+						<tr class="data-row">
+							<td class="title"><?php echo __('Created At');?></td>
+							<td class="active-status"><?php echo $fixturecol->getCreatedAt();?></td>
+						</tr>
+						<tr class="data-row _odd-row">
+							<td class="title"><?php echo __('Updated At');?></td>
+							<td class="active-status"><?php echo $fixturecol->getUpdatedAt();?></td>
+						</tr>
+						
+					<?php
+						/* Fetch fixture addition_data and unserialize that will provide attributes_fields_data and custom_fields_data array.
+						   attributes_fields_data array holds attributes values and custom_fields_data holds normal values
+						*/
+						$fixtureProductData = array();
+						$counter = 1;
+						if($fixturecol->getAdditionalData() !='') {
+						$serializeAdditionalData  = unserialize($fixturecol->getAdditionalData());
+					
+						foreach($serializeAdditionalData as $additionalData) {
+					
+							$attributes_fields_data = $additionalData['attributes_fields_data'];
+							foreach ($attributes_fields_data as $key => $value) {
+								$optionValues = $block->getAttributeValues($value['attribute_code']);
+								
+								$options = explode(',', $value['attribute_option_value']);
+								$attributeLabel = array();
+								
+								foreach($options as $attributeOptions) {
+									if($attributeOptions != 0 && $attributeOptions !='') {
+										if(isset($optionValues[trim($attributeOptions)])) {
+											$attributeLabel[] = $optionValues[trim($attributeOptions)];
+										}
+									}									
+								}
+								if(count($attributeLabel) > 0) {
+									$fixtureProductData[str_replace('_',' ',$value['attribute_label'])] = implode(',',$attributeLabel);
+								}
+								else {
+									$fixtureProductData[str_replace('_',' ',$value['attribute_label'])] = '';
+								}
+							}
+
+							$custom_fields_data = $additionalData['custom_fields_data'];
+							foreach ($custom_fields_data as $key => $value) {
+								$fixtureProductData[str_replace('_',' ',$value['field_name'])] = $value['field_value'];									
+							}
+						}
+						
+						foreach($fixtureProductData as $keydata=>$productData) {?>
+						<tr class="data-row <?php if($counter%2==0){ echo '_odd-row';} ?>">
+							<td class="title"><?php echo ucfirst($keydata);?></td>
+							<td class="active-status"><?php echo $productData;?></td>
+						</tr>
+						<?php $counter++;?>
+					<?php }
+						}?>
+					</tbody>
+			</table>
+			
+			<?php $optionsdetails = $block->getOptionsDetails($fixturecol['fixture_id']); ?>
+			<?php foreach($optionsdetails as $keycounter=>$_openingType) {
+					$productDataCollection = array();
+					if($_openingType->getProductData() !='') {
+						$serializeProductData  = unserialize($_openingType->getProductData());					
+
+						$attributes_fields_data = $serializeProductData['attributes_fields_data'];
+						foreach ($attributes_fields_data as $key => $value) {
+							$productDataCollection[str_replace('_',' ',$value['attribute_code'])] = $value['attribute_option_label'];
+						}
+
+						$custom_fields_data = $serializeProductData['custom_fields_data'];
+						foreach ($custom_fields_data as $key => $value) {
+                            if($value['field_name']=='ownSlide'){
+                                $productDataCollection[str_replace('_',' ',$value['field_name'])] = $value['field_value']==1?__("Yes"):__("No");	
+                            }else{
+                                $productDataCollection[str_replace('_',' ',$value['field_name'])] = $value['field_value'];	
+                            }
+															
+						}		
+						?>
+						<h2 class="heading"><center><?php echo $_openingType->getName();?>:<center></h2>
+						<table class="data-grid">
+							<thead>
+								<tr>
+									<th class="data-grid-th sortable draggable" style="width: 50%" ><b><?php echo __('Specification') ?></b></th>
+									<th class="data-grid-th sortable draggable" style="width: 50%" ><b><?php echo __('User Data') ?></b></th>
+								</tr>
+							</thead>		
+									
+							<tbody>
+							<?php $counter = 1;?>
+							<?php foreach($productDataCollection as $keydata=>$productData) {?>
+								<tr class="data-row <?php if($counter%2==0){ echo '_odd-row';} ?>">
+									<td class="title"><?php echo ucfirst($keydata);?></td>
+									<td class="active-status"><?php echo $productData;?></td>
+								</tr>
+								<?php $counter++;?>
+							<?php }?>
+							</tbody>
+						</table>
+				<?php }else{?>
+							<h2 class="heading"><center><?php echo $_openingType->getName();?>:<center></h2>
+							<table class="data-grid">
+							<thead>
+								<tr>
+									<th class="data-grid-th sortable draggable" style="width: 50%" ><b><?php echo __('Specification') ?></b></th>
+									<th class="data-grid-th sortable draggable" style="width: 50%" ><b><?php echo __('User Data') ?></b></th>
+								</tr>
+							</thead>		
+									
+							<tbody>
+								<tr class="data-row">
+									<td class="title" colspan="2"><?php echo __('No record found.') ?></td>
+									
+								</tr>
+								</tbody>
+						</table>
+				<?php }?>
+			<?php }?>
+			<hr class="divider" />
+	<?php }?>
+	

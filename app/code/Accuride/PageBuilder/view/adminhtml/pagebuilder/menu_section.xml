@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Accuride_PageBuilder
+ * @package     Sitewards
+ * @copyright   Copyright (c) Sitewards GmbH (http://www.sitewards.com/)
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_PageBuilder:etc/menu_sections.xsd">
+    <menu_section name="accuride" translate="label" sortOrder="100" label="Accuride"/>
+</config>

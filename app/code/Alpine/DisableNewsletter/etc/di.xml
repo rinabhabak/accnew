@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_DisableNewsletter
+ *
+ * @category    Alpine
+ * @package     Alpine_DisableNewsletter
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Aleksandr Mikhailov (aleksandr.mikhailov@alpineinc.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Newsletter\Controller\Manage\Index"
+                type="Alpine\DisableNewsletter\Controller\Newsletter\Manage\Index"/>
+    <preference for="Magento\Customer\Block\Form\Register"
+                type="Alpine\DisableNewsletter\Block\Customer\Form\Register"/>
+</config>

@@ -1,0 +1,92 @@
+# Copyright © Indus Net Technologies All rights reserved.
+
+type Mutation {
+    GetSalesGuestOrderStatus (
+      orderId: String! @doc(description: "Query by Order Increment Id."),
+      billing_lastname: String! @doc(description: "Query by Billing Lastname."),
+      billing_user_email: String! @doc(description: "Query by Billing User Email."),
+      billing_zip_code: String! @doc(description: "Query by Billing ZIP Code.")
+    ) : GetGuestOrderStatusOutput @resolver( class: "Int\\SalesGuestFormGraphQL\\Model\\Resolver\\GetGuestOrderStatus") @doc(description: "Query by Get Guest Order Information.") ,
+}
+
+type GetGuestOrderStatusOutput {
+	order_id: String @doc(description: "Guest Order Increment ID.")
+	order_increment_id: String @doc(description: "Guest Order Increment ID.")
+	state: String @doc(description: "Guest Order Information.")
+	shipping_method: String @doc(description: "Guest Order Shipping Information.")
+	grand_total: String @doc(description: "Guest Order Shipping Information.")
+	shipping_amount: String @doc(description: "Guest Order Shipping Amount Information.")
+	subtotal: String @doc(description: "Guest Order Subtotal Information.")
+	tax_amount: String @doc(description: "Guest Order Tax Information.")
+	discount_amount: String @doc(description: "Guest Order Discount Amount.")
+	purchase_date: String @doc(description: "Guest Order Purchase Date.")
+	ordered_items: [GuestOrderItems] @doc(description: "Guest Ordered Items Information.")
+	shipping_address: ShippingAddress! @doc(description: "Guest Shipping Address Information.")
+	billing_address: BillingAddress! @doc(description: "Guest Billing Address Information.")
+	payment_information: PaymentInformation! @doc(description: "Guest Payment Information.")
+	order_invoice: [InvoiceData] @doc(description: "An array of all items data of order") 
+	order_shipment: [ShipmentData] @doc(description: "An array of all items data of order")
+}
+
+type PaymentInformation {
+  method_name: String! @doc(description: "Guest Payment Method Name.")
+  card_type: String! @doc(description: "Guest Card Type Code.")
+  card_label: String! @doc(description: "Guest Card Type Label.")
+  card_last4: String! @doc(description: "Guest Card Last 4 Digit.")
+  processed_amount: String! @doc(description: "Guest Card Processed Amount.")
+}
+
+type ShippingAddress {
+	name: String! @doc(description: "Guest Order Shipping Name.")
+	company: String @doc(description: "Guest Order Shipping Company.")
+	street: [String]! @doc(description: "Guest Order Shipping Street.")
+	city: String! @doc(description: "Guest Order Shipping City.")
+	region: String! @doc(description: "Guest Order Shipping Region.")
+	country: String! @doc(description: "Guest Order Shipping Country.")
+	zip_code: String! @doc(description: "Guest Order Shipping Zip Code.")
+	telephone: String! @doc(description: "Guest Order Shipping Telephone.")
+}
+
+type BillingAddress {
+  name: String! @doc(description: "Guest Order Billing Name.")
+  company: String @doc(description: "Guest Order Billing Company.")
+  street: [String]! @doc(description: "Guest Order Billing Street.")
+  region: String! @doc(description: "Guest Order Billing Region.")
+  city: String! @doc(description: "Guest Order Billing City.")
+  country: String! @doc(description: "Guest Order Billing Country.")
+  zip_code: String! @doc(description: "Guest Order Billing Zip Code.")
+  telephone: String! @doc(description: "Guest Order Billing Telephone.")
+}
+
+type InvoiceData @doc(description: "Order mapping fields") {
+  invoice_id: String @doc(description: "Invoice ID")
+  invoice_increment_id: String @doc(description: "Invoice Increment ID")
+  subtotal: String @doc(description: "Invoice Sub Total")
+  shipping_amount: String @doc(description: "Invoice Shipping Amount")
+  grand_total: String @doc(description: "Invoice Grand Total")
+  created_at: String @doc(description: "Invoice created at")
+  invoice_items: [GuestOrderItems] @doc(description: "An array of all items data of order Invoice")
+}
+
+type ShipmentData @doc(description: "Shipment mapping fields") {
+   shipment_id: String @doc(description: "Shipment ID")
+   shipment_increment_id: String @doc(description: "Shipment Increment ID")
+   shipment_items: [GuestOrderItems] @doc(description: "An array of all items data of order Shipment")
+   created_at: String @doc(description: "Shipment created at")
+}
+
+type GuestOrderItems {
+  name: String @doc(description: "Guest Order Product Name.")
+  productoptions: [ProductOptions] @doc(description: "Guest Order Product Options.")
+  sku: String @doc(description: "Guest Order Product SKU.")
+  parent_sku: String @doc(description: "Guest Order Product Parent SKU.")
+  product_type: String @doc(description: "Guest Order Product Type.")
+  price: String @doc(description: "Guest Order Product Price.")
+  qty: Int @doc(description: "Guest Order Product Quantity.")
+  subtotal: String @doc(description: "Guest Order Product Subtotal.")
+}
+
+type ProductOptions @doc(description: "An array containing all the product options") {
+    label: String @doc(description: "label")
+    value: String @doc(description: "value")
+}

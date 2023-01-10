@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..
+/../../../../../lib/internal/Magento/Framework/App/etc/routes.xsd">
+    <router id="admin">
+        <route id="appslider" frontName="appslider">
+            <module name="Int_HomeBanner" before="Magento_Backend"/>
+        </route>
+        <route id="owlslider" frontName="owlslider">
+            <module name="Int_HomeBanner" before="Magento_Backend"/>
+        </route>
+        <route id="pagslider" frontName="pagslider">
+            <module name="Int_HomeBanner" before="Magento_Backend"/>
+        </route>
+        <route id="thumbnail" frontName="thumbnail">
+            <module name="Int_HomeBanner" before="Magento_Backend"/>
+        </route>
+    </router>
+</config>

@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Cache/etc/cache.xsd">
+    <type name="amasty_storelocator" translate="label,description" instance="Amasty\Storelocator\Model\Cache\Type">
+        <label>Amasty Store Locator</label>
+        <description>Amasty store locator</description>
+    </type>
+</config>

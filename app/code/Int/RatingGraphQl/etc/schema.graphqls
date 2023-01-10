@@ -1,0 +1,12 @@
+#Int Rating  GraphQl Schem
+type Query {
+    getRating (
+        product_ids: String @doc(description: "Query by product_id.")
+    ) : [GetRating] @resolver( class: "Int\\RatingGraphQl\\Model\\Resolver\\Rating")  @doc(description: "The rating query returns information about product rating"),
+}
+
+type GetRating {
+    product_id: Int  @doc(description: "Rating in summery percent"),
+    ratingSummary  : String  @doc(description: "Rating in summery percent") ,
+    reviewCount  : String  @doc(description: "Number of review") ,
+}

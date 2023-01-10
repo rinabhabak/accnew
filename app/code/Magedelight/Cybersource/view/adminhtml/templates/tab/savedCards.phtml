@@ -1,0 +1,154 @@
+<?php $cards = $this->getCards() ?>
+<div class="ui-tabs" id="magedelight-cybersource-cards-list-container">
+    <ul class="magedelight-cybersource-cards-list ui-tabs-nav">
+        <?php foreach($cards as $idx=>$_card): ?>
+        <li class="magedelight-cybersource-cards-list-item">
+            <div class="magedelight-cybersource-cards-list-item-actions">
+                <button class="action-edit" type="button" customer-card-id="<?php echo (string)$_card["card_id"] ?>">
+                        <span></span>
+                </button>
+                <button class="action-delete" type="button" customer-card-id="<?php echo (string)$_card["card_id"] ?>">
+                        <span></span>
+                </button>
+            </div>
+            <address>
+                <?php echo $this->getFormatedAddress($_card) ?>
+            </address>
+        </li>
+        <?php endforeach; ?>
+        <li class="magedelight-cybersource-cards-actions last">
+            <button type="button" class="scalable add" id="magedelight-cards-add">
+                <span><?php echo __('Add New Card') ?></span>
+            </button>
+        </li>
+    </ul>
+    <div class="magedelight-cybersource-cards-item-edit ">
+        <div class="magedelight-cybersource-cards-item-edit-content address-item-edit-content">
+            <fieldset class="admin__fieldset magedelight-cybersource-cards-item-edit-fieldset">
+                <?php echo $this->getChildHtml('cybersourceAddCards') ?>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    require(['jquery'],function($){
+            $('.magedelight-cybersource-cards-list-item').each(function(i, element){
+                $(element).hover(
+                    function(){
+                        $(element).addClass('ui-state-active');
+                    },
+                    function(){
+                        $(element).removeClass('ui-state-active');
+                    }
+                );
+            });
+        $('#magedelight-cards-add').on('click',function(event){
+            addNewForm();
+        });
+        
+        $('.action-delete').on('click',function(event){
+            var customercardid = $(this).attr('customer-card-id');
+            
+            
+            $.ajax('<?php echo $this->getDeleteActionUrl() ?>?isAjax=true',{
+               data: {customercardid: customercardid},
+               method: 'GET',
+               dataType: 'json',
+               beforeSend: function(){
+                   $('li:has(button[customer-card-id="'+customercardid+'"])').slideUp('slow');
+                   jQuery('.admin__data-grid-loading-mask').show();
+                    jQuery('.admin__data-grid-loading-mask').css("position","fixed");
+               },
+               complete: function(transport){
+                    jQuery('#messages').remove();
+                    var resultData = transport.responseText.evalJSON();
+                    
+                    if(resultData.error)
+                    {
+                        jQuery('li:has(button[customer-card-id="'+customercardid+'"])').slideDown('slow');
+                    }
+                    jQuery('.admin__data-grid-loading-mask').hide();
+                    jQuery('.admin__data-grid-loading-mask').css("position","absolute");
+                    addNewForm();
+                    jQuery('.page-main-actions').after(resultData.message);
+                    
+               },
+               error: function(transport){
+                    jQuery('li:has(button[customer-card-id="'+customercardid+'"])').slideDown('slow');
+               },
+               
+            });
+        });
+        
+        $('.action-edit').on('click',function(event){
+             var customercardid = $(this).attr('customer-card-id');
+             
+            $.ajax('<?php echo $this->getEditCardAction() ?>?isAjax=true',{
+               data: {customercardid: customercardid},
+               method: 'GET',
+               dataType: 'html',
+               beforeSend: function(){
+                    jQuery('.admin__data-grid-loading-mask').show();
+                    jQuery('.admin__data-grid-loading-mask').css("position","fixed");
+               },
+               complete: function(transport){
+                   var responseText = transport.responseText;
+                    var updateflag = true;
+                    if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON();
+                            if (response.ajaxExpired && response.ajaxRedirect) {
+                                updateflag = false;
+                                setLocation(response.ajaxRedirect);
+                            }
+                            
+                     }
+                     if(updateflag)
+                     {
+                        $('.magedelight-cybersource-cards-item-edit-fieldset').html(transport.responseText);
+                        jQuery('.admin__data-grid-loading-mask').hide();
+                        jQuery('.admin__data-grid-loading-mask').css("position","absolute");
+                     }
+               },
+               error: function(transport){
+                    $('.magedelight-cybersource-cards-item-edit-fieldset').html('Error during processing...');
+               },
+            });
+            
+        });
+    });
+    function addNewForm()
+    {
+        jQuery.ajax('<?php echo $this->getAddAction() ?>?isAjax=true',{
+               data: {},
+               method: 'GET',
+               dataType: 'html',
+               beforeSend: function(){
+                   jQuery('.admin__data-grid-loading-mask').show();
+                    jQuery('.admin__data-grid-loading-mask').css("position","fixed");
+               },
+               complete: function(transport){
+                    var responseText = transport.responseText;
+                    var updateflag = true;
+                    if (transport.responseText.isJSON()) {
+                            var response = transport.responseText.evalJSON();
+                            if (response.ajaxExpired && response.ajaxRedirect) {
+                                updateflag = false;
+                                setLocation(response.ajaxRedirect);
+                            }
+                            
+                     }
+                     if(updateflag)
+                     {
+                          jQuery('.magedelight-cybersource-cards-item-edit-fieldset').html(transport.responseText);
+                          jQuery('.admin__data-grid-loading-mask').hide();
+                          jQuery('.admin__data-grid-loading-mask').css("position","absolute");
+                     }
+                    
+               },
+               error: function(transport){
+                    jQuery('.magedelight-cybersource-cards-item-edit-fieldset').html('Error during processing...');
+               },
+              
+            });
+    }
+</script>

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Storelocator
+ *
+ * @category    Alpine
+ * @package     Alpine_Storelocator
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ * @author      Kirill Kosonogov <kirill.kosonogov@alpineinc.com>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Alpine_Storelocator/css/lib/select2.css" />
+    </head>
+    <body>
+        <referenceBlock name="page.main.title" remove="true" />
+        <referenceBlock name="amasty.locator.center" template="Alpine_Storelocator::center.phtml">
+            <block class="Magento\Framework\View\Element\Text" cacheable="false" />
+        </referenceBlock>
+    </body>
+</page>

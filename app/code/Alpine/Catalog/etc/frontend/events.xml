@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Catalog
+ *
+ * @category    Alpine
+ * @package     Alpine_Catalog
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_controller_product_view">
+        <observer name="alpine_catalog_controller_product_view_change_theme" instance="Alpine\Catalog\Observer\Product\View" />
+    </event>
+</config>

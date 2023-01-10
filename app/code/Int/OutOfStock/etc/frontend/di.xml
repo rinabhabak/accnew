@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Indusnet Team
+ * @package Int_OutOfStock
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Alpine\ConfigurableChildVisibility\Model\ConfigurableAttributeData" type="Int\OutOfStock\Model\ConfigurableAttributeData" />   
+    <preference for="Amasty\Xnotif\Plugins\ConfigurableProduct\Data"
+                type="Int\OutOfStock\Plugins\ConfigurableProduct\Data"/>
+	<preference for="Amasty\Xnotif\Plugins\Catalog\Block\Product\AbstractProduct"
+                type="Int\OutOfStock\Plugins\Catalog\Block\Product\AbstractProduct"/>
+    <preference for="Amasty\Stockstatus\Helper\Data" type="Int\OutOfStock\Helper\Amasty\Stockstatus\Helper\Data" />
+
+
+
+</config>

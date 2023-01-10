@@ -1,0 +1,79 @@
+type Query {
+    ambrandlist: BrandList @resolver(class: "Amasty\\ShopbyBrandGraphQl\\Model\\Resolver\\BrandList"),
+    ambrandslider: BrandSlider @resolver(class: "Amasty\\ShopbyBrandGraphQl\\Model\\Resolver\\BrandSlider"),
+    amBrandSetting (
+        storeId: Int @doc(description: "Store ID")
+    ): AmBrandSetting @resolver(class: "Amasty\\ShopbyBrandGraphQl\\Model\\Resolver\\Setting"),
+    amBrandGetMoreFromThisBrandBlock (
+        productId: Int @doc(description: "Product ID"),
+        storeId: Int @doc(description: "Store ID")
+    ): MoreFromBrand @resolver(class: "Amasty\\ShopbyBrandGraphQl\\Model\\Resolver\\MoreFromThisBrandBlock")
+}
+
+type BrandList {
+    items: [Brand] @doc(description: "Brands."),
+    show_images: Boolean @doc(description: "Show images."),
+    image_width: Float @doc(description: "Brand image width."),
+    image_height: Float @doc(description: "Brand image height."),
+    show_search: Boolean @doc(description: "Show search."),
+    show_filter: Boolean @doc(description: "Show filter."),
+    filter_display_all: Boolean @doc(description: "Filter display all."),
+    display_zero: Boolean @doc(description: "Display zero."),
+    show_count: Boolean @doc(description: "Show count."),
+    all_letters: String @doc(description: "All letters.")
+}
+
+type BrandSlider {
+    items: [BrandForSlider] @doc(description: "Brands."),
+    items_number: Int @doc(description: "Brands number."),
+    slider_header_color: String @doc(description: "Slider header color."),
+    slider_title_color: String @doc(description: "Slider title color."),
+    slider_title: String @doc(description: "Slider title."),
+    slider_width: Float @doc(description: "Slider width."),
+    image_width: Float @doc(description: "Image width."),
+    image_height: Float @doc(description: "Image height."),
+    show_label: Boolean @doc(description: "Show label."),
+    buttons_show: Boolean @doc(description: "Show buttons."),
+    infinity_loop: Boolean @doc(description: "Infinity loop."),
+    simulate_touch: Boolean @doc(description: "Simulate touch."),
+    pagination_show: Boolean @doc(description: "Show pagination."),
+    pagination_clickable: Boolean @doc(description: "Clickable pagination."),
+    autoplay: Boolean @doc(description: "Autoplay."),
+    autoplay_delay: Int @doc(description: "Autoplay delay.")
+}
+
+type Brand @doc(description: "Brand info")
+{
+    label: String @doc(description: "Brand label."),
+    url: String @doc(description: "Brand url."),
+    img: String @doc(description: "Brand image."),
+    image: String @doc(description: "Brand image."),
+    description: String @doc(description: "Brand description."),
+    short_description: String @doc(description: "Brand short description."),
+    cnt: Int @doc(description: "Brand product count."),
+    alt: String @doc(description: "Brand image alt."),
+    letter: String @doc(description: "Brand list letter.")
+}
+
+type BrandForSlider @doc(description: "Brand info")
+{
+    label: String @doc(description: "Brand label."),
+    url: String @doc(description: "Brand url."),
+    img: String @doc(description: "Brand image."),
+    position: String @doc(description: "Brand position."),
+    alt: String @doc(description: "Brand image alt.")
+}
+
+type AmBrandSetting {
+    topmenu_enabled: Int @doc(description: "Add Brands Link to Top Menu."),
+    menu_item_label: String @doc(description: "Brands Item Label."),
+    product_page_width: Int @doc(description: "Brand Logo Width, px."),
+    product_page_height: Int @doc(description: "Brand Logo Height, px."),
+    listing_brand_logo_width: String @doc(description: "Brand Logo Width."),
+    listing_brand_logo_height: String @doc(description: "Brand Logo Height.")
+}
+
+type MoreFromBrand {
+    title: String,
+    items: [ProductInterface] @doc(description: "An array of products")
+}

@@ -1,0 +1,16 @@
+<div attr="data.main.attributes"
+     ko-style="data.main.style"
+     class="pagebuilder-content-type"
+     css="data.main.css"
+     event="{ mouseover: onMouseOver, mouseout: onMouseOut }, mouseoverBubble: false">
+    <render args="getOptions().template" />
+    <div attr="data.accu_icon.attributes"
+                html="data.accu_icon.html">
+    </div>
+    <blockquote attr="data.accu_optional_html.attributes"
+                data-bind="liveEdit: { field: 'accu_optional_html', placeholder: $t('Teaser Paragraph') }">
+    </blockquote>
+    <div attr="data.main.attributes"
+         data-bind="liveEdit: { field: 'title', placeholder: $t('Title') }">
+    </div>
+</div>

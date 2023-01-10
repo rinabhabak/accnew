@@ -1,0 +1,266 @@
+<?php
+/**
+* Magedelight
+* Copyright (C) 2017 Magedelight <info@magedelight.com>
+*
+* NOTICE OF LICENSE
+*
+* This program is free software: you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation, either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program. If not, see http://opensource.org/licenses/gpl-3.0.html.
+*
+* @category Magedelight
+* @package Magedelight_Cybersourcedc
+* @copyright Copyright (c) 2017 Mage Delight (http://www.magedelight.com/)
+* @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+* @author Magedelight <info@magedelight.com>
+*/
+?>
+<?php $methodCode = "cybersourcesop"; ?>
+<?php $isTestMode = $block->getTrancationMode(); ?>
+<?php $card = $block->getCard(); ?>
+<?php $cardCode =  $card['type']; ?>
+<?php $paymentToken = $card['gateway_token']; 
+      $carDetails = json_decode($card['details'], true); 
+      $tempDetails = explode("/", $carDetails['expirationDate'], 2);
+      $carDetails['cc_exp_month'] = $tempDetails[0];
+      $carDetails['cc_exp_year'] = $tempDetails[1];
+      if(!isset($carDetails['firstname'])){
+         $carDetail = $block->getCustomerBillingAddress();
+         $carDetails = array_merge($carDetails,$carDetail); 
+      }
+?>
+<form action="<?php echo $block->getSaveUrl($isTestMode) ?>" name="cybersource_update_card" id="cybersource_update_card" method="post">
+    <fieldset class="fieldset">
+        <h2 class="legend"><?php echo __('Contact Information') ?></h2>
+        <input type="hidden" name="access_key" value="<?php echo $block->getAccessKey() ?>">
+        <input type="hidden" name="profile_id" value="<?php echo $block->getProfileId() ?>">
+        <input type="hidden" name="transaction_uuid" value="<?php echo uniqid() ?>">
+        <input type="hidden" name="signed_field_names" value="access_key,profile_id,transaction_uuid,signed_field_names,unsigned_field_names,signed_date_time,locale,transaction_type,reference_number,currency,payment_method,payment_token,allow_payment_token_update,bill_to_forename,bill_to_surname,bill_to_email,bill_to_phone,bill_to_address_line1,bill_to_address_city,bill_to_address_state,bill_to_address_country,bill_to_address_postal_code">
+        <input type="hidden" name="unsigned_field_names" value="card_type,card_number,card_expiry_date">
+        <input type="hidden" name="signed_date_time" value="<?php echo gmdate("Y-m-d\TH:i:s\Z"); ?>">
+        <input type="hidden" name="locale" value="<?php echo $block->getCurrentLocale() ?>">
+        <input type="hidden" name="transaction_type" size="25" value="update_payment_token">
+        <input type="hidden" name="reference_number" size="25" value="<?php echo time() ?>">
+        <input type="hidden" name="currency" size="25" value="<?php echo $block->getCurrentCurrency() ?>">
+        <input type="hidden" name="payment_method" value="card">
+        <input type="hidden" name="payment_token" value="<?php /* @noEscape */ echo $paymentToken ?>">
+        <input type="hidden" name="allow_payment_token_update" value="true">
+        <div class="field name-firstname required">
+            <label for="<?php echo $methodCode ?>_firstname" class="label"><?php echo __('First Name') ?></label>
+            <div class="control">
+                <input type="text" id="<?php echo $methodCode ?>_firstname" name="bill_to_forename" value="<?php echo $block->escapeHtml($carDetails['firstname']); ?>" title="<?php echo __('First Name') ?>" maxlength="255" class="input-text required-entry" />
+            </div>
+        </div>
+        <div class="field name-lastname required">
+            <label for="<?php echo $methodCode ?>_lastname" class="label"><?php echo __('Last Name') ?></label>
+            <div class="control">
+                <input type="text" id="<?php echo $methodCode ?>_lastname" name="bill_to_surname" value="<?php echo $block->escapeHtml($carDetails['lastname']); ?>" title="<?php echo __('Last Name') ?>" maxlength="255" class="input-text required-entry">
+            </div>
+        </div>
+        <div class="field name-lastname required">
+            <label for="<?php echo $methodCode ?>_email" class="label"><?php echo __('Email') ?></label>
+            <div class="control">
+                <input type="text" id="<?php echo $methodCode ?>_email" name="bill_to_email" value="<?php echo $block->escapeHtml($carDetails['email']);  ?>" title="<?php echo __('Email') ?>" maxlength="255" class="input-text email required-entry">
+            </div>
+        </div>
+        <div class="field">
+            <label for="<?php echo $methodCode ?>_company" class="label"><?php echo __('Company') ?></label>
+            <div class="control">
+                <input type="text" name="bill_to_company_name" id="<?php echo $methodCode ?>_company" title="<?php echo __('Company') ?>" value="<?php echo $block->escapeHtml($carDetails['company']); ?>" class="input-text ">
+            </div>
+        </div>
+        <div class="field">
+            <label for="<?php echo $methodCode ?>_street" class="label"><?php echo __('Street Address') ?></label>
+            <div class="control">
+                <input type="text" name="bill_to_address_line1" value="<?php echo $block->escapeHtml($carDetails['street']); ?>"  title="<?php echo __('Street Address') ?>" id="<?php echo $methodCode ?>_street" class="input-text  required-entry">
+            </div>
+        </div>
+
+        <div class="field city required">
+            <label for="<?php echo $methodCode ?>_city" class="label"><?php echo __('City') ?></label>
+            <div class="control">
+                <input type="text" name="bill_to_address_city" value="<?php echo $block->escapeHtml($carDetails['city']); ?>"  title="<?php echo __('City') ?>" class="input-text  required-entry" id="<?php echo $methodCode ?>_city">
+            </div>
+        </div>
+        <div class="field required state-required">
+            <label for="<?php echo $methodCode ?>_region_id" class="label"><?php echo __('State/Province') ?></label>
+            <div class="control">
+                <select id="<?php echo $methodCode ?>_region_id" name="regiod_id" title="<?php echo __('State/Province') ?>" class="validate-select" <?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>>
+                    <option value=""><?php echo __('Please select region, state or province') ?></option>
+                </select>
+
+                <input type="text" id="<?php echo $methodCode ?>_state" name="state" title="<?php echo __('State/Province') ?>" class="input-text required-entry" value="<?php echo $block->escapeHtml($carDetails['state']); ?>" <?php echo(!$block->getConfig('general/region/display_all')) ? ' disabled="disabled"' : '';?>/>
+            </div>
+        </div>
+
+        <input type="hidden" id="bill_to_address_state" name="bill_to_address_state">
+        <input type="hidden" id="bill_to_address_country" name="bill_to_address_country">
+
+        <div class="field zip required">
+            <label for="<?php echo $methodCode ?>_zip" class="label"><?php echo __('Zip/Postal Code') ?></label>
+            <div class="control">
+                <input type="text" name="bill_to_address_postal_code" value="<?php echo $block->escapeHtml($carDetails['postcode']); ?>" title="<?php echo __('Zip') ?>" id="<?php echo $methodCode ?>_zip" class="input-text validate-zip-international  required-entry">
+            </div>
+        </div>
+
+
+        <input type="hidden" id="signature" name="signature" value=""/>
+
+
+        <div class="field">
+            <label for="country" class="label"><?php echo __('Country') ?></label>
+            <div class="control">
+                <?php echo $block->getCountryHtmlSelect($carDetails['country_id']) ?>
+            </div>
+        </div>
+
+
+        <div class="field telephone required">
+            <label for="<?php echo $methodCode ?>_telephone" class="label"><?php echo __('Telephone') ?></label>
+            <div class="control">
+                <input type="tel" name="bill_to_phone" value="<?php echo $block->escapeHtml($carDetails['telephone']); ?>" title="<?php echo __('Telephone') ?>" class="input-text   required-entry" id="<?php echo $methodCode ?>_telephone">
+            </div>
+        </div>                
+
+    </fieldset>
+    
+    <fieldset class="fieldset">
+        <h2 class="legend"><?php echo __('Card Information') ?></h2>
+            <div class="field cc_type required">
+                <label for="<?php echo $methodCode ?>_cc_type" class="label"><?php echo __('Credit Card Type') ?></label>
+                <div class="control">
+                     <select  id="<?php echo $methodCode ?>_cc_type" name="cardtype" data-validate="{required:true, 'validate-cyber-cc-type-select':'#<?php echo $methodCode ?>_cc_number'}" class="">
+                       <option value=""><?php echo __('--Please Select--')?></option>
+                        <?php foreach ($block->getCcAvailableTypes() as $_typeCode => $_typeName): ?>
+                            <option value="<?php echo $_typeCode ?>"><?php echo $_typeName ?></option>
+                            <?php endforeach ?>
+                    </select>
+                   
+                </div>
+            </div>
+            
+            <div class="field _cc_number required">
+                <label for="<?php echo $methodCode ?>_cc_number" class="label"><?php echo __('Credit Card Number') ?></label>
+                <div class="control">
+                    <input type="text" id="<?php echo $methodCode ?>_cc_number" name="card_number" title="<?php echo __('Credit Card Number') ?>" data-validate="{required:true, 'validate-number':true, 'validate-cyber-cc-type':'#<?php echo $methodCode ?>_cc_type'}" class="input-text exclude-form" value="" autocomplete="off" />
+                </div>
+            </div>
+
+            <input type="hidden" id="card_type" name="card_type">
+            <input type="hidden" id="card_expiry_date" name="card_expiry_date">
+
+            <div class="field expiration required">
+                <label for="expiration" class="label"><?php echo __('Expiration Date') ?></label>
+                <div class="input-box">
+                    <div class="v-fix">
+                        <?php $_ccExpMonth = $carDetails['cc_exp_month']; ?>
+                        <select id="<?php echo $methodCode ?>_expiration" name="cc_exp_month" class="month validate-cc-exp required-entry"  data-validate="{'validate-cc-exp':'#<?php echo $methodCode ?>_expiration_yr'}" style="width: 150px; margin-right: 10px;">                    
+                            <?php foreach ($block->getCcMonths() as $k=>$v): ?>
+                                <option value="<?php echo $k?$k:'' ?>"<?php if($k==$_ccExpMonth): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                                <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="v-fix">
+                        <?php $_ccExpYear = $carDetails['cc_exp_year']; ?>
+                        <select id="<?php echo $methodCode ?>_expiration_yr" name="cc_exp_year" class="year required-entry " style="width: 150px;">
+                            <?php foreach ($block->getCcYears() as $k=>$v): ?>
+                                <option value="<?php echo $k?$k:'' ?>"<?php if($k==$_ccExpYear): ?> selected="selected"<?php endif ?>><?php echo $v ?></option>
+                                <?php endforeach ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+             <?php if($block->hasVerification()): ?>
+                <div class="field cc_cid required">
+                    <label for="<?php echo $methodCode ?>_cc_cid" class="label"><?php echo __('Card Verification Number') ?></label>
+                    <div class="input-box">
+                        <div class="v-fix">
+                            <input type="text" title="<?php echo __('Card Verification Number') ?>" class="input-text cvv required-entry validate-digits validate-cyber-cc-cvn exclude-form" id="<?php echo $methodCode ?>_cc_cid" name="<?php echo $methodCode ?>[payment_info][cc_cid]" value=""  autocomplete="off" />
+                        </div>
+                    </div>
+                </div>
+          <?php endif; ?>
+        <div class="buttons-set">
+            <input type="hidden" name="<?php echo $methodCode ?>[card_mode]" value="edit" />
+            <input
+                name="public_hash"
+                value="<?php /* @noEscape */ echo $card['public_hash']?>"
+                type="hidden"/>
+            <input type="hidden" name="<?php echo $methodCode ?>[entity_id]" value="<?php echo $card['entity_id']?>" />
+            <p class="back-link"><a href="<?php echo $block->getBackUrl() ?>"><small>&laquo; </small><?php echo __('Back') ?></a></p>
+            <button type="button"  onclick="saveCardForm()" title="<?php echo __('Save Card') ?>" class="button button action tocart primary" id="cybersource_add_card_btn"><span><span><?php echo __('Save Card') ?></span></span></button>
+        </div>  
+    </fieldset>
+</form>
+<script type="text/x-magento-init">
+    {
+        "#cybersource_update_card": {
+            "validation": {}
+        },
+        "#country": {
+            "regionUpdater": {
+                "optionalRegionAllowed": <?php /* @escapeNotVerified */ echo($block->getConfig('general/region/display_all') ? 'true' : 'false'); ?>,
+                "regionListId": "#<?php echo $methodCode ?>_region_id",
+                "regionInputId": "#<?php echo $methodCode ?>_state",
+                "postcodeId": "#<?php echo $methodCode ?>_zip",
+                "form": "#cybersource_update_card",
+                "regionJson": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Directory\Helper\Data')->getRegionJson() ?>,
+                "defaultRegion": "<?php /* @escapeNotVerified */ echo $carDetails['region_id'] === null ? 0 : $carDetails['region_id']; ?>",
+                "countriesWithOptionalZip": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Directory\Helper\Data')->getCountriesWithOptionalZip(true) ?>
+            }
+        }
+    }
+
+</script>
+<script type="text/javascript">
+    function saveCardForm()
+    {
+        var dataForm = jQuery('#cybersource_update_card');
+        dataForm.mage('validation');
+        if (jQuery('#cybersource_update_card').valid()) {
+            if(jQuery('#cybersourcesop_card_description').val()=='')
+            {
+                jQuery('#cybersourcesop_card_description').val('default');
+            }
+            jQuery('#cybersource_add_card_btn').attr('disabled',true);
+            var serializedata = jQuery('form').find('input[name!="card_number"],select').serialize();
+            jQuery.ajax({
+                url: "<?php echo $block->getUrl('cybersourcesop/addcard/signature')?>",
+                type: "POST",
+                data: serializedata,//here i want to send a form key used in magento
+                success: function(response){
+                    document.getElementById("signature").value = response.signature;
+                    if (response.cc_type) {
+                        document.getElementById("card_type").value = response.cc_type;
+                        document.getElementById("card_expiry_date").value = response.expiration_date;
+                    }
+                    document.getElementById("bill_to_address_state").value = response.bill_to_address_state;
+                    document.getElementById("bill_to_address_country").value = response.country_id;
+                    
+                    jQuery('#cybersource_update_card').submit();
+                }
+            });
+            
+        }
+    }
+    function toggleCards(selectedValue,current_card) {
+         switch(selectedValue){
+            case 'existing':
+                    jQuery("#cardparent").css("display","none");
+                break;
+            case 'new':
+                     jQuery("#cardparent").css("display","block");
+                break;
+        }
+    }    
+</script>

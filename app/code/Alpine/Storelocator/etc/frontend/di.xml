@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Storelocator
+ *
+ * @category    Alpine
+ * @package     Alpine_Storelocator
+ * @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ * @author      Evgeniy Derevyanko <evgeniy.derevyanko@alpineinc.com>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Amasty\Storelocator\Block\Location">
+        <plugin name="alpine_storelocator_after_get_attributes"
+                type="Alpine\Storelocator\Plugin\Block\Location"
+                sortOrder="10"
+        />
+    </type>
+    <type name="Amasty\Storelocator\Model\ResourceModel\Location\Collection">
+        <plugin name="alpine_storelocator_around_apply_attribute_filters"
+                type="Alpine\Storelocator\Plugin\ResourceModel\Location\Collection"
+                sortOrder="10"
+        />
+    </type>
+    <preference for="Amasty\Storelocator\Block\Location"
+                type="Alpine\Storelocator\Block\Location"
+    />
+
+    <preference for="Amasty\Storelocator\Controller\Index\Ajax"
+                type="Alpine\Storelocator\Controller\Index\Ajax"
+    />
+</config>

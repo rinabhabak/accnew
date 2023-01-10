@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Int_BdmManagement::bdmmanagement_manage" title="BDM Management" module="Int_BdmManagement" sortOrder="10" parent="Int_Core::menu" action="bdmmanagement/index/" resource="Int_BdmManagement::bdmmanagement_manage"/>
+    </menu>
+</config>

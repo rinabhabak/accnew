@@ -1,0 +1,67 @@
+<?php
+/**
+ * Alpine_CustomerCompany
+ *
+ * @category    Alpine
+ * @package     Alpine_CustomerCompany
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+
+use Alpine\CustomerCompany\Helper\Data;
+?>
+<?php
+/* @var $block \Magento\CustomerCustomAttributes\Block\Form */
+?>
+<?php if ($block->hasUserDefinedAttributes()): ?>
+    <?php if ($block->isShowContainer()): ?>
+    <fieldset class="fieldset">
+    <?php endif;?>
+    <?php foreach ($block->getUserDefinedAttributes() as $code => $attribute):?>
+        <?php if ($code == Data::OTHER_INDUSRTY_CODE): ?>
+            <div class="field field-<?php echo Data::OTHER_INDUSRTY_CODE; ?> hidden">
+                <div class="control">
+                    <input type="text" id="<?php echo Data::OTHER_INDUSRTY_CODE; ?>"
+                        name="<?php echo Data::OTHER_INDUSRTY_CODE; ?>" value=""
+                        class="input-text" autocomplete="off">
+                </div>
+            </div>
+        <?php elseif ($code == Data::NEWSLETTER_CODE): ?>
+            <div class="field choice field-<?php echo Data::NEWSLETTER_CODE; ?>">
+                <div class="control">
+                    <input class="checkbox"
+                        type="checkbox"
+                        id="<?php echo Data::NEWSLETTER_CODE; ?>"
+                        name="<?php echo Data::NEWSLETTER_CODE; ?>"
+                        value="1"
+                        <?php if ($attribute->getValue()==1) echo ' checked '; ?>
+                        title="<?php echo $attribute->getFrontendLabel(); ?>">
+                    <label for="<?php echo Data::NEWSLETTER_CODE; ?>"
+                        class="label">
+                        <span><?php echo $attribute->getFrontendLabel(); ?></span>
+                    </label>
+                    <span class="span-<?php
+                        echo Data::NEWSLETTER_CODE; ?>">Yes, I want Accuride to send me occasional emails</span>
+                </div>
+            </div>
+        <?php else: ?>
+            <?php $attributeContent = $block->getAttributeHtml($attribute);?>
+            <?php if ($attributeContent): ?>
+                <?= /* @escapeNotVerified */ $attributeContent ?>
+            <?php endif;?>
+        <?php endif; ?>
+    <?php endforeach;?>
+    <?php if ($block->isShowContainer()): ?>
+    </fieldset>
+    <?php endif;?>
+<?php endif; ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Alpine_CustomerCompany/js/form/industry": {
+            "selectCode": "<?php echo Data::PICK_YOUR_INDUSTRY_CODE; ?>",
+            "textfieldCode": "<?php echo Data::OTHER_INDUSRTY_CODE; ?>"
+        }
+    }
+}
+</script>

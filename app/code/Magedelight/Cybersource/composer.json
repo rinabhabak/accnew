@@ -1,0 +1,19 @@
+{
+    "name": "magedelight/cybersource",
+    "description": "Cybersource",
+    "require": {
+        "php": "~5.6.5|7.0.2|7.0.4|~7.0.6|~7.1.0|~7.1.3|~7.2.0"
+    },
+    "type": "magento2-module",
+    "version": "1.0.13",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Magedelight\\Cybersource\\": ""
+        }
+    }
+}

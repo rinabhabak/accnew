@@ -1,0 +1,243 @@
+// /**
+//  * Quote Form in Alpine_Cms
+//  *
+//  * @category    Alpine
+//  * @package     Alpine_Cms
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+//  */
+//
+//  Quote Form in Alpine_Cms
+//  _____________________________________________
+& when (@media-common = true) {
+    .quote-index-index {
+        @full: 100%;
+        @half2: 49%;
+        @onequarter: 25%;
+        @onequarter2: 24%;
+        @two: 2%;
+        @ninety: 90px;
+        @fifteen: 15px;
+        @ten: 10px;
+        @right: right;
+        @left: left;
+        .wrapper1 {
+            width: @full;
+            margin-bottom: @ninety;
+        }
+        .wrapper2 {
+            width: @full;
+            margin-top: @fifteen;
+        }
+        .wrapper3 {
+            width: @full;
+            margin-top: @ten;
+        }
+        .wrapper4 {
+            width: @full;
+            margin-bottom: @ninety;
+            margin-top: -@fifteen;
+        }
+        .actions-toolbar {
+            .primary.right {
+                float: @right;
+            }
+        }
+        .field.first_name.required {
+            .control {
+                .input-text {
+                    float: @left;
+                    width: @half2;
+                }
+            }
+        }
+        .field.last_name.required {
+            .control {
+                .input-text {
+                    float: @right;
+                    width: @half2;
+                }
+            }
+        }
+        .field.title {
+            .control {
+                .input-text {
+                    float: @left;
+                    width: @half2;
+                }
+            }
+        }
+        .field.company_name {
+            .control {
+                .input-text {
+                    float: @right;
+                    width: @half2;
+                }
+            }
+        }
+        .field.address {
+            .control {
+                .input-text {
+                    width: @full;
+                    margin-top: @fifteen;
+                }
+            }
+        }
+        .field.city {
+            .control {
+                .input-text {
+                    float: @left;
+                    width: 39%;
+                }
+            }
+        }
+        .field.region {
+            .control {
+                .validate-select {
+                    float: @left;
+                    width: 8%;
+                    min-width: 8%;
+                }
+            }
+        }
+        .space {
+            float: @left;
+            width: @two;
+        }
+        .field.zip_code {
+            .control {
+                .input-text {
+                    float: @left;
+                    width: 29%;
+                }
+            }
+        }
+        .field.delivery_date {
+            .control {
+                float: @right;
+                width: 18%;
+                .input-date {
+                    float: @right;
+                    width: @full;
+                    min-width: @onequarter;
+                }
+
+            }
+        }
+        .field.telephone {
+            .control {
+                .input-text {
+                    float: @left;
+                    width: 39%;
+                }
+            }
+        }
+        .field.e_mail.required {
+            .control {
+                .input-text {
+                    float: @right;
+                    width: 59%;
+                }
+            }
+        }
+        .field.products {
+            .control {
+                .input-text {
+                    width: @full;
+                    margin-top: @fifteen;
+                }
+            }
+        }
+        .field.comment {
+            .control {
+                .input-text {
+                    width: @full;
+                }
+            }
+        }
+
+        .page-main {
+            max-width: 100%;
+            padding: 0;
+            margin: 0;
+            .wrapper_title_top {
+                height: 184px;
+                background: url('@{baseDir}images/bg_locator.png');
+                background-repeat: no-repeat;
+                background-size: cover;
+                .title_top {
+                    line-height: 184px;
+                    font-size: 32px;
+                    text-transform: uppercase;
+                    font-family: @font-family-name__light;
+                    color: white;
+                    padding-top: 20px;
+                }
+            }
+            .form.quote {
+                padding-top: 25px;
+                .wrapper1,
+                .wrapper4 {
+                    margin-bottom: 80px;
+                }
+                .field .control {
+                    input,
+                    select {
+                        height: 32px;
+                        padding-left: 20px;
+                    }
+                }
+                .field.products,
+                .field.comment {
+                    .control .input-text {
+                        height: 260px;
+                    }
+                }
+                .field.products .control .input-text {
+                    padding: 0;
+                    margin-top: 30px;
+                    &::placeholder {
+                        background: @color-silver;
+                        color: @color-white;
+                        padding: 5px;
+                        padding-left: 20px;
+                    }
+                }
+            }
+            .title_top,
+            .fieldset,
+            .actions-toolbar {
+                max-width: 1440px;
+                margin: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .actions-toolbar {
+                .action.primary {
+                    background: @color-blue;
+                    color: @color-white;
+                    padding: 10px 60px 5px;
+                    margin-top: 12px;
+                    margin-right: 0;
+                    border-radius: 0;
+                    font-family: @font-family-name__light;
+                    span {
+                        font-size: 25px;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+//
+//  Tables and mobile @screen__m
+//  _____________________________________________
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .quote-index-index.page-layout-1column {
+        .wrapper_title_top {
+            display: none;
+        }
+    }
+}

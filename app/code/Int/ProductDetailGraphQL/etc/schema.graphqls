@@ -1,0 +1,67 @@
+type Query {
+    productDetail (
+    	productId  : Int  @doc(description: "Fetch Current Product by ID.")
+    ) : ProductDetail @resolver( class: "Int\\ProductDetailGraphQL\\Model\\Resolver\\ProductDetail")  
+}
+
+type ProductDetail {
+    productId  : Int  @doc(description: "Get Current Product ID.")
+    productName  : String  @doc(description: "Get Current Product Name.") 
+    productSku  : String  @doc(description: "Get Current Product SKU.")
+    regularPrice  : String  @doc(description: "Get Current Product Price.")
+    specialPrice  : String  @doc(description: "Get Current Product Final Price.")
+    unitOfMeasurement  : String  @doc(description: "Get Current Product Unit of Measurement.")
+    description : String  @doc(description: "Get Current Product Description.")
+    techSpecification : String  @doc(description: "Get Current Product Tech Specification.")
+    resources: String  @doc(description: "Get Current Product Resources.")
+    systemCompatibility : String  @doc(description: "Get Current Product System Compatibility.")
+    productImages: [productImages]
+    relatedProducts: [relatedProducts]
+    configurables: [configurables]
+    reviews: [reviews]
+    ratings: String  @doc(description: "Get Current Product Resources.")
+    reviewForm: [reviewForm]
+}
+
+type reviews {
+	reviewId: String @doc(description: "Get Product review id.")
+	customerId: String @doc(description: "Get Product review customer id.")
+	nickname: String @doc(description: "Get Product reviewer name.")
+	title: String @doc(description: "Get Product review title.")
+	detail: String @doc(description: "Get Product review detail.")
+}
+
+type reviewForm {
+	ratingPrice : String @doc(description: "Input Rating Price")
+	ratingValue : String @doc(description: "Input Rating Value")
+	ratingQuality : String @doc(description: "Input Rating Quality")
+	nickname : String @doc(description: "Input NickName")
+	summary : String @doc(description: "Input Summary")
+	review: String @doc(description: "Input Review")
+}
+
+type configurables {
+	configurationSku: String @doc(description: "Get Product configuration sku.")
+	configurations: [configurations]
+	configurationPrice: String @doc(description: "Get Product configuration price.")
+	configurationUnitOfMeasurement: String @doc(description: "Get Product configuration Unit of Measurement.")
+}
+
+type configurations {
+	configurationLabel: String @doc(description: "Get Product configuration label.")
+	configurationValue: String @doc(description: "Get Product configuration value.")
+}
+
+type productImages {
+	image: String @doc(description: "Get Product Image.")
+}
+
+type relatedProducts {
+	productId  : Int  @doc(description: "Get Current Product ID.")
+    productName  : String  @doc(description: "Get Current Product Name.")
+    productImages: [relatedProductImages]
+}
+
+type relatedProductImages {
+	image: String @doc(description: "Get Product Image.")
+}

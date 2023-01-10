@@ -1,0 +1,61 @@
+type Query {
+    getCompareProducts: [GetCompareProducts] @resolver( class: "Int\\CompareProductsGraphQl\\Model\\Resolver\\GetCompareProducts") @doc(description: "Get Compare Product List.")
+}
+
+type GetCompareProducts {
+    product_name: String @doc(description: "Query by product_name.") ,
+    product_sku: String @doc(description: "Query by  product_sku.") ,
+    product_id: String @doc(description: "Query by  product ID.") ,
+    product_image: String @doc(description: "Query by  product_image."),
+    product_price: String @doc(description: "Query by  product_price."),
+    description: String @doc(description: "Query by description."),
+    extension: String @doc(description: "Query by extension."),
+    specifications: String @doc(description: "Query by Specifications and Features."),
+    load_rating: String @doc(description: "Query by Load Rating."),
+    material: String @doc(description: "Query by Material."),
+    disconnect: String @doc(description: "Query by Disconnect."),
+    category: String @doc(description: "Query by Category."),
+    side_space: String @doc(description: "Query by Side Space."),
+    mounting: String @doc(description: "Query by Mounting.")
+}
+
+type Mutation {
+    addToCompare(
+        product_id: Int @doc(description: "Mutation by product_id.")
+    ): CompareOutput @resolver( class: "Int\\CompareProductsGraphQl\\Model\\Resolver\\CompareProducts") @doc(description: "Store Product for Comparison.")
+    addToCompareMultiple(
+        product_id: [Int] @doc(description: "Mutation by product_id.")
+    ): [GetFinalCompareProducts] @resolver( class: "Int\\CompareProductsGraphQl\\Model\\Resolver\\CompareProductsMultiple") @doc(description: "Store Product for Comparison.")
+    deleteCompareProduct(
+        product_id: Int @doc(description: "Mutation by product_id.")
+    ): DeleteCompareProduct @resolver( class: "Int\\CompareProductsGraphQl\\Model\\Resolver\\DeleteCompareProduct") @doc(description: "Delete compare Product.")
+}
+
+type CompareOutput {
+    message: String! @doc(description: "Success Message")
+}
+
+type CompareMultipleOutput {
+    message: String! @doc(description: "Success Message")
+}
+
+type DeleteCompareProduct {
+    message: String! @doc(description: "Success Message")
+}
+
+type GetFinalCompareProducts {
+    product_name: String @doc(description: "Query by product_name.") ,
+    product_sku: String @doc(description: "Query by  product_sku.") ,
+    product_id: String @doc(description: "Query by  product ID.") ,
+    product_image: String @doc(description: "Query by  product_image."),
+    product_price: String @doc(description: "Query by  product_price."),
+    description: String @doc(description: "Query by description."),
+    extension: String @doc(description: "Query by extension."),
+    specifications: String @doc(description: "Query by Specifications and Features."),
+    load_rating: String @doc(description: "Query by Load Rating."),
+    material: String @doc(description: "Query by Material."),
+    disconnect: String @doc(description: "Query by Disconnect."),
+    category: String @doc(description: "Query by Category."),
+    side_space: String @doc(description: "Query by Side Space."),
+    mounting: String @doc(description: "Query by Mounting.")
+}

@@ -1,0 +1,17 @@
+<?php
+/**
+ * Accuride_Catalog
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+
+<?php $product = $block->getProduct(); ?>
+<div class="product_name_wrapper">
+    <h1 class="sku"><?php echo $product->getSku() ?><p class="name"><?php echo $product->getName() ?></p></h1>
+</div>

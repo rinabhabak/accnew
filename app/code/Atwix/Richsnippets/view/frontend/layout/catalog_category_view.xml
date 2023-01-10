@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block class="Atwix\Richsnippets\Block\Catalog\CategoryMeta" name="richsnippets_category_meta" template="general/head_meta.phtml"/>
+            <block class="Atwix\Richsnippets\Block\Catalog\CategoryJson" name="richsnippets_category_json" template="general/head_json.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

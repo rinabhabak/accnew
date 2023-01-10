@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2019 Amasty (https://www.amasty.com)
+ * @package Amasty_Xnotif
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\CustomerGraphQl\Model\Resolver\UpdateCustomer" type="Int\CustomerGraphQl\Model\Resolver\UpdateCustomer" />
+    <preference for="Magento\CustomerGraphQl\Model\Resolver\GenerateCustomerToken" type="Int\CustomerGraphQl\Model\Resolver\GenerateCustomerToken" />
+    <!-- <preference for="Magento\CustomerGraphQl\Model\Resolver\ChangePassword" type="Int\CustomerGraphQl\Model\Resolver\ChangePassword" /> -->
+    <preference for="Magento\CustomerGraphQl\Model\Resolver\CreateCustomer" type="Int\CustomerGraphQl\Model\Resolver\CreateCustomer" />
+   
+</config>

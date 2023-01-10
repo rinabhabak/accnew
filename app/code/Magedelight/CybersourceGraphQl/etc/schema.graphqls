@@ -1,0 +1,93 @@
+input PaymentMethodInput {
+    magedelight_cybersource: CybersourceInput @doc(description: "Defines the required attributes for Cybersource payments")
+}
+
+input CybersourceInput {
+    cc_number: String @doc(description: "Credit Card Number")
+    cc_type: String! @doc(description: "Credit Card type")
+    cc_cid: String @doc(description: "Card CVV number")
+    expiration: String @doc(description: "Credit card expiration Month")
+    expiration_yr: String @doc(description: "Credit card expiration Year")
+    save_card: String! @doc(description: "If customer select save card for future use or not")
+    subscription_id: String! @doc(description: "This value is new for new card otherwise cybersource token")
+}
+
+type Query {
+     cybersourceCardList:CybersourceCardListOutput @resolver(class: "\\Magedelight\\CybersourceGraphQl\\Model\\Resolver\\CybersourceCardList") @doc(description: "Resolver for Cybersource Card List")
+     cybersourceCard(input: CardInput!):CybersourceCardSingleOutput @resolver(class: "\\Magedelight\\CybersourceGraphQl\\Model\\Resolver\\CybersourceCard") @doc(description: "Resolver for Cybersource Card")
+}
+
+type CybersourceCardListOutput {
+   items: [CybersourceCards] @doc(description: "items")
+}
+type CybersourceCardSingleOutput {
+   item: CybersourceCards @doc(description: "items")
+}
+type CybersourceCardOutput {
+   result: Boolean! @doc(description: "true value means success otherwise error")
+   cybersourceCardList:CybersourceCardListOutput @resolver(class: "\\Magedelight\\CybersourceGraphQl\\Model\\Resolver\\CybersourceCardList") @doc(description: "Resolver for Cybersource Card List")
+}
+type CybersourceCards  {
+     card_id: Int @doc(description: "id"),
+     subscription_id: String @doc(description: "subscription id")
+     firstname: String @doc(description: "firstname")
+     lastname: String @doc(description: "lastname")
+     postcode: String @doc(description: "postcode")
+     country_id: String @doc(description: "country id")
+     region_id: Int @doc(description: "region idl")
+     state: String @doc(description: "state")
+     city: String @doc(description: "city")
+     company: String @doc(description: "company")
+     street: String @doc(description: "street")
+     telephone: String @doc(description: "telephone")
+     cc_type: String @doc(description: "cc type")
+     cc_exp_month: String @doc(description: "cc exp month")
+     cc_exp_year: Int @doc(description: "cc exp year")
+     cc_last_4: String @doc(description: "cc last 4")
+}
+type Mutation {
+    createCustomerCard (input: CreateCardInput!): CybersourceCardOutput @resolver(class: "\\Magedelight\\CybersourceGraphQl\\Model\\Resolver\\CreatCustomerCard") @doc(description:"Create customer card")
+    updateCustomerCard (input: UpdateCardInput!): CybersourceCardOutput @resolver(class: "\\Magedelight\\CybersourceGraphQl\\Model\\Resolver\\UpdateCustomerCard") @doc(description:"Update customer card")
+    deleteCustomerCard (input: CardInput!): CybersourceCardOutput @resolver(class: "\\Magedelight\\CybersourceGraphQl\\Model\\Resolver\\DeleteCustomerCard") @doc(description:"Delete customer card")
+}
+input CardInput {
+    id: Int! @doc(description: "id")
+}
+input UpdateCardInput {
+    id: Int! @doc(description: "id")
+    firstname: String! @doc(description: "firstname")
+    lastname: String! @doc(description: "lastname")
+    postcode: String! @doc(description: "postcode")
+    country_id: String! @doc(description: "country id")
+    region_id: Int @doc(description: "region idl")
+    state: String @doc(description: "state")
+    city: String! @doc(description: "city")
+    company: String @doc(description: "company")
+    street: String! @doc(description: "street")
+    telephone: String! @doc(description: "telephone")
+    website_id: Int @doc(description: "website id")
+    cc_type: String @doc(description: "cc type")
+    cc_exp_month: String @doc(description: "cc exp month")
+    cc_exp_year: Int @doc(description: "cc exp year")
+    cc_number: String @doc(description: "cc number")
+    cc_cid: Int @doc(description: "cc cid")
+    cc_action: String @doc(description: "flag for save information or with card data")
+}
+input CreateCardInput {
+    firstname: String! @doc(description: "firstname")
+    lastname: String! @doc(description: "lastname")
+    postcode: String! @doc(description: "postcode")
+    country_id: String! @doc(description: "country id")
+    region_id: Int @doc(description: "region idl")
+    state: String @doc(description: "state")
+    city: String! @doc(description: "city")
+    company: String @doc(description: "company")
+    street: String! @doc(description: "street")
+    telephone: String! @doc(description: "telephone")
+    website_id: Int @doc(description: "website id")
+    cc_type: String! @doc(description: "cc type")
+    cc_exp_month: String! @doc(description: "cc exp month because of magento default issue assign String data type")
+    cc_exp_year: Int! @doc(description: "cc exp year")
+    cc_number: String! @doc(description: "cc number")
+    cc_cid: Int @doc(description: "cc cid")
+}

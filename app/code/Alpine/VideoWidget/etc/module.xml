@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_VideoWidget
+ *
+ * @category    Alpine
+ * @package     Alpine_VideoWidget
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Daria Mishina <daria.mishina@alpineinc.com>
+ * @author      Lev Zamansky <lev.zamanskiy@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Alpine_VideoWidget" setup_version="0.1.0"/>
+</config>

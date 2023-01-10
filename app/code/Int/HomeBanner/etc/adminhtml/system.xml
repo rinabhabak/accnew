@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!--<tab id="homebanner" translate="label" sortOrder="10">
+            <label>Int</label>
+        </tab>-->
+        <section id="homebanner_newproducts" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>New Products SKU</label>
+            <tab>intcore</tab>
+            <resource>Int_HomeBanner::slider_head</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                <field id="new_product_sku" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>New Products SKU</label>
+                    <comment>Please enter products SKU with comma-saperated value.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
+

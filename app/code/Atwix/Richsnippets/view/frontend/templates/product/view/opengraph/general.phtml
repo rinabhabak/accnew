@@ -1,0 +1,23 @@
+<?php
+/**
+ * @author Atwix Team
+ * @copyright Copyright (c) 2016 Atwix (https://www.atwix.com/)
+ * @package Atwix_Richsnippets
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ *
+ * @see \Atwix\Richsnippets\Plugin\Block\Product\View::afterSetTemplateContext() for assing $productSnippets
+ * @var $productSnippets array
+ */
+?>
+<?php if ($productSnippets): ?>
+    <meta property="og:type"        content="og:product" />
+    <meta property="og:title"       content="<?php echo $productSnippets['title']; ?>" />
+    <meta property="og:image"       content="<?php echo $productSnippets['image']; ?>" />
+    <meta property="og:description" content="<?php echo $productSnippets['description']; ?>" />
+    <meta property="og:url"         content="<?php echo $productSnippets['url']; ?>" />
+    <?php if ($priceAmount = $block->getProduct()->getFinalPrice()):?>
+        <meta property="product:price:amount" content="<?php echo $priceAmount ?>"/>
+        <?php echo $block->getChildHtml('meta.currency'); ?>
+    <?php endif;?>
+<?php endif;?>

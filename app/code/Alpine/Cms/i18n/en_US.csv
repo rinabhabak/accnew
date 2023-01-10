@@ -1,0 +1,37 @@
+"Page not found.","Page not found."
+"Thanks for submitting the quote to us with your information. We\'ll respond to you very soon.","Thanks for submitting the quote to us with your information. We\'ll respond to you very soon."
+"An error occurred while processing your form. Please try again later.","An error occurred while processing your form. Please try again later."
+"Name is missing","Name is missing"
+"Comment is missing","Comment is missing"
+"Invalid email address","Invalid email address"
+"* Required Fields","* Required Fields"
+"QUOTE FORM","QUOTE FORM"
+"Quote Form","Quote Form"
+"Send us a quote and we’ll get back to you as quickly as possible.","Send us a quote and we’ll get back to you as quickly as possible."
+FIRST NAME,FIRST NAME
+LAST NAME,LAST NAME
+TITLE,TITLE
+COMPANY NAME,COMPANY NAME
+ADDRESS,ADDRESS
+CITY,CITY
+STATE,STATE
+ZIP CODE,ZIP CODE
+DELIVERY DATE,DELIVERY DATE
+PHONE #,PHONE #
+EMAIL,EMAIL
+PRODUCTS,PRODUCTS
+SPECIAL COMMENTS,SPECIAL COMMENTS
+Email,Email
+"Phone Number","Phone Number"
+"Your comments","Your comments"
+Submit,Submit
+"Name: %name","Name: %name"
+"Email: %email","Email: %email"
+"Phone Number: %telephone","Phone Number: %telephone"
+"Comment: %comment","Comment: %comment"
+"Enable Quote Form","Enable Quote Form"
+"Email Options","Email Options"
+"Send Emails To","Send Emails To"
+"Email Sender","Email Sender"
+"Email Template","Email Template"
+"Email template chosen based on theme fallback when ""Default"" option is selected.","Email template chosen based on theme fallback when ""Default"" option is selected."

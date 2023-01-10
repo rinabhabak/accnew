@@ -1,0 +1,101 @@
+<?php
+/**
+ * Accuride_Catalog
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Denis Furman <denis.furman@alpineinc.com>
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ *
+ * @var $block \Magento\Catalog\Block\Product\View
+ */
+?>
+<?php
+/* @var $storelocatorHelper Alpine\Storelocator\Helper\Data */
+$storelocatorHelper = $this->helper('Alpine\Storelocator\Helper\Data');
+
+/* @var $IntProductDownloadHelper Int\ProductDownload\Helper\Data */
+$IntProductDownloadHelper = $this->helper('Int\ProductDownload\Helper\Data');
+
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity() && ($_product->getProductForSales())): ?>
+                <div class="field qty">
+                    <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Quantity:') ?></span></label>
+                    <div class="control">
+                        <span class="minus update"></span>
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                               title="<?= /* @escapeNotVerified */ __('Quantity in Pairs:') ?>"
+                               class="input-text qty"
+                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                        />
+                        <span class="plus update"></span>
+                        <span class="uom"><?php echo $block->escapeHtml($_product->getAttributeText('uom')); ?></span>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="actions">
+                <?php if ($_product->getProductForSales()): ?>
+                <button type="submit"
+                        title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button">
+                    <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                </button>
+                <?php else : ?>
+                    <a href="<?php echo $block->getUrl('contact') ?>"
+                       class="action primary blue"
+                       id="contact-us">
+                        <span><?= __('Contact Us') ?></span>
+                    </a>
+                <?php endif; ?>
+                <a href="<?php echo $IntProductDownloadHelper->getStoreLocatorUrl('amlocator/general/url'); ?>"
+                        class="action primary blue"
+                        id="product-distributor">
+                    <span><?= __('Find a Distributor') ?></span>
+                </a>
+                <?= $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+    <script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php else : ?>
+    <script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/js/validate-product": {}
+        }
+    }
+</script>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Alpine_Storelocator/js/product/view/distributor": {
+                "product": "<?php echo $_product->getId(); ?>"
+            }
+        },
+        ".field.qty": {
+            "Magento_Catalog/js/qty": {}
+        }
+    }
+</script>

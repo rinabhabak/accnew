@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../Magento/Config/etc/system_file.xsd">
+    <system>
+        <tab id="addthis" translate="label" sortOrder="10">
+            <label>AddThis</label>
+        </tab>
+        <section id="addthis_floatingsharebar" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>AddThis_FloatingShareBar</label>
+            <tab>addthis</tab>
+            <resource>AddThis_FloatingShareBar::addthis_floatingsharebar</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable AddThis Floating Share Bar</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="desktop_position" translate="label" type="select" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Desktop Position</label>
+                    <source_model>AddThis\FloatingShareBar\Model\Source\DesktopPosition</source_model>
+                    <comment>
+                        Where should the share buttons appear on desktop devices?
+                    </comment>
+                </field> 
+                <field id="mobile_position" translate="label" type="select" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Mobile Position</label>
+                    <source_model>AddThis\FloatingShareBar\Model\Source\MobilePosition</source_model>
+                    <comment>
+                        Where should the share buttons appear on mobile devices?
+                    </comment>
+                </field>
+                <field id="counts" translate="label" type="select" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Share Counter Type</label>
+                    <source_model>AddThis\FloatingShareBar\Model\Source\Counts</source_model>
+                    <comment>
+                         <![CDATA[How should the share counters appear? <br/>      
+                            Note: Not all services display individual share counters, but we'll display them when they're available. Shares must be greater than 10 to appear.]]>               
+                    </comment>
+                </field>
+                <field id="num_preferred_services" translate="label" type="select" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Number of Services</label>
+                    <source_model>AddThis\FloatingShareBar\Model\Source\NumPreferredServices</source_model>
+                    <comment>
+                        The services that are displayed are based on the user’s past sharing history and which that are most popular.                    
+                    </comment>
+                </field>
+                <field id="style" translate="label" type="select" sortOrder="70" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Button Style</label>
+                    <source_model>AddThis\FloatingShareBar\Model\Source\Style</source_model>
+                </field>
+                <field id="mobile_button_size" translate="label" type="select" sortOrder="80" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Mobile Button Size</label>
+                    <source_model>AddThis\FloatingShareBar\Model\Source\MobileButtonSize</source_model>
+                    <comment>
+                        How should the buttons appear on mobile devices?
+                    </comment>
+                </field>
+                <field id="theme" translate="label" type="select" sortOrder="90" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Theme</label>
+                    <source_model>AddThis\FloatingShareBar\Model\Source\Theme</source_model>
+                    <comment>
+                        What color would you like the arrow to hide the sidebar?
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

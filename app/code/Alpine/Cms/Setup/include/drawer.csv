@@ -1,0 +1,503 @@
+"store","identifier","title","content_heading","content","page_layout"
+"0","drawer_slides","Drawer slides","Drawer slides","<div class=""top_banner"">
+                                                         <img src=""{{view url=images/cms/drawer/layer-606.png}}"" alt=""img"">
+                                                         <div class=""text"">
+                                                             <p>LET US HELP YOU FIND THE PERFECT MOVEMENT SOLUTION</p>
+                                                             <p>Our team is ready to help you find your perfect movement solution.</p>
+                                                         </div>
+                                                     </div>
+                                                     <div class=""solutions"">
+                                                         <div class=""title"">
+                                                             <p>PREMIUM DRAWER SLIDES AND SLIDING SOLUTIONS MANUFACTURER</p>
+                                                             <p class=""description"">From electronic enclosure slides to integrated locking slides, we manufacture slides to
+                                                                 fit your movement solution needs.</p>
+                                                         </div>
+                                                         <div class=""owl-carousel"">
+                                                             <div class=""item"">
+                                                                 <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                                                 <p class=""text"">Intagration locking solutions</p>
+                                                             </div>
+                                                             <div class=""item"">
+                                                                 <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                                                 <p class=""text"">
+                                                                     <span>LIGHT DUTY</span>
+                                                                     <span>(139 LB. OR LESS)</span>
+                                                                 </p>
+                                                             </div>
+                                                             <div class=""item"">
+                                                                 <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                                                 <p class=""text"">
+                                                                     <span>LIGHT DUTY</span>
+                                                                     <span>(139 LB. OR LESS)</span>
+                                                                 </p>
+                                                             </div>
+                                                             <div class=""item"">
+                                                                 <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                                                 <p class=""text"">UNDERMOUNT</p>
+                                                             </div>
+                                                             <div class=""item"">
+                                                                 <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                                                 <p class=""text"">
+                                                                     <span>HEAVY DUTY</span>
+                                                                     <span>(139 LB. OR LESS)</span>
+                                                                 </p>
+                                                             </div>
+                                                             <div class=""item"">
+                                                                 <img src=""{{view url=images/cms/markets/Layer_3.png}}"" alt=""img"">
+                                                                 <p class=""text"">
+                                                                     <span>MEDIUM DUTY</span>
+                                                                     <span>(139 LB. OR LESS)</span>
+                                                                 </p>
+                                                             </div>
+                                                         </div>
+                                                         <script>
+                                                             require(['jquery', 'owlCarousel'], function ($) {
+                                                                 $('.solutions .owl-carousel').owlCarousel({
+                                                                     nav: true,
+                                                                     items: 4,
+                                                                     dots: false,
+                                                                     responsive: {
+                                                                         0: {items: 1},
+                                                                         480: {items: 1},
+                                                                         768: {items: 4}
+                                                                     }
+                                                                 })
+                                                             });
+                                                         </script>
+                                                     </div>
+                                                     <div class=""banner_double"">
+                                                         <div class=""left"">
+                                                             <img src=""{{view url=images/cms/drawer/layer-39.png}}"" alt=""img"">
+                                                         </div>
+                                                         <div class=""right"">
+                                                             <div class=""title"">
+                                                                 <p>DRAWER SLIDES IN DETAIL</p>
+                                                                 <p class=""description"">For more than 50 years we’ve worked with architects, designers, and specifiers to
+                                                                     develop slide solutions that provide movement, positioning, and access in a vast range of applications
+                                                                     across a broad spectrum of industries. In doing this we’ve observed and recorded some factors that need
+                                                                     to be considered when designing with Accuride slides.</p>
+                                                             </div>
+                                                             <a href=""#"" class=""action blue primary""><span>learn more</span></a>
+                                                         </div>
+                                                     </div>
+                                                     <div class=""suggestions"">
+                                                         <div class=""sections"">
+                                                             <div class=""section"">
+                                                                 <div class=""tabs"">
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">Mounting</div>
+                                                                         <div class=""content double"" data-role=""content"">
+                                                                             <div class=""video"">
+                                                                                 <iframe width=""445"" height=""250"" src=""//www.youtube.com/embed/NtIRL8DWkVU"" frameborder=""0""
+                                                                                         allowfullscreen></iframe>
+                                                                             </div>
+                                                                             <div class=""text"">
+                                                                                 <p>Mounting</p>
+                                                                                 <p>For optimal performance, we recommend you mount slides only as indicated in the provided
+                                                                                     technical sheet. Although most slides are side mounted, some can be flat mounted under
+                                                                                     the drawer or moving component, causing a 50 percent loss in load rating.</p>
+                                                                             </div>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">Side Space</div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                                                 slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                                                 lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                                 <li>Optional finish: black zinc</li>
+                                                                             </ul>
+                                                                             <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                                                 slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                                                 soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                             </ul>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">Load</div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                                                 slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                                                 lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                                 <li>Optional finish: black zinc</li>
+                                                                             </ul>
+                                                                             <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                                                 slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                                                 soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                             </ul>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">Drawer Width</div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                                                 slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                                                 lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                                 <li>Optional finish: black zinc</li>
+                                                                             </ul>
+                                                                             <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                                                 slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                                                 soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                             </ul>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">Extension</div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                                                 slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                                                 lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                                 <li>Optional finish: black zinc</li>
+                                                                             </ul>
+                                                                             <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                                                 slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                                                 soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                             </ul>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class=""unlimited"">
+                                                         <div class=""title"">
+                                                             <p>SPECIAL FEATURES</p>
+                                                             <p class=""description"">
+                                                                 Accuride offers a host of special features that improve design and functionality in your application.
+                                                             </p>
+                                                         </div>
+                                                         <div class=""content"">
+                                                             <div class=""top"">
+                                                                 <div>
+                                                                     <div class=""text"">
+                                                                         <p>Touch-Release</p>
+                                                                         <p>Just a slight push inward and the slide latch releases, propelling the drawer open 2”.</p>
+                                                                         <p>3832TR, 3832HDTR</p>
+                                                                         <a href=""#"">See More...</a>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div>
+                                                                     <div class=""text"">
+                                                                         <p>Easy-Close</p>
+                                                                         <p>Bring drawers to a smooth, gentle close every time with our patented Easy-Close feature.</p>
+                                                                         <p>3832EC, 3160EC, 3135EC, 115RC, 3600EC (OEM Only)</p>
+                                                                         <a href=""#"">See More...</a>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div>
+                                                                     <img src=""{{view url=images/cms/markets/image.png}}"" alt=""img"">
+                                                                 </div>
+                                                             </div>
+                                                             <div class=""middle"">
+                                                                 <div>
+                                                                     <div class=""text"">
+                                                                         <p>Detent-Out</p>
+                                                                         <p>Firmly holds drawers and pull-out surfaces in extended positions</p>
+                                                                         <p>3832DO, 2109, Keyboard Tray Systems</p>
+                                                                         <a href=""#"">See More...</a>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                             <div class=""bottom"">
+                                                                 <div>
+                                                                     <div class=""text"">
+                                                                         <p>Lock-In/Lock-Out</p>
+                                                                         <p>Keeps drawers, trays, and panels secured in closed and open positions for prolonged access.</p>
+                                                                         <p>9308E</p>
+                                                                         <a href=""#"">See More...</a>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div>
+                                                                     <div class=""text"">
+                                                                         <p>Lock-Out</p>
+                                                                         <p>Locks drawers and other pull-out surfaces in extended position until released by a lever.</p>
+                                                                         <p>2907WB, 340, 3307, 9307</p>
+                                                                         <a href=""#"">See More...</a>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>
+                                                     <div class=""slider_second_home"">
+                                                         <div class=""wrapper_slider"">
+                                                             <div class=""title"">
+                                                                 <p>MARKETS</p>
+                                                                 <p class=""description"">Accuride products are used to provide movement and positioning solutions in a broad spectrum of industries, including:</p>
+                                                             </div>
+                                                             <div class=""content"">
+                                                                 <div class=""owl-carousel owl-theme"">
+                                                                     <div class=""wrapper_item"">
+                                                                         <img src=""{{view url=images/cms/drawer/wc.png}}"" alt=""img"">
+                                                                         <p>Cabinet Hardware</p>
+                                                                     </div>
+                                                                     <div class=""wrapper_item"">
+                                                                         <img src=""{{view url=images/cms/drawer/med.png}}"" alt=""img"">
+                                                                         <p>Healthcare</p>
+                                                                     </div>
+                                                                     <div class=""wrapper_item"">
+                                                                         <img src=""{{view url=images/cms/drawer/auto.png}}"" alt=""img"">
+                                                                         <p>Automotive</p>
+                                                                     </div>
+                                                                     <div class=""wrapper_item"">
+                                                                         <img src=""{{view url=images/cms/drawer/home.png}}"" alt=""img"">
+                                                                         <p>Homeowners</p>
+                                                                     </div>
+                                                                     <div class=""wrapper_item"">
+                                                                         <img src=""{{view url=images/cms/drawer/wc.png}}"" alt=""img"">
+                                                                         <p>Cabinet Hardware</p>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     
+                                                         <script>
+                                                             require(['jquery', 'owlCarousel'], function ($) {
+                                                                 $('.slider_second_home .owl-carousel').owlCarousel({
+                                                                     nav: true,
+                                                                     items: 4,
+                                                                     dots: false,
+                                                                     loop: true,
+                                                                     responsive: {
+                                                                         0: {items: 1},
+                                                                         480: {items: 1},
+                                                                         768: {items: 4}
+                                                                     }
+                                                                 });
+                                                             });
+                                                         </script>
+                                                     </div>
+                                                     <div class=""suggestions second"">
+                                                         <div class=""top_banner"">
+                                                             <img src=""{{view url=images/cms/drawer/2-layers.png}}"" alt=""img"">
+                                                             <div class=""text"">
+                                                                 <p>Cabinet Locks and keys are a thing of the past.
+                                                                     Upgrade your security with Senseon today!
+                                                                 </p>
+                                                                 <a href=""#"" class=""action primary white""><span>Lets get started ></span></a>
+                                                             </div>
+                                                         </div>
+                                                         <div class=""sections"">
+                                                             <div class=""section"">
+                                                                 <div class=""title"">
+                                                                     <p>FAQs</p>
+                                                                 </div>
+                                                                 <div class=""tabs"">
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">How Do I Remove My Drawer?</div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Answer to frequently asked question number one, which elaborates on accuride CTA or VP. This
+                                                                                 is more filler copy so that the line runs the entire length of the measure. The length of
+                                                                                 the answer will push content below further down when each question is expanded.</p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">How do i determine which slide i need for my application?
+                                                                         </div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                                                 slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                                                 lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                                 <li>Optional finish: black zinc</li>
+                                                                             </ul>
+                                                                             <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                                                 slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                                                 soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                             </ul>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">Can i mount slides on the bottom of the drawer instead of the
+                                                                             sides?
+                                                                         </div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                                                 slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                                                 lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                                 <li>Optional finish: black zinc</li>
+                                                                             </ul>
+                                                                             <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                                                 slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                                                 soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                             </ul>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">How Do I Locate And Purchase A Slide And How Much Does It
+                                                                             Cost?
+                                                                         </div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                                                 slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                                                 lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                                 <li>Optional finish: black zinc</li>
+                                                                             </ul>
+                                                                             <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                                                 slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                                                 soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                             </ul>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""tab"" data-mage-init='{""collapsible"":{""openedState"": ""active"", ""saveState"": false}}'>
+                                                                         <div class=""action"" data-role=""title"">How Do I Get Replacement Parts To Repair A Slide?</div>
+                                                                         <div class=""content"" data-role=""content"">
+                                                                             <p>Drawers 24 in. [610 mm] wide or less: Accuride 7434 (7432, full extension) all ball bearing
+                                                                                 slide, with rail mount, full extension + 1 in. [25 mm] over travel, hold-in detent, 100
+                                                                                 lbs./pr. [45 kg] load rating, and progressive movement.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                                 <li>Optional finish: black zinc</li>
+                                                                             </ul>
+                                                                             <p>Drawers 30 in. [762 mm] wide or less: Accuride 3132EC Eclipse, fully concealed under-mount
+                                                                                 slide with ball bearing and polymer rollers, with lever disconnect, full extension,
+                                                                                 soft-closing action, and 100 lbs./pr. [45 kg] load rating.</p>
+                                                                             <ul>
+                                                                                 <li>Standard finish: clear zinc</li>
+                                                                             </ul>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                             <a href=""#"" class=""action primary white""><span>FOR MORE, VISIT OUR FAQ PAGE ></span></a>
+                                                         </div>
+                                                     </div>
+                                                     <div class=""related_post"">
+                                                         <div class=""wrapper_posts"">
+                                                             <div class=""title"">
+                                                                 <p>RELATED POSTS</p>
+                                                             </div>
+                                                             <div class=""items"">
+                                                                 <div class=""item"">
+                                                                     <img src=""{{view url=images/cms/drawer/layer-17.png}}"" alt=""img"">
+                                                                     <a href=""#"">Drawer Slide Finishes & Why you should Care?</a>
+                                                                     <p>July 20th, 2017</p>
+                                                                 </div>
+                                                                 <div class=""item"">
+                                                                     <img src=""{{view url=images/cms/drawer/layer-17.png}}"" alt=""img"">
+                                                                     <a href=""#"">What is a Drawer Slide and How Do I Choose the Right One?</a>
+                                                                     <p>May 8th, 2017</p>
+                                                                 </div>
+                                                                 <div class=""item"">
+                                                                     <img src=""{{view url=images/cms/drawer/layer-17.png}}"" alt=""img"">
+                                                                     <a href=""#"">Slideology 101: The Art of Discount</a>
+                                                                     <p>March 9th, 2017</p>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                         <script>
+                                                             require(['jquery', 'owlCarousel'], function ($) {
+                                                                 if ($(window).width() < 770)
+                                                                     $('.related_post .items').addClass('owl-carousel');
+                                                                     $('.related_post .owl-carousel').owlCarousel({
+                                                                         nav: true,
+                                                                         items: 1,
+                                                                         dots: false,
+                                                                         responsive: {
+                                                                             0: {items: 1},
+                                                                             480: {items: 1},
+                                                                             768: {items: 1}
+                                                                         }
+                                                                     })
+                                                             });
+                                                         </script>
+                                                     </div>
+                                                     <div class=""feed"">
+                                                         <div class=""wrapper_feed"">
+                                                             <div class=""title"">
+                                                                 <p>SOCIAL FEED</p>
+                                                             </div>
+                                                             <div class=""content"">
+                                                                 <div class=""left"">
+                                                                     <div class=""item"">
+                                                                         <img src=""{{view url=images/cms/drawer/layer-13.png}}"" alt=""img"">
+                                                                         <div class=""author"">
+                                                                             <img src=""{{view url=images/cms/drawer/layer-16.png}}"" alt=""img"">
+                                                                             <p class=""info"">
+                                                                                 <span>Accuride International US</span>
+                                                                                 <span class=""date"">October 11 at 2:00pm</span>
+                                                                             </p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""item no_img"">
+                                                                         <img src=""{{view url=images/cms/drawer/layer-20.png}}"" alt=""img"">
+                                                                         <p class=""text"">
+                                                                             RT @cabinetmakers: Job site sneak peek of our client's laundry room 48"" deep vacuum roll-out with @AccurideUS heavy… http://instagram.com/p/BZd5Ju4lOQB/
+                                                                         </p>
+                                                                         <div class=""author"">
+                                                                             <img src=""{{view url=images/cms/drawer/layer-15.png}}"" alt=""img"">
+                                                                             <p class=""info"">
+                                                                                 <span>Garcia Cabinetmakers</span>
+                                                                                 <span>@cabinetmakers  Sep 25</span>
+                                                                             </p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""item no_img"">
+                                                                         <img src=""{{view url=images/cms/drawer/layer-20.png}}"" alt=""img"">
+                                                                         <p class=""text"">
+                                                                             RT @cabinetmakers: Job site sneak peek of our client's laundry room 48"" deep vacuum roll-out with @AccurideUS heavy… http://instagram.com/p/BZd5Ju4lOQB/
+                                                                         </p>
+                                                                         <div class=""author"">
+                                                                             <img src=""{{view url=images/cms/drawer/layer-15.png}}"" alt=""img"">
+                                                                             <p class=""info"">
+                                                                                 <span>Garcia Cabinetmakers</span>
+                                                                                 <span>@cabinetmakers  Sep 25</span>
+                                                                             </p>
+                                                                         </div>
+                                                                     </div>
+                                                                     <div class=""item"">
+                                                                         <img src=""{{view url=images/cms/drawer/layer-17.png}}"" alt=""img"">
+                                                                         <div class=""author"">
+                                                                             <img src=""{{view url=images/cms/drawer/layer-16.png}}"" alt=""img"">
+                                                                             <p class=""info"">
+                                                                                 <span>Accuride International US</span>
+                                                                                 <span class=""date"">October 11 at 2:00pm</span>
+                                                                             </p>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                                 <div class=""right"">
+                                                                     <div class=""item"">
+                                                                         <img src=""{{view url=images/cms/drawer/screen-shot-2017-10-13-at-9-01-13-am.png}}"" alt=""img"">
+                                                                         <p class=""text"">
+                                                                             accurideus We are on location in Brooklyn with @vladfinecraft. Learning his craft and how he uses Accuride!
+                                                                         </p>
+                                                                         <div class=""author"">
+                                                                             <img src=""{{view url=images/cms/drawer/layer-15.png}}"" alt=""img"">
+                                                                             <p class=""info"">
+                                                                                 <span>Accuride International US</span>
+                                                                                 <span class=""date"">October 11 at 2:00pm</span>
+                                                                             </p>
+                                                                         </div>
+                                                                     </div>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                     </div>                                                     
+","1column"

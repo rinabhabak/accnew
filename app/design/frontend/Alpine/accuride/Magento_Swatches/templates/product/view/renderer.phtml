@@ -1,0 +1,35 @@
+<?php
+/**
+ * Accuride_Catalog
+ *
+ * @category    Alpine
+ * @theme       Alpine_Accuride
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ *
+// @codingStandardsIgnoreFile
+//"swatchRenderer": {
+?>
+<?php /** @var $block \Magento\Swatches\Block\Product\Renderer\Configurable */
+$_product = $block->getProduct();
+if ($_product->getProductForSales()) :
+?>
+<div class="swatch-opt" data-role="swatch-options"></div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options]": {
+            "Magento_Swatches/js/swatch-renderer": {
+                "jsonConfig": <?= /* @escapeNotVerified */ $swatchOptions = $block->getJsonConfig() ?>,
+                "jsonSwatchConfig": <?php /* @noEscape */ echo $block->getJsonSwatchConfig(); ?>,
+                "mediaCallback": "<?= /* @escapeNotVerified */ $block->getMediaCallback() ?>",
+                "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar('gallery_switch_strategy',
+                    'Magento_ConfigurableProduct') ?: 'replace'; ?>"
+            },
+            "Magento_Swatches/js/configurable-customer-data": {
+                    "swatchOptions": <?php /* @noEscape */ echo $swatchOptions ?>
+            }
+        }
+    }
+</script>
+<?php endif; ?>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<payment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Payment:etc/payment.xsd">
+    <methods>
+        <method name="magedelight_cybersource">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+    </methods>
+    <credit_cards>
+        <type id="AE" order="0">
+            <label>American Express</label>
+        </type>
+        <type id="VI" order="10">
+            <label>Visa</label>
+        </type>
+        <type id="MC" order="20">
+            <label>MasterCard</label>
+        </type>
+        <type id="DI" order="30">
+            <label>Discover</label>
+        </type>
+        <type id="JCB" order="50">
+            <label>JCB</label>
+        </type>
+        <type id="MAESTRO" order="120">
+            <label>Maestro International</label>
+        </type>
+        <type id="SWITCH" order="140">
+            <label>Maestro UK</label>
+        </type>
+        <type id="DC" order="160">
+            <label>Diners Club</label>
+        </type>
+    </credit_cards>
+</payment>

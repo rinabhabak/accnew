@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Quote form
+ *
+ * @category    Alpine
+ * @package     Alpine_Cms
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="alpine_cms_quote" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>Quote form</label>
+            <tab>alpine</tab>
+            <resource>Alpine_Cms::quote</resource>
+            <group id="quote" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Quote Form</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
+                       showInStore="1" canRestore="1">
+                    <label>Enable Quote Form</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <backend_model>Alpine\Cms\Model\Quote\System\Config\Backend\Links</backend_model>
+                </field>
+            </group>
+            <group id="email" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Email Options</label>
+                <field id="recipient_email" translate="label" type="text" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Send Emails To</label>
+                    <validate>validate-email</validate>
+                </field>
+                <field id="sender_email_identity" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="email_template" translate="label comment" type="select" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Email Template</label>
+                    <comment>Email template chosen based on theme fallback when "Default" option is selected.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+            </group>
+            <group id="after_tier_content" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configurable Product</label>
+                <!-- WYSIWYG editor field code start-->
+                <field id="editor_textarea" translate="label comment" sortOrder="1" type="editor" showInStore="1" showInDefault="1" >
+                    <label>WYSIWYG Editor</label>
+                    <frontend_model>Alpine\Cms\Block\Adminhtml\System\Config\Editor</frontend_model>
+                </field>
+                <!-- WYSIWYG editor field code end-->
+            </group>
+        </section>
+    </system>
+</config>

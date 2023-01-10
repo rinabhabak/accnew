@@ -1,0 +1,76 @@
+<?php
+/**
+ * Alpine_CustomerCompany
+ *
+ * @category    Alpine
+ * @package     Alpine_CustomerCompany
+ * @copyright   Copyright (c) 2018 Alpine Consulting, Inc
+ * @author      Andrey Nesterov <andrey.nesterov@alpineinc.com>
+ */
+
+/* @var $block \Alpine\CustomerCompany\Block\Form */
+
+use Alpine\CustomerCompany\Helper\Data;
+?>
+<?php if ($block->hasUserDefinedAttributes()): ?>
+    <?php foreach ($block->getUserDefinedAttributes() as $code => $attribute): ?>
+        <?php 
+        $class = $code;
+        if ($attribute->getIsRequired()) {
+            $class .= ' required';
+        }
+        if ($code == Data::OTHER_INDUSRTY_CODE) {
+            $class .= ' hidden';
+        }
+        ?> 
+        <div class="field field-<?php echo $class; ?>">
+        <?php switch ($attribute->getFrontendInput()): 
+            case 'text': 
+        ?>
+            <div class="control">
+                <input type="text" id="<?php echo $code; ?>" name="<?php echo $code; ?>" 
+                    value="" class="input-text" autocomplete="off">
+            </div>
+        <?php break; ?>
+        <?php case 'select': ?>
+            <label class="label" for="<?php echo $code; ?>">
+                <span><?php echo $attribute->getFrontendLabel(); ?></span>
+            </label>
+            <div class="control">
+                <select id="<?php echo $code; ?>" name="<?php echo $code; ?>">
+                <?php foreach ($block->getAttributeOptions($attribute) as $option): ?>
+                    <option value="<?php echo $option['value']; ?>"><?php
+                        echo $block->escapeHtml($option['label']);
+                    ?></option>
+                <?php endforeach; ?>
+                </select>
+            </div>
+        <?php break; ?>
+        <?php case 'multiselect': ?>
+            <label class="label" for="<?php echo $code; ?>">
+                <span><?php echo $attribute->getFrontendLabel(); ?></span>
+            </label>
+            <div class="control">
+                <select multiple="multiple" id="<?php echo $code; ?>" name="<?php echo $code; ?>[]">
+                <?php foreach ($block->getAttributeOptions($attribute) as $option): ?>
+                    <option value="<?php echo $option['value']; ?>"><?php 
+                        echo $block->escapeHtml($option['label']); 
+                    ?></option>
+                <?php endforeach; ?>
+                </select>
+            </div>
+        <?php break; ?>
+        <?php endswitch; ?>
+        </div>
+    <?php endforeach;?>
+<?php endif; ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Alpine_CustomerCompany/js/form/industry": {
+            "selectCode": "<?php echo Data::PICK_YOUR_INDUSTRY_CODE; ?>",
+            "textfieldCode": "<?php echo Data::OTHER_INDUSRTY_CODE; ?>"
+        }
+    }
+}
+</script>

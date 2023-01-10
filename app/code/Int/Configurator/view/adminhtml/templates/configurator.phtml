@@ -1,0 +1,91 @@
+<?php $customerCollection = $block->getCustomers(); ?>
+<style>
+.assign-bdn-popup .modal-inner-wrap{max-width: 600px;}
+#popup-modal tr td{vertical-align: text-bottom;}
+#popup-modal tr th{border: 1px solid #adadad;}
+#popup-modal tr .title{width: 300px; text-align: left; border: 1px solid #adadad; padding: 5px;}
+#popup-modal tr .active-status{width: 120px; text-align: center; border: 1px solid #adadad; padding: 5px; vertical-align: middle;}
+#popup-modal tr .assign-selection{width: 120px; text-align: center; border: 1px solid #adadad; padding: 5px; position: relative; vertical-align: middle;}
+#popup-modal .selections{vertical-align: middle;}
+#popup-modal .selection-heading{text-align: center;}
+</style>
+<div id="popup-modal" style="display:none;">    
+	<div class="configurator-bdm-list" >
+        <form action="<?php echo $block->getUrl('int_configurator/items/savebdm');?>" method="POST" id="configurator">
+        <input type="hidden" name="form_key" value="<?php echo $block->getFormKey() ?>" />
+        <input type="hidden" name="configuratorid" id="configurator-id" value="" />
+            <table class="data-grid">
+                <thead>
+                    <tr>
+                        <th class="title data-grid-th sortable draggable"><b><?php echo __('Name') ?></b></th>
+                        <th class="data-grid-th sortable draggable"><b><?php echo __('Active Tasks') ?></b></th>
+                        <th class="data-grid-th sortable draggable selection-heading"><b><?php echo __('Select') ?></b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php  foreach($customerCollection as $customer) {?>		
+                        <tr>
+                            <td class="title">
+                                <p><?php echo $customer->getName();?></p>
+                                <p><?php echo $block->getGroupName($customer->getGroupId());?></p>
+                            </td>
+                            <td class="active-status"><?php echo $block->getActiveTasks($customer->getId()) ?></td>
+                            <td class="assign-selection">
+                                <input class="selections" type="radio" name="customerid" value="<?php echo $customer->getId();?>" />
+                            </td>
+                        </tr>
+                    <?php }?>
+                </tbody>
+            </table>		
+        </form>
+	</div>
+</div>
+
+<script>
+
+    require(
+        [
+            'jquery',
+            'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+        ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: 'Assign BDM',
+				modalClass: 'assign-bdn-popup',
+                buttons: [{
+                    text: $.mage.__('Cancel'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                },
+				{
+                    text: $.mage.__('Confirm'),
+                    class: 'primary',
+                    click: function () {
+                        $("#configurator").submit();
+                    }
+                }
+				]
+            };
+
+            var popup = modal(options, $('#popup-modal'));
+			$(document).on('click','.bdm-assign',function(){     
+				var configId = $(this).attr('confid');
+				$("#configurator-id").val(configId);
+                $("#popup-modal").modal("openModal");
+            });
+			
+			$(document).on('click','.view-details',function(){				
+				var url = $(this).attr('href');
+				window.location.href = url;
+			});
+        }
+    );
+</script>

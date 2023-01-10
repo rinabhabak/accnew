@@ -1,0 +1,50 @@
+<?php 
+#DebugBreak();
+?>
+
+<?php $cards = $block->getCustomerCards();
+$customHelper = $this->helper('Magedelight\Cybersource\Helper\Data');
+$cybersourceIsEnabled = $customHelper->getConfig('payment/magedelight_cybersource/active');
+if($cybersourceIsEnabled == 1) {        
+?>
+
+<button type="button" title="<?php echo __("Add New Card") ?>" class="addcardbutton button action primary <?php if(count($cards) == 0 || count($cards) == null):?> addmargin<?php endif;?>" onclick="window.location='<?php echo $block->getAddCardUrl() ?>';"><span><span><?php echo __("Add New Card") ?></span></span></button>
+
+<?php if(count($cards) > 0): ?>
+    <table class="data-table cards" id="my-saved-cards-table">
+        <col />
+        <col />
+        <col width="1"/>
+        <thead>
+            <tr>
+                <th class="a-left view"><?php echo __('Card #') ?></th>
+                <th class="a-left view"><?php echo __('Card Info') ?></th>
+                <th class="a-center view"><?php echo __('Action') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php $_odd = ''; ?>
+            <?php foreach ($cards as $_card): ?>
+                <tr>
+                    <td class="a-left view"><strong><?php echo "XXXX-". $_card['cc_last_4']?></strong></td>
+                    <td class="a-left view"><?php echo $block->getAddressHtml($_card); ?></td>
+                    <td class="a-center view">
+                        <span class="nobr">                            
+                                <form method="post" name="form_edit_<?php echo $_card['card_id'] ?>" action="<?php echo $block->getPostUrl() ?>" style="display:inline-block;">
+                                    <input type="hidden" name="card_id" value="<?php echo $_card['card_id'] ?>" />
+                                    <button class="button action primary" name="profile_edit" value="edit" type="submit"><span><span><?php echo __("Edit") ?></span></span></button>
+                                </form>    
+                                <span class="separator">&nbsp;|&nbsp;</span>
+                                <form onsubmit="return confirm('Are you sure want to delete credit card details?');" method="post" id="form_delete_<?php echo $_card['card_id'] ?>" name="form_delete_<?php echo $_card['card_id'] ?>" action="<?php echo $block->getDeleteAction() ?>" style="display:inline-block;">
+                                    <input type="hidden" name="card_id" value="<?php echo $_card['card_id'] ?>" />
+                                    <button class="button action primary" name="profile_delete" value="delete" type="submit"><span><span><?php echo __("Delete") ?></span></span></button>
+                                </form>                                
+                        </span>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+        </tbody>
+    </table>
+    <?php else: ?>
+    <div class="message info empty"><span><?php /* @escapeNotVerified */ echo __('You have no saved credit cards.') ?></span></div>
+<?php endif; }

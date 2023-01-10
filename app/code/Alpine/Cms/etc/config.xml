@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine Cms Config
+ *
+ * @category    Alpine
+ * @package     Alpine_Cms
+ * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+ * @author      Dmitry Naumov <dmitry.naumov@alpineinc.com>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <alpine_cms_quote>
+            <quote>
+                <enabled>1</enabled>
+            </quote>
+            <email>
+                <recipient_email>
+                    <![CDATA[hello@example.com]]>
+                </recipient_email>
+                <sender_email_identity>custom2</sender_email_identity>
+                <email_template>alpine_cms_quote_email_email_template</email_template>
+            </email>
+        </alpine_cms_quote>
+    </default>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Alpine_Ga
+ *
+ * @category    Alpine
+ * @package     Alpine_Ga
+ * @copyright   Copyright (c) 2019 Alpine Consulting, Inc
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Catalog:etc/catalog_attributes.xsd">
+    <group name="quote_item">
+        <attribute name="manufacture"/>
+    </group>
+</config>

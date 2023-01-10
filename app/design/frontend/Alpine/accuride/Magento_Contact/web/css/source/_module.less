@@ -1,0 +1,321 @@
+// /**
+//  *
+//  * @category    Alpine
+//  * @theme       Alpine_Accuride
+//  * @copyright   Copyright (c) 2018 Alpine Consulting Inc.
+//  * @author      kirill.kosonogov@alpineinc.com
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    .contact-index-index{
+        overflow-x: hidden;
+
+        .page-title-wrapper{
+            position: relative;
+            margin-bottom: 30px;
+            height: 200px;
+
+            &:before{
+                content: '';
+                display: block;
+                height: 100%;
+                width: 100vw;
+                background: url('@{baseDir}Magento_Contact/images/contact-header.jpg') 50% 50% no-repeat;
+                background-size: cover;
+                margin-left: 50%;
+                transform: translateX(-50%);
+                position: absolute;
+            }
+
+
+            .page-title{
+                position: absolute;
+                top: 50%;
+                left: 30px;
+                color: @color-white;
+                transform: translate3d(0, -50%, 0);
+                font-family: @font_light;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+
+    .contact-wrapper{
+        box-sizing: border-box;
+
+        *{
+            box-sizing: inherit;
+        }
+
+        .webforms{
+            margin-bottom: 0;
+        }
+
+        .desktop-tabs{
+            .lib-vendor-prefix-display();
+            .lib-vendor-box-align(center);
+
+            & > .title {
+                .lib-vendor-prefix-flex-grow(10);
+                .lib-vendor-prefix-flex-shrink();
+                text-align: center;
+                text-transform: uppercase;
+                padding: 15px;
+
+                &.active{
+                    background: @color-silver-light3;
+                }
+
+                a{
+                    color: inherit;
+                    font-size: 2rem;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+        .tabs-content{
+
+            & > .title {
+                text-transform: uppercase;
+                padding: 10px 15px;
+
+                &.active{
+                    background: @color-silver-light3;
+
+                    & + .content{
+                        display: block !important;
+                    }
+                }
+
+                a{
+                    color: inherit;
+                    font-size: 1.8rem;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            & > .content{
+                background: @color-silver-light3;
+                padding: 15px;
+                position: relative;
+
+                &:before{
+                    content: '';
+                    position: absolute;
+                    z-index: -1;
+                    height: 100%;
+                    margin-left: 50%;
+                    transform: translateX(-50%);
+                    background: @color-silver-light3;
+                    width: 100vw;
+                    top: 0;
+                    left: 0;
+                }
+
+                &:not([aria-hidden]){
+                    visibility: hidden;
+                }
+            }
+
+            h2{
+                font-family: @font_light;
+                font-size: 2.8rem;
+                color: @color-blue-3;
+            }
+        }
+
+        textarea,
+        select,
+        input{
+            &::-webkit-input-placeholder {
+                text-transform: uppercase;
+            }
+
+            &:-moz-placeholder {
+                text-transform: uppercase;
+            }
+
+            &::-moz-placeholder {
+                text-transform: uppercase;
+            }
+
+            &:-ms-input-placeholder {
+                text-transform: uppercase;
+            }
+        }
+
+        textarea{
+            min-height: 300px;
+        }
+
+        label{
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .drop-zone{
+            border: none;
+            background: none;
+            padding: 0;
+
+            &:before{
+                content: 'BROWSE';
+                .lib-button();
+                display: inline-block;
+                padding: 15px 20px;
+            }
+
+            .text-center {
+                display: inline-block;
+                width: ~'calc(100% - 115px)';
+                margin-left: 10px;
+                background: @color-white;
+                padding: 15px;
+                vertical-align: middle;
+                border: 1px solid @color-black;
+                text-align: left !important;
+                color: @color-black;
+                text-transform: uppercase;
+
+                svg{
+                    display: none;
+                }
+            }
+        }
+
+        .legend{
+            display: none;
+        }
+
+        .fieldset{
+            .lib-vendor-prefix-display();
+            .lib-vendor-box-align();
+            .lib-vendor-prefix-flex-wrap();
+            justify-content: space-between;
+            margin-bottom: 20px;
+
+            .field{
+                .lib-vendor-prefix-flex-basis(47.5%);
+                .lib-vendor-prefix-flex-shrink();
+                .lib-vendor-prefix-flex-grow();
+
+                &.wide{
+                    .lib-vendor-prefix-flex-basis(100%);
+                }
+            }
+        }
+
+        .actions-toolbar {
+            overflow: hidden;
+
+            .primary {
+                float: right;
+
+                .action {
+                    margin: 0;
+                    padding-left: 70px;
+                    padding-right: 70px;
+                }
+            }
+        }
+    }
+}
+
+//Mobile
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .contact-wrapper{
+        .desktop-tabs {
+            display: none;
+        }
+    }
+}
+
+//Desktop
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .contact-wrapper{
+        .tabs-content{
+            .item.title{
+                display: none;
+            }
+        }
+
+        .tabs-content{
+
+            & > .content{
+                padding: 60px 30px;
+            }
+        }
+
+        .webforms{
+            .lib-vendor-prefix-display();
+            .lib-vendor-box-align();
+            justify-content: space-between;
+        }
+
+        .form,
+        .webforms-description-text{
+            .lib-vendor-prefix-flex-basis(47.5%);
+            .lib-vendor-prefix-flex-shrink();
+            .lib-vendor-prefix-flex-grow();
+        }
+
+        [id="form.technical_support"]{
+
+            .webforms {
+                .lib-vendor-prefix-flex-wrap();
+            }
+
+            .form,
+            .webforms-description-text{
+                .lib-vendor-prefix-flex-basis(100%);
+            }
+
+            .form{
+                .lib-vendor-prefix-display();
+                .lib-vendor-box-align(flex-start);
+                .lib-vendor-prefix-flex-wrap();
+                justify-content: space-between;
+
+                .fieldset{
+                    .lib-vendor-prefix-flex-basis(47.5%);
+                    .lib-vendor-prefix-flex-shrink();
+                    .lib-vendor-prefix-flex-grow();
+                }
+
+                .webforms-gdpr,
+                .actions-toolbar {
+                    .lib-vendor-prefix-flex-basis(100%);
+                }
+            }
+        }
+
+        .columns{
+            .lib-vendor-prefix-display();
+            .lib-vendor-box-align(flex-end);
+            justify-content: space-between;
+
+            &:after{
+                display: none;
+            }
+
+            .column {
+                .lib-vendor-prefix-flex-basis(47.5%);
+                .lib-vendor-prefix-flex-shrink();
+                .lib-vendor-prefix-flex-grow();
+            }
+        }
+    }
+}
